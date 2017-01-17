@@ -10,4 +10,4 @@
     例如：我的Adobe Media Server 安装在D盘 Program File文件夹下。那我就打开D:\Program Files\Adobe\Adobe Media Server 5\samples\videoPlayer\videoplayer.html
 
     截图:
-    ![播放图片](https://github.com/blueberryCoder/LiveStream/tree/master/AndroidPublisher/doc/screenshot/publisher.jpg)
+    ![image](https://github.com/blueberryCoder/LiveStream/blob/master/AndroidPublisher/doc/screenshot/publisher.jpg)
