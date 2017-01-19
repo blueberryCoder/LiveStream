@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-
 android {
     compileSdkVersion 24
     buildToolsVersion "24.0.2"
@@ -33,9 +32,16 @@ android {
     sourceSets {
         main {
             jniLibs.srcDirs 'libs', '../rtmp/lib'
+            java.srcDirs 'src/main/java'
+            manifest.srcFile 'src/main/AndroidManifest.xml'
+            res.srcDirs 'src/main/res'
+
+
         }
     }
 }
+
+
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])

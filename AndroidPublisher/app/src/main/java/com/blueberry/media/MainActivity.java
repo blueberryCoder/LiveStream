@@ -35,10 +35,10 @@ import static android.media.MediaFormat.KEY_COLOR_FORMAT;
 import static android.media.MediaFormat.KEY_FRAME_RATE;
 import static android.media.MediaFormat.KEY_I_FRAME_INTERVAL;
 import static android.media.MediaFormat.KEY_MAX_INPUT_SIZE;
+
 // 视频角度问题：
 //http://blog.csdn.net/veilling/article/details/52421930
 //
-
 public class MainActivity extends AppCompatActivity implements SurfaceHolder.Callback2 {
 
     static final int NAL_SLICE = 1;
@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Log.i(TAG, "onCreate: ");
         initView();
 
     }
@@ -92,6 +93,7 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
     private void initView() {
         btnToggle = (Button) findViewById(R.id.btn_toggle);
         mSurfaceView = (SurfaceView) findViewById(R.id.surface_view);
+        mSurfaceView.setKeepScreenOn(true);
         mSurfaceHolder = mSurfaceView.getHolder();
         mSurfaceHolder.addCallback(this);
         btnToggle.setOnClickListener(new View.OnClickListener() {
@@ -114,7 +116,12 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
 
     private void start() {
         //初始化
-        mRtmpPublisher.init(url, previewSize.width, previewSize.height, 5);
+        int ret = mRtmpPublisher.init(url, previewSize.width, previewSize.height, 5);
+
+        if (ret < 0) {
+            Log.e(TAG, "连接失败");
+            return;
+        }
 
         isPublished = true;
         initAudioDevice();
@@ -590,12 +597,12 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
             // 我打印发现，这里应该已经是吧关键帧计算好了，所以我们直接发送
             byte[] bytes = new byte[2];
             bb.get(bytes);
-            mRtmpPublisher.sendAacSpec(bytes,2);
+            mRtmpPublisher.sendAacSpec(bytes, 2);
 
-        }else{
+        } else {
             byte[] bytes = new byte[aBufferInfo.size];
             bb.get(bytes);
-            mRtmpPublisher.sendAacData(bytes,bytes.length,aBufferInfo.presentationTimeUs/1000);
+            mRtmpPublisher.sendAacData(bytes, bytes.length, aBufferInfo.presentationTimeUs / 1000);
         }
 
     }

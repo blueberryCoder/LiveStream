@@ -32,19 +32,23 @@ int Rtmp::init(std::string url, int w, int h, int timeOut) {
     RTMP_LogSetLevel(RTMP_LOGDEBUG);
     rtmp = RTMP_Alloc();
     RTMP_Init(rtmp);
+    LOGI("time out = %d",timeOut);
     rtmp->Link.timeout = timeOut;
     RTMP_SetupURL(rtmp, (char *) url.c_str());
     RTMP_EnableWrite(rtmp);
 
-    if (RTMP_Connect(rtmp, NULL) <= 0) {
-        LOGD("RTMP_Connect error");
+    if (!RTMP_Connect(rtmp, NULL) ) {
+        LOGI("RTMP_Connect error");
+        return -1;
+    }
+    LOGI("RTMP_Connect success.");
+
+    if (!RTMP_ConnectStream(rtmp, 0)) {
+        LOGI("RTMP_ConnectStream error");
         return -1;
     }
 
-    if (RTMP_ConnectStream(rtmp, 0) <= 0) {
-        LOGD("RTMP_ConnectStream error");
-        return -1;
-    }
+    LOGI("RTMP_ConnectStream success.");
     return 0;
 }
 
