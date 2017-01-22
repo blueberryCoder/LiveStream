@@ -267,7 +267,7 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
                 mediaCodecInfo.getCapabilitiesForType(MediaFormat.MIMETYPE_VIDEO_AVC);
         for (int i = 0; i < codecCapabilities.colorFormats.length; i++) {
             int format = codecCapabilities.colorFormats[i];
-            if (format >= codecCapabilities.COLOR_FormatYUV420PackedPlanar &&
+            if (format >= codecCapabilities.COLOR_FormatYUV420Planar &&
                     format <= codecCapabilities.COLOR_FormatYUV420PackedSemiPlanar
                     ) {
                 if (format >= matchedForamt) {
