@@ -7,7 +7,7 @@ include_directories(${rtmp_dir}/include/librtmp)
 
 add_library( publish
              SHARED
-              publish.cpp
+              publish_jni.cpp
               Rtmp.cpp
              )
 

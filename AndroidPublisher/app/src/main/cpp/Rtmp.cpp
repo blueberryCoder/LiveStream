@@ -5,30 +5,15 @@
 #include "Rtmp.h"
 
 #include "jni.h"
-#include "lang.h"
+#include "common.h"
 
-#define RTMP_HEAD_SIZE (sizeof(RTMPPacket)+RTMP_MAX_HEADER_SIZE)
-#define NAL_SLICE  1
-#define NAL_SLICE_DPA  2
-#define NAL_SLICE_DPB  3
-#define NAL_SLICE_DPC  4
-#define NAL_SLICE_IDR  5
-#define NAL_SEI  6
-#define NAL_SPS  7
-#define NAL_PPS  8
-#define NAL_AUD  9
-#define NAL_FILLER  12
 
-#define STREAM_CHANNEL_METADATA  0x03
-#define STREAM_CHANNEL_VIDEO     0x04
-#define STREAM_CHANNEL_AUDIO     0x05
 
 int Rtmp::init(std::string url, int w, int h, int timeOut) {
     this->url = url;
     this->width = w;
     this->height = h;
     this->timeOut = timeOut;
-
     RTMP_LogSetLevel(RTMP_LOGDEBUG);
     rtmp = RTMP_Alloc();
     RTMP_Init(rtmp);

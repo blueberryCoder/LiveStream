@@ -1,10 +1,8 @@
 #include <jni.h>
 #include <string>
 #include "Rtmp.h"
-#include "lang.h"
-
-
-
+#include "common.h"
+#include "pthread.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -13,6 +11,7 @@ extern "C" {
 JNIEXPORT jlong JNICALL
 Java_com_blueberry_media_PublishJni_init(JNIEnv *env, jclass type, jstring url_, jint w, jint h,
                                          jint timeOut) {
+
     const char *url = env->GetStringUTFChars(url_, 0);
     Rtmp *rtmp = new Rtmp();
     rtmp->init(url, w, h, timeOut);
@@ -62,11 +61,11 @@ Java_com_blueberry_media_PublishJni_sendAacSpec(JNIEnv *env, jclass type, jlong 
 
 JNIEXPORT jint JNICALL
 Java_com_blueberry_media_PublishJni_sendAacData(JNIEnv *env, jclass type, jlong cptr,
-                                                jbyteArray data_, jint len,jlong timestamp) {
+                                                jbyteArray data_, jint len, jlong timestamp) {
     jbyte *data = env->GetByteArrayElements(data_, NULL);
 
     Rtmp *rtmp = reinterpret_cast<Rtmp *> (cptr);
-    int ret = rtmp->sendAacData((BYTE *) data, len,timestamp);
+    int ret = rtmp->sendAacData((BYTE *) data, len, timestamp);
 
     env->ReleaseByteArrayElements(data_, data, 0);
     return ret;
@@ -78,7 +77,6 @@ Java_com_blueberry_media_PublishJni_stop(JNIEnv *env, jclass type, jlong cptr) {
     delete rtmp;
     return 0;
 }
-
 
 #ifdef __cplusplus
 }
