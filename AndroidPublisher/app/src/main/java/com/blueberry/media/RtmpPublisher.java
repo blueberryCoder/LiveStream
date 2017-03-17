@@ -34,7 +34,6 @@ public class RtmpPublisher {
 
     public int sendAacData(byte[] data, int len, long timestamp) {
         if(timestamp-timestamp<0){return -1;}
-
         return PublishJni.sendAacData(cPtr, data, len, timestamp - timeOffset);
     }
 

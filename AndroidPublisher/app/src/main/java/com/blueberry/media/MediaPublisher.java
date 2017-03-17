@@ -138,7 +138,7 @@ public class MediaPublisher {
             @Override
             public void run() {
                 //初始化
-                int ret = mRtmpPublisher.init(url, videoParams.previewWidth, videoParams.previewHeight, 5);
+                int ret = mRtmpPublisher.init(url, videoParams.previewWidth, videoParams.previewHeight, 1000);
                 if (ret < 0) {
                     Log.e(TAG, "连接失败");
                     return;
