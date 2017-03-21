@@ -38,8 +38,6 @@
 #### 实现
 使用的开源的流媒体框架ijplayer进行播放
 
-####    上图
-![Publish](https://github.com/blueberryCoder/LiveStream/blob/master/screenshot/publisher.jpg)
-
+####  上图
 ![Player](https://github.com/blueberryCoder/LiveStream/blob/master/screenshot/player.png)
 
