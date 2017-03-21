@@ -38,7 +38,7 @@
 #### 实现
 使用的开源的流媒体框架ijplayer进行播放。
 
-ijplayer地址：https://github.com/blueberryCoder/ijkplayer
+ijplayer地址：https://github.com/Bilibili/ijkplayer
 
 ####  上图
 ![Player](https://github.com/blueberryCoder/LiveStream/blob/master/screenshot/player.png)
