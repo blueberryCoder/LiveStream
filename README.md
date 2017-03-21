@@ -41,5 +41,5 @@
 ####    上图
 ![Publish](https://github.com/blueberryCoder/LiveStream/blob/master/screenshot/publisher.jpg)
 
-![Player](https://github.com/blueberryCoder/LiveStream/blob/master/screenshot/player.jpg)
+![Player](https://github.com/blueberryCoder/LiveStream/blob/master/screenshot/player.png)
 

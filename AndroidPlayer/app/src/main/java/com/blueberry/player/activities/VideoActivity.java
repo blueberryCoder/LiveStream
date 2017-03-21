@@ -143,11 +143,9 @@ public class VideoActivity extends AppCompatActivity implements TracksFragment.I
         mVideoView.setHudView(mHudView);
         // prefer mVideoPath
         if (mVideoPath != null)
-//            mVideoView.setVideoPath(mVideoPath);
-        mVideoView.setVideoPath("rtmp://192.168.155.1:1935/live/test");
+            mVideoView.setVideoPath(mVideoPath);
         else if (mVideoUri != null)
-//            mVideoView.setVideoURI(mVideoUri);
-        mVideoView.setVideoPath("rtmp://192.168.155.1:1935/live/test");
+            mVideoView.setVideoURI(mVideoUri);
         else {
             Log.e(TAG, "Null Data Source\n");
             finish();
