@@ -187,6 +187,7 @@ public class MediaPublisher {
      * 释放
      */
     public void release() {
+        Log.i(TAG, "release: ");
         mMediaEncoder.release();
         mVideoGatherer.release();
         mAudioGatherer.release();

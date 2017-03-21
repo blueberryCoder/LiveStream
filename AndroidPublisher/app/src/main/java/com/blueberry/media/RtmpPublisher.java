@@ -38,12 +38,19 @@ public class RtmpPublisher {
     }
 
     public int stop() {
-        return PublishJni.stop(cPtr);
+        try {
+
+            return PublishJni.stop(cPtr);
+        }finally {
+            cPtr=0;
+        }
     }
 
     @Override
     protected void finalize() throws Throwable {
         super.finalize();
-        stop();
+        if(cPtr!=0){
+            stop();
+        }
     }
 }

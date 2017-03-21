@@ -7,6 +7,8 @@
 
 #include <string>
 #include "string.h"
+#include "Rtmp.h"
+#include "common.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -43,11 +45,6 @@ extern "C" {
 class Rtmp {
 
 private:
-    int width;
-    int height;
-    int timeOut;
-    std::string url;
-    long startTime;
     RTMP *rtmp;
 
 public:

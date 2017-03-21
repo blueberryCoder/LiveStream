@@ -4,16 +4,8 @@
 
 #include "Rtmp.h"
 
-#include "jni.h"
-#include "common.h"
-
-
-
 int Rtmp::init(std::string url, int w, int h, int timeOut) {
-    this->url = url;
-    this->width = w;
-    this->height = h;
-    this->timeOut = timeOut;
+
     RTMP_LogSetLevel(RTMP_LOGDEBUG);
     rtmp = RTMP_Alloc();
     RTMP_Init(rtmp);
@@ -84,7 +76,6 @@ int Rtmp::sendSpsAndPps(BYTE *sps, int spsLen, BYTE *pps, int ppsLen, long times
     packet->m_hasAbsTimestamp = 0;
     packet->m_headerType = RTMP_PACKET_SIZE_MEDIUM;
     packet->m_nInfoField2 = rtmp->m_stream_id;
-
 
     /*发送*/
     if (RTMP_IsConnected(rtmp)) {
@@ -208,7 +199,6 @@ int Rtmp::sendAacData(BYTE *data, int len, long timeOffset) {
         if (RTMP_IsConnected(rtmp)) {
             RTMP_SendPacket(rtmp, packet, TRUE);
         }
-
         LOGD("send packet body[0]=%x,body[1]=%x", body[0], body[1]);
         free(packet);
 

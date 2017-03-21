@@ -1,8 +1,6 @@
 #include <jni.h>
 #include <string>
 #include "Rtmp.h"
-#include "common.h"
-#include "pthread.h"
 
 #ifdef __cplusplus
 extern "C" {

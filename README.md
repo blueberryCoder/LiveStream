@@ -2,7 +2,8 @@
 
 ##  AndroidPublisher —— Android推送端
 
-####    功能：将摄像头和麦克风采集的数据进行h264/AAC编码然后通过rtmp发送到流媒体服务器
+####    功能：
+将摄像头和麦克风采集的数据进行h264/AAC编码然后通过rtmp发送到流媒体服务器
 
 #####   使用：
 1. 安装一个Adobe Media Server(或者 red服务器) 和一个Wifi共享大师(或者其他的软件都行，目的是为了让手机访问到本机的服务器)，然后用手机连接wifi大师。
@@ -28,5 +29,17 @@
 </script>
 ```
 这个对应于我们的播放地址为：`rtmp://192.168.155.1:1935/live/test`,修改完之后打开该网页点击播放按钮就可以播放了。
+
+5. 也可是使用其他的服务器比如nginx。
+
+##  AndroidPlayer —— Android播放端
+#### 功能
+播放流媒体
+#### 实现
+使用的开源的流媒体框架ijplayer进行播放
+
 ####    上图
-![Image text](https://github.com/blueberryCoder/LiveStream/blob/master/AndroidPublisher/doc/screenshot/publisher.jpg)
+![Publish](https://github.com/blueberryCoder/LiveStream/blob/master/screenshot/publisher.jpg)
+
+![Player](https://github.com/blueberryCoder/LiveStream/blob/master/screenshot/player.jpg)
+
