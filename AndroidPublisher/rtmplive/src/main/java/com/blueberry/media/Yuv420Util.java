@@ -26,10 +26,10 @@ public class Yuv420Util {
      * VVVV
      * VVVV
      *
-     * @param data
-     * @param dstData
-     * @param w
-     * @param h
+     * @param data Nv21数据
+     * @param dstData I420(YUV420)数据
+     * @param w 宽度
+     * @param h 长度
      */
     public static void Nv21ToI420(byte[] data, byte[] dstData, int w, int h) {
 
@@ -42,6 +42,13 @@ public class Yuv420Util {
         }
     }
 
+    /**
+     * 将Nv21数据转换为Yuv420SP数据
+     * @param data Nv21数据
+     * @param dstData Yuv420sp数据
+     * @param w 宽度
+     * @param h 高度
+     */
     public static void Nv21ToYuv420SP(byte[] data, byte[] dstData, int w, int h) {
         int size = w * h;
         // Y

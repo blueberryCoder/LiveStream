@@ -16,7 +16,8 @@
      我的Adobe Media Server 安装在D盘 Program File文件夹下。那我打开D:\Program Files\Adobe\Adobe Media Server 5\samples\videoPlayer\videoplayer.html
     
 4. 如果使用red5服务器，他里面有一个oflaDemo项目，将里面的rtmp地址修改成自己的地址也可以播放。例如修改oflaDemo中的index.html播放器部分
-```
+```java
+
     <script type='text/javascript'>
         jwplayer('mediaspace').setup({
         'flashplayer': 'player.swf',
@@ -25,8 +26,9 @@
          'controlbar': 'bottom',
         'width': '720',
         'height': '480'
-    });
-</script>
+        });
+    </script>
+
 ```
 这个对应于我们的播放地址为：`rtmp://192.168.155.1:1935/live/test`,修改完之后打开该网页点击播放按钮就可以播放了。
 
@@ -43,3 +45,55 @@ ijplayer地址：https://github.com/Bilibili/ijkplayer
 ####  上图
 ![Player](https://github.com/blueberryCoder/LiveStream/blob/master/screenshot/player.png)
 
+
+#### API使用说明
+
+创建 MediaPublisher,其中需要参数Config,用来配置一些基本信息，比如rtmp的地址。
+```java
+mMediaPublisher = MediaPublisher
+                .newInstance(new Config.Builder()
+                        .setFps(30) // fps
+                        .setMaxWidth(720) //视频的最大宽度
+                        .setMinWidth(320) //视频的最小宽度
+                        .setUrl("rtmp://192.168.155.1:1935/live/test")//推送的url
+                        .build());
+```
+调用mMediaPublisher.init()方法进行初始化
+```java
+mMediaPublisher.init();
+```
+初始化采集视频器、采集音频器
+```java
+mMediaPublisher.initVideoGatherer(this, mSurfaceHolder);
+mMediaPublisher.initAudioGatherer();
+```
+初始化编码器（该方法包含初始化音频编码器和视频编码器）
+```java
+//初始化编码器
+mMediaPublisher.initEncoders();
+```
+开始采集
+```java
+//开始采集
+mMediaPublisher.startGather();
+```
+开始编码
+```java
+mMediaPublisher.startEncoder();
+```
+开始推送
+```java
+mMediaPublisher.starPublish();
+```
+
+#### 更新
+
+##### 4/28/2017 
+AndroidPublish推动端已经打包并上传jcenter
+大家可以在项目中使用如下方式引用：
+
+使用AndroidStudio:
+
+`compile 'com.blueberry:rtmplive:0.0.1'`
+
+使用eclipse的话，可在rtmplive-sdk目录中找到sdk

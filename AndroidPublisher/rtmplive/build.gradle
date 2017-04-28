@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-
+apply plugin: 'com.novoda.bintray-release'
 android {
     compileSdkVersion rootProject.compileSdkVersion
     buildToolsVersion rootProject.buildToolsVersion
@@ -37,7 +37,34 @@ android {
             res.srcDirs 'src/main/res'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
 }
 
+
+
 dependencies {
+}
+
+
+publish {
+    userOrg = 'blueberrycoder'
+    groupId = 'com.blueberry'
+    artifactId = 'rtmplive'
+    publishVersion = '0.0.1'//版本号
+    desc = 'this is a live stream library'
+    website = 'https://github.com/blueberryCoder/LiveStream'
+}
+
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    options.encoding = "UTF-8"
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = "utf-8"
 }

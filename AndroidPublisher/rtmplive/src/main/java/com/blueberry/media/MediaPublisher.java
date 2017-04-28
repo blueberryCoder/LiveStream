@@ -20,6 +20,7 @@ public class MediaPublisher {
     private static final String TAG = "MediaPublisher";
 
     private Config mConfig;
+
     public static final int NAL_SLICE = 1;
     public static final int NAL_SLICE_DPA = 2;
     public static final int NAL_SLICE_DPB = 3;
@@ -55,7 +56,7 @@ public class MediaPublisher {
     }
 
     /**
-     * 初始化
+     * 初始化视频采集器，音频采集器，视频编码器，音频编码器
      */
     public void init() {
         mVideoGatherer = VideoGatherer
