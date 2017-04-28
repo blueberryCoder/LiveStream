@@ -1,4 +1,4 @@
-package com.blueberry.media;
+package com.blueberry.sample;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,9 +8,10 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
 
-// 视频角度问题：
-//http://blog.csdn.net/veilling/article/details/52421930
-//
+import com.blueberry.media.Config;
+import com.blueberry.media.MediaPublisher;
+
+
 public class MainActivity extends AppCompatActivity implements SurfaceHolder.Callback2 {
 
     private static final String TAG = "MainActivity";

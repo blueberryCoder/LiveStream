@@ -11,7 +11,8 @@ public final class PublishJni {
 
     static native long init(String url, int w, int h, int timeOut);
 
-    static native int sendSpsAndPps(long cptr, byte[] sps, int spsLen, byte[] pps, int ppsLen, long timestamp);
+    static native int sendSpsAndPps(long cptr, byte[] sps, int spsLen, byte[] pps,
+                                    int ppsLen, long timestamp);
 
     static native int sendVideoData(long cptr, byte[] data, int len, long timestamp);
 
