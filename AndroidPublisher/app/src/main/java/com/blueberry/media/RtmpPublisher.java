@@ -39,7 +39,6 @@ public class RtmpPublisher {
 
     public int stop() {
         try {
-
             return PublishJni.stop(cPtr);
         }finally {
             cPtr=0;

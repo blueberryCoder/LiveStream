@@ -121,7 +121,6 @@ public class VideoGatherer {
                             // Yuv420packedPlannar 和 yuv420sp很像
                             // 区别在于 加入 width = 4的话 y1,y2,y3 ,y4公用 u1v1
                             // 而 yuv420dp 则是 y1y2y5y6 共用 u1v1
-                            //http://blog.csdn.net/jumper511/article/details/21719313
                             //这样处理的话颜色核能会有些失真。
                             Yuv420Util.Nv21ToYuv420SP(pixelData.data, dstByte, previewSize.width, previewSize.height);
                         } else if (colorFormat == MediaCodecInfo.CodecCapabilities.COLOR_FormatYUV420PackedSemiPlanar) {
@@ -224,13 +223,22 @@ public class VideoGatherer {
             }
         }
 
+        if (previewSize == null) {
+            throw new RuntimeException("find previewSize error");
+        }
+
         parameters.setPreviewSize(previewSize.width, previewSize.height);
         parameters.setPreviewFpsRange(destRange[PREVIEW_FPS_MIN_INDEX],
                 destRange[PREVIEW_FPS_MAX_INDEX]);
-        parameters.setFocusMode(FOCUS_MODE_AUTO);
-        parameters.setPreviewFormat(ImageFormat.NV21);
-//        parameters.setRotation(onOrientationChanged(0));
 
+        List<String> supportedFocusModes = parameters.getSupportedFocusModes();
+        for (int i = 0; null != supportedFocusModes && i < supportedFocusModes.size(); i++) {
+            if(FOCUS_MODE_AUTO.equals(supportedFocusModes.get(i))){
+                parameters.setFocusMode(FOCUS_MODE_AUTO);
+                break;
+            }
+        }
+        parameters.setPreviewFormat(ImageFormat.NV21);
         mCamera.setParameters(parameters);
     }
 

@@ -48,6 +48,7 @@ public class MediaPublisher {
 
     public static final String url = "rtmp://192.168.155.1:1935/live/test";
 
+
     /**
      * 初始化
      */
@@ -106,9 +107,9 @@ public class MediaPublisher {
     public void initEncoders() {
         try {
             mMediaEncoder.initAudioEncoder(audioParams.sampleRate, audioParams.channelCount);
-            Log.e(TAG, "初始化音频编码器失败");
         } catch (IOException e) {
             e.printStackTrace();
+            Log.e(TAG, "初始化音频编码器失败");
         }
 
         try {

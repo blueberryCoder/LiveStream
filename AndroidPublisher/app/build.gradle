@@ -6,8 +6,8 @@ android {
         applicationId "com.blueberry.media"
         minSdkVersion 16
         targetSdkVersion 24
-        versionCode 1
-        versionName "1.0"
+        versionCode 10
+        versionName "0.1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         externalNativeBuild {
             cmake {
@@ -35,13 +35,9 @@ android {
             java.srcDirs 'src/main/java'
             manifest.srcFile 'src/main/AndroidManifest.xml'
             res.srcDirs 'src/main/res'
-
-
         }
     }
 }
-
-
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
