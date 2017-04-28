@@ -27,6 +27,7 @@ import static android.media.MediaFormat.KEY_MAX_INPUT_SIZE;
 
 public class MediaEncoder {
     private static final String TAG = "MediaEncoder";
+    private Config mConfig;
 
     private MediaCodec vEncoder; //视频编码器
     private MediaCodec aEncoder;
@@ -38,6 +39,14 @@ public class MediaEncoder {
     private Callback mCallback;
     private LinkedBlockingQueue<byte[]> videoQueue;
     private LinkedBlockingQueue<byte[]> audioQueue;
+
+    public static MediaEncoder newInstance(Config config) {
+        return new MediaEncoder(config);
+    }
+
+    private MediaEncoder(Config config) {
+        this.mConfig = config;
+    }
 
     /**
      * 设置回调
@@ -90,6 +99,7 @@ public class MediaEncoder {
         aEncoder = aencoder;
     }
 
+
     /**
      * 初始化视频编码器。
      *
@@ -97,7 +107,7 @@ public class MediaEncoder {
      * @param height 视频的高
      * @throws IOException 创建编码器失败
      */
-    public int initVideoEncoder(int width, int height,int fps) throws IOException {
+    public int initVideoEncoder(int width, int height, int fps) throws IOException {
         // 初始化
         MediaCodecInfo mediaCodecInfo = getMediaCodecInfoByType(MediaFormat.MIMETYPE_VIDEO_AVC);
         int colorFormat = getColorFormat(mediaCodecInfo);
@@ -105,7 +115,7 @@ public class MediaEncoder {
         MediaFormat format = MediaFormat.createVideoFormat(MediaFormat.MIMETYPE_VIDEO_AVC,
                 width, height);
         format.setInteger(KEY_MAX_INPUT_SIZE, 0);
-        format.setInteger(KEY_BIT_RATE, 700 * 1000);
+        format.setInteger(KEY_BIT_RATE, mConfig.bitrate);
         format.setInteger(KEY_COLOR_FORMAT, colorFormat);
         format.setInteger(KEY_FRAME_RATE, fps);
         format.setInteger(KEY_I_FRAME_INTERVAL, 1);

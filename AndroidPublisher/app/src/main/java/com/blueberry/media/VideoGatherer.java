@@ -23,18 +23,25 @@ import static android.hardware.Camera.Parameters.PREVIEW_FPS_MIN_INDEX;
 
 public class VideoGatherer {
     private static final String TAG = "VideoGatherer";
-    public static int FPS = 30;
-    private boolean isPublished = true;
+
+    private Config config;
+
     private Camera mCamera;
     private Camera.Size previewSize;
 
     private int colorFormat;
-
     private LinkedBlockingQueue<PixelData> mQueue = new LinkedBlockingQueue<>();
     private Thread workThread;
     private boolean loop;
     private Callback mCallback;
 
+    public static VideoGatherer newInstance(Config config) {
+        return new VideoGatherer(config);
+    }
+
+    private VideoGatherer(Config config) {
+        this.config = config;
+    }
 
     public static class Params {
         public final int previewWidth;
@@ -134,7 +141,7 @@ public class VideoGatherer {
                         //处理完成之后调用 addCallbackBuffer()
                         if (preTime != 0) {
                             // 延时
-                            int shouldDelay = (int) (1000.0 / FPS);
+                            int shouldDelay = (int) (1000.0 / config.fps);
                             int realDelay = (int) (System.currentTimeMillis() - preTime);
                             int delta = shouldDelay - realDelay;
                             if (delta > 0) {
@@ -159,12 +166,10 @@ public class VideoGatherer {
             @Override
             public void onPreviewFrame(final byte[] data, final Camera camera) {
                 if (data != null) {
-                    if (isPublished) {
-                        try {
-                            mQueue.put(new PixelData(colorFormat, data));
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
+                    try {
+                        mQueue.put(new PixelData(colorFormat, data));
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
                 } else {
                     camera.addCallbackBuffer(new byte[calculateFrameSize(ImageFormat.NV21)]);
@@ -204,7 +209,7 @@ public class VideoGatherer {
         List<Camera.Size> supportedPreviewSizes = parameters.getSupportedPreviewSizes();
         for (Camera.Size size : supportedPreviewSizes
                 ) {
-            if (size.width >= 320 && size.width <= 720) {
+            if (size.width >= config.minWidth && size.width <= config.maxWidth) {
                 previewSize = size;
                 Log.i(TAG, String.format("find preview size width=%d,height=%d", previewSize.width,
                         previewSize.height));
@@ -212,11 +217,11 @@ public class VideoGatherer {
             }
         }
 
-        int[] destRange = {35 * 1000, 45 * 1000};
+        int[] destRange = {config.fps * 1000, config.fps * 1000};
         List<int[]> supportedPreviewFpsRange = parameters.getSupportedPreviewFpsRange();
         for (int[] range : supportedPreviewFpsRange
                 ) {
-            if (range[PREVIEW_FPS_MIN_INDEX] <= 45 * 1000 && range[PREVIEW_FPS_MAX_INDEX] >= 25 * 1000) {
+            if (range[PREVIEW_FPS_MAX_INDEX] >= config.fps * 1000) {
                 destRange = range;
                 Log.d(TAG, String.format("find fps range :%s", Arrays.toString(destRange)));
                 break;
@@ -233,7 +238,7 @@ public class VideoGatherer {
 
         List<String> supportedFocusModes = parameters.getSupportedFocusModes();
         for (int i = 0; null != supportedFocusModes && i < supportedFocusModes.size(); i++) {
-            if(FOCUS_MODE_AUTO.equals(supportedFocusModes.get(i))){
+            if (FOCUS_MODE_AUTO.equals(supportedFocusModes.get(i))) {
                 parameters.setFocusMode(FOCUS_MODE_AUTO);
                 break;
             }

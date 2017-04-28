@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
     private SurfaceHolder mSurfaceHolder;
     private boolean isPublished;
 
-    private MediaPublisher mMediaPublisher = new MediaPublisher();
+    private MediaPublisher mMediaPublisher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +29,13 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
         setContentView(R.layout.activity_main);
         Log.i(TAG, "onCreate: ");
         initView();
+        mMediaPublisher = MediaPublisher
+                .newInstance(new Config.Builder()
+                        .setFps(30) // fps
+                        .setMaxWidth(720) //视频的最大宽度
+                        .setMinWidth(320) //视频的最小宽度
+                        .setUrl("rtmp://192.168.155.1:1935/live/test")//推送的url
+                        .build());
         mMediaPublisher.init();
     }
 
@@ -88,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
         mMediaPublisher.stopPublish();
         mMediaPublisher.stopGather();
         mMediaPublisher.stopEncoder();
-        isPublished=false;
+        isPublished = false;
     }
 
     @Override

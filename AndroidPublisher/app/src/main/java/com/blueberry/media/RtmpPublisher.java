@@ -9,6 +9,12 @@ public class RtmpPublisher {
     private long cPtr;
     private long timeOffset;
 
+    public static RtmpPublisher newInstance() {
+
+        return new RtmpPublisher();
+    }
+    private RtmpPublisher(){}
+
     public int init(String url, int w, int h, int timeOut) {
         cPtr = PublishJni.init(url, w, h, timeOut);
         if (cPtr != 0) {
@@ -16,7 +22,6 @@ public class RtmpPublisher {
         }
         return -1;
     }
-
 
     public int sendSpsAndPps(byte[] sps, int spsLen, byte[] pps, int ppsLen, long timeOffset) {
         this.timeOffset = timeOffset;

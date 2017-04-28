@@ -15,13 +15,21 @@ public class AudioGatherer {
 
     private static final String TAG = "AudioGatherer";
 
+    private Config mConfig;
+
     private AudioRecord mAudioRecord;
     private byte[] buffer;
-
     private Thread workThread;
     private boolean loop;
-
     private Callback mCallback;
+
+    public static AudioGatherer newInstance(Config config) {
+        return new AudioGatherer(config);
+
+    }
+    private AudioGatherer(Config config){
+        this.mConfig =config;
+    }
 
     public static class Params {
         public final int sampleRate;
@@ -41,9 +49,9 @@ public class AudioGatherer {
         for (int sampleRate :
                 sampleRates) {
             //编码制式
-            int audioFormat = AudioFormat.ENCODING_PCM_16BIT;
+            int audioFormat = mConfig.audioFormat;
             // stereo 立体声，
-            int channelConfig = AudioFormat.CHANNEL_CONFIGURATION_STEREO;
+            int channelConfig = mConfig.channelConfig;
             int buffsize = 2 * AudioRecord.getMinBufferSize(sampleRate, channelConfig, audioFormat);
             mAudioRecord = new AudioRecord(MediaRecorder.AudioSource.MIC, sampleRate, channelConfig,
                     audioFormat, buffsize);

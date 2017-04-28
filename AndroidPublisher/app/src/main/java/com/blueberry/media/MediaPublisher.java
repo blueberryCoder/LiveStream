@@ -19,8 +19,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 public class MediaPublisher {
     private static final String TAG = "MediaPublisher";
 
-    public static final int FPS = 30;
-
+    private Config mConfig;
     public static final int NAL_SLICE = 1;
     public static final int NAL_SLICE_DPA = 2;
     public static final int NAL_SLICE_DPB = 3;
@@ -46,17 +45,24 @@ public class MediaPublisher {
     private VideoGatherer.Params videoParams;
     private boolean loop;
 
-    public static final String url = "rtmp://192.168.155.1:1935/live/test";
 
+    public static MediaPublisher newInstance(Config config) {
+        return new MediaPublisher(config);
+    }
+
+    private MediaPublisher(Config config) {
+        this.mConfig = config;
+    }
 
     /**
      * 初始化
      */
     public void init() {
-        mVideoGatherer = new VideoGatherer();
-        mAudioGatherer = new AudioGatherer();
-        mMediaEncoder = new MediaEncoder();
-        mRtmpPublisher = new RtmpPublisher();
+        mVideoGatherer = VideoGatherer
+                .newInstance(mConfig);
+        mAudioGatherer = AudioGatherer.newInstance(mConfig);
+        mMediaEncoder = MediaEncoder.newInstance(mConfig);
+        mRtmpPublisher = RtmpPublisher.newInstance();
         setListener();
 
         workThread = new Thread("publish-thread") {
@@ -113,7 +119,8 @@ public class MediaPublisher {
         }
 
         try {
-            int colorFormat = mMediaEncoder.initVideoEncoder(videoParams.previewWidth, videoParams.previewHeight, FPS);
+            int colorFormat = mMediaEncoder.initVideoEncoder(videoParams.previewWidth,
+                    videoParams.previewHeight, mConfig.fps);
             mVideoGatherer.setColorFormat(colorFormat);
         } catch (IOException e) {
             e.printStackTrace();
@@ -139,7 +146,9 @@ public class MediaPublisher {
             @Override
             public void run() {
                 //初始化
-                int ret = mRtmpPublisher.init(url, videoParams.previewWidth, videoParams.previewHeight, 1000);
+                int ret = mRtmpPublisher.init(mConfig.publishUrl,
+                        videoParams.previewWidth,
+                        videoParams.previewHeight, mConfig.timeOut);
                 if (ret < 0) {
                     Log.e(TAG, "连接失败");
                     return;
@@ -156,11 +165,9 @@ public class MediaPublisher {
      * 停止发布
      */
     public void stopPublish() {
-
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-
                 mRtmpPublisher.stop();
                 loop = false;
                 workThread.interrupt();
@@ -285,36 +292,9 @@ public class MediaPublisher {
     }
 
     private void onEncodeAacFrame(ByteBuffer bb, final MediaCodec.BufferInfo aBufferInfo) {
-        // 1.界定符 FF F1
-        // 2.加上界定符的前7个字节是帧描述信息
-        // 3.AudioDecoderSpecificInfo 长度为2个字节如果是44100 改值为0x1210
 
-        //http://blog.csdn.net/avsuper/article/details/24661533
-        //http://www.tuicool.com/articles/aYvmua
 
         if (aBufferInfo.size == 2) {
-//            https://my.oschina.net/zhangxu0512/blog/204070
-//            faacEncSetConfiguration(m_hEncoder, pConfiguration);
-//            int ret = faacEncGetDecoderSpecificInfo(m_hEncoder, &m_pSpc, &m_nSpc);
-
-//            //AAC sequence header
-//            int[] mpeg4audio_sample_rates = {
-//                    96000, 88200, 64000, 48000, 44100, 32000,
-//                    24000, 22050, 16000, 12000, 11025, 8000, 7350
-//            };
-//
-//            int m_keyframe[] = new int[2];
-//            //get keyframe info.
-//            int index;
-//            for (index = 0; index < 16; index++) {
-//                if (aSampleRate == mpeg4audio_sample_rates[index]) {
-//                    break;
-//                }
-//            }
-//            m_keyframe[0] = 0x02 << 3 | index >> 1;
-//            m_keyframe[1] = (index & 0x01) << 7 | aChanelCount << 3;
-//
-//            Log.d(TAG,"挂件"+Arrays.toString(m_keyframe));
             // 我打印发现，这里应该已经是吧关键帧计算好了，所以我们直接发送
             final byte[] bytes = new byte[2];
             bb.get(bytes);
@@ -329,7 +309,6 @@ public class MediaPublisher {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
 
         } else {
             final byte[] bytes = new byte[aBufferInfo.size];
