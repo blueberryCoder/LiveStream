@@ -54,7 +54,7 @@ publish {
     userOrg = 'blueberrycoder'
     groupId = 'com.blueberry'
     artifactId = 'rtmplive'
-    publishVersion = '0.0.1'//版本号
+    publishVersion = project.versionName //版本号
     desc = 'this is a live stream library'
     website = 'https://github.com/blueberryCoder/LiveStream'
 }

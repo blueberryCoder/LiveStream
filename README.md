@@ -94,6 +94,6 @@ AndroidPublish推动端已经打包并上传jcenter
 
 使用AndroidStudio:
 
-`compile 'com.blueberry:rtmplive:0.0.1'`
+`compile 'com.blueberry:rtmplive:0.1.0'`
 
 使用eclipse的话，可在rtmplive-sdk目录中找到sdk
