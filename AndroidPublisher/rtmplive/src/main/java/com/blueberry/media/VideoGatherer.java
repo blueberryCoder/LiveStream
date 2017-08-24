@@ -131,6 +131,7 @@ public class VideoGatherer {
                             //这样处理的话颜色核能会有些失真。
                             Yuv420Util.Nv21ToYuv420SP(pixelData.data, dstByte, previewSize.width, previewSize.height);
                         } else if (colorFormat == MediaCodecInfo.CodecCapabilities.COLOR_FormatYUV420PackedSemiPlanar) {
+                            System.arraycopy(pixelData.data, 0, dstByte, 0, pixelData.data.length);
                         } else {
                             System.arraycopy(pixelData.data, 0, dstByte, 0, pixelData.data.length);
                         }
