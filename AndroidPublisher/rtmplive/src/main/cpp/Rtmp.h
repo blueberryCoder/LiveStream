@@ -19,6 +19,7 @@ extern "C" {
 #include "log.h"
 #include "android/log.h"
 #include "time.h"
+#include "stdlib.h"
 
 #ifdef __cplusplus
 }

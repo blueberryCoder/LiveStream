@@ -1,5 +1,6 @@
 package com.blueberry.sample;
 
+import android.media.AudioFormat;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -35,7 +36,9 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
                         .setFps(30) // fps
                         .setMaxWidth(720) //视频的最大宽度
                         .setMinWidth(320) //视频的最小宽度
-                        .setUrl("rtmp://192.168.155.1:1935/live/test")//推送的url
+                        .setAudioFormat(AudioFormat.ENCODING_PCM_16BIT)
+                        .setAudioChannel(AudioFormat.CHANNEL_IN_STEREO)
+                        .setUrl("rtmp://192.168.1.145:1935/live/test")//推送的url
                         .build());
         mMediaPublisher.init();
     }

@@ -26,6 +26,7 @@ int Rtmp::init(std::string url, int w, int h, int timeOut) {
     }
 
     LOGI("RTMP_ConnectStream success.");
+
     return 0;
 }
 

@@ -3,7 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AndroidPublisher.iml" filepath="$PROJECT_DIR$/AndroidPublisher.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AndroidPublisher.iml" filepath="$PROJECT_DIR$/AndroidPublisher.iml" />
       <module fileurl="file://$PROJECT_DIR$/rtmplive/rtmplive.iml" filepath="$PROJECT_DIR$/rtmplive/rtmplive.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rtmplive/rtmplive.iml" filepath="$PROJECT_DIR$/rtmplive/rtmplive.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sample/sample.iml" filepath="$PROJECT_DIR$/sample/sample.iml" />
       <module fileurl="file://$PROJECT_DIR$/sample/sample.iml" filepath="$PROJECT_DIR$/sample/sample.iml" />
     </modules>
   </component>

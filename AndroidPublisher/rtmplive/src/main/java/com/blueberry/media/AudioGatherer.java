@@ -45,7 +45,7 @@ public class AudioGatherer {
      * 初始化录音
      */
     public Params initAudioDevice() {
-        int[] sampleRates = {44100, 22050, 16000, 11025};
+        int[] sampleRates = {44100, 22050, 16000, 11025,8000,4000};
         for (int sampleRate :
                 sampleRates) {
             //编码制式
