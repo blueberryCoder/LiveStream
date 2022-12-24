@@ -2,12 +2,13 @@ package com.blueberry.sample;
 
 import android.media.AudioFormat;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.blueberry.media.Config;
 import com.blueberry.media.MediaPublisher;

@@ -2,12 +2,15 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/AndroidPublisher.iml" filepath="$PROJECT_DIR$/AndroidPublisher.iml" />
-      <module fileurl="file://$PROJECT_DIR$/AndroidPublisher.iml" filepath="$PROJECT_DIR$/AndroidPublisher.iml" />
-      <module fileurl="file://$PROJECT_DIR$/rtmplive/rtmplive.iml" filepath="$PROJECT_DIR$/rtmplive/rtmplive.iml" />
-      <module fileurl="file://$PROJECT_DIR$/rtmplive/rtmplive.iml" filepath="$PROJECT_DIR$/rtmplive/rtmplive.iml" />
-      <module fileurl="file://$PROJECT_DIR$/sample/sample.iml" filepath="$PROJECT_DIR$/sample/sample.iml" />
-      <module fileurl="file://$PROJECT_DIR$/sample/sample.iml" filepath="$PROJECT_DIR$/sample/sample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/AndroidPublisher.iml" filepath="$PROJECT_DIR$/.idea/AndroidPublisher.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rtmplive/AndroidPublisher.rtmplive.iml" filepath="$PROJECT_DIR$/.idea/modules/rtmplive/AndroidPublisher.rtmplive.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rtmplive/AndroidPublisher.rtmplive.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/rtmplive/AndroidPublisher.rtmplive.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rtmplive/AndroidPublisher.rtmplive.main.iml" filepath="$PROJECT_DIR$/.idea/modules/rtmplive/AndroidPublisher.rtmplive.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/rtmplive/AndroidPublisher.rtmplive.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/rtmplive/AndroidPublisher.rtmplive.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sample/AndroidPublisher.sample.iml" filepath="$PROJECT_DIR$/.idea/modules/sample/AndroidPublisher.sample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sample/AndroidPublisher.sample.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/sample/AndroidPublisher.sample.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sample/AndroidPublisher.sample.main.iml" filepath="$PROJECT_DIR$/.idea/modules/sample/AndroidPublisher.sample.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sample/AndroidPublisher.sample.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/sample/AndroidPublisher.sample.unitTest.iml" />
     </modules>
   </component>
 </project>

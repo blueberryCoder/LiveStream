@@ -1,0 +1,13 @@
+[
+{
+  "directory": "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/.cxx/cmake/debug/armeabi-v7a",
+  "command": "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=armv7-none-linux-androideabi16 --gcc-toolchain=/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -Dpublish_EXPORTS -I/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/../../../../rtmp/include/librtmp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -frtti -fexceptions -O0 -fno-limit-debug-info  -fPIC   -o CMakeFiles/publish.dir/publish_jni.cpp.o -c /Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/publish_jni.cpp",
+  "file": "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/publish_jni.cpp"
+},
+
+{
+  "directory": "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/.cxx/cmake/debug/armeabi-v7a",
+  "command": "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=armv7-none-linux-androideabi16 --gcc-toolchain=/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -Dpublish_EXPORTS -I/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/../../../../rtmp/include/librtmp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -frtti -fexceptions -O0 -fno-limit-debug-info  -fPIC   -o CMakeFiles/publish.dir/Rtmp.cpp.o -c /Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/Rtmp.cpp",
+  "file": "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/Rtmp.cpp"
+}
+]
