@@ -27,9 +27,19 @@
       ],
       "abi": "armeabi-v7a",
       "output": "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/build/intermediates/cmake/debug/obj/armeabi-v7a/libpublish.so",
-      "runtimeFiles": [
-        "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmp/lib/armeabi-v7a/librtmp.so"
-      ]
+      "runtimeFiles": []
+    },
+    "librtmp-Debug-armeabi-v7a": {
+      "artifactName": "librtmp",
+      "buildCommandComponents": [
+        "/Users/bytedance/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja",
+        "-C",
+        "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/.cxx/cmake/debug/armeabi-v7a",
+        "librtmp"
+      ],
+      "abi": "armeabi-v7a",
+      "output": "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/.cxx/cmake/debug/armeabi-v7a/liblibrtmp.a",
+      "runtimeFiles": []
     }
   }
 }

@@ -10,13 +10,19 @@ public class RtmpPublisher {
     private long timeOffset;
 
     public static RtmpPublisher newInstance() {
-
         return new RtmpPublisher();
     }
-    private RtmpPublisher(){}
 
-    public int init(String url, int w, int h, int timeOut) {
-        cPtr = PublishJni.init(url, w, h, timeOut);
+    private RtmpPublisher() {
+    }
+
+    public int init(String url, int timeOut,
+                    boolean dumpVideo, String dumpVideoPath,
+                    boolean dumpAudio, String dumpAudioPath
+
+
+    ) {
+        cPtr = PublishJni.init(url, timeOut, dumpVideo, dumpVideoPath,dumpAudio,dumpAudioPath);
         if (cPtr != 0) {
             return 0;
         }
@@ -29,7 +35,6 @@ public class RtmpPublisher {
     }
 
     public int sendVideoData(byte[] data, int len, long timestamp) {
-        if(timestamp-timeOffset<=0){return -1;}
         return PublishJni.sendVideoData(cPtr, data, len, timestamp - timeOffset);
     }
 
@@ -38,22 +43,21 @@ public class RtmpPublisher {
     }
 
     public int sendAacData(byte[] data, int len, long timestamp) {
-        if(timestamp-timestamp<0){return -1;}
         return PublishJni.sendAacData(cPtr, data, len, timestamp - timeOffset);
     }
 
     public int stop() {
         try {
             return PublishJni.stop(cPtr);
-        }finally {
-            cPtr=0;
+        } finally {
+            cPtr = 0;
         }
     }
 
     @Override
     protected void finalize() throws Throwable {
         super.finalize();
-        if(cPtr!=0){
+        if (cPtr != 0) {
             stop();
         }
     }

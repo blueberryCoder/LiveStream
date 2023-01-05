@@ -8,7 +8,7 @@
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.RECORD_AUDIO"/>
 
-    <uses-feature android:name="android.hardware.Camera"></uses-feature>
+    <uses-feature android:name="android.hardware.Camera"/>
 
     <application>
     </application>

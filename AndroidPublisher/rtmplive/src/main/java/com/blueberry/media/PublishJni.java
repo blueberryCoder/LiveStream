@@ -9,7 +9,10 @@ public final class PublishJni {
         System.loadLibrary("publish");
     }
 
-    static native long init(String url, int w, int h, int timeOut);
+    static native long init(String url, int timeOut,
+                            boolean dumpVideo, String dumpVideoPath,
+                            boolean dumpAudio, String dumpAudioPath
+    );
 
     static native int sendSpsAndPps(long cptr, byte[] sps, int spsLen, byte[] pps,
                                     int ppsLen, long timestamp);

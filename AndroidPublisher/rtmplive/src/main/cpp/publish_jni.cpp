@@ -1,19 +1,37 @@
 #include <jni.h>
 #include <string>
-#include "Rtmp.h"
+#include "RtmpClient.h"
+
+#include "jni_utils.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
+// https://rtmp.veriskope.com/docs/spec/#51message-format
 
 JNIEXPORT jlong JNICALL
-Java_com_blueberry_media_PublishJni_init(JNIEnv *env, jclass type, jstring url_, jint w, jint h,
-                                         jint timeOut) {
+Java_com_blueberry_media_PublishJni_init(JNIEnv *env,
+                                         jclass type,
+                                         jstring url_,
+                                         jint timeOut,
+                                         jboolean dumpVideo,
+                                         jstring dumpVideoPath,
+                                         jboolean dumpAudio,
+                                         jstring dumpAudioPath
+) {
 
-    const char *url = env->GetStringUTFChars(url_, 0);
-    Rtmp *rtmp = new Rtmp();
-    rtmp->init(url, w, h, timeOut);
-    env->ReleaseStringUTFChars(url_, url);
+    LOGI("JNI %s %s","init" ,__FUNCTION__ )
+    std::string url = GetStringUTFFromJString(env,url_);
+    std::string dump_video_path = GetStringUTFFromJString(env,dumpVideoPath);
+    std::string dump_audio_path = GetStringUTFFromJString(env,dumpAudioPath);
+
+    auto rtmp = new RtmpClient(url, timeOut,
+                               dumpVideo == JNI_TRUE,
+                               dump_video_path,
+                               dumpAudio == JNI_TRUE,
+                               dump_audio_path
+                               );
+    rtmp->Connect();
     return reinterpret_cast<long> (rtmp);
 }
 
@@ -24,7 +42,7 @@ Java_com_blueberry_media_PublishJni_sendSpsAndPps(JNIEnv *env, jclass type, jlon
                                                   jint ppsLen, jlong timestamp) {
     jbyte *sps = env->GetByteArrayElements(sps_, NULL);
     jbyte *pps = env->GetByteArrayElements(pps_, NULL);
-    Rtmp *rtmp = reinterpret_cast<Rtmp *>(cptr);
+    RtmpClient *rtmp = reinterpret_cast<RtmpClient *>(cptr);
     int ret = rtmp->sendSpsAndPps((BYTE *) sps, spsLen, (BYTE *) pps, ppsLen, timestamp);
 
     env->ReleaseByteArrayElements(sps_, sps, 0);
@@ -36,7 +54,7 @@ JNIEXPORT jint JNICALL
 Java_com_blueberry_media_PublishJni_sendVideoData(JNIEnv *env, jclass type, jlong cptr,
                                                   jbyteArray data_, jint len, jlong timestamp) {
     jbyte *data = env->GetByteArrayElements(data_, NULL);
-    Rtmp *rtmp = reinterpret_cast<Rtmp *> (cptr);
+    RtmpClient *rtmp = reinterpret_cast<RtmpClient *> (cptr);
     int ret = rtmp->sendVideoData((BYTE *) data, len, timestamp);
 
     env->ReleaseByteArrayElements(data_, data, 0);
@@ -50,7 +68,7 @@ Java_com_blueberry_media_PublishJni_sendAacSpec(JNIEnv *env, jclass type, jlong 
                                                 jbyteArray data_, jint len) {
     jbyte *data = env->GetByteArrayElements(data_, NULL);
 
-    Rtmp *rtmp = reinterpret_cast<Rtmp *> (cptr);
+    RtmpClient *rtmp = reinterpret_cast<RtmpClient *> (cptr);
     int ret = rtmp->sendAacSpec((BYTE *) data, len);
 
     env->ReleaseByteArrayElements(data_, data, 0);
@@ -62,7 +80,7 @@ Java_com_blueberry_media_PublishJni_sendAacData(JNIEnv *env, jclass type, jlong 
                                                 jbyteArray data_, jint len, jlong timestamp) {
     jbyte *data = env->GetByteArrayElements(data_, NULL);
 
-    Rtmp *rtmp = reinterpret_cast<Rtmp *> (cptr);
+    auto *rtmp = reinterpret_cast<RtmpClient *> (cptr);
     int ret = rtmp->sendAacData((BYTE *) data, len, timestamp);
 
     env->ReleaseByteArrayElements(data_, data, 0);
@@ -71,7 +89,7 @@ Java_com_blueberry_media_PublishJni_sendAacData(JNIEnv *env, jclass type, jlong 
 
 JNIEXPORT jint JNICALL
 Java_com_blueberry_media_PublishJni_stop(JNIEnv *env, jclass type, jlong cptr) {
-    Rtmp *rtmp = reinterpret_cast<Rtmp *> (cptr);
+    RtmpClient *rtmp = reinterpret_cast<RtmpClient *> (cptr);
     delete rtmp;
     return 0;
 }

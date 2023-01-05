@@ -10,6 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/btn_star"
-        android:text="开始"
+        android:text="start"
         />
 </LinearLayout>

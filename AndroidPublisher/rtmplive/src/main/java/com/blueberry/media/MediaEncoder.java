@@ -18,6 +18,8 @@ import static android.media.MediaFormat.KEY_FRAME_RATE;
 import static android.media.MediaFormat.KEY_I_FRAME_INTERVAL;
 import static android.media.MediaFormat.KEY_MAX_INPUT_SIZE;
 
+import com.blueberry.media.utils.Logger;
+
 
 /**
  * Created by blueberry on 3/6/2017.
@@ -130,10 +132,10 @@ public class MediaEncoder {
      */
     public void startVideoEncode() {
         if (vEncoder == null) {
-            throw new RuntimeException("请初始化视频编码器");
+            throw new IllegalStateException("video encoder is null");
         }
         if (videoEncoderLoop) {
-            throw new RuntimeException("必须先停止");
+            throw new IllegalStateException("video encoder is running");
         }
 
         videoEncoderThread = new Thread() {
@@ -143,7 +145,6 @@ public class MediaEncoder {
                 vEncoder.start();
                 while (videoEncoderLoop && !Thread.interrupted()) {
                     try {
-
                         byte[] data = videoQueue.take(); //待编码的数据
                         encodeVideoData(data);
                     } catch (InterruptedException e) {
@@ -163,11 +164,12 @@ public class MediaEncoder {
      */
     public void startAudioEncode() {
         if (aEncoder == null) {
-            throw new RuntimeException("请初始化音频编码器");
+            throw new IllegalStateException("audio Encoder is null");
         }
 
         if (audioEncoderLoop) {
-            throw new RuntimeException("必须先停止");
+            throw new IllegalStateException("audio Encoder is running");
+
         }
         audioEncoderThread = new Thread() {
             @Override
@@ -184,6 +186,7 @@ public class MediaEncoder {
                     }
                 }
 
+                Logger.d(TAG, "quite encoder thread");
             }
         };
         audioEncoderLoop = true;
@@ -255,29 +258,31 @@ public class MediaEncoder {
      * @param dstByte
      */
     private void encodeVideoData(byte[] dstByte) {
-        ByteBuffer[] inputBuffers = vEncoder.getInputBuffers();
-        ByteBuffer[] outputBuffers = vEncoder.getOutputBuffers();
-
-        int inputBufferId = vEncoder.dequeueInputBuffer(-1);
-        if (inputBufferId >= 0) {
-            // fill inputBuffers[inputBufferId] with valid data
-            ByteBuffer bb = inputBuffers[inputBufferId];
-            bb.clear();
-            bb.put(dstByte, 0, dstByte.length);
-            long pts = new Date().getTime() * 1000 - presentationTimeUs;
-            vEncoder.queueInputBuffer(inputBufferId, 0, dstByte.length, pts, 0);
-        }
-
-        int outputBufferId = vEncoder.dequeueOutputBuffer(vBufferInfo, 0);
-        if (outputBufferId >= 0) {
-            // outputBuffers[outputBufferId] is ready to be processed or rendered.
-            ByteBuffer bb = outputBuffers[outputBufferId];
-            if (null != mCallback) {
-                mCallback.outputVideoData(bb, vBufferInfo);
+        Logger.i(TAG, "encodeVideoData: data.length = " + dstByte.length);
+        int timeout = 100;
+        int offset = 0;
+        while (offset < dstByte.length) {
+            int inputBufferId = vEncoder.dequeueInputBuffer(timeout);
+            if (inputBufferId >= 0) {
+                // fill inputBuffers[inputBufferId] with valid data
+                ByteBuffer bb = vEncoder.getInputBuffer(inputBufferId);
+                int len = Math.min(bb.limit(), dstByte.length - offset);
+                bb.put(dstByte, offset, len);
+                long pts = new Date().getTime() * 1000 - presentationTimeUs;
+                vEncoder.queueInputBuffer(inputBufferId, 0, dstByte.length, pts, 0);
+                offset += len;
             }
-            vEncoder.releaseOutputBuffer(outputBufferId, false);
-        }
 
+            int outputBufferId = vEncoder.dequeueOutputBuffer(vBufferInfo, timeout);
+            if (outputBufferId >= 0) {
+                // outputBuffers[outputBufferId] is ready to be processed or rendered.
+                ByteBuffer bb = vEncoder.getOutputBuffer(outputBufferId);
+                if (null != mCallback) {
+                    mCallback.outputVideoData(bb, vBufferInfo);
+                }
+                vEncoder.releaseOutputBuffer(outputBufferId, false);
+            }
+        }
     }
 
     /**
@@ -286,25 +291,35 @@ public class MediaEncoder {
      * @param data
      */
     private void encodeAudioData(byte[] data) {
-        ByteBuffer[] inputBuffers = aEncoder.getInputBuffers();
-        ByteBuffer[] outputBuffers = aEncoder.getOutputBuffers();
-        int inputBufferId = aEncoder.dequeueInputBuffer(-1);
-        if (inputBufferId >= 0) {
-            ByteBuffer bb = inputBuffers[inputBufferId];
-            bb.clear();
-            bb.put(data, 0, data.length);
-            long pts = new Date().getTime() * 1000 - presentationTimeUs;
-            aEncoder.queueInputBuffer(inputBufferId, 0, data.length, pts, 0);
-        }
+        Logger.i(TAG, "encodeAudioData");
 
-        int outputBufferId = aEncoder.dequeueOutputBuffer(aBufferInfo, 0);
-        if (outputBufferId >= 0) {
-            // outputBuffers[outputBufferId] is ready to be processed or rendered.
-            ByteBuffer bb = outputBuffers[outputBufferId];
-            if (mCallback != null) {
-                mCallback.outputAudioData(bb, aBufferInfo);
+        int timeout = 100;
+        int offset = 0;
+        while (offset < data.length) {
+            Logger.i(TAG, "encodeAudioData: offset = " + offset);
+            int inputBufferId = aEncoder.dequeueInputBuffer(timeout);
+            if (inputBufferId >= 0) {
+                ByteBuffer inputBuffer = aEncoder.getInputBuffer(inputBufferId);
+                if (inputBuffer == null) {
+                    throw new RuntimeException("MediaCodec Error get input buffer is null");
+                }
+                int limit = inputBuffer.limit();
+                int length = Math.min(limit, data.length - offset);
+                inputBuffer.put(data, offset, length);
+                long pts = new Date().getTime() * 1000 - presentationTimeUs;
+                aEncoder.queueInputBuffer(inputBufferId, 0, length, pts, 0);
+                offset += length;
             }
-            aEncoder.releaseOutputBuffer(outputBufferId, false);
+
+            int outputBufferId = aEncoder.dequeueOutputBuffer(aBufferInfo, timeout);
+            if (outputBufferId >= 0) {
+                Logger.i(TAG, "encodeAudioData: dequeue output buffer" + outputBufferId);
+                ByteBuffer bb = aEncoder.getOutputBuffer(outputBufferId);
+                if (mCallback != null) {
+                    mCallback.outputAudioData(bb, aBufferInfo);
+                }
+                aEncoder.releaseOutputBuffer(outputBufferId, false);
+            }
         }
 
     }
@@ -318,7 +333,7 @@ public class MediaEncoder {
             int format = codecCapabilities.colorFormats[i];
             if (format >= codecCapabilities.COLOR_FormatYUV420Planar &&
                     format <= codecCapabilities.COLOR_FormatYUV420PackedSemiPlanar
-                    ) {
+            ) {
                 if (format >= matchedForamt) {
                     matchedForamt = format;
                 }

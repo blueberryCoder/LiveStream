@@ -222,11 +222,14 @@ Project_BINARY_DIR:STATIC=/Users/bytedance/code/my/LiveStream/AndroidPublisher/r
 //Value Computed by CMake
 Project_SOURCE_DIR:STATIC=/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp
 
+//Dependencies for target
+librtmp_LIB_DEPENDS:STATIC=
+
 //Path to a library.
 log-lib:FILEPATH=/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/16/liblog.so
 
 //Dependencies for the target
-publish_LIB_DEPENDS:STATIC=general;/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/16/liblog.so;general;rtmp;
+publish_LIB_DEPENDS:STATIC=general;/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/16/liblog.so;general;librtmp;
 
 
 ########################

@@ -5,6 +5,8 @@ import android.media.AudioRecord;
 import android.media.MediaRecorder;
 import android.util.Log;
 
+import com.blueberry.media.utils.Logger;
+
 /**
  * Created by blueberry on 3/6/2017.
  * <p>
@@ -27,8 +29,9 @@ public class AudioGatherer {
         return new AudioGatherer(config);
 
     }
-    private AudioGatherer(Config config){
-        this.mConfig =config;
+
+    private AudioGatherer(Config config) {
+        this.mConfig = config;
     }
 
     public static class Params {
@@ -45,9 +48,8 @@ public class AudioGatherer {
      * 初始化录音
      */
     public Params initAudioDevice() {
-        int[] sampleRates = {44100, 22050, 16000, 11025,8000,4000};
-        for (int sampleRate :
-                sampleRates) {
+        int[] sampleRates = {44100, 22050, 16000, 11025, 8000, 4000};
+        for (int sampleRate : sampleRates) {
             //编码制式
             int audioFormat = mConfig.audioFormat;
             // stereo 立体声，
@@ -58,13 +60,16 @@ public class AudioGatherer {
             if (mAudioRecord.getState() != AudioRecord.STATE_INITIALIZED) {
                 continue;
             }
-            this.buffer = new byte[Math.min(4096, buffsize)];
-
+            this.buffer = new byte[Math.min(80920, buffsize)];
             return new Params(sampleRate,
-                    channelConfig == AudioFormat.CHANNEL_CONFIGURATION_STEREO ? 2 : 1);
+                    getChannelCount(channelConfig));
         }
 
         return null;
+    }
+
+    public static int getChannelCount(int channelConfig) {
+        return Integer.bitCount(channelConfig);
     }
 
     /**
@@ -78,7 +83,7 @@ public class AudioGatherer {
                 while (loop && !Thread.interrupted()) {
                     int size = mAudioRecord.read(buffer, 0, buffer.length);
                     if (size < 0) {
-                        Log.i(TAG, "audio ignore ,no data to read");
+                        Logger.i(TAG, "audio ignore ,no data to read");
                         break;
                     }
                     if (loop) {

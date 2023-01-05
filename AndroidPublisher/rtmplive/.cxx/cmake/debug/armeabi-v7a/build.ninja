@@ -49,25 +49,120 @@ build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
   restat = 1
 build edit_cache: phony CMakeFiles/edit_cache.util
 # =============================================================================
+# Object build statements for STATIC_LIBRARY target librtmp
+
+
+#############################################
+# Order-only phony target for librtmp
+
+build cmake_object_order_depends_target_librtmp: phony
+build CMakeFiles/librtmp.dir/librtmp/amf.c.o: C_COMPILER__librtmp /Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/librtmp/amf.c || cmake_object_order_depends_target_librtmp
+  DEFINES = -DNO_CRYPTO
+  DEP_FILE = CMakeFiles/librtmp.dir/librtmp/amf.c.o.d
+  FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC
+  OBJECT_DIR = CMakeFiles/librtmp.dir
+  OBJECT_FILE_DIR = CMakeFiles/librtmp.dir/librtmp
+build CMakeFiles/librtmp.dir/librtmp/hashswf.c.o: C_COMPILER__librtmp /Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/librtmp/hashswf.c || cmake_object_order_depends_target_librtmp
+  DEFINES = -DNO_CRYPTO
+  DEP_FILE = CMakeFiles/librtmp.dir/librtmp/hashswf.c.o.d
+  FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC
+  OBJECT_DIR = CMakeFiles/librtmp.dir
+  OBJECT_FILE_DIR = CMakeFiles/librtmp.dir/librtmp
+build CMakeFiles/librtmp.dir/librtmp/log.c.o: C_COMPILER__librtmp /Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/librtmp/log.c || cmake_object_order_depends_target_librtmp
+  DEFINES = -DNO_CRYPTO
+  DEP_FILE = CMakeFiles/librtmp.dir/librtmp/log.c.o.d
+  FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC
+  OBJECT_DIR = CMakeFiles/librtmp.dir
+  OBJECT_FILE_DIR = CMakeFiles/librtmp.dir/librtmp
+build CMakeFiles/librtmp.dir/librtmp/parseurl.c.o: C_COMPILER__librtmp /Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/librtmp/parseurl.c || cmake_object_order_depends_target_librtmp
+  DEFINES = -DNO_CRYPTO
+  DEP_FILE = CMakeFiles/librtmp.dir/librtmp/parseurl.c.o.d
+  FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC
+  OBJECT_DIR = CMakeFiles/librtmp.dir
+  OBJECT_FILE_DIR = CMakeFiles/librtmp.dir/librtmp
+build CMakeFiles/librtmp.dir/librtmp/rtmp.c.o: C_COMPILER__librtmp /Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/librtmp/rtmp.c || cmake_object_order_depends_target_librtmp
+  DEFINES = -DNO_CRYPTO
+  DEP_FILE = CMakeFiles/librtmp.dir/librtmp/rtmp.c.o.d
+  FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC
+  OBJECT_DIR = CMakeFiles/librtmp.dir
+  OBJECT_FILE_DIR = CMakeFiles/librtmp.dir/librtmp
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target librtmp
+
+
+#############################################
+# Link the static library liblibrtmp.a
+
+build liblibrtmp.a: C_STATIC_LIBRARY_LINKER__librtmp CMakeFiles/librtmp.dir/librtmp/amf.c.o CMakeFiles/librtmp.dir/librtmp/hashswf.c.o CMakeFiles/librtmp.dir/librtmp/log.c.o CMakeFiles/librtmp.dir/librtmp/parseurl.c.o CMakeFiles/librtmp.dir/librtmp/rtmp.c.o
+  LANGUAGE_COMPILE_FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -O0 -fno-limit-debug-info
+  OBJECT_DIR = CMakeFiles/librtmp.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = liblibrtmp.a
+  TARGET_PDB = librtmp.a.dbg
+# =============================================================================
 # Object build statements for SHARED_LIBRARY target publish
 
 
 #############################################
 # Order-only phony target for publish
 
-build cmake_object_order_depends_target_publish: phony
-build CMakeFiles/publish.dir/publish_jni.cpp.o: CXX_COMPILER__publish /Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/publish_jni.cpp || cmake_object_order_depends_target_publish
-  DEFINES = -Dpublish_EXPORTS
-  DEP_FILE = CMakeFiles/publish.dir/publish_jni.cpp.o.d
+build cmake_object_order_depends_target_publish: phony || cmake_object_order_depends_target_librtmp
+build CMakeFiles/publish.dir/AVCDecoderConfiguration.cpp.o: CXX_COMPILER__publish /Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/AVCDecoderConfiguration.cpp || cmake_object_order_depends_target_publish
+  DEFINES = -DNO_CRYPTO -Dpublish_EXPORTS
+  DEP_FILE = CMakeFiles/publish.dir/AVCDecoderConfiguration.cpp.o.d
   FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -frtti -fexceptions -O0 -fno-limit-debug-info  -fPIC
-  INCLUDES = -I/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/../../../../rtmp/include/librtmp
+  INCLUDES = -I/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/librtmp
   OBJECT_DIR = CMakeFiles/publish.dir
   OBJECT_FILE_DIR = CMakeFiles/publish.dir
-build CMakeFiles/publish.dir/Rtmp.cpp.o: CXX_COMPILER__publish /Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/Rtmp.cpp || cmake_object_order_depends_target_publish
-  DEFINES = -Dpublish_EXPORTS
-  DEP_FILE = CMakeFiles/publish.dir/Rtmp.cpp.o.d
+build CMakeFiles/publish.dir/BitStream.cpp.o: CXX_COMPILER__publish /Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/BitStream.cpp || cmake_object_order_depends_target_publish
+  DEFINES = -DNO_CRYPTO -Dpublish_EXPORTS
+  DEP_FILE = CMakeFiles/publish.dir/BitStream.cpp.o.d
   FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -frtti -fexceptions -O0 -fno-limit-debug-info  -fPIC
-  INCLUDES = -I/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/../../../../rtmp/include/librtmp
+  INCLUDES = -I/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/librtmp
+  OBJECT_DIR = CMakeFiles/publish.dir
+  OBJECT_FILE_DIR = CMakeFiles/publish.dir
+build CMakeFiles/publish.dir/Golomb.cpp.o: CXX_COMPILER__publish /Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/Golomb.cpp || cmake_object_order_depends_target_publish
+  DEFINES = -DNO_CRYPTO -Dpublish_EXPORTS
+  DEP_FILE = CMakeFiles/publish.dir/Golomb.cpp.o.d
+  FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -frtti -fexceptions -O0 -fno-limit-debug-info  -fPIC
+  INCLUDES = -I/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/librtmp
+  OBJECT_DIR = CMakeFiles/publish.dir
+  OBJECT_FILE_DIR = CMakeFiles/publish.dir
+build CMakeFiles/publish.dir/H264Params.cpp.o: CXX_COMPILER__publish /Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/H264Params.cpp || cmake_object_order_depends_target_publish
+  DEFINES = -DNO_CRYPTO -Dpublish_EXPORTS
+  DEP_FILE = CMakeFiles/publish.dir/H264Params.cpp.o.d
+  FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -frtti -fexceptions -O0 -fno-limit-debug-info  -fPIC
+  INCLUDES = -I/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/librtmp
+  OBJECT_DIR = CMakeFiles/publish.dir
+  OBJECT_FILE_DIR = CMakeFiles/publish.dir
+build CMakeFiles/publish.dir/H264Parser.cpp.o: CXX_COMPILER__publish /Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/H264Parser.cpp || cmake_object_order_depends_target_publish
+  DEFINES = -DNO_CRYPTO -Dpublish_EXPORTS
+  DEP_FILE = CMakeFiles/publish.dir/H264Parser.cpp.o.d
+  FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -frtti -fexceptions -O0 -fno-limit-debug-info  -fPIC
+  INCLUDES = -I/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/librtmp
+  OBJECT_DIR = CMakeFiles/publish.dir
+  OBJECT_FILE_DIR = CMakeFiles/publish.dir
+build CMakeFiles/publish.dir/HexUtil.cpp.o: CXX_COMPILER__publish /Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/HexUtil.cpp || cmake_object_order_depends_target_publish
+  DEFINES = -DNO_CRYPTO -Dpublish_EXPORTS
+  DEP_FILE = CMakeFiles/publish.dir/HexUtil.cpp.o.d
+  FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -frtti -fexceptions -O0 -fno-limit-debug-info  -fPIC
+  INCLUDES = -I/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/librtmp
+  OBJECT_DIR = CMakeFiles/publish.dir
+  OBJECT_FILE_DIR = CMakeFiles/publish.dir
+build CMakeFiles/publish.dir/RtmpClient.cpp.o: CXX_COMPILER__publish /Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/RtmpClient.cpp || cmake_object_order_depends_target_publish
+  DEFINES = -DNO_CRYPTO -Dpublish_EXPORTS
+  DEP_FILE = CMakeFiles/publish.dir/RtmpClient.cpp.o.d
+  FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -frtti -fexceptions -O0 -fno-limit-debug-info  -fPIC
+  INCLUDES = -I/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/librtmp
+  OBJECT_DIR = CMakeFiles/publish.dir
+  OBJECT_FILE_DIR = CMakeFiles/publish.dir
+build CMakeFiles/publish.dir/publish_jni.cpp.o: CXX_COMPILER__publish /Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/publish_jni.cpp || cmake_object_order_depends_target_publish
+  DEFINES = -DNO_CRYPTO -Dpublish_EXPORTS
+  DEP_FILE = CMakeFiles/publish.dir/publish_jni.cpp.o.d
+  FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -frtti -fexceptions -O0 -fno-limit-debug-info  -fPIC
+  INCLUDES = -I/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/librtmp
   OBJECT_DIR = CMakeFiles/publish.dir
   OBJECT_FILE_DIR = CMakeFiles/publish.dir
 
@@ -78,10 +173,10 @@ build CMakeFiles/publish.dir/Rtmp.cpp.o: CXX_COMPILER__publish /Users/bytedance/
 #############################################
 # Link the shared library /Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/build/intermediates/cmake/debug/obj/armeabi-v7a/libpublish.so
 
-build /Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/build/intermediates/cmake/debug/obj/armeabi-v7a/libpublish.so: CXX_SHARED_LIBRARY_LINKER__publish CMakeFiles/publish.dir/publish_jni.cpp.o CMakeFiles/publish.dir/Rtmp.cpp.o | /Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/16/liblog.so /Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/../../../../rtmp/lib/armeabi-v7a/librtmp.so
+build /Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/build/intermediates/cmake/debug/obj/armeabi-v7a/libpublish.so: CXX_SHARED_LIBRARY_LINKER__publish CMakeFiles/publish.dir/AVCDecoderConfiguration.cpp.o CMakeFiles/publish.dir/BitStream.cpp.o CMakeFiles/publish.dir/Golomb.cpp.o CMakeFiles/publish.dir/H264Params.cpp.o CMakeFiles/publish.dir/H264Parser.cpp.o CMakeFiles/publish.dir/HexUtil.cpp.o CMakeFiles/publish.dir/RtmpClient.cpp.o CMakeFiles/publish.dir/publish_jni.cpp.o | /Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/16/liblog.so liblibrtmp.a || liblibrtmp.a
   LANGUAGE_COMPILE_FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -frtti -fexceptions -O0 -fno-limit-debug-info
   LINK_FLAGS = -Wl,--exclude-libs,libgcc.a -Wl,--exclude-libs,libgcc_real.a -Wl,--exclude-libs,libatomic.a -static-libstdc++ -Wl,--build-id -Wl,--fatal-warnings -Wl,--exclude-libs,libunwind.a -Wl,--no-undefined -Qunused-arguments
-  LINK_LIBRARIES = -llog /Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/../../../../rtmp/lib/armeabi-v7a/librtmp.so -latomic -lm
+  LINK_LIBRARIES = -llog liblibrtmp.a -latomic -lm
   OBJECT_DIR = CMakeFiles/publish.dir
   POST_BUILD = :
   PRE_LINK = :
@@ -93,6 +188,7 @@ build /Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/build/interm
 # Target aliases.
 
 build libpublish.so: phony /Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/build/intermediates/cmake/debug/obj/armeabi-v7a/libpublish.so
+build librtmp: phony liblibrtmp.a
 build publish: phony /Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/build/intermediates/cmake/debug/obj/armeabi-v7a/libpublish.so
 # =============================================================================
 # Folder targets.
@@ -105,7 +201,7 @@ build publish: phony /Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmpli
 #############################################
 # The main all target.
 
-build all: phony /Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/build/intermediates/cmake/debug/obj/armeabi-v7a/libpublish.so
+build all: phony liblibrtmp.a /Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/build/intermediates/cmake/debug/obj/armeabi-v7a/libpublish.so
 
 #############################################
 # Make the all target the default.

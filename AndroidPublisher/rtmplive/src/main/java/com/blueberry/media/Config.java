@@ -40,6 +40,12 @@ public class Config {
      */
     public final int bitrate;
 
+    public boolean enableDumpVideo;
+    public String dumpVideoPath;
+
+    public boolean enableDumpAudio;
+    public String dumpAudioPath;
+
     private Config(int fps,
                    int minWidth,
                    int maxWidth,
@@ -47,7 +53,12 @@ public class Config {
                    String url,
                    int audioFormat,
                    int channelConfig,
-                   int bitrate
+                   int bitrate,
+                   boolean enableDumpVideo,
+                   String dumpVideoPath,
+                   boolean enableDumpAudio,
+                   String dumpAudioPath
+
 
     ) {
         this.timeOut = timeOut;
@@ -58,6 +69,10 @@ public class Config {
         this.audioFormat = audioFormat;
         this.channelConfig = channelConfig;
         this.bitrate = bitrate;
+        this.enableDumpVideo = enableDumpVideo;
+        this.dumpVideoPath = dumpVideoPath;
+        this.enableDumpAudio = enableDumpAudio;
+        this.dumpAudioPath = dumpAudioPath;
     }
 
     public static class Builder {
@@ -66,6 +81,10 @@ public class Config {
         private int maxWidth;
         private int timeOut;
         private String url;
+        private boolean enableDumpVideo;
+        private String dumpVideoPath;
+        private boolean enableDumpAudio;
+        private String dumpAudioPath;
 
         private int audioFormat = AudioFormat.ENCODING_PCM_16BIT;
         private int audioChannel = AudioFormat.CHANNEL_CONFIGURATION_STEREO;
@@ -76,7 +95,7 @@ public class Config {
             fps = 30;
             minWidth = 320;
             maxWidth = 720;
-            timeOut = 1000;
+            timeOut = 10;
         }
 
         /**
@@ -153,16 +172,38 @@ public class Config {
             return this;
         }
 
+        public Builder setEnableDumpVideo(boolean enable) {
+            this.enableDumpVideo = enable;
+            return this;
+        }
+
+        // dump h264 send video.
+        public Builder setDumpVideoPath(String path) {
+            this.dumpVideoPath = path;
+            return this;
+        }
+
+        public Builder setEnableDumpAudio(boolean enable) {
+            this.enableDumpAudio = enable;
+            return this;
+        }
+
+        // dump h264 send video.
+        public Builder setDumpAudioPath(String path) {
+            this.dumpAudioPath = path;
+            return this;
+        }
+
         /**
          * 建造Config
          *
          * @return {@link Config}
          */
         public Config build() {
-            Config config = new Config(fps, minWidth, maxWidth, timeOut,
-                    url, audioFormat, audioChannel, bitrate
+            return new Config(fps, minWidth, maxWidth, timeOut,
+                    url, audioFormat, audioChannel, bitrate, enableDumpVideo, dumpVideoPath,
+                    enableDumpAudio, dumpAudioPath
             );
-            return config;
         }
     }
 
