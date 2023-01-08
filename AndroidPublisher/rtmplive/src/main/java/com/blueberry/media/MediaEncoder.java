@@ -39,8 +39,22 @@ public class MediaEncoder {
     private boolean videoEncoderLoop, audioEncoderLoop;
     private long presentationTimeUs;
     private Callback mCallback;
+    // video raw data queue
     private LinkedBlockingQueue<byte[]> videoQueue;
+    // pcm data queue
     private LinkedBlockingQueue<byte[]> audioQueue;
+
+    private VideoPacketParams currentVideoParams = new VideoPacketParams();
+    private AudioPacketParams currentAudioParams= new AudioPacketParams();
+
+
+    public AudioPacketParams getCurrentAudioParams() {
+        return currentAudioParams;
+    }
+
+    public VideoPacketParams getCurrentVideoParams() {
+        return currentVideoParams;
+    }
 
     public static MediaEncoder newInstance(Config config) {
         return new MediaEncoder(config);
@@ -84,38 +98,39 @@ public class MediaEncoder {
     }
 
     /**
-     * 初始化音频编码器
-     *
-     * @param sampleRate  音频采样率
-     * @param chanelCount 声道数
-     * @throws IOException 创建编码器失败
+     * init audio encoder
      */
-    public void initAudioEncoder(int sampleRate, int chanelCount) throws IOException {
+    public void initAudioEncoder(AudioGatherParams audioGatherParams) throws IOException {
         MediaCodec aencoder = MediaCodec.createEncoderByType(MediaFormat.MIMETYPE_AUDIO_AAC);
         MediaFormat format = MediaFormat.createAudioFormat(MediaFormat.MIMETYPE_AUDIO_AAC,
-                sampleRate, chanelCount);
+                audioGatherParams.getSampleRate(), audioGatherParams.getChannelCount());
+
+        int bitRate = 30000; // 30k TODO config
         format.setInteger(KEY_MAX_INPUT_SIZE, 0);
-        format.setInteger(KEY_BIT_RATE, sampleRate * chanelCount);
+        format.setInteger(KEY_BIT_RATE, bitRate);
         aencoder.configure(format, null, null, MediaCodec.CONFIGURE_FLAG_ENCODE);
+
+        this.currentAudioParams.setSampleRate( audioGatherParams.getSampleRate());
+        this.currentAudioParams.setSampleSize(audioGatherParams.getSampleSize());
+        this.currentAudioParams.setBitRate(bitRate);
+
         audioQueue = new LinkedBlockingQueue<>();
         aEncoder = aencoder;
     }
 
 
     /**
-     * 初始化视频编码器。
-     *
-     * @param width  视频的宽
-     * @param height 视频的高
-     * @throws IOException 创建编码器失败
+     * init video encoder.
      */
     public int initVideoEncoder(int width, int height, int fps) throws IOException {
-        // 初始化
+
         MediaCodecInfo mediaCodecInfo = getMediaCodecInfoByType(MediaFormat.MIMETYPE_VIDEO_AVC);
         int colorFormat = getColorFormat(mediaCodecInfo);
         MediaCodec vencoder = MediaCodec.createByCodecName(mediaCodecInfo.getName());
-        MediaFormat format = MediaFormat.createVideoFormat(MediaFormat.MIMETYPE_VIDEO_AVC,
-                width, height);
+        MediaFormat format = MediaFormat.createVideoFormat(
+                MediaFormat.MIMETYPE_VIDEO_AVC,
+                width,
+                height);
         format.setInteger(KEY_MAX_INPUT_SIZE, 0);
         format.setInteger(KEY_BIT_RATE, mConfig.bitrate);
         format.setInteger(KEY_COLOR_FORMAT, colorFormat);
@@ -124,6 +139,12 @@ public class MediaEncoder {
         vencoder.configure(format, null, null, CONFIGURE_FLAG_ENCODE);
         videoQueue = new LinkedBlockingQueue<>();
         vEncoder = vencoder;
+
+        this.currentVideoParams.setWidth(width);
+        this.currentVideoParams.setHeight(height);
+        this.currentVideoParams.setFrameRate(fps);
+        this.currentVideoParams.setBitRate(mConfig.bitrate);
+
         return colorFormat;
     }
 
@@ -143,6 +164,7 @@ public class MediaEncoder {
             public void run() {
                 presentationTimeUs = System.currentTimeMillis() * 1000;
                 vEncoder.start();
+                Logger.i(TAG,"video encoder started.");
                 while (videoEncoderLoop && !Thread.interrupted()) {
                     try {
                         byte[] data = videoQueue.take(); //待编码的数据
@@ -176,6 +198,7 @@ public class MediaEncoder {
             public void run() {
                 presentationTimeUs = System.currentTimeMillis() * 1000;
                 aEncoder.start();
+                Logger.i(TAG,"audio encoder start.");
                 while (audioEncoderLoop && !Thread.interrupted()) {
                     try {
                         byte[] data = audioQueue.take();
@@ -194,7 +217,7 @@ public class MediaEncoder {
     }
 
     /**
-     * 添加视频数据
+     * add video data
      *
      * @param data
      */

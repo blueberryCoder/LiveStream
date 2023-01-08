@@ -80,6 +80,18 @@ public:
 
     int stop();
 
+    int SendDataFrame(
+            double width,
+            double height,
+            // video bitrate in kilobits per second
+            double videoDataRate,
+            double frameRate,
+            double audioDataRate,
+            double audioSampleRate,
+            double audioSampleSize,
+            bool stereo
+                      );
+
 private:
     int SendNALSPS(uint8_t *data, int length, long timestamp);
 

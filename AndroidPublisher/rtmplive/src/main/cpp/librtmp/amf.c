@@ -179,8 +179,9 @@ AMF_EncodeString(char *output, char *outend, const AVal *bv)
 
   if (bv->av_len < 65536)
     {
-      *output++ = AMF_STRING;
+      *output++ = AMF_STRING; // write type 0x2
 
+      // write length
       output = AMF_EncodeInt16(output, outend, bv->av_len);
     }
   else
@@ -189,6 +190,7 @@ AMF_EncodeString(char *output, char *outend, const AVal *bv)
 
       output = AMF_EncodeInt32(output, outend, bv->av_len);
     }
+  // write char*
   memcpy(output, bv->av_val, bv->av_len);
   output += bv->av_len;
 
@@ -928,9 +930,9 @@ AMF_EncodeEcmaArray(AMFObject *obj, char *pBuffer, char *pBufEnd)
   if (pBuffer+4 >= pBufEnd)
     return NULL;
 
-  *pBuffer++ = AMF_ECMA_ARRAY;
+  *pBuffer++ = AMF_ECMA_ARRAY; // write type 0x08
 
-  pBuffer = AMF_EncodeInt32(pBuffer, pBufEnd, obj->o_num);
+  pBuffer = AMF_EncodeInt32(pBuffer, pBufEnd, obj->o_num); // write array length
 
   for (i = 0; i < obj->o_num; i++)
     {
@@ -950,7 +952,7 @@ AMF_EncodeEcmaArray(AMFObject *obj, char *pBuffer, char *pBufEnd)
   if (pBuffer + 3 >= pBufEnd)
     return NULL;			/* no room for the end marker */
 
-  pBuffer = AMF_EncodeInt24(pBuffer, pBufEnd, AMF_OBJECT_END);
+  pBuffer = AMF_EncodeInt24(pBuffer, pBufEnd, AMF_OBJECT_END);  // write end marker
 
   return pBuffer;
 }

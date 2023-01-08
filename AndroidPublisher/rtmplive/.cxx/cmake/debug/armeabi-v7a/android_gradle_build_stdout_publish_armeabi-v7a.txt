@@ -1,2 +1,56 @@
 ninja: Entering directory `/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/.cxx/cmake/debug/armeabi-v7a'
-ninja: no work to do.
+[1/2] Building CXX object CMakeFiles/publish.dir/RtmpClient.cpp.o
+In file included from /Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/RtmpClient.cpp:20:
+/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/OnMetaData.h:45:27: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+    AVal av_onMetaData = {"onMetaData",sizeof("onMetaData")-1};
+                          ^
+/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/OnMetaData.h:46:25: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+    AVal av_duration = {"duration",sizeof("duration")-1};
+                        ^
+/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/OnMetaData.h:47:22: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+    AVal av_width = {"width",sizeof("width")-1};
+                     ^
+/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/OnMetaData.h:48:23: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+    AVal av_height = {"height",sizeof("height")-1};
+                      ^
+/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/OnMetaData.h:49:30: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+    AVal av_videodatarate = {"videodatarate",sizeof("videodatarate")-1};
+                             ^
+/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/OnMetaData.h:50:26: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+    AVal av_framerate = {"framerate",sizeof("framerate")-1};
+                         ^
+/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/OnMetaData.h:51:29: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+    AVal av_videocodecid = {"videocodecid",sizeof("videocodecid")-1};
+                            ^
+/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/OnMetaData.h:52:30: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+    AVal av_audiodatarate = {"audiodatarate",sizeof("audiodatarate")-1};
+                             ^
+/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/OnMetaData.h:53:32: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+    AVal av_audiosamplerate = {"audiosamplerate",sizeof("audiosamplerate")-1};
+                               ^
+/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/OnMetaData.h:54:32: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+    AVal av_audiosamplesize = {"audiosamplesize",sizeof("audiosamplesize")-1};
+                               ^
+/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/OnMetaData.h:55:23: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+    AVal av_stereo = {"stereo",sizeof("stereo")-1};
+                      ^
+/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/OnMetaData.h:56:29: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+    AVal av_audiocodecid = {"audiocodecid",sizeof("audiocodecid")-1};
+                            ^
+/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/OnMetaData.h:57:28: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+    AVal av_major_brand = {"major_brand",sizeof("major_brand")-1};
+                           ^
+/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/OnMetaData.h:58:30: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+    AVal av_minor_version = {"minor_version",sizeof("minor_version")-1};
+                             ^
+/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/OnMetaData.h:59:34: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+    AVal av_compatible_brands = {"compatible_brands",sizeof("compatible_brands")-1};
+                                 ^
+/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/OnMetaData.h:60:24: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+    AVal av_encoder = {"encoder",sizeof("encoder")-1};
+                       ^
+/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/OnMetaData.h:61:25: warning: ISO C++11 does not allow conversion from string literal to 'char *' [-Wwritable-strings]
+    AVal av_filesize = {"filesize",sizeof("filesize")-1};
+                        ^
+17 warnings generated.
+[2/2] Linking CXX shared library /Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/build/intermediates/cmake/debug/obj/armeabi-v7a/libpublish.so

@@ -4,15 +4,11 @@ import android.app.Activity;
 import android.media.MediaCodec;
 import android.util.Log;
 import android.view.SurfaceHolder;
-import android.widget.Toast;
 
 import com.blueberry.media.utils.Logger;
-import com.blueberry.media.utils.ToastUtil;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
-import java.util.Arrays;
-import java.util.concurrent.LinkedBlockingQueue;
 
 
 /**
@@ -23,31 +19,17 @@ public class MediaPublisher {
 
     private Config mConfig;
 
-    public static final int NAL_SLICE = 1;
-    public static final int NAL_SLICE_DPA = 2;
-    public static final int NAL_SLICE_DPB = 3;
-    public static final int NAL_SLICE_DPC = 4;
-    public static final int NAL_SLICE_IDR = 5;
-    public static final int NAL_SEI = 6;
-    public static final int NAL_SPS = 7;
-    public static final int NAL_PPS = 8;
-    public static final int NAL_AUD = 9;
-    public static final int NAL_FILLER = 12;
 
-    private LinkedBlockingQueue<Runnable> mRunnables = new LinkedBlockingQueue<>();
     private Thread workThread;
-
     private VideoGatherer mVideoGatherer;
     private AudioGatherer mAudioGatherer;
     private MediaEncoder mMediaEncoder;
 
     private RtmpPublisher mRtmpPublisher;
     public boolean isPublish;
-
-    private AudioGatherer.Params audioParams;
-    private VideoGatherer.Params videoParams;
     private boolean loop;
 
+    private MediaQueueManager mediaQueueManager = MediaQueueManager.newInstance();
 
     public static MediaPublisher newInstance(Config config) {
         return new MediaPublisher(config);
@@ -58,11 +40,10 @@ public class MediaPublisher {
     }
 
     /**
-     * 初始化视频采集器，音频采集器，视频编码器，音频编码器
+     * init gathers and encoders
      */
     public void init() {
-        mVideoGatherer = VideoGatherer
-                .newInstance(mConfig);
+        mVideoGatherer = VideoGatherer.newInstance(mConfig);
         mAudioGatherer = AudioGatherer.newInstance(mConfig);
         mMediaEncoder = MediaEncoder.newInstance(mConfig);
         mRtmpPublisher = RtmpPublisher.newInstance();
@@ -71,10 +52,37 @@ public class MediaPublisher {
         workThread = new Thread("publish-thread") {
             @Override
             public void run() {
+                // wait for MetaData
+                try {
+                    MetaData data = mediaQueueManager.takeMetaData();
+                    mRtmpPublisher.sendMetaData(
+                            data.getWidth(),
+                            data.getHeight(),
+                            data.getVideoBitRate(),
+                            data.getFps(),
+                            data.getAudioBitRate(),
+                            data.getAudioSampleRate(),
+                            data.getAudioSampleSize(),
+                            data.isStereo()
+                    );
+                    Logger.i(TAG, "send metaData " + data.toString());
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 while (loop && !Thread.interrupted()) {
+                    // send Video Packet;
                     try {
-                        Runnable runnable = mRunnables.take();
-                        runnable.run();
+                        AudioPacket audioPacket = mediaQueueManager.takeAudioPacket();
+                        mRtmpPublisher.sendAacData(audioPacket.getData(),
+                                audioPacket.getData().length, audioPacket.getTimestamp());
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                    try {
+                        VideoPacket videoPacket = mediaQueueManager.takeVideoPacket();
+                        mRtmpPublisher.sendVideoData(videoPacket.getData(),
+                                videoPacket.getData().length, videoPacket.getTimestamp());
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -91,7 +99,7 @@ public class MediaPublisher {
      */
     public void initAudioGatherer() {
         Logger.i(TAG, "initAudioGather");
-        audioParams = mAudioGatherer.initAudioDevice();
+        mAudioGatherer.initAudioDevice();
     }
 
     /**
@@ -101,7 +109,7 @@ public class MediaPublisher {
      * @param holder
      */
     public void initVideoGatherer(Activity act, SurfaceHolder holder) {
-        videoParams = mVideoGatherer.initCamera(act, holder);
+        mVideoGatherer.initCamera(act, holder);
     }
 
     /**
@@ -118,17 +126,22 @@ public class MediaPublisher {
     public void initEncoders() {
         Logger.i(TAG, "initEncoders");
         try {
-            mMediaEncoder.initAudioEncoder(audioParams.sampleRate, audioParams.channelCount);
+            AudioGatherParams params = mAudioGatherer.getCurrentParams();
+            mMediaEncoder.initAudioEncoder(params);
         } catch (IOException e) {
             e.printStackTrace();
-            Logger.e(TAG, "初始化音频编码器失败");
+            Logger.e(TAG, "init audio encoder failed");
         }
 
         try {
-            int colorFormat = mMediaEncoder.initVideoEncoder(videoParams.previewWidth,
-                    videoParams.previewHeight, mConfig.fps);
+            VideoGatherParams params = mVideoGatherer.getCurrentParams();
+            int colorFormat = mMediaEncoder.initVideoEncoder(
+                    params.getPreviewWidth(),
+                    params.getPreviewHeight(),
+                    params.getFrameRate());
             mVideoGatherer.setColorFormat(colorFormat);
         } catch (IOException e) {
+            Logger.e(TAG, "init video encoder failed");
             e.printStackTrace();
         }
     }
@@ -163,10 +176,9 @@ public class MediaPublisher {
                 );
                 if (ret < 0) {
                     Logger.e(TAG, "connect failed");
-//            ToastUtil.toast("connect failed");
                     return;
                 }
-                Logger.i(TAG,"start publish success. ");
+                Logger.i(TAG, "start publish success. ");
                 isPublish = true;
             }
         }.start();
@@ -177,16 +189,14 @@ public class MediaPublisher {
      * 停止发布
      */
     public void stopPublish() {
-        Runnable runnable = new Runnable() {
+        new Thread() {
             @Override
             public void run() {
-                mRtmpPublisher.stop();
                 loop = false;
+                mRtmpPublisher.stop();
                 workThread.interrupt();
             }
-        };
-
-        mRunnables.add(runnable);
+        }.start();
     }
 
     /**
@@ -235,7 +245,7 @@ public class MediaPublisher {
             public void audioData(byte[] data) {
                 if (isPublish) {
                     mMediaEncoder.putAudioData(data);
-                }else {
+                } else {
 //                    Logger.w(TAG, "onReceive: publish is false");
                 }
             }
@@ -254,80 +264,43 @@ public class MediaPublisher {
         });
     }
 
+    private boolean isSendMetaData = false;
+
     private void onEncodedAvcFrame(ByteBuffer bb, final MediaCodec.BufferInfo vBufferInfo) {
         Logger.i(TAG, "onEncodedAvcFrame: ");
         // AnnexB : 0 0 0 1
         //          0 0 1
-
         final byte[] bytes = new byte[vBufferInfo.size];
         bb.get(bytes);
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                Logger.d(TAG, "send video data");
-                mRtmpPublisher.sendVideoData(bytes, bytes.length,
-                        vBufferInfo.presentationTimeUs / 1000);
-            }
-        };
+        VideoPacket packet = new VideoPacket();
+        packet.setData(bytes);
+        packet.setTimestamp(System.currentTimeMillis());
         try {
-            mRunnables.put(runnable);
+            mediaQueueManager.enqueueVideoPacket(packet);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        tryToSendMetaData();
+    }
 
-        return;
+    private void tryToSendMetaData() {
+        if (!isSendMetaData) {
+            MetaData metaData = new MetaData();
+            AudioPacketParams audioPacketParams = mMediaEncoder.getCurrentAudioParams();
+            VideoPacketParams videoPacketParams = mMediaEncoder.getCurrentVideoParams();
 
-//        int offset = 4;
-//        if (bb.get(2) == 0x01) {
-//            offset = 3;
-//        }
-//        int type = bb.get(offset) & 0x1f;
-//        Logger.i(TAG, "VIDEO type=" + type);
-//        if (type == NAL_SPS) {
-//            //[0, 0, 0, 1, 103, 66, -64, 13, -38, 5, -126, 90, 1, -31, 16, -115, 64, 0, 0, 0, 1, 104, -50, 6, -30]
-//            //打印发现这里将 SPS帧和 PPS帧合在了一起发送
-//            // SPS为 [4，len-8]
-//            // PPS为后4个字节
-//            final byte[] pps = new byte[4];
-//            final byte[] sps = new byte[vBufferInfo.size - 12];
-//            bb.getInt();// 抛弃 0,0,0,1
-//            bb.get(sps, 0, sps.length);
-//            bb.getInt();
-//            bb.get(pps, 0, pps.length);
-//            Logger.i(TAG, "VIDEO sps:" + Arrays.toString(sps) + ",PPS=" + Arrays.toString(pps));
-//            Runnable runnable = new Runnable() {
-//                @Override
-//                public void run() {
-//                    Logger.d(TAG, "send sps pps: ");
-//                    mRtmpPublisher.sendSpsAndPps(sps, sps.length, pps, pps.length,
-//                            vBufferInfo.presentationTimeUs / 1000);
-//                }
-//            };
-//            try {
-//                mRunnables.put(runnable);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//
-//        } else if (type == NAL_SLICE || type == NAL_SLICE_IDR) {
-//            final byte[] bytes = new byte[vBufferInfo.size];
-//            bb.get(bytes);
-//            Runnable runnable = new Runnable() {
-//                @Override
-//                public void run() {
-//                    Logger.d(TAG,"send video data");
-//                    mRtmpPublisher.sendVideoData(bytes, bytes.length,
-//                            vBufferInfo.presentationTimeUs / 1000);
-//                }
-//            };
-//            try {
-//                mRunnables.put(runnable);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//
-//        }
+            metaData.setWidth(videoPacketParams.getWidth());
+            metaData.setHeight(videoPacketParams.getHeight());
+            metaData.setFps(videoPacketParams.getFrameRate());
+            metaData.setVideoBitRate(videoPacketParams.getBitRate());
 
+            metaData.setAudioSampleSize(audioPacketParams.getSampleSize());
+            metaData.setAudioSampleRate(audioPacketParams.getSampleRate());
+            metaData.setAudioBitRate(audioPacketParams.getBitRate());
+            Logger.i(TAG, "enqueue metadata: " + metaData);
+            mediaQueueManager.enqueueMetaData(metaData);
+            isSendMetaData = true;
+        }
     }
 
     private void onEncodeAacFrame(ByteBuffer bb, final MediaCodec.BufferInfo aBufferInfo) {
@@ -336,59 +309,16 @@ public class MediaPublisher {
 
         final byte[] bytes = new byte[aBufferInfo.size];
         bb.get(bytes);
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                Logger.d(TAG, "send video data");
-                mRtmpPublisher.sendAacData(bytes, bytes.length,
-                        aBufferInfo.presentationTimeUs / 1000);
-            }
-        };
+
+        AudioPacket audioPacket = new AudioPacket();
+        audioPacket.setData(bytes);
+        audioPacket.setTimestamp(System.currentTimeMillis());
         try {
-            mRunnables.put(runnable);
+            mediaQueueManager.enqueueAudioPacket(audioPacket);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        return;
-
-//        if (aBufferInfo.size == 2) {
-//            final byte[] bytes = new byte[2];
-//            bb.get(bytes);
-//            Runnable runnable = new Runnable() {
-//                @Override
-//                public void run() {
-//                    Logger.d(TAG, "send aac spec");
-//                    mRtmpPublisher.sendAacSpec(bytes, 2);
-//                }
-//            };
-//            try {
-//                mRunnables.put(runnable);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//
-//        } else {
-//            final byte[] bytes = new byte[aBufferInfo.size];
-//            bb.get(bytes);
-//
-//            Runnable runnable = new Runnable() {
-//                @Override
-//                public void run() {
-//                    Logger.d(TAG, "send aac spec");
-//
-//                    mRtmpPublisher.sendAacData(bytes, bytes.length, aBufferInfo.presentationTimeUs / 1000);
-//                }
-//            };
-//            try {
-//                mRunnables.put(runnable);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//
-//        }
-
+        tryToSendMetaData();
     }
-
-
 }

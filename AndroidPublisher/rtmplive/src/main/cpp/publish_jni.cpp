@@ -94,6 +94,20 @@ Java_com_blueberry_media_PublishJni_stop(JNIEnv *env, jclass type, jlong cptr) {
     return 0;
 }
 
+JNIEXPORT jint JNICALL
+Java_com_blueberry_media_PublishJni_sendMetaData(JNIEnv *env, jclass clazz,
+                                                 jlong cptr,
+                                                 jdouble width,
+                                                 jdouble height,
+                                                 jdouble video_data_rate, jdouble frame_rate,
+                                                 jdouble audio_data_rate, jdouble audio_sample_rate,
+                                                 jdouble audio_sample_size, jboolean stereo) {
+
+    auto rtmp_ptr = reinterpret_cast<RtmpClient *> (cptr);
+    return rtmp_ptr->SendDataFrame(width, height, video_data_rate, frame_rate, audio_data_rate,
+                                   audio_sample_rate, audio_sample_size, stereo == JNI_TRUE);
+}
+
 #ifdef __cplusplus
 }
 #endif

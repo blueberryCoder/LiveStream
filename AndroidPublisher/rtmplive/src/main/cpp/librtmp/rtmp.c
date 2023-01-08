@@ -5093,6 +5093,14 @@ fail:
 
 static const AVal av_setDataFrame = AVC("@setDataFrame");
 
+/**
+ * https://rtmp.veriskope.com/pdf/video_file_format_spec_v10.pdf
+ *
+ * @param r
+ * @param buf
+ * @param size
+ * @return
+ */
 int
 RTMP_Write(RTMP *r, const char *buf, int size)
 {
@@ -5118,13 +5126,13 @@ RTMP_Write(RTMP *r, const char *buf, int size)
 	      s2 -= 13;
 	    }
 
-	  pkt->m_packetType = *buf++;
-	  pkt->m_nBodySize = AMF_DecodeInt24(buf);
+	  pkt->m_packetType = *buf++;         // TagType UI8
+	  pkt->m_nBodySize = AMF_DecodeInt24(buf); // DataSize UI24
 	  buf += 3;
-	  pkt->m_nTimeStamp = AMF_DecodeInt24(buf);
+	  pkt->m_nTimeStamp = AMF_DecodeInt24(buf); // Timestamp
 	  buf += 3;
-	  pkt->m_nTimeStamp |= *buf++ << 24;
-	  buf += 3;
+	  pkt->m_nTimeStamp |= *buf++ << 24; // Timestamp extend
+	  buf += 3; // skip stream id
 	  s2 -= 11;
 
 	  if (((pkt->m_packetType == RTMP_PACKET_TYPE_AUDIO

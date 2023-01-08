@@ -5,6 +5,8 @@ cmake_minimum_required(VERSION 3.4.1)
 #include_directories(${rtmp_dir}/include/librtmp)
 add_definitions(-DNO_CRYPTO)
 
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -save-temps=obj")
+
 
 file(GLOB main ./*.h ./*.cpp ./*c)
 add_library(publish

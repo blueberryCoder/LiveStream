@@ -6,7 +6,7 @@ import android.util.Log;
  * Created by muyonggang on 2022/12/24
  */
 public class Logger {
-    private static final String TAG = "PUBLISH-";
+    private static final String TAG = "PUBLISH-JAVA-";
 
     private static String appendTag(String tag) {
         return TAG + tag;

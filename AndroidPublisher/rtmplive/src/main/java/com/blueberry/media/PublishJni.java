@@ -25,4 +25,14 @@ public final class PublishJni {
 
     static native int stop(long cptr);
 
+    static native int sendMetaData(long cptr,
+                                   double width,
+                                   double height,
+                                   double videoDataRate,
+                                   double frameRate,
+                                   double audioDataRate,
+                                   double audioSampleRate,
+                                   double audioSampleSize,
+                                   boolean stereo
+                                   );
 }

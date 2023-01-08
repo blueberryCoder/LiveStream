@@ -24,16 +24,19 @@ import static android.hardware.Camera.Parameters.PREVIEW_FPS_MIN_INDEX;
 public class VideoGatherer {
     private static final String TAG = "VideoGatherer";
 
-    private Config config;
-
+    private final Config config;
     private Camera mCamera;
     private Camera.Size previewSize;
-
     private int colorFormat;
-    private LinkedBlockingQueue<PixelData> mQueue = new LinkedBlockingQueue<>();
+    private final LinkedBlockingQueue<PixelData> mQueue = new LinkedBlockingQueue<>();
     private Thread workThread;
     private boolean loop;
     private Callback mCallback;
+
+    private VideoGatherParams currentParams = new VideoGatherParams();
+    public VideoGatherParams getCurrentParams() {
+        return currentParams;
+    }
 
     public static VideoGatherer newInstance(Config config) {
         return new VideoGatherer(config);
@@ -43,15 +46,6 @@ public class VideoGatherer {
         this.config = config;
     }
 
-    public static class Params {
-        public final int previewWidth;
-        public final int previewHeight;
-
-        public Params(int width, int height) {
-            this.previewWidth = width;
-            this.previewHeight = height;
-        }
-    }
 
     /**
      * 像素数据
@@ -82,7 +76,7 @@ public class VideoGatherer {
     /**
      * 初始化Camera
      */
-    public Params initCamera(Activity act, SurfaceHolder holder) {
+    public void initCamera(Activity act, SurfaceHolder holder) {
         // first release
         release();
 
@@ -103,7 +97,7 @@ public class VideoGatherer {
         initWorkThread();
         loop = true;
         workThread.start();
-        return new Params(previewSize.width, previewSize.height);
+//        return new Params(previewSize.width, previewSize.height);
     }
 
     private void initWorkThread() {
@@ -207,20 +201,17 @@ public class VideoGatherer {
     private void setCameraParameters() {
         Camera.Parameters parameters = mCamera.getParameters();
         List<Camera.Size> supportedPreviewSizes = parameters.getSupportedPreviewSizes();
-        for (Camera.Size size : supportedPreviewSizes
-                ) {
+        for (Camera.Size size : supportedPreviewSizes) {
             if (size.width >= config.minWidth && size.width <= config.maxWidth) {
                 previewSize = size;
-                Log.i(TAG, String.format("find preview size width=%d,height=%d", previewSize.width,
-                        previewSize.height));
+                Log.i(TAG, String.format("find preview size width=%d,height=%d", previewSize.width, previewSize.height));
                 break;
             }
         }
 
         int[] destRange = {config.fps * 1000, config.fps * 1000};
         List<int[]> supportedPreviewFpsRange = parameters.getSupportedPreviewFpsRange();
-        for (int[] range : supportedPreviewFpsRange
-                ) {
+        for (int[] range : supportedPreviewFpsRange) {
             if (range[PREVIEW_FPS_MAX_INDEX] >= config.fps * 1000) {
                 destRange = range;
                 Log.d(TAG, String.format("find fps range :%s", Arrays.toString(destRange)));
@@ -233,8 +224,7 @@ public class VideoGatherer {
         }
 
         parameters.setPreviewSize(previewSize.width, previewSize.height);
-        parameters.setPreviewFpsRange(destRange[PREVIEW_FPS_MIN_INDEX],
-                destRange[PREVIEW_FPS_MAX_INDEX]);
+        parameters.setPreviewFpsRange(destRange[PREVIEW_FPS_MIN_INDEX], destRange[PREVIEW_FPS_MAX_INDEX]);
 
         List<String> supportedFocusModes = parameters.getSupportedFocusModes();
         for (int i = 0; null != supportedFocusModes && i < supportedFocusModes.size(); i++) {
@@ -245,6 +235,10 @@ public class VideoGatherer {
         }
         parameters.setPreviewFormat(ImageFormat.NV21);
         mCamera.setParameters(parameters);
+
+        this.currentParams.setPreviewWidth(previewSize.width);
+        this.currentParams.setPreviewHeight(previewSize.height);
+        this.currentParams.setFrameRate(destRange[PREVIEW_FPS_MIN_INDEX]/1000);
     }
 
     public static void setCameraDisplayOrientation(Activity activity,
@@ -286,7 +280,7 @@ public class VideoGatherer {
                 mCamera = Camera.open();
             } catch (Exception e) {
                 e.printStackTrace();
-                throw new RuntimeException("打开摄像头失败", e);
+                throw new RuntimeException("Open Camera failed.", e);
             }
         }
     }

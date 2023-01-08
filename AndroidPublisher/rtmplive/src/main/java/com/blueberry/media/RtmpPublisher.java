@@ -22,7 +22,7 @@ public class RtmpPublisher {
 
 
     ) {
-        cPtr = PublishJni.init(url, timeOut, dumpVideo, dumpVideoPath,dumpAudio,dumpAudioPath);
+        cPtr = PublishJni.init(url, timeOut, dumpVideo, dumpVideoPath, dumpAudio, dumpAudioPath);
         if (cPtr != 0) {
             return 0;
         }
@@ -44,6 +44,28 @@ public class RtmpPublisher {
 
     public int sendAacData(byte[] data, int len, long timestamp) {
         return PublishJni.sendAacData(cPtr, data, len, timestamp - timeOffset);
+    }
+
+    public int sendMetaData(
+            double width,
+            double height,
+            double videoDataRate,
+            double frameRate,
+            double audioDataRate,
+            double audioSampleRate,
+            double audioSampleSize,
+            boolean stereo
+    ) {
+        return PublishJni.sendMetaData(cPtr,
+                width,
+                height,
+                videoDataRate,
+                frameRate,
+                audioDataRate,
+                audioSampleRate,
+                audioSampleSize,
+                stereo
+        );
     }
 
     public int stop() {

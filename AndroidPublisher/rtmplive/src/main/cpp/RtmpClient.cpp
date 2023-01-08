@@ -9,11 +9,16 @@
 // https://blog.csdn.net/wujian946110509/article/details/103672274
 // https://blog.csdn.net/qq_29350001/article/details/78226286
 // https://ossrs.io/lts/en-us/assets/files/ISO_IEC_14496-15-AVC-format-2012-345a5b466cc73e978fd9dd0840361e8b.pdf
+// https://rtmp.veriskope.com/pdf/video_file_format_spec_v10.pdf
+// https://blog.csdn.net/cabbage2008/article/details/50500021
+// https://rtmp.veriskope.com/pdf/amf0-file-format-specification.pdf
 #include "RtmpClient.h"
 #include "H264Parser.h"
 #include "HexUtil.h"
 #include "H264Params.h"
 #include "AVCDecoderConfiguration.h"
+#include "OnMetaData.h"
+#include "FLVTag.h"
 
 RtmpClient::RtmpClient(std::string url, int timeOut,
                        bool enable_dump_video, std::string dump_video_path,
@@ -121,6 +126,41 @@ int RtmpClient::sendSpsAndPps(BYTE *sps, int spsLen, BYTE *pps, int ppsLen, long
     free(packet);
     return 0;
 }
+
+int RtmpClient::SendDataFrame(
+        double width,
+        double height,
+        double videoDataRate,
+        double frameRate,
+        double audioDataRate,
+        double audioSampleRate,
+        double audioSampleSize,
+        bool stereo
+) {
+
+    videoDataRate /= 1000;
+    audioDataRate /= 1000;
+
+    OnMetaData metaData(0,
+                        width,
+                        height,
+                        videoDataRate,
+                        frameRate,
+                        VideoCodecId::AVC_,
+                        audioDataRate,
+                        audioSampleRate,
+                        audioSampleSize,
+                        AudioCodecId::AAC,
+                        0,
+                        stereo);
+
+    FLVTag flvTag(FLVTag::SCRIPT_DATA, metaData.GetBufferSize(), 0, metaData);
+
+    RTMP_Write(this->rtmp_, flvTag.GetBuffer(), flvTag.GetSize());
+
+    return 0;
+}
+
 
 int RtmpClient::sendVideoData(BYTE *buf, int len, long timestamp) {
     auto start_code_size = H264Parser::FindStartCode(buf, len);
