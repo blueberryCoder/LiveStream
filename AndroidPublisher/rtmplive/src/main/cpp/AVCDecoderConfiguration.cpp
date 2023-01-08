@@ -17,8 +17,10 @@ inline int AVCDecoderConfiguration::ParseSPSAndPPS(int sps_length, uint8_t *sps,
     output[i++] = sps[1]; // avc_profile_indication, ISO/IEC  14496-10
     output[i++] = sps[2]; // profile_compatibility
     output[i++] = sps[3]; // avc level indication
+
     output[i++] = 0xFF; // u(6)=0b111111, u(2) = 0x11 lengthSizeMinusOne
     output[i++] = 0xE1; // u(3) = 0b111, numOfSequenceParamsSets 1
+
     output[i++] = (sps_length >> 8) & 0xFF;
     output[i++] = (sps_length) & 0xFF; // SPS length
     memcpy(&output[i], sps, sps_length);
@@ -56,11 +58,18 @@ inline int AVCDecoderConfiguration::ParseSPSAndPPS(int sps_length, uint8_t *sps,
 }
 
 AVCDecoderConfiguration::AVCDecoderConfiguration(H264Params &params) {
-    this->buffer_ = new uint8_t[1024];
     ParseSPSAndPPS(params.sps_length_, params.sps_, params.pps_length_, params.pps_, this->buffer_,
                    &this->buffer_length_);
 }
 
 AVCDecoderConfiguration::~AVCDecoderConfiguration() {
-    delete buffer_;
+}
+
+char *AVCDecoderConfiguration::WriteTo(char *output) {
+    memcpy(output,buffer_,buffer_length_);
+    return output + buffer_length_;
+}
+
+int AVCDecoderConfiguration::Size() {
+    return this->buffer_length_;
 }

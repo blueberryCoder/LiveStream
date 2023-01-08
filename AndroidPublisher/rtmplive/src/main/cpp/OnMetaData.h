@@ -12,32 +12,6 @@
 
 // https://rtmp.veriskope.com/pdf/video_file_format_spec_v10.pdf
 using namespace std;
-typedef enum {
-    JEPEG = 1,// never unused
-    SORENSON_H263 = 2,
-    SCREEN_VIDEO = 3,
-    ON2_VP6 = 4,
-    ON2_VP6_WITH_ALPHA_CHANNEL = 5,
-    SCREEN_VIDEO_VERSION = 6,
-    AVC_ = 7
-} VideoCodecId;
-
-typedef enum {
-    ADPCM = 1,
-    MP3 = 2,
-    LINEAR_PCM_LITTLE_ENDIAN = 3,
-    NELLYMOSER_16K_MONO = 4,
-    NELLYMOSER_8K_MONO = 5,
-    NELLYMOSER = 6,
-    A_LAW_PCM = 7,
-    MU_LAW_PCM = 8,
-    RESERVED = 9,
-    AAC = 10,
-    SPEEX = 11,
-    MP3_8_K = 14,
-    DEVICE_SPECIFIC_SOUND = 15,
-} AudioCodecId;
-
 
 class OnMetaData : public IFLVTagData {
 public:
@@ -79,13 +53,9 @@ public:
 
     virtual ~OnMetaData();
 
-    const char * GetBuffer() override {
-        return buffer_;
-    }
+    char *WriteTo(char *output) override;
 
-    int GetBufferSize() override {
-        return size_;
-    };
+    int Size() override;
 
 private:
     char *buffer_;

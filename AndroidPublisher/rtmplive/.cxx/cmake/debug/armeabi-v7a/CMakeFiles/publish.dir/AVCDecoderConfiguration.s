@@ -47,7 +47,7 @@
 _ZN23AVCDecoderConfigurationC2ER10H264Params:
 .Lfunc_begin0:
 	.file	19 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive" "src/main/cpp/AVCDecoderConfiguration.cpp"
-	.loc	19 58 0                 @ src/main/cpp/AVCDecoderConfiguration.cpp:58:0
+	.loc	19 60 0                 @ src/main/cpp/AVCDecoderConfiguration.cpp:60:0
 	.fnstart
 	.cfi_sections .debug_frame
 	.cfi_startproc
@@ -68,47 +68,43 @@ _ZN23AVCDecoderConfigurationC2ER10H264Params:
 	str	r1, [sp, #24]
 	ldr	r0, [sp, #28]
 .Ltmp0:
-	.loc	19 58 70 prologue_end   @ src/main/cpp/AVCDecoderConfiguration.cpp:58:70
-	ldr	r1, .LCPI0_0
-.LPC0_0:
-	add	r1, pc
-	ldr	r1, [r1]
-	adds	r1, #8
-	str	r1, [r0]
-	mov.w	r1, #1024
-.Ltmp1:
-	.loc	19 59 21                @ src/main/cpp/AVCDecoderConfiguration.cpp:59:21
+	.loc	19 60 26 prologue_end   @ src/main/cpp/AVCDecoderConfiguration.cpp:60:26
 	str	r0, [sp, #20]           @ 4-byte Spill
-	mov	r0, r1
-	bl	_Znaj
-	.loc	19 59 19 is_stmt 0      @ src/main/cpp/AVCDecoderConfiguration.cpp:59:19
+	bl	_ZN14IAVCPacketDataC2Ev
+	.loc	19 60 70 is_stmt 0      @ src/main/cpp/AVCDecoderConfiguration.cpp:60:70
+	ldr	r0, .LCPI0_0
+.LPC0_0:
+	add	r0, pc
+	ldr	r0, [r0]
+	adds	r0, #8
 	ldr	r1, [sp, #20]           @ 4-byte Reload
-	str	r0, [r1, #4]
-	.loc	19 60 20 is_stmt 1      @ src/main/cpp/AVCDecoderConfiguration.cpp:60:20
+	str	r0, [r1], #4
+.Ltmp1:
+	.loc	19 61 20 is_stmt 1      @ src/main/cpp/AVCDecoderConfiguration.cpp:61:20
 	ldr	r0, [sp, #24]
-	.loc	19 60 47 is_stmt 0      @ src/main/cpp/AVCDecoderConfiguration.cpp:60:47
-	ldr	r1, [r0]
-	.loc	19 60 27                @ src/main/cpp/AVCDecoderConfiguration.cpp:60:27
-	ldr	r2, [r0, #4]
-	.loc	19 60 80                @ src/main/cpp/AVCDecoderConfiguration.cpp:60:80
-	ldr	r3, [r0, #8]
-	.loc	19 60 60                @ src/main/cpp/AVCDecoderConfiguration.cpp:60:60
+	.loc	19 61 47 is_stmt 0      @ src/main/cpp/AVCDecoderConfiguration.cpp:61:47
+	ldr	r2, [r0]
+	.loc	19 61 27                @ src/main/cpp/AVCDecoderConfiguration.cpp:61:27
+	ldr	r3, [r0, #4]
+	.loc	19 61 80                @ src/main/cpp/AVCDecoderConfiguration.cpp:61:80
+	ldr.w	r12, [r0, #8]
+	.loc	19 61 60                @ src/main/cpp/AVCDecoderConfiguration.cpp:61:60
 	ldr	r0, [r0, #12]
-	.loc	19 60 92                @ src/main/cpp/AVCDecoderConfiguration.cpp:60:92
-	ldr.w	r12, [sp, #20]          @ 4-byte Reload
-	ldr.w	lr, [r12, #4]
-	.loc	19 61 27 is_stmt 1      @ src/main/cpp/AVCDecoderConfiguration.cpp:61:27
-	add.w	r4, r12, #8
-	.loc	19 60 5                 @ src/main/cpp/AVCDecoderConfiguration.cpp:60:5
+	.loc	19 62 27 is_stmt 1      @ src/main/cpp/AVCDecoderConfiguration.cpp:62:27
+	ldr.w	lr, [sp, #20]           @ 4-byte Reload
+	addw	r4, lr, #1028
+	.loc	19 61 5                 @ src/main/cpp/AVCDecoderConfiguration.cpp:61:5
 	mov	r5, sp
 	str	r4, [r5, #4]
-	str.w	lr, [r5]
+	str	r1, [r5]
 	str	r0, [sp, #16]           @ 4-byte Spill
-	mov	r0, r2
+	mov	r0, r3
+	mov	r1, r2
 	ldr	r2, [sp, #16]           @ 4-byte Reload
+	mov	r3, r12
 	bl	_ZN23AVCDecoderConfiguration14ParseSPSAndPPSEiPhiS0_S0_Pi
 .Ltmp2:
-	.loc	19 62 1                 @ src/main/cpp/AVCDecoderConfiguration.cpp:62:1
+	.loc	19 63 1                 @ src/main/cpp/AVCDecoderConfiguration.cpp:63:1
 	ldr	r1, [sp, #20]           @ 4-byte Reload
 	str	r0, [sp, #12]           @ 4-byte Spill
 	mov	r0, r1
@@ -124,8 +120,60 @@ _ZN23AVCDecoderConfigurationC2ER10H264Params:
 .Lfunc_end0:
 	.size	_ZN23AVCDecoderConfigurationC2ER10H264Params, .Lfunc_end0-_ZN23AVCDecoderConfigurationC2ER10H264Params
 	.cfi_endproc
-	.file	20 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive" "src/main/cpp/AVCDecoderConfiguration.h"
-	.file	21 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive" "src/main/cpp/H264Params.h"
+	.file	20 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive" "src/main/cpp/IBuffer.h"
+	.file	21 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive" "src/main/cpp/IAVCPacketData.h"
+	.file	22 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive" "src/main/cpp/AVCDecoderConfiguration.h"
+	.file	23 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive" "src/main/cpp/H264Params.h"
+	.fnend
+                                        @ -- End function
+	.section	.text._ZN14IAVCPacketDataC2Ev,"axG",%progbits,_ZN14IAVCPacketDataC2Ev,comdat
+	.weak	_ZN14IAVCPacketDataC2Ev @ -- Begin function _ZN14IAVCPacketDataC2Ev
+	.p2align	2
+	.type	_ZN14IAVCPacketDataC2Ev,%function
+	.code	16                      @ @_ZN14IAVCPacketDataC2Ev
+	.thumb_func
+_ZN14IAVCPacketDataC2Ev:
+.Lfunc_begin1:
+	.loc	21 11 0 is_stmt 1       @ src/main/cpp/IAVCPacketData.h:11:0
+	.fnstart
+	.cfi_startproc
+@ %bb.0:
+	.save	{r7, lr}
+	push	{r7, lr}
+	.cfi_def_cfa_offset 8
+	.cfi_offset lr, -4
+	.cfi_offset r7, -8
+	.setfp	r7, sp
+	mov	r7, sp
+	.cfi_def_cfa_register r7
+	.pad	#8
+	sub	sp, #8
+	str	r0, [sp, #4]
+	ldr	r0, [sp, #4]
+.Ltmp5:
+	.loc	21 11 7 prologue_end    @ src/main/cpp/IAVCPacketData.h:11:7
+	str	r0, [sp]                @ 4-byte Spill
+	bl	_ZN7IBufferC2Ev
+	ldr	r0, .LCPI1_0
+.LPC1_0:
+	add	r0, pc
+	ldr	r0, [r0]
+	adds	r0, #8
+	ldr	r1, [sp]                @ 4-byte Reload
+	str	r0, [r1]
+	mov	r0, r1
+	add	sp, #8
+	pop	{r7, pc}
+.Ltmp6:
+	.p2align	2
+@ %bb.1:
+	.loc	21 0 7 is_stmt 0        @ src/main/cpp/IAVCPacketData.h:0:7
+.LCPI1_0:
+.Ltmp7:
+	.long	_ZTV14IAVCPacketData(GOT_PREL)-((.LPC1_0+4)-.Ltmp7)
+.Lfunc_end1:
+	.size	_ZN14IAVCPacketDataC2Ev, .Lfunc_end1-_ZN14IAVCPacketDataC2Ev
+	.cfi_endproc
 	.fnend
                                         @ -- End function
 	.section	.text._ZN23AVCDecoderConfiguration14ParseSPSAndPPSEiPhiS0_S0_Pi,"axG",%progbits,_ZN23AVCDecoderConfiguration14ParseSPSAndPPSEiPhiS0_S0_Pi,comdat
@@ -135,7 +183,7 @@ _ZN23AVCDecoderConfigurationC2ER10H264Params:
 	.code	16                      @ @_ZN23AVCDecoderConfiguration14ParseSPSAndPPSEiPhiS0_S0_Pi
 	.thumb_func
 _ZN23AVCDecoderConfiguration14ParseSPSAndPPSEiPhiS0_S0_Pi:
-.Lfunc_begin1:
+.Lfunc_begin2:
 	.loc	19 11 0 is_stmt 1       @ src/main/cpp/AVCDecoderConfiguration.cpp:11:0
 	.fnstart
 	.cfi_startproc
@@ -154,8 +202,8 @@ _ZN23AVCDecoderConfiguration14ParseSPSAndPPSEiPhiS0_S0_Pi:
 	sub	sp, #112
 	ldr.w	r12, [r7, #12]
 	ldr.w	lr, [r7, #8]
-	ldr	r4, .LCPI1_0
-.LPC1_0:
+	ldr	r4, .LCPI2_0
+.LPC2_0:
 	add	r4, pc
 	ldr	r4, [r4]
 	ldr	r4, [r4]
@@ -164,7 +212,7 @@ _ZN23AVCDecoderConfiguration14ParseSPSAndPPSEiPhiS0_S0_Pi:
 	str	r1, [sp, #84]
 	str	r2, [sp, #80]
 	str	r3, [sp, #76]
-.Ltmp20:
+.Ltmp23:
 	.loc	19 14 24 prologue_end   @ src/main/cpp/AVCDecoderConfiguration.cpp:14:24
 	ldr	r0, [sp, #84]
 	ldrb	r0, [r0]
@@ -215,346 +263,322 @@ _ZN23AVCDecoderConfiguration14ParseSPSAndPPSEiPhiS0_S0_Pi:
 	str	r4, [sp, #104]
 	.loc	19 19 17                @ src/main/cpp/AVCDecoderConfiguration.cpp:19:17
 	strb	r0, [r1, r3]
-	.loc	19 20 5 is_stmt 1       @ src/main/cpp/AVCDecoderConfiguration.cpp:20:5
-	ldr	r0, [r7, #8]
-	.loc	19 20 13 is_stmt 0      @ src/main/cpp/AVCDecoderConfiguration.cpp:20:13
-	ldr	r1, [sp, #104]
-	adds	r3, r1, #1
-	str	r3, [sp, #104]
-	movs	r3, #255
-	.loc	19 20 17                @ src/main/cpp/AVCDecoderConfiguration.cpp:20:17
-	strb	r3, [r0, r1]
 	.loc	19 21 5 is_stmt 1       @ src/main/cpp/AVCDecoderConfiguration.cpp:21:5
 	ldr	r0, [r7, #8]
 	.loc	19 21 13 is_stmt 0      @ src/main/cpp/AVCDecoderConfiguration.cpp:21:13
 	ldr	r1, [sp, #104]
 	adds	r3, r1, #1
 	str	r3, [sp, #104]
-	movs	r3, #225
+	movs	r3, #255
 	.loc	19 21 17                @ src/main/cpp/AVCDecoderConfiguration.cpp:21:17
 	strb	r3, [r0, r1]
-	.loc	19 22 20 is_stmt 1      @ src/main/cpp/AVCDecoderConfiguration.cpp:22:20
-	ldr	r0, [sp, #88]
-	.loc	19 22 31 is_stmt 0      @ src/main/cpp/AVCDecoderConfiguration.cpp:22:31
-	lsrs	r0, r0, #8
-	.loc	19 22 5                 @ src/main/cpp/AVCDecoderConfiguration.cpp:22:5
-	ldr	r1, [r7, #8]
-	.loc	19 22 13                @ src/main/cpp/AVCDecoderConfiguration.cpp:22:13
-	ldr	r3, [sp, #104]
-	adds	r4, r3, #1
-	str	r4, [sp, #104]
-	.loc	19 22 17                @ src/main/cpp/AVCDecoderConfiguration.cpp:22:17
-	strb	r0, [r1, r3]
-	.loc	19 23 20 is_stmt 1      @ src/main/cpp/AVCDecoderConfiguration.cpp:23:20
-	ldr	r0, [sp, #88]
-	.loc	19 23 5 is_stmt 0       @ src/main/cpp/AVCDecoderConfiguration.cpp:23:5
-	ldr	r1, [r7, #8]
-	.loc	19 23 13                @ src/main/cpp/AVCDecoderConfiguration.cpp:23:13
-	ldr	r3, [sp, #104]
-	adds	r4, r3, #1
-	str	r4, [sp, #104]
-	.loc	19 23 17                @ src/main/cpp/AVCDecoderConfiguration.cpp:23:17
-	strb	r0, [r1, r3]
-	.loc	19 24 13 is_stmt 1      @ src/main/cpp/AVCDecoderConfiguration.cpp:24:13
+	.loc	19 22 5 is_stmt 1       @ src/main/cpp/AVCDecoderConfiguration.cpp:22:5
 	ldr	r0, [r7, #8]
-	.loc	19 24 20 is_stmt 0      @ src/main/cpp/AVCDecoderConfiguration.cpp:24:20
+	.loc	19 22 13 is_stmt 0      @ src/main/cpp/AVCDecoderConfiguration.cpp:22:13
 	ldr	r1, [sp, #104]
-	.loc	19 24 13                @ src/main/cpp/AVCDecoderConfiguration.cpp:24:13
-	add	r0, r1
-	.loc	19 24 24                @ src/main/cpp/AVCDecoderConfiguration.cpp:24:24
-	ldr	r1, [sp, #84]
-	.loc	19 24 29                @ src/main/cpp/AVCDecoderConfiguration.cpp:24:29
-	ldr	r3, [sp, #88]
+	adds	r3, r1, #1
+	str	r3, [sp, #104]
+	movs	r3, #225
+	.loc	19 22 17                @ src/main/cpp/AVCDecoderConfiguration.cpp:22:17
+	strb	r3, [r0, r1]
+	.loc	19 24 20 is_stmt 1      @ src/main/cpp/AVCDecoderConfiguration.cpp:24:20
+	ldr	r0, [sp, #88]
+	.loc	19 24 31 is_stmt 0      @ src/main/cpp/AVCDecoderConfiguration.cpp:24:31
+	lsrs	r0, r0, #8
 	.loc	19 24 5                 @ src/main/cpp/AVCDecoderConfiguration.cpp:24:5
+	ldr	r1, [r7, #8]
+	.loc	19 24 13                @ src/main/cpp/AVCDecoderConfiguration.cpp:24:13
+	ldr	r3, [sp, #104]
+	adds	r4, r3, #1
+	str	r4, [sp, #104]
+	.loc	19 24 17                @ src/main/cpp/AVCDecoderConfiguration.cpp:24:17
+	strb	r0, [r1, r3]
+	.loc	19 25 20 is_stmt 1      @ src/main/cpp/AVCDecoderConfiguration.cpp:25:20
+	ldr	r0, [sp, #88]
+	.loc	19 25 5 is_stmt 0       @ src/main/cpp/AVCDecoderConfiguration.cpp:25:5
+	ldr	r1, [r7, #8]
+	.loc	19 25 13                @ src/main/cpp/AVCDecoderConfiguration.cpp:25:13
+	ldr	r3, [sp, #104]
+	adds	r4, r3, #1
+	str	r4, [sp, #104]
+	.loc	19 25 17                @ src/main/cpp/AVCDecoderConfiguration.cpp:25:17
+	strb	r0, [r1, r3]
+	.loc	19 26 13 is_stmt 1      @ src/main/cpp/AVCDecoderConfiguration.cpp:26:13
+	ldr	r0, [r7, #8]
+	.loc	19 26 20 is_stmt 0      @ src/main/cpp/AVCDecoderConfiguration.cpp:26:20
+	ldr	r1, [sp, #104]
+	.loc	19 26 13                @ src/main/cpp/AVCDecoderConfiguration.cpp:26:13
+	add	r0, r1
+	.loc	19 26 24                @ src/main/cpp/AVCDecoderConfiguration.cpp:26:24
+	ldr	r1, [sp, #84]
+	.loc	19 26 29                @ src/main/cpp/AVCDecoderConfiguration.cpp:26:29
+	ldr	r3, [sp, #88]
+	.loc	19 26 5                 @ src/main/cpp/AVCDecoderConfiguration.cpp:26:5
 	str	r2, [sp, #40]           @ 4-byte Spill
 	mov	r2, r3
 	str.w	r12, [sp, #36]          @ 4-byte Spill
 	str.w	lr, [sp, #32]           @ 4-byte Spill
 	bl	__aeabi_memcpy
-	.loc	19 25 10 is_stmt 1      @ src/main/cpp/AVCDecoderConfiguration.cpp:25:10
+	.loc	19 27 10 is_stmt 1      @ src/main/cpp/AVCDecoderConfiguration.cpp:27:10
 	ldr	r1, [sp, #88]
-	.loc	19 25 7 is_stmt 0       @ src/main/cpp/AVCDecoderConfiguration.cpp:25:7
+	.loc	19 27 7 is_stmt 0       @ src/main/cpp/AVCDecoderConfiguration.cpp:27:7
 	ldr	r2, [sp, #104]
 	add	r1, r2
 	str	r1, [sp, #104]
-	.loc	19 27 5 is_stmt 1       @ src/main/cpp/AVCDecoderConfiguration.cpp:27:5
+	.loc	19 29 5 is_stmt 1       @ src/main/cpp/AVCDecoderConfiguration.cpp:29:5
 	ldr	r1, [r7, #8]
-	.loc	19 27 13 is_stmt 0      @ src/main/cpp/AVCDecoderConfiguration.cpp:27:13
+	.loc	19 29 13 is_stmt 0      @ src/main/cpp/AVCDecoderConfiguration.cpp:29:13
 	ldr	r2, [sp, #104]
 	adds	r3, r2, #1
 	str	r3, [sp, #104]
-	.loc	19 27 17                @ src/main/cpp/AVCDecoderConfiguration.cpp:27:17
+	.loc	19 29 17                @ src/main/cpp/AVCDecoderConfiguration.cpp:29:17
 	ldr	r3, [sp, #40]           @ 4-byte Reload
 	strb	r3, [r1, r2]
-	.loc	19 28 20 is_stmt 1      @ src/main/cpp/AVCDecoderConfiguration.cpp:28:20
+	.loc	19 30 20 is_stmt 1      @ src/main/cpp/AVCDecoderConfiguration.cpp:30:20
 	ldr	r1, [sp, #80]
-	.loc	19 28 31 is_stmt 0      @ src/main/cpp/AVCDecoderConfiguration.cpp:28:31
+	.loc	19 30 31 is_stmt 0      @ src/main/cpp/AVCDecoderConfiguration.cpp:30:31
 	lsrs	r1, r1, #8
-	.loc	19 28 5                 @ src/main/cpp/AVCDecoderConfiguration.cpp:28:5
-	ldr	r2, [r7, #8]
-	.loc	19 28 13                @ src/main/cpp/AVCDecoderConfiguration.cpp:28:13
-	ldr.w	r12, [sp, #104]
-	add.w	lr, r12, #1
-	str.w	lr, [sp, #104]
-	.loc	19 28 17                @ src/main/cpp/AVCDecoderConfiguration.cpp:28:17
-	strb.w	r1, [r2, r12]
-	.loc	19 29 20 is_stmt 1      @ src/main/cpp/AVCDecoderConfiguration.cpp:29:20
-	ldr	r1, [sp, #80]
-	.loc	19 29 5 is_stmt 0       @ src/main/cpp/AVCDecoderConfiguration.cpp:29:5
-	ldr	r2, [r7, #8]
-	.loc	19 29 13                @ src/main/cpp/AVCDecoderConfiguration.cpp:29:13
-	ldr.w	r12, [sp, #104]
-	add.w	lr, r12, #1
-	str.w	lr, [sp, #104]
-	.loc	19 29 17                @ src/main/cpp/AVCDecoderConfiguration.cpp:29:17
-	strb.w	r1, [r2, r12]
-	.loc	19 30 13 is_stmt 1      @ src/main/cpp/AVCDecoderConfiguration.cpp:30:13
-	ldr	r1, [r7, #8]
-	.loc	19 30 20 is_stmt 0      @ src/main/cpp/AVCDecoderConfiguration.cpp:30:20
-	ldr	r2, [sp, #104]
-	.loc	19 30 13                @ src/main/cpp/AVCDecoderConfiguration.cpp:30:13
-	add	r1, r2
-	.loc	19 30 24                @ src/main/cpp/AVCDecoderConfiguration.cpp:30:24
-	ldr	r2, [sp, #76]
-	.loc	19 30 29                @ src/main/cpp/AVCDecoderConfiguration.cpp:30:29
-	ldr.w	r12, [sp, #80]
 	.loc	19 30 5                 @ src/main/cpp/AVCDecoderConfiguration.cpp:30:5
+	ldr	r2, [r7, #8]
+	.loc	19 30 13                @ src/main/cpp/AVCDecoderConfiguration.cpp:30:13
+	ldr.w	r12, [sp, #104]
+	add.w	lr, r12, #1
+	str.w	lr, [sp, #104]
+	.loc	19 30 17                @ src/main/cpp/AVCDecoderConfiguration.cpp:30:17
+	strb.w	r1, [r2, r12]
+	.loc	19 31 20 is_stmt 1      @ src/main/cpp/AVCDecoderConfiguration.cpp:31:20
+	ldr	r1, [sp, #80]
+	.loc	19 31 5 is_stmt 0       @ src/main/cpp/AVCDecoderConfiguration.cpp:31:5
+	ldr	r2, [r7, #8]
+	.loc	19 31 13                @ src/main/cpp/AVCDecoderConfiguration.cpp:31:13
+	ldr.w	r12, [sp, #104]
+	add.w	lr, r12, #1
+	str.w	lr, [sp, #104]
+	.loc	19 31 17                @ src/main/cpp/AVCDecoderConfiguration.cpp:31:17
+	strb.w	r1, [r2, r12]
+	.loc	19 32 13 is_stmt 1      @ src/main/cpp/AVCDecoderConfiguration.cpp:32:13
+	ldr	r1, [r7, #8]
+	.loc	19 32 20 is_stmt 0      @ src/main/cpp/AVCDecoderConfiguration.cpp:32:20
+	ldr	r2, [sp, #104]
+	.loc	19 32 13                @ src/main/cpp/AVCDecoderConfiguration.cpp:32:13
+	add	r1, r2
+	.loc	19 32 24                @ src/main/cpp/AVCDecoderConfiguration.cpp:32:24
+	ldr	r2, [sp, #76]
+	.loc	19 32 29                @ src/main/cpp/AVCDecoderConfiguration.cpp:32:29
+	ldr.w	r12, [sp, #80]
+	.loc	19 32 5                 @ src/main/cpp/AVCDecoderConfiguration.cpp:32:5
 	str	r0, [sp, #28]           @ 4-byte Spill
 	mov	r0, r1
 	mov	r1, r2
 	mov	r2, r12
 	bl	__aeabi_memcpy
-	.loc	19 31 10 is_stmt 1      @ src/main/cpp/AVCDecoderConfiguration.cpp:31:10
+	.loc	19 33 10 is_stmt 1      @ src/main/cpp/AVCDecoderConfiguration.cpp:33:10
 	ldr	r1, [sp, #80]
-	.loc	19 31 7 is_stmt 0       @ src/main/cpp/AVCDecoderConfiguration.cpp:31:7
+	.loc	19 33 7 is_stmt 0       @ src/main/cpp/AVCDecoderConfiguration.cpp:33:7
 	ldr	r2, [sp, #104]
 	add	r1, r2
 	str	r1, [sp, #104]
-.Ltmp21:
-	.loc	19 33 9 is_stmt 1       @ src/main/cpp/AVCDecoderConfiguration.cpp:33:9
+.Ltmp24:
+	.loc	19 35 9 is_stmt 1       @ src/main/cpp/AVCDecoderConfiguration.cpp:35:9
 	ldrb	r1, [r7, #-45]
-	.loc	19 33 28 is_stmt 0      @ src/main/cpp/AVCDecoderConfiguration.cpp:33:28
+	.loc	19 35 28 is_stmt 0      @ src/main/cpp/AVCDecoderConfiguration.cpp:35:28
 	cmp	r1, #100
-	beq	.LBB1_4
-	b	.LBB1_1
-.LBB1_1:
-	.loc	19 33 31                @ src/main/cpp/AVCDecoderConfiguration.cpp:33:31
+	beq	.LBB2_4
+	b	.LBB2_1
+.LBB2_1:
+	.loc	19 35 31                @ src/main/cpp/AVCDecoderConfiguration.cpp:35:31
 	ldrb	r0, [r7, #-45]
-	.loc	19 33 50                @ src/main/cpp/AVCDecoderConfiguration.cpp:33:50
+	.loc	19 35 50                @ src/main/cpp/AVCDecoderConfiguration.cpp:35:50
 	cmp	r0, #110
-	beq	.LBB1_4
-	b	.LBB1_2
-.LBB1_2:
-	.loc	19 33 53                @ src/main/cpp/AVCDecoderConfiguration.cpp:33:53
+	beq	.LBB2_4
+	b	.LBB2_2
+.LBB2_2:
+	.loc	19 35 53                @ src/main/cpp/AVCDecoderConfiguration.cpp:35:53
 	ldrb	r0, [r7, #-45]
-	.loc	19 33 72                @ src/main/cpp/AVCDecoderConfiguration.cpp:33:72
+	.loc	19 35 72                @ src/main/cpp/AVCDecoderConfiguration.cpp:35:72
 	cmp	r0, #122
-	beq	.LBB1_4
-	b	.LBB1_3
-.LBB1_3:
-	.loc	19 33 75                @ src/main/cpp/AVCDecoderConfiguration.cpp:33:75
+	beq	.LBB2_4
+	b	.LBB2_3
+.LBB2_3:
+	.loc	19 35 75                @ src/main/cpp/AVCDecoderConfiguration.cpp:35:75
 	ldrb	r0, [r7, #-45]
-.Ltmp22:
-	.loc	19 33 9                 @ src/main/cpp/AVCDecoderConfiguration.cpp:33:9
+.Ltmp25:
+	.loc	19 35 9                 @ src/main/cpp/AVCDecoderConfiguration.cpp:35:9
 	cmp	r0, #144
-	bne	.LBB1_23
-	b	.LBB1_4
-.LBB1_4:
-.Ltmp23:
-	.loc	19 37 30 is_stmt 1      @ src/main/cpp/AVCDecoderConfiguration.cpp:37:30
+	bne	.LBB2_23
+	b	.LBB2_4
+.LBB2_4:
+.Ltmp26:
+	.loc	19 39 30 is_stmt 1      @ src/main/cpp/AVCDecoderConfiguration.cpp:39:30
 	ldr	r0, [sp, #84]
 	adds	r1, r0, #4
 	add	r0, sp, #92
-	.loc	19 37 19 is_stmt 0      @ src/main/cpp/AVCDecoderConfiguration.cpp:37:19
+	.loc	19 39 19 is_stmt 0      @ src/main/cpp/AVCDecoderConfiguration.cpp:39:19
 	str	r0, [sp, #24]           @ 4-byte Spill
 	bl	_ZN9BitStreamC1EPh
-.Ltmp5:
-	.loc	19 38 22 is_stmt 1      @ src/main/cpp/AVCDecoderConfiguration.cpp:38:22
+.Ltmp8:
+	.loc	19 40 22 is_stmt 1      @ src/main/cpp/AVCDecoderConfiguration.cpp:40:22
 	ldr	r0, [sp, #24]           @ 4-byte Reload
 	bl	_ZN6Golomb5GetUeER9BitStream
-.Ltmp6:
+.Ltmp9:
 	str	r0, [sp, #20]           @ 4-byte Spill
-	b	.LBB1_5
-.LBB1_5:
-	.loc	19 38 14 is_stmt 0      @ src/main/cpp/AVCDecoderConfiguration.cpp:38:14
+	b	.LBB2_5
+.LBB2_5:
+	.loc	19 40 14 is_stmt 0      @ src/main/cpp/AVCDecoderConfiguration.cpp:40:14
 	ldr	r0, [sp, #20]           @ 4-byte Reload
 	str	r0, [sp, #68]
-.Ltmp7:
+.Ltmp10:
 	add	r0, sp, #92
-	.loc	19 39 34 is_stmt 1      @ src/main/cpp/AVCDecoderConfiguration.cpp:39:34
+	.loc	19 41 34 is_stmt 1      @ src/main/cpp/AVCDecoderConfiguration.cpp:41:34
 	bl	_ZN6Golomb5GetUeER9BitStream
-.Ltmp8:
+.Ltmp11:
 	str	r0, [sp, #16]           @ 4-byte Spill
-	b	.LBB1_6
-.LBB1_6:
-	.loc	19 39 14 is_stmt 0      @ src/main/cpp/AVCDecoderConfiguration.cpp:39:14
+	b	.LBB2_6
+.LBB2_6:
+	.loc	19 41 14 is_stmt 0      @ src/main/cpp/AVCDecoderConfiguration.cpp:41:14
 	ldr	r0, [sp, #16]           @ 4-byte Reload
 	str	r0, [sp, #56]
-.Ltmp24:
-	.loc	19 40 13 is_stmt 1      @ src/main/cpp/AVCDecoderConfiguration.cpp:40:13
+.Ltmp27:
+	.loc	19 42 13 is_stmt 1      @ src/main/cpp/AVCDecoderConfiguration.cpp:42:13
 	ldr	r1, [sp, #56]
-.Ltmp25:
-	.loc	19 40 13 is_stmt 0      @ src/main/cpp/AVCDecoderConfiguration.cpp:40:13
+.Ltmp28:
+	.loc	19 42 13 is_stmt 0      @ src/main/cpp/AVCDecoderConfiguration.cpp:42:13
 	cmp	r1, #4
-	blt	.LBB1_10
-	b	.LBB1_7
-.LBB1_7:
-.Ltmp11:
-.Ltmp26:
-	.loc	19 41 13 is_stmt 1      @ src/main/cpp/AVCDecoderConfiguration.cpp:41:13
-	ldr	r1, .LCPI1_1
-.LPC1_1:
+	blt	.LBB2_10
+	b	.LBB2_7
+.LBB2_7:
+.Ltmp14:
+.Ltmp29:
+	.loc	19 43 13 is_stmt 1      @ src/main/cpp/AVCDecoderConfiguration.cpp:43:13
+	ldr	r1, .LCPI2_1
+.LPC2_1:
 	add	r1, pc
-	ldr	r2, .LCPI1_2
-.LPC1_2:
+	ldr	r2, .LCPI2_2
+.LPC2_2:
 	add	r2, pc
 	movs	r0, #6
 	bl	__android_log_print
-.Ltmp12:
-	b	.LBB1_8
-.LBB1_8:
-	.loc	19 42 9                 @ src/main/cpp/AVCDecoderConfiguration.cpp:42:9
-	b	.LBB1_14
-.Ltmp27:
-.LBB1_9:
-.Ltmp19:
-	.loc	19 56 1                 @ src/main/cpp/AVCDecoderConfiguration.cpp:56:1
+.Ltmp15:
+	b	.LBB2_8
+.LBB2_8:
+	.loc	19 44 9                 @ src/main/cpp/AVCDecoderConfiguration.cpp:44:9
+	b	.LBB2_14
+.Ltmp30:
+.LBB2_9:
+.Ltmp22:
+	.loc	19 58 1                 @ src/main/cpp/AVCDecoderConfiguration.cpp:58:1
 	str	r0, [sp, #64]
 	str	r1, [sp, #60]
 	add	r0, sp, #92
-.Ltmp28:
-	.loc	19 53 5                 @ src/main/cpp/AVCDecoderConfiguration.cpp:53:5
+.Ltmp31:
+	.loc	19 55 5                 @ src/main/cpp/AVCDecoderConfiguration.cpp:55:5
 	bl	_ZN9BitStreamD1Ev
-	b	.LBB1_25
-.LBB1_10:
-.Ltmp29:
-	.loc	19 42 20                @ src/main/cpp/AVCDecoderConfiguration.cpp:42:20
+	b	.LBB2_25
+.LBB2_10:
+.Ltmp32:
+	.loc	19 44 20                @ src/main/cpp/AVCDecoderConfiguration.cpp:44:20
 	ldr	r0, [sp, #56]
-.Ltmp30:
-	.loc	19 42 20 is_stmt 0      @ src/main/cpp/AVCDecoderConfiguration.cpp:42:20
+.Ltmp33:
+	.loc	19 44 20 is_stmt 0      @ src/main/cpp/AVCDecoderConfiguration.cpp:44:20
 	cmp	r0, #3
-	bne	.LBB1_13
-	b	.LBB1_11
-.LBB1_11:
-.Ltmp9:
+	bne	.LBB2_13
+	b	.LBB2_11
+.LBB2_11:
+.Ltmp12:
 	.loc	19 0 20                 @ src/main/cpp/AVCDecoderConfiguration.cpp:0:20
 	add	r0, sp, #92
 	movs	r1, #1
-.Ltmp31:
-	.loc	19 43 60 is_stmt 1      @ src/main/cpp/AVCDecoderConfiguration.cpp:43:60
+.Ltmp34:
+	.loc	19 45 60 is_stmt 1      @ src/main/cpp/AVCDecoderConfiguration.cpp:45:60
 	bl	_ZN9BitStream8ReadBitsEi
-.Ltmp10:
+.Ltmp13:
 	str	r0, [sp, #12]           @ 4-byte Spill
-	b	.LBB1_12
-.LBB1_12:
-	.loc	19 43 18 is_stmt 0      @ src/main/cpp/AVCDecoderConfiguration.cpp:43:18
+	b	.LBB2_12
+.LBB2_12:
+	.loc	19 45 18 is_stmt 0      @ src/main/cpp/AVCDecoderConfiguration.cpp:45:18
 	ldr	r0, [sp, #12]           @ 4-byte Reload
 	str	r0, [sp, #52]
-	.loc	19 44 9 is_stmt 1       @ src/main/cpp/AVCDecoderConfiguration.cpp:44:9
-	b	.LBB1_13
-.Ltmp32:
-.LBB1_13:
+	.loc	19 46 9 is_stmt 1       @ src/main/cpp/AVCDecoderConfiguration.cpp:46:9
+	b	.LBB2_13
+.Ltmp35:
+.LBB2_13:
 	.loc	19 0 9 is_stmt 0        @ src/main/cpp/AVCDecoderConfiguration.cpp:0:9
-	b	.LBB1_14
-.LBB1_14:
-.Ltmp13:
+	b	.LBB2_14
+.LBB2_14:
+.Ltmp16:
 	add	r0, sp, #92
-	.loc	19 45 27 is_stmt 1      @ src/main/cpp/AVCDecoderConfiguration.cpp:45:27
+	.loc	19 47 27 is_stmt 1      @ src/main/cpp/AVCDecoderConfiguration.cpp:47:27
 	bl	_ZN6Golomb5GetUeER9BitStream
-.Ltmp14:
+.Ltmp17:
 	str	r0, [sp, #8]            @ 4-byte Spill
-	b	.LBB1_15
-.LBB1_15:
-	.loc	19 45 14 is_stmt 0      @ src/main/cpp/AVCDecoderConfiguration.cpp:45:14
+	b	.LBB2_15
+.LBB2_15:
+	.loc	19 47 14 is_stmt 0      @ src/main/cpp/AVCDecoderConfiguration.cpp:47:14
 	ldr	r0, [sp, #8]            @ 4-byte Reload
 	str	r0, [sp, #48]
-.Ltmp15:
+.Ltmp18:
 	add	r0, sp, #92
-	.loc	19 46 29 is_stmt 1      @ src/main/cpp/AVCDecoderConfiguration.cpp:46:29
+	.loc	19 48 29 is_stmt 1      @ src/main/cpp/AVCDecoderConfiguration.cpp:48:29
 	bl	_ZN6Golomb5GetUeER9BitStream
-.Ltmp16:
+.Ltmp19:
 	str	r0, [sp, #4]            @ 4-byte Spill
-	b	.LBB1_16
-.LBB1_16:
-	.loc	19 46 14 is_stmt 0      @ src/main/cpp/AVCDecoderConfiguration.cpp:46:14
+	b	.LBB2_16
+.LBB2_16:
+	.loc	19 48 14 is_stmt 0      @ src/main/cpp/AVCDecoderConfiguration.cpp:48:14
 	ldr	r0, [sp, #4]            @ 4-byte Reload
 	str	r0, [sp, #44]
-.Ltmp33:
-	.loc	19 47 13 is_stmt 1      @ src/main/cpp/AVCDecoderConfiguration.cpp:47:13
+.Ltmp36:
+	.loc	19 49 13 is_stmt 1      @ src/main/cpp/AVCDecoderConfiguration.cpp:49:13
 	ldr	r1, [sp, #48]
-	.loc	19 47 28 is_stmt 0      @ src/main/cpp/AVCDecoderConfiguration.cpp:47:28
+	.loc	19 49 28 is_stmt 0      @ src/main/cpp/AVCDecoderConfiguration.cpp:49:28
 	cmp	r1, #8
-	blt	.LBB1_20
-	b	.LBB1_17
-.LBB1_17:
-	.loc	19 47 31                @ src/main/cpp/AVCDecoderConfiguration.cpp:47:31
+	blt	.LBB2_20
+	b	.LBB2_17
+.LBB2_17:
+	.loc	19 49 31                @ src/main/cpp/AVCDecoderConfiguration.cpp:49:31
 	ldr	r0, [sp, #48]
-	.loc	19 47 47                @ src/main/cpp/AVCDecoderConfiguration.cpp:47:47
+	.loc	19 49 47                @ src/main/cpp/AVCDecoderConfiguration.cpp:49:47
 	cmp	r0, #14
-	bgt	.LBB1_20
-	b	.LBB1_18
-.LBB1_18:
-	.loc	19 47 50                @ src/main/cpp/AVCDecoderConfiguration.cpp:47:50
+	bgt	.LBB2_20
+	b	.LBB2_18
+.LBB2_18:
+	.loc	19 49 50                @ src/main/cpp/AVCDecoderConfiguration.cpp:49:50
 	ldr	r0, [sp, #44]
-	.loc	19 47 67                @ src/main/cpp/AVCDecoderConfiguration.cpp:47:67
+	.loc	19 49 67                @ src/main/cpp/AVCDecoderConfiguration.cpp:49:67
 	cmp	r0, #8
-	blt	.LBB1_20
-	b	.LBB1_19
-.LBB1_19:
-	.loc	19 47 70                @ src/main/cpp/AVCDecoderConfiguration.cpp:47:70
+	blt	.LBB2_20
+	b	.LBB2_19
+.LBB2_19:
+	.loc	19 49 70                @ src/main/cpp/AVCDecoderConfiguration.cpp:49:70
 	ldr	r0, [sp, #44]
-.Ltmp34:
-	.loc	19 47 13                @ src/main/cpp/AVCDecoderConfiguration.cpp:47:13
+.Ltmp37:
+	.loc	19 49 13                @ src/main/cpp/AVCDecoderConfiguration.cpp:49:13
 	cmp	r0, #15
-	blt	.LBB1_22
-	b	.LBB1_20
-.LBB1_20:
-.Ltmp17:
-.Ltmp35:
-	.loc	19 48 13 is_stmt 1      @ src/main/cpp/AVCDecoderConfiguration.cpp:48:13
-	ldr	r1, .LCPI1_3
-.LPC1_3:
+	blt	.LBB2_22
+	b	.LBB2_20
+.LBB2_20:
+.Ltmp20:
+.Ltmp38:
+	.loc	19 50 13 is_stmt 1      @ src/main/cpp/AVCDecoderConfiguration.cpp:50:13
+	ldr	r1, .LCPI2_3
+.LPC2_3:
 	add	r1, pc
-	ldr	r2, .LCPI1_4
-.LPC1_4:
+	ldr	r2, .LCPI2_4
+.LPC2_4:
 	add	r2, pc
 	movs	r0, #6
 	bl	__android_log_print
-.Ltmp18:
-	b	.LBB1_21
-.LBB1_21:
-	.loc	19 49 9                 @ src/main/cpp/AVCDecoderConfiguration.cpp:49:9
-	b	.LBB1_22
-.Ltmp36:
-.LBB1_22:
-	.loc	19 50 30                @ src/main/cpp/AVCDecoderConfiguration.cpp:50:30
-	ldr	r0, [sp, #56]
-	.loc	19 50 28 is_stmt 0      @ src/main/cpp/AVCDecoderConfiguration.cpp:50:28
-	orr	r0, r0, #252
-	.loc	19 50 9                 @ src/main/cpp/AVCDecoderConfiguration.cpp:50:9
-	ldr	r1, [r7, #8]
-	.loc	19 50 17                @ src/main/cpp/AVCDecoderConfiguration.cpp:50:17
-	ldr	r2, [sp, #104]
-	adds	r3, r2, #1
-	str	r3, [sp, #104]
-	.loc	19 50 21                @ src/main/cpp/AVCDecoderConfiguration.cpp:50:21
-	strb	r0, [r1, r2]
-	.loc	19 51 30 is_stmt 1      @ src/main/cpp/AVCDecoderConfiguration.cpp:51:30
-	ldr	r0, [sp, #48]
-	.loc	19 51 28 is_stmt 0      @ src/main/cpp/AVCDecoderConfiguration.cpp:51:28
-	orr	r0, r0, #248
+.Ltmp21:
+	b	.LBB2_21
+.LBB2_21:
 	.loc	19 51 9                 @ src/main/cpp/AVCDecoderConfiguration.cpp:51:9
-	ldr	r1, [r7, #8]
-	.loc	19 51 17                @ src/main/cpp/AVCDecoderConfiguration.cpp:51:17
-	ldr	r2, [sp, #104]
-	adds	r3, r2, #1
-	str	r3, [sp, #104]
-	.loc	19 51 21                @ src/main/cpp/AVCDecoderConfiguration.cpp:51:21
-	strb	r0, [r1, r2]
-	.loc	19 52 30 is_stmt 1      @ src/main/cpp/AVCDecoderConfiguration.cpp:52:30
-	ldr	r0, [sp, #44]
+	b	.LBB2_22
+.Ltmp39:
+.LBB2_22:
+	.loc	19 52 30                @ src/main/cpp/AVCDecoderConfiguration.cpp:52:30
+	ldr	r0, [sp, #56]
 	.loc	19 52 28 is_stmt 0      @ src/main/cpp/AVCDecoderConfiguration.cpp:52:28
-	orr	r0, r0, #248
+	orr	r0, r0, #252
 	.loc	19 52 9                 @ src/main/cpp/AVCDecoderConfiguration.cpp:52:9
 	ldr	r1, [r7, #8]
 	.loc	19 52 17                @ src/main/cpp/AVCDecoderConfiguration.cpp:52:17
@@ -563,86 +587,110 @@ _ZN23AVCDecoderConfiguration14ParseSPSAndPPSEiPhiS0_S0_Pi:
 	str	r3, [sp, #104]
 	.loc	19 52 21                @ src/main/cpp/AVCDecoderConfiguration.cpp:52:21
 	strb	r0, [r1, r2]
+	.loc	19 53 30 is_stmt 1      @ src/main/cpp/AVCDecoderConfiguration.cpp:53:30
+	ldr	r0, [sp, #48]
+	.loc	19 53 28 is_stmt 0      @ src/main/cpp/AVCDecoderConfiguration.cpp:53:28
+	orr	r0, r0, #248
+	.loc	19 53 9                 @ src/main/cpp/AVCDecoderConfiguration.cpp:53:9
+	ldr	r1, [r7, #8]
+	.loc	19 53 17                @ src/main/cpp/AVCDecoderConfiguration.cpp:53:17
+	ldr	r2, [sp, #104]
+	adds	r3, r2, #1
+	str	r3, [sp, #104]
+	.loc	19 53 21                @ src/main/cpp/AVCDecoderConfiguration.cpp:53:21
+	strb	r0, [r1, r2]
+	.loc	19 54 30 is_stmt 1      @ src/main/cpp/AVCDecoderConfiguration.cpp:54:30
+	ldr	r0, [sp, #44]
+	.loc	19 54 28 is_stmt 0      @ src/main/cpp/AVCDecoderConfiguration.cpp:54:28
+	orr	r0, r0, #248
+	.loc	19 54 9                 @ src/main/cpp/AVCDecoderConfiguration.cpp:54:9
+	ldr	r1, [r7, #8]
+	.loc	19 54 17                @ src/main/cpp/AVCDecoderConfiguration.cpp:54:17
+	ldr	r2, [sp, #104]
+	adds	r3, r2, #1
+	str	r3, [sp, #104]
+	.loc	19 54 21                @ src/main/cpp/AVCDecoderConfiguration.cpp:54:21
+	strb	r0, [r1, r2]
 	add	r0, sp, #92
-.Ltmp37:
-	.loc	19 53 5 is_stmt 1       @ src/main/cpp/AVCDecoderConfiguration.cpp:53:5
+.Ltmp40:
+	.loc	19 55 5 is_stmt 1       @ src/main/cpp/AVCDecoderConfiguration.cpp:55:5
 	bl	_ZN9BitStreamD1Ev
-.Ltmp38:
-	.loc	19 53 5 is_stmt 0       @ src/main/cpp/AVCDecoderConfiguration.cpp:53:5
-	b	.LBB1_23
-.Ltmp39:
-.LBB1_23:
-	.loc	19 54 15 is_stmt 1      @ src/main/cpp/AVCDecoderConfiguration.cpp:54:15
+.Ltmp41:
+	.loc	19 55 5 is_stmt 0       @ src/main/cpp/AVCDecoderConfiguration.cpp:55:5
+	b	.LBB2_23
+.Ltmp42:
+.LBB2_23:
+	.loc	19 56 15 is_stmt 1      @ src/main/cpp/AVCDecoderConfiguration.cpp:56:15
 	ldr	r0, [sp, #104]
-	.loc	19 54 6 is_stmt 0       @ src/main/cpp/AVCDecoderConfiguration.cpp:54:6
+	.loc	19 56 6 is_stmt 0       @ src/main/cpp/AVCDecoderConfiguration.cpp:56:6
 	ldr	r1, [r7, #12]
-	.loc	19 54 13                @ src/main/cpp/AVCDecoderConfiguration.cpp:54:13
+	.loc	19 56 13                @ src/main/cpp/AVCDecoderConfiguration.cpp:56:13
 	str	r0, [r1]
-	ldr	r0, .LCPI1_5
-.LPC1_5:
+	ldr	r0, .LCPI2_5
+.LPC2_5:
 	add	r0, pc
 	ldr	r0, [r0]
 	ldr	r0, [r0]
 	ldr	r1, [sp, #108]
 	cmp	r0, r1
-	bne	.LBB1_26
-	b	.LBB1_24
-.LBB1_24:                               @ %SP_return
+	bne	.LBB2_26
+	b	.LBB2_24
+.LBB2_24:                               @ %SP_return
 	.loc	19 0 13                 @ src/main/cpp/AVCDecoderConfiguration.cpp:0:13
 	movs	r0, #0
-	.loc	19 55 5 is_stmt 1       @ src/main/cpp/AVCDecoderConfiguration.cpp:55:5
+	.loc	19 57 5 is_stmt 1       @ src/main/cpp/AVCDecoderConfiguration.cpp:57:5
 	add	sp, #112
 	pop	{r4, r6, r7, pc}
-.LBB1_25:
-.Ltmp40:
-	.loc	19 53 5                 @ src/main/cpp/AVCDecoderConfiguration.cpp:53:5
+.LBB2_25:
+.Ltmp43:
+	.loc	19 55 5                 @ src/main/cpp/AVCDecoderConfiguration.cpp:55:5
 	ldr	r0, [sp, #64]
 	bl	_Unwind_Resume
-.Ltmp41:
-.LBB1_26:                               @ %CallStackCheckFailBlk
+.Ltmp44:
+.LBB2_26:                               @ %CallStackCheckFailBlk
 	.loc	19 0 0 is_stmt 0        @ src/main/cpp/AVCDecoderConfiguration.cpp:0:0
 	bl	__stack_chk_fail
-.Ltmp42:
+.Ltmp45:
 	.p2align	2
 @ %bb.27:
-.LCPI1_0:
-.Ltmp43:
-	.long	__stack_chk_guard(GOT_PREL)-((.LPC1_0+4)-.Ltmp43)
-.LCPI1_1:
-	.long	.L.str-(.LPC1_1+4)
-.LCPI1_2:
-	.long	.L.str.1-(.LPC1_2+4)
-.LCPI1_3:
-	.long	.L.str-(.LPC1_3+4)
-.LCPI1_4:
-	.long	.L.str.2-(.LPC1_4+4)
-.LCPI1_5:
-.Ltmp44:
-	.long	__stack_chk_guard(GOT_PREL)-((.LPC1_5+4)-.Ltmp44)
-.Lfunc_end1:
-	.size	_ZN23AVCDecoderConfiguration14ParseSPSAndPPSEiPhiS0_S0_Pi, .Lfunc_end1-_ZN23AVCDecoderConfiguration14ParseSPSAndPPSEiPhiS0_S0_Pi
+.LCPI2_0:
+.Ltmp46:
+	.long	__stack_chk_guard(GOT_PREL)-((.LPC2_0+4)-.Ltmp46)
+.LCPI2_1:
+	.long	.L.str-(.LPC2_1+4)
+.LCPI2_2:
+	.long	.L.str.1-(.LPC2_2+4)
+.LCPI2_3:
+	.long	.L.str-(.LPC2_3+4)
+.LCPI2_4:
+	.long	.L.str.2-(.LPC2_4+4)
+.LCPI2_5:
+.Ltmp47:
+	.long	__stack_chk_guard(GOT_PREL)-((.LPC2_5+4)-.Ltmp47)
+.Lfunc_end2:
+	.size	_ZN23AVCDecoderConfiguration14ParseSPSAndPPSEiPhiS0_S0_Pi, .Lfunc_end2-_ZN23AVCDecoderConfiguration14ParseSPSAndPPSEiPhiS0_S0_Pi
 	.cfi_endproc
 	.globl	__gxx_personality_v0
 	.personality __gxx_personality_v0
 	.handlerdata
 	.p2align	2
-GCC_except_table1:
+GCC_except_table2:
 .Lexception0:
 	.byte	255                     @ @LPStart Encoding = omit
 	.byte	255                     @ @TType Encoding = omit
 	.byte	1                       @ Call site Encoding = uleb128
 	.uleb128 .Lcst_end0-.Lcst_begin0
 .Lcst_begin0:
-	.uleb128 .Lfunc_begin1-.Lfunc_begin1 @ >> Call Site 1 <<
-	.uleb128 .Ltmp5-.Lfunc_begin1   @   Call between .Lfunc_begin1 and .Ltmp5
+	.uleb128 .Lfunc_begin2-.Lfunc_begin2 @ >> Call Site 1 <<
+	.uleb128 .Ltmp8-.Lfunc_begin2   @   Call between .Lfunc_begin2 and .Ltmp8
 	.byte	0                       @     has no landing pad
 	.byte	0                       @   On action: cleanup
-	.uleb128 .Ltmp5-.Lfunc_begin1   @ >> Call Site 2 <<
-	.uleb128 .Ltmp18-.Ltmp5         @   Call between .Ltmp5 and .Ltmp18
-	.uleb128 .Ltmp19-.Lfunc_begin1  @     jumps to .Ltmp19
+	.uleb128 .Ltmp8-.Lfunc_begin2   @ >> Call Site 2 <<
+	.uleb128 .Ltmp21-.Ltmp8         @   Call between .Ltmp8 and .Ltmp21
+	.uleb128 .Ltmp22-.Lfunc_begin2  @     jumps to .Ltmp22
 	.byte	0                       @   On action: cleanup
-	.uleb128 .Ltmp18-.Lfunc_begin1  @ >> Call Site 3 <<
-	.uleb128 .Lfunc_end1-.Ltmp18    @   Call between .Ltmp18 and .Lfunc_end1
+	.uleb128 .Ltmp21-.Lfunc_begin2  @ >> Call Site 3 <<
+	.uleb128 .Lfunc_end2-.Ltmp21    @   Call between .Ltmp21 and .Lfunc_end2
 	.byte	0                       @     has no landing pad
 	.byte	0                       @   On action: cleanup
 .Lcst_end0:
@@ -651,64 +699,28 @@ GCC_except_table1:
                                         @ -- End function
 	.section	.text._ZN23AVCDecoderConfigurationD2Ev,"ax",%progbits
 	.globl	_ZN23AVCDecoderConfigurationD2Ev @ -- Begin function _ZN23AVCDecoderConfigurationD2Ev
-	.p2align	2
+	.p2align	1
 	.type	_ZN23AVCDecoderConfigurationD2Ev,%function
 	.code	16                      @ @_ZN23AVCDecoderConfigurationD2Ev
 	.thumb_func
 _ZN23AVCDecoderConfigurationD2Ev:
-.Lfunc_begin2:
-	.loc	19 64 0 is_stmt 1       @ src/main/cpp/AVCDecoderConfiguration.cpp:64:0
+.Lfunc_begin3:
+	.loc	19 65 0 is_stmt 1       @ src/main/cpp/AVCDecoderConfiguration.cpp:65:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
-	.save	{r7, lr}
-	push	{r7, lr}
-	.cfi_def_cfa_offset 8
-	.cfi_offset lr, -4
-	.cfi_offset r7, -8
-	.setfp	r7, sp
-	mov	r7, sp
-	.cfi_def_cfa_register r7
-	.pad	#16
-	sub	sp, #16
-	str	r0, [sp, #8]
-	ldr	r0, [sp, #8]
-	str	r0, [sp, #12]
-.Ltmp45:
-	.loc	19 64 53 prologue_end   @ src/main/cpp/AVCDecoderConfiguration.cpp:64:53
-	ldr	r1, .LCPI2_0
-.LPC2_0:
-	add	r1, pc
-	ldr	r1, [r1]
-	adds	r1, #8
-	str	r1, [r0]
-.Ltmp46:
-	.loc	19 65 12                @ src/main/cpp/AVCDecoderConfiguration.cpp:65:12
-	ldr	r0, [r0, #4]
-	.loc	19 65 5 is_stmt 0       @ src/main/cpp/AVCDecoderConfiguration.cpp:65:5
-	cmp	r0, #0
-	str	r0, [sp, #4]            @ 4-byte Spill
-	beq	.LBB2_2
-	b	.LBB2_1
-.LBB2_1:
-	ldr	r0, [sp, #4]            @ 4-byte Reload
-	bl	_ZdlPv
-	b	.LBB2_2
-.Ltmp47:
-.LBB2_2:
-	.loc	19 66 1 is_stmt 1       @ src/main/cpp/AVCDecoderConfiguration.cpp:66:1
-	ldr	r0, [sp, #12]
-	add	sp, #16
-	pop	{r7, pc}
+	.pad	#4
+	sub	sp, #4
+	.cfi_def_cfa_offset 4
+	str	r0, [sp]
+	ldr	r0, [sp]
 .Ltmp48:
-	.p2align	2
-@ %bb.3:
-	.loc	19 0 1 is_stmt 0        @ src/main/cpp/AVCDecoderConfiguration.cpp:0:1
-.LCPI2_0:
+	.loc	19 66 1 prologue_end    @ src/main/cpp/AVCDecoderConfiguration.cpp:66:1
+	add	sp, #4
+	bx	lr
 .Ltmp49:
-	.long	_ZTV23AVCDecoderConfiguration(GOT_PREL)-((.LPC2_0+4)-.Ltmp49)
-.Lfunc_end2:
-	.size	_ZN23AVCDecoderConfigurationD2Ev, .Lfunc_end2-_ZN23AVCDecoderConfigurationD2Ev
+.Lfunc_end3:
+	.size	_ZN23AVCDecoderConfigurationD2Ev, .Lfunc_end3-_ZN23AVCDecoderConfigurationD2Ev
 	.cfi_endproc
 	.fnend
                                         @ -- End function
@@ -719,8 +731,8 @@ _ZN23AVCDecoderConfigurationD2Ev:
 	.code	16                      @ @_ZN23AVCDecoderConfigurationD0Ev
 	.thumb_func
 _ZN23AVCDecoderConfigurationD0Ev:
-.Lfunc_begin3:
-	.loc	19 64 0 is_stmt 1       @ src/main/cpp/AVCDecoderConfiguration.cpp:64:0
+.Lfunc_begin4:
+	.loc	19 65 0                 @ src/main/cpp/AVCDecoderConfiguration.cpp:65:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
@@ -737,7 +749,7 @@ _ZN23AVCDecoderConfigurationD0Ev:
 	str	r0, [sp, #12]
 	ldr	r0, [sp, #12]
 .Ltmp50:
-	.loc	19 64 53 prologue_end   @ src/main/cpp/AVCDecoderConfiguration.cpp:64:53
+	.loc	19 65 53 prologue_end   @ src/main/cpp/AVCDecoderConfiguration.cpp:65:53
 	str	r0, [sp, #8]            @ 4-byte Spill
 	bl	_ZN23AVCDecoderConfigurationD1Ev
 	ldr	r1, [sp, #8]            @ 4-byte Reload
@@ -748,8 +760,132 @@ _ZN23AVCDecoderConfigurationD0Ev:
 	add	sp, #16
 	pop	{r7, pc}
 .Ltmp51:
-.Lfunc_end3:
-	.size	_ZN23AVCDecoderConfigurationD0Ev, .Lfunc_end3-_ZN23AVCDecoderConfigurationD0Ev
+.Lfunc_end4:
+	.size	_ZN23AVCDecoderConfigurationD0Ev, .Lfunc_end4-_ZN23AVCDecoderConfigurationD0Ev
+	.cfi_endproc
+	.fnend
+                                        @ -- End function
+	.section	.text._ZN23AVCDecoderConfiguration7WriteToEPc,"ax",%progbits
+	.globl	_ZN23AVCDecoderConfiguration7WriteToEPc @ -- Begin function _ZN23AVCDecoderConfiguration7WriteToEPc
+	.p2align	1
+	.type	_ZN23AVCDecoderConfiguration7WriteToEPc,%function
+	.code	16                      @ @_ZN23AVCDecoderConfiguration7WriteToEPc
+	.thumb_func
+_ZN23AVCDecoderConfiguration7WriteToEPc:
+.Lfunc_begin5:
+	.loc	19 68 0                 @ src/main/cpp/AVCDecoderConfiguration.cpp:68:0
+	.fnstart
+	.cfi_startproc
+@ %bb.0:
+	.save	{r7, lr}
+	push	{r7, lr}
+	.cfi_def_cfa_offset 8
+	.cfi_offset lr, -4
+	.cfi_offset r7, -8
+	.setfp	r7, sp
+	mov	r7, sp
+	.cfi_def_cfa_register r7
+	.pad	#16
+	sub	sp, #16
+	str	r0, [sp, #12]
+	str	r1, [sp, #8]
+	ldr	r0, [sp, #12]
+.Ltmp52:
+	.loc	19 69 12 prologue_end   @ src/main/cpp/AVCDecoderConfiguration.cpp:69:12
+	ldr	r1, [sp, #8]
+	.loc	19 69 19 is_stmt 0      @ src/main/cpp/AVCDecoderConfiguration.cpp:69:19
+	adds	r2, r0, #4
+	.loc	19 69 27                @ src/main/cpp/AVCDecoderConfiguration.cpp:69:27
+	ldr.w	r3, [r0, #1028]
+	.loc	19 69 5                 @ src/main/cpp/AVCDecoderConfiguration.cpp:69:5
+	str	r0, [sp, #4]            @ 4-byte Spill
+	mov	r0, r1
+	mov	r1, r2
+	mov	r2, r3
+	bl	__aeabi_memcpy
+	.loc	19 70 12 is_stmt 1      @ src/main/cpp/AVCDecoderConfiguration.cpp:70:12
+	ldr	r1, [sp, #8]
+	.loc	19 70 21 is_stmt 0      @ src/main/cpp/AVCDecoderConfiguration.cpp:70:21
+	ldr	r2, [sp, #4]            @ 4-byte Reload
+	ldr.w	r3, [r2, #1028]
+	.loc	19 70 19                @ src/main/cpp/AVCDecoderConfiguration.cpp:70:19
+	add	r1, r3
+	.loc	19 70 5                 @ src/main/cpp/AVCDecoderConfiguration.cpp:70:5
+	str	r0, [sp]                @ 4-byte Spill
+	mov	r0, r1
+	add	sp, #16
+	pop	{r7, pc}
+.Ltmp53:
+.Lfunc_end5:
+	.size	_ZN23AVCDecoderConfiguration7WriteToEPc, .Lfunc_end5-_ZN23AVCDecoderConfiguration7WriteToEPc
+	.cfi_endproc
+	.fnend
+                                        @ -- End function
+	.section	.text._ZN23AVCDecoderConfiguration4SizeEv,"ax",%progbits
+	.globl	_ZN23AVCDecoderConfiguration4SizeEv @ -- Begin function _ZN23AVCDecoderConfiguration4SizeEv
+	.p2align	1
+	.type	_ZN23AVCDecoderConfiguration4SizeEv,%function
+	.code	16                      @ @_ZN23AVCDecoderConfiguration4SizeEv
+	.thumb_func
+_ZN23AVCDecoderConfiguration4SizeEv:
+.Lfunc_begin6:
+	.loc	19 73 0 is_stmt 1       @ src/main/cpp/AVCDecoderConfiguration.cpp:73:0
+	.fnstart
+	.cfi_startproc
+@ %bb.0:
+	.pad	#4
+	sub	sp, #4
+	.cfi_def_cfa_offset 4
+	str	r0, [sp]
+	ldr	r0, [sp]
+.Ltmp54:
+	.loc	19 74 18 prologue_end   @ src/main/cpp/AVCDecoderConfiguration.cpp:74:18
+	ldr.w	r0, [r0, #1028]
+	.loc	19 74 5 is_stmt 0       @ src/main/cpp/AVCDecoderConfiguration.cpp:74:5
+	add	sp, #4
+	bx	lr
+.Ltmp55:
+.Lfunc_end6:
+	.size	_ZN23AVCDecoderConfiguration4SizeEv, .Lfunc_end6-_ZN23AVCDecoderConfiguration4SizeEv
+	.cfi_endproc
+	.fnend
+                                        @ -- End function
+	.section	.text._ZN7IBufferC2Ev,"axG",%progbits,_ZN7IBufferC2Ev,comdat
+	.weak	_ZN7IBufferC2Ev         @ -- Begin function _ZN7IBufferC2Ev
+	.p2align	2
+	.type	_ZN7IBufferC2Ev,%function
+	.code	16                      @ @_ZN7IBufferC2Ev
+	.thumb_func
+_ZN7IBufferC2Ev:
+.Lfunc_begin7:
+	.loc	20 9 0 is_stmt 1        @ src/main/cpp/IBuffer.h:9:0
+	.fnstart
+	.cfi_startproc
+@ %bb.0:
+	.pad	#4
+	sub	sp, #4
+	.cfi_def_cfa_offset 4
+	str	r0, [sp]
+	ldr	r0, [sp]
+.Ltmp56:
+	.loc	20 9 7 prologue_end     @ src/main/cpp/IBuffer.h:9:7
+	ldr	r1, .LCPI7_0
+.LPC7_0:
+	add	r1, pc
+	ldr	r1, [r1]
+	adds	r1, #8
+	str	r1, [r0]
+	add	sp, #4
+	bx	lr
+.Ltmp57:
+	.p2align	2
+@ %bb.1:
+	.loc	20 0 7 is_stmt 0        @ src/main/cpp/IBuffer.h:0:7
+.LCPI7_0:
+.Ltmp58:
+	.long	_ZTV7IBuffer(GOT_PREL)-((.LPC7_0+4)-.Ltmp58)
+.Lfunc_end7:
+	.size	_ZN7IBufferC2Ev, .Lfunc_end7-_ZN7IBufferC2Ev
 	.cfi_endproc
 	.fnend
                                         @ -- End function
@@ -760,9 +896,9 @@ _ZN23AVCDecoderConfigurationD0Ev:
 	.code	16                      @ @_ZN6Golomb5GetUeER9BitStream
 	.thumb_func
 _ZN6Golomb5GetUeER9BitStream:
-.Lfunc_begin4:
-	.file	22 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive" "src/main/cpp/Golomb.h"
-	.loc	22 13 0                 @ src/main/cpp/Golomb.h:13:0
+.Lfunc_begin8:
+	.file	24 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive" "src/main/cpp/Golomb.h"
+	.loc	24 13 0 is_stmt 1       @ src/main/cpp/Golomb.h:13:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
@@ -778,73 +914,73 @@ _ZN6Golomb5GetUeER9BitStream:
 	sub	sp, #16
 	str	r0, [sp, #12]
 	mov.w	r0, #-1
-.Ltmp52:
-	.loc	22 14 13 prologue_end   @ src/main/cpp/Golomb.h:14:13
+.Ltmp59:
+	.loc	24 14 13 prologue_end   @ src/main/cpp/Golomb.h:14:13
 	str	r0, [sp, #8]
 	movs	r0, #0
-.Ltmp53:
-	.loc	22 15 18                @ src/main/cpp/Golomb.h:15:18
+.Ltmp60:
+	.loc	24 15 18                @ src/main/cpp/Golomb.h:15:18
 	str	r0, [sp, #4]
-	.loc	22 15 14 is_stmt 0      @ src/main/cpp/Golomb.h:15:14
-	b	.LBB4_1
-.LBB4_1:                                @ =>This Inner Loop Header: Depth=1
-.Ltmp54:
-	.loc	22 15 26                @ src/main/cpp/Golomb.h:15:26
+	.loc	24 15 14 is_stmt 0      @ src/main/cpp/Golomb.h:15:14
+	b	.LBB8_1
+.LBB8_1:                                @ =>This Inner Loop Header: Depth=1
+.Ltmp61:
+	.loc	24 15 26                @ src/main/cpp/Golomb.h:15:26
 	ldr	r0, [sp, #4]
-.Ltmp55:
-	.loc	22 15 9                 @ src/main/cpp/Golomb.h:15:9
+.Ltmp62:
+	.loc	24 15 9                 @ src/main/cpp/Golomb.h:15:9
 	cmp	r0, #0
-	bne	.LBB4_4
-	b	.LBB4_2
-.LBB4_2:                                @   in Loop: Header=BB4_1 Depth=1
-.Ltmp56:
-	.loc	22 17 17 is_stmt 1      @ src/main/cpp/Golomb.h:17:17
+	bne	.LBB8_4
+	b	.LBB8_2
+.LBB8_2:                                @   in Loop: Header=BB8_1 Depth=1
+.Ltmp63:
+	.loc	24 17 17 is_stmt 1      @ src/main/cpp/Golomb.h:17:17
 	ldr	r0, [sp, #12]
 	movs	r1, #1
-	.loc	22 17 28 is_stmt 0      @ src/main/cpp/Golomb.h:17:28
+	.loc	24 17 28 is_stmt 0      @ src/main/cpp/Golomb.h:17:28
 	bl	_ZN9BitStream8ReadBitsEi
-	.loc	22 17 15                @ src/main/cpp/Golomb.h:17:15
+	.loc	24 17 15                @ src/main/cpp/Golomb.h:17:15
 	str	r0, [sp, #4]
-	.loc	22 18 9 is_stmt 1       @ src/main/cpp/Golomb.h:18:9
-	b	.LBB4_3
-.Ltmp57:
-.LBB4_3:                                @   in Loop: Header=BB4_1 Depth=1
-	.loc	22 15 46                @ src/main/cpp/Golomb.h:15:46
+	.loc	24 18 9 is_stmt 1       @ src/main/cpp/Golomb.h:18:9
+	b	.LBB8_3
+.Ltmp64:
+.LBB8_3:                                @   in Loop: Header=BB8_1 Depth=1
+	.loc	24 15 46                @ src/main/cpp/Golomb.h:15:46
 	ldr	r0, [sp, #8]
 	adds	r0, #1
 	str	r0, [sp, #8]
-	.loc	22 15 9 is_stmt 0       @ src/main/cpp/Golomb.h:15:9
-	b	.LBB4_1
-.Ltmp58:
-.LBB4_4:
-	.loc	22 19 17 is_stmt 1      @ src/main/cpp/Golomb.h:19:17
+	.loc	24 15 9 is_stmt 0       @ src/main/cpp/Golomb.h:15:9
+	b	.LBB8_1
+.Ltmp65:
+.LBB8_4:
+	.loc	24 19 17 is_stmt 1      @ src/main/cpp/Golomb.h:19:17
 	ldr	r0, [sp, #12]
-	.loc	22 19 37 is_stmt 0      @ src/main/cpp/Golomb.h:19:37
+	.loc	24 19 37 is_stmt 0      @ src/main/cpp/Golomb.h:19:37
 	ldr	r1, [sp, #8]
-	.loc	22 19 28                @ src/main/cpp/Golomb.h:19:28
+	.loc	24 19 28                @ src/main/cpp/Golomb.h:19:28
 	bl	_ZN9BitStream8ReadBitsEi
-	.loc	22 19 13                @ src/main/cpp/Golomb.h:19:13
+	.loc	24 19 13                @ src/main/cpp/Golomb.h:19:13
 	str	r0, [sp]
-	.loc	22 20 25 is_stmt 1      @ src/main/cpp/Golomb.h:20:25
+	.loc	24 20 25 is_stmt 1      @ src/main/cpp/Golomb.h:20:25
 	ldr	r0, [sp, #8]
-	.loc	22 20 43 is_stmt 0      @ src/main/cpp/Golomb.h:20:43
+	.loc	24 20 43 is_stmt 0      @ src/main/cpp/Golomb.h:20:43
 	adds	r0, #1
 	movs	r1, #1
-	.loc	22 20 21                @ src/main/cpp/Golomb.h:20:21
+	.loc	24 20 21                @ src/main/cpp/Golomb.h:20:21
 	lsl.w	r0, r1, r0
-	.loc	22 20 55                @ src/main/cpp/Golomb.h:20:55
+	.loc	24 20 55                @ src/main/cpp/Golomb.h:20:55
 	ldr	r1, [sp]
-	.loc	22 20 53                @ src/main/cpp/Golomb.h:20:53
+	.loc	24 20 53                @ src/main/cpp/Golomb.h:20:53
 	add	r0, r1
 	subs	r0, #1
-	.loc	22 20 9                 @ src/main/cpp/Golomb.h:20:9
+	.loc	24 20 9                 @ src/main/cpp/Golomb.h:20:9
 	add	sp, #16
 	pop	{r7, pc}
-.Ltmp59:
-.Lfunc_end4:
-	.size	_ZN6Golomb5GetUeER9BitStream, .Lfunc_end4-_ZN6Golomb5GetUeER9BitStream
+.Ltmp66:
+.Lfunc_end8:
+	.size	_ZN6Golomb5GetUeER9BitStream, .Lfunc_end8-_ZN6Golomb5GetUeER9BitStream
 	.cfi_endproc
-	.file	23 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive" "src/main/cpp/BitStream.h"
+	.file	25 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive" "src/main/cpp/BitStream.h"
 	.fnend
                                         @ -- End function
 	.type	_ZTV23AVCDecoderConfiguration,%object @ @_ZTV23AVCDecoderConfiguration
@@ -854,9 +990,11 @@ _ZN6Golomb5GetUeER9BitStream:
 _ZTV23AVCDecoderConfiguration:
 	.long	0
 	.long	_ZTI23AVCDecoderConfiguration
+	.long	_ZN23AVCDecoderConfiguration7WriteToEPc
+	.long	_ZN23AVCDecoderConfiguration4SizeEv
 	.long	_ZN23AVCDecoderConfigurationD1Ev
 	.long	_ZN23AVCDecoderConfigurationD0Ev
-	.size	_ZTV23AVCDecoderConfiguration, 16
+	.size	_ZTV23AVCDecoderConfiguration, 24
 
 	.type	_ZTS23AVCDecoderConfiguration,%object @ @_ZTS23AVCDecoderConfiguration
 	.section	.rodata._ZTS23AVCDecoderConfiguration,"a",%progbits
@@ -865,14 +1003,70 @@ _ZTS23AVCDecoderConfiguration:
 	.asciz	"23AVCDecoderConfiguration"
 	.size	_ZTS23AVCDecoderConfiguration, 26
 
+	.type	_ZTS14IAVCPacketData,%object @ @_ZTS14IAVCPacketData
+	.section	.rodata._ZTS14IAVCPacketData,"aG",%progbits,_ZTS14IAVCPacketData,comdat
+	.weak	_ZTS14IAVCPacketData
+_ZTS14IAVCPacketData:
+	.asciz	"14IAVCPacketData"
+	.size	_ZTS14IAVCPacketData, 17
+
+	.type	_ZTS7IBuffer,%object    @ @_ZTS7IBuffer
+	.section	.rodata._ZTS7IBuffer,"aG",%progbits,_ZTS7IBuffer,comdat
+	.weak	_ZTS7IBuffer
+_ZTS7IBuffer:
+	.asciz	"7IBuffer"
+	.size	_ZTS7IBuffer, 9
+
+	.type	_ZTI7IBuffer,%object    @ @_ZTI7IBuffer
+	.section	.data.rel.ro._ZTI7IBuffer,"aGw",%progbits,_ZTI7IBuffer,comdat
+	.weak	_ZTI7IBuffer
+	.p2align	2
+_ZTI7IBuffer:
+	.long	_ZTVN10__cxxabiv117__class_type_infoE+8
+	.long	_ZTS7IBuffer
+	.size	_ZTI7IBuffer, 8
+
+	.type	_ZTI14IAVCPacketData,%object @ @_ZTI14IAVCPacketData
+	.section	.data.rel.ro._ZTI14IAVCPacketData,"aGw",%progbits,_ZTI14IAVCPacketData,comdat
+	.weak	_ZTI14IAVCPacketData
+	.p2align	2
+_ZTI14IAVCPacketData:
+	.long	_ZTVN10__cxxabiv120__si_class_type_infoE+8
+	.long	_ZTS14IAVCPacketData
+	.long	_ZTI7IBuffer
+	.size	_ZTI14IAVCPacketData, 12
+
 	.type	_ZTI23AVCDecoderConfiguration,%object @ @_ZTI23AVCDecoderConfiguration
 	.section	.data.rel.ro._ZTI23AVCDecoderConfiguration,"aw",%progbits
 	.globl	_ZTI23AVCDecoderConfiguration
 	.p2align	2
 _ZTI23AVCDecoderConfiguration:
-	.long	_ZTVN10__cxxabiv117__class_type_infoE+8
+	.long	_ZTVN10__cxxabiv120__si_class_type_infoE+8
 	.long	_ZTS23AVCDecoderConfiguration
-	.size	_ZTI23AVCDecoderConfiguration, 8
+	.long	_ZTI14IAVCPacketData
+	.size	_ZTI23AVCDecoderConfiguration, 12
+
+	.type	_ZTV14IAVCPacketData,%object @ @_ZTV14IAVCPacketData
+	.section	.data.rel.ro._ZTV14IAVCPacketData,"aGw",%progbits,_ZTV14IAVCPacketData,comdat
+	.weak	_ZTV14IAVCPacketData
+	.p2align	2
+_ZTV14IAVCPacketData:
+	.long	0
+	.long	_ZTI14IAVCPacketData
+	.long	__cxa_pure_virtual
+	.long	__cxa_pure_virtual
+	.size	_ZTV14IAVCPacketData, 16
+
+	.type	_ZTV7IBuffer,%object    @ @_ZTV7IBuffer
+	.section	.data.rel.ro._ZTV7IBuffer,"aGw",%progbits,_ZTV7IBuffer,comdat
+	.weak	_ZTV7IBuffer
+	.p2align	2
+_ZTV7IBuffer:
+	.long	0
+	.long	_ZTI7IBuffer
+	.long	__cxa_pure_virtual
+	.long	__cxa_pure_virtual
+	.size	_ZTV7IBuffer, 16
 
 	.type	.L.str,%object          @ @.str
 	.section	.rodata.str1.1,"aMS",%progbits,1
@@ -890,6 +1084,7 @@ _ZTI23AVCDecoderConfiguration:
 	.asciz	"illegal bit depth value"
 	.size	.L.str.2, 24
 
+	.file	26 "<stdin>"
 	.section	.debug_str,"MS",%progbits,1
 .Linfo_string0:
 	.asciz	"Android (7019983 based on r365631c3) clang version 9.0.9 (https://android.googlesource.com/toolchain/llvm-project a2a1e703c0edb03ba29944e529ccbf457742737b) (based on LLVM 9.0.9svn)" @ string offset=0
@@ -1208,111 +1403,133 @@ _ZTI23AVCDecoderConfiguration:
 .Linfo_string157:
 	.asciz	"strlen"                @ string offset=2076
 .Linfo_string158:
-	.asciz	"_vptr$AVCDecoderConfiguration" @ string offset=2083
+	.asciz	"_vptr$IBuffer"         @ string offset=2083
 .Linfo_string159:
-	.asciz	"__vtbl_ptr_type"       @ string offset=2113
+	.asciz	"__vtbl_ptr_type"       @ string offset=2097
 .Linfo_string160:
-	.asciz	"buffer_"               @ string offset=2129
+	.asciz	"_ZN7IBuffer7WriteToEPc" @ string offset=2113
 .Linfo_string161:
-	.asciz	"buffer_length_"        @ string offset=2137
+	.asciz	"WriteTo"               @ string offset=2136
 .Linfo_string162:
-	.asciz	"_ZN23AVCDecoderConfiguration14ParseSPSAndPPSEiPhiS0_S0_Pi" @ string offset=2152
+	.asciz	"_ZN7IBuffer4SizeEv"    @ string offset=2144
 .Linfo_string163:
-	.asciz	"ParseSPSAndPPS"        @ string offset=2210
+	.asciz	"Size"                  @ string offset=2163
 .Linfo_string164:
-	.asciz	"AVCDecoderConfiguration" @ string offset=2225
+	.asciz	"IBuffer"               @ string offset=2168
 .Linfo_string165:
-	.asciz	"sps_"                  @ string offset=2249
+	.asciz	"IAVCPacketData"        @ string offset=2176
 .Linfo_string166:
-	.asciz	"sps_length_"           @ string offset=2254
+	.asciz	"buffer_"               @ string offset=2191
 .Linfo_string167:
-	.asciz	"pps_"                  @ string offset=2266
+	.asciz	"__ARRAY_SIZE_TYPE__"   @ string offset=2199
 .Linfo_string168:
-	.asciz	"pps_length_"           @ string offset=2271
+	.asciz	"buffer_length_"        @ string offset=2219
 .Linfo_string169:
-	.asciz	"H264Params"            @ string offset=2283
+	.asciz	"AVCDecoderConfiguration" @ string offset=2234
 .Linfo_string170:
-	.asciz	"~H264Params"           @ string offset=2294
+	.asciz	"sps_"                  @ string offset=2258
 .Linfo_string171:
-	.asciz	"~AVCDecoderConfiguration" @ string offset=2306
+	.asciz	"sps_length_"           @ string offset=2263
 .Linfo_string172:
-	.asciz	"_ZN23AVCDecoderConfiguration9GetBufferEv" @ string offset=2331
+	.asciz	"pps_"                  @ string offset=2275
 .Linfo_string173:
-	.asciz	"GetBuffer"             @ string offset=2372
+	.asciz	"pps_length_"           @ string offset=2280
 .Linfo_string174:
-	.asciz	"_ZN23AVCDecoderConfiguration15GetBufferLengthEv" @ string offset=2382
+	.asciz	"H264Params"            @ string offset=2292
 .Linfo_string175:
-	.asciz	"GetBufferLength"       @ string offset=2430
+	.asciz	"~H264Params"           @ string offset=2303
 .Linfo_string176:
-	.asciz	"_ZN6Golomb5GetUeER9BitStream" @ string offset=2446
+	.asciz	"~AVCDecoderConfiguration" @ string offset=2315
 .Linfo_string177:
-	.asciz	"GetUe"                 @ string offset=2475
+	.asciz	"_ZN23AVCDecoderConfiguration9GetBufferEv" @ string offset=2340
 .Linfo_string178:
-	.asciz	"_vptr$BitStream"       @ string offset=2481
+	.asciz	"GetBuffer"             @ string offset=2381
 .Linfo_string179:
-	.asciz	"data_"                 @ string offset=2497
+	.asciz	"_ZN23AVCDecoderConfiguration15GetBufferLengthEv" @ string offset=2391
 .Linfo_string180:
-	.asciz	"index_"                @ string offset=2503
+	.asciz	"GetBufferLength"       @ string offset=2439
 .Linfo_string181:
-	.asciz	"BitStream"             @ string offset=2510
+	.asciz	"_ZN23AVCDecoderConfiguration7WriteToEPc" @ string offset=2455
 .Linfo_string182:
-	.asciz	"~BitStream"            @ string offset=2520
+	.asciz	"_ZN23AVCDecoderConfiguration4SizeEv" @ string offset=2495
 .Linfo_string183:
-	.asciz	"_ZN9BitStream8ReadBitsEi" @ string offset=2531
+	.asciz	"_ZN23AVCDecoderConfiguration14ParseSPSAndPPSEiPhiS0_S0_Pi" @ string offset=2531
 .Linfo_string184:
-	.asciz	"ReadBits"              @ string offset=2556
+	.asciz	"ParseSPSAndPPS"        @ string offset=2589
 .Linfo_string185:
-	.asciz	"_ZN9BitStream9ReadBits1Ev" @ string offset=2565
+	.asciz	"_ZN6Golomb5GetUeER9BitStream" @ string offset=2604
 .Linfo_string186:
-	.asciz	"ReadBits1"             @ string offset=2591
+	.asciz	"GetUe"                 @ string offset=2633
 .Linfo_string187:
-	.asciz	"Golomb"                @ string offset=2601
+	.asciz	"_vptr$BitStream"       @ string offset=2639
 .Linfo_string188:
-	.asciz	"_ZN23AVCDecoderConfigurationC2ER10H264Params" @ string offset=2608
+	.asciz	"data_"                 @ string offset=2655
 .Linfo_string189:
-	.asciz	"_ZN23AVCDecoderConfigurationD2Ev" @ string offset=2653
+	.asciz	"index_"                @ string offset=2661
 .Linfo_string190:
-	.asciz	"_ZN23AVCDecoderConfigurationD0Ev" @ string offset=2686
+	.asciz	"BitStream"             @ string offset=2668
 .Linfo_string191:
-	.asciz	"this"                  @ string offset=2719
+	.asciz	"~BitStream"            @ string offset=2678
 .Linfo_string192:
-	.asciz	"params"                @ string offset=2724
+	.asciz	"_ZN9BitStream8ReadBitsEi" @ string offset=2689
 .Linfo_string193:
-	.asciz	"sps_length"            @ string offset=2731
+	.asciz	"ReadBits"              @ string offset=2714
 .Linfo_string194:
-	.asciz	"sps"                   @ string offset=2742
+	.asciz	"_ZN9BitStream9ReadBits1Ev" @ string offset=2723
 .Linfo_string195:
-	.asciz	"pps_length"            @ string offset=2746
+	.asciz	"ReadBits1"             @ string offset=2749
 .Linfo_string196:
-	.asciz	"pps"                   @ string offset=2757
+	.asciz	"Golomb"                @ string offset=2759
 .Linfo_string197:
-	.asciz	"output"                @ string offset=2761
+	.asciz	"_ZN23AVCDecoderConfigurationC2ER10H264Params" @ string offset=2766
 .Linfo_string198:
-	.asciz	"length"                @ string offset=2768
+	.asciz	"_ZN14IAVCPacketDataC2Ev" @ string offset=2811
 .Linfo_string199:
-	.asciz	"profile_idc"           @ string offset=2775
+	.asciz	"_ZN23AVCDecoderConfigurationD2Ev" @ string offset=2835
 .Linfo_string200:
-	.asciz	"i"                     @ string offset=2787
+	.asciz	"_ZN23AVCDecoderConfigurationD0Ev" @ string offset=2868
 .Linfo_string201:
-	.asciz	"bitStream"             @ string offset=2789
+	.asciz	"_ZN7IBufferC2Ev"       @ string offset=2901
 .Linfo_string202:
-	.asciz	"spsid"                 @ string offset=2799
+	.asciz	"this"                  @ string offset=2917
 .Linfo_string203:
-	.asciz	"chroma_format_idc"     @ string offset=2805
+	.asciz	"params"                @ string offset=2922
 .Linfo_string204:
-	.asciz	"residual_color_transform_flag" @ string offset=2823
+	.asciz	"sps_length"            @ string offset=2929
 .Linfo_string205:
-	.asciz	"depth_luma"            @ string offset=2853
+	.asciz	"sps"                   @ string offset=2940
 .Linfo_string206:
-	.asciz	"depth_chroma"          @ string offset=2864
+	.asciz	"pps_length"            @ string offset=2944
 .Linfo_string207:
-	.asciz	"bit_stream"            @ string offset=2877
+	.asciz	"pps"                   @ string offset=2955
 .Linfo_string208:
-	.asciz	"leading_zero_bits"     @ string offset=2888
+	.asciz	"output"                @ string offset=2959
 .Linfo_string209:
-	.asciz	"b"                     @ string offset=2906
+	.asciz	"length"                @ string offset=2966
 .Linfo_string210:
-	.asciz	"r"                     @ string offset=2908
+	.asciz	"profile_idc"           @ string offset=2973
+.Linfo_string211:
+	.asciz	"i"                     @ string offset=2985
+.Linfo_string212:
+	.asciz	"bitStream"             @ string offset=2987
+.Linfo_string213:
+	.asciz	"spsid"                 @ string offset=2997
+.Linfo_string214:
+	.asciz	"chroma_format_idc"     @ string offset=3003
+.Linfo_string215:
+	.asciz	"residual_color_transform_flag" @ string offset=3021
+.Linfo_string216:
+	.asciz	"depth_luma"            @ string offset=3051
+.Linfo_string217:
+	.asciz	"depth_chroma"          @ string offset=3062
+.Linfo_string218:
+	.asciz	"bit_stream"            @ string offset=3075
+.Linfo_string219:
+	.asciz	"leading_zero_bits"     @ string offset=3086
+.Linfo_string220:
+	.asciz	"b"                     @ string offset=3104
+.Linfo_string221:
+	.asciz	"r"                     @ string offset=3106
 	.section	.debug_abbrev,"",%progbits
 	.byte	1                       @ Abbreviation Code
 	.byte	17                      @ DW_TAG_compile_unit
@@ -1685,7 +1902,7 @@ _ZTI23AVCDecoderConfiguration:
 	.byte	3                       @ DW_AT_name
 	.byte	14                      @ DW_FORM_strp
 	.byte	11                      @ DW_AT_byte_size
-	.byte	11                      @ DW_FORM_data1
+	.byte	5                       @ DW_FORM_data2
 	.byte	58                      @ DW_AT_decl_file
 	.byte	11                      @ DW_FORM_data1
 	.byte	59                      @ DW_AT_decl_line
@@ -1693,37 +1910,29 @@ _ZTI23AVCDecoderConfiguration:
 	.byte	0                       @ EOM(1)
 	.byte	0                       @ EOM(2)
 	.byte	31                      @ Abbreviation Code
+	.byte	28                      @ DW_TAG_inheritance
+	.byte	0                       @ DW_CHILDREN_no
+	.byte	73                      @ DW_AT_type
+	.byte	19                      @ DW_FORM_ref4
+	.byte	56                      @ DW_AT_data_member_location
+	.byte	11                      @ DW_FORM_data1
+	.byte	50                      @ DW_AT_accessibility
+	.byte	11                      @ DW_FORM_data1
+	.byte	0                       @ EOM(1)
+	.byte	0                       @ EOM(2)
+	.byte	32                      @ Abbreviation Code
 	.byte	13                      @ DW_TAG_member
 	.byte	0                       @ DW_CHILDREN_no
 	.byte	3                       @ DW_AT_name
 	.byte	14                      @ DW_FORM_strp
 	.byte	73                      @ DW_AT_type
 	.byte	19                      @ DW_FORM_ref4
-	.byte	56                      @ DW_AT_data_member_location
-	.byte	11                      @ DW_FORM_data1
-	.byte	52                      @ DW_AT_artificial
-	.byte	25                      @ DW_FORM_flag_present
-	.byte	0                       @ EOM(1)
-	.byte	0                       @ EOM(2)
-	.byte	32                      @ Abbreviation Code
-	.byte	46                      @ DW_TAG_subprogram
-	.byte	1                       @ DW_CHILDREN_yes
-	.byte	110                     @ DW_AT_linkage_name
-	.byte	14                      @ DW_FORM_strp
-	.byte	3                       @ DW_AT_name
-	.byte	14                      @ DW_FORM_strp
 	.byte	58                      @ DW_AT_decl_file
 	.byte	11                      @ DW_FORM_data1
 	.byte	59                      @ DW_AT_decl_line
 	.byte	11                      @ DW_FORM_data1
-	.byte	73                      @ DW_AT_type
-	.byte	19                      @ DW_FORM_ref4
-	.byte	60                      @ DW_AT_declaration
-	.byte	25                      @ DW_FORM_flag_present
-	.byte	63                      @ DW_AT_external
-	.byte	25                      @ DW_FORM_flag_present
-	.byte	50                      @ DW_AT_accessibility
-	.byte	11                      @ DW_FORM_data1
+	.byte	56                      @ DW_AT_data_member_location
+	.byte	5                       @ DW_FORM_data2
 	.byte	0                       @ EOM(1)
 	.byte	0                       @ EOM(2)
 	.byte	33                      @ Abbreviation Code
@@ -1776,6 +1985,99 @@ _ZTI23AVCDecoderConfiguration:
 	.byte	0                       @ EOM(1)
 	.byte	0                       @ EOM(2)
 	.byte	36                      @ Abbreviation Code
+	.byte	46                      @ DW_TAG_subprogram
+	.byte	1                       @ DW_CHILDREN_yes
+	.byte	110                     @ DW_AT_linkage_name
+	.byte	14                      @ DW_FORM_strp
+	.byte	3                       @ DW_AT_name
+	.byte	14                      @ DW_FORM_strp
+	.byte	58                      @ DW_AT_decl_file
+	.byte	11                      @ DW_FORM_data1
+	.byte	59                      @ DW_AT_decl_line
+	.byte	11                      @ DW_FORM_data1
+	.byte	73                      @ DW_AT_type
+	.byte	19                      @ DW_FORM_ref4
+	.byte	60                      @ DW_AT_declaration
+	.byte	25                      @ DW_FORM_flag_present
+	.byte	63                      @ DW_AT_external
+	.byte	25                      @ DW_FORM_flag_present
+	.byte	50                      @ DW_AT_accessibility
+	.byte	11                      @ DW_FORM_data1
+	.byte	0                       @ EOM(1)
+	.byte	0                       @ EOM(2)
+	.byte	37                      @ Abbreviation Code
+	.byte	46                      @ DW_TAG_subprogram
+	.byte	1                       @ DW_CHILDREN_yes
+	.byte	110                     @ DW_AT_linkage_name
+	.byte	14                      @ DW_FORM_strp
+	.byte	3                       @ DW_AT_name
+	.byte	14                      @ DW_FORM_strp
+	.byte	58                      @ DW_AT_decl_file
+	.byte	11                      @ DW_FORM_data1
+	.byte	59                      @ DW_AT_decl_line
+	.byte	11                      @ DW_FORM_data1
+	.byte	73                      @ DW_AT_type
+	.byte	19                      @ DW_FORM_ref4
+	.byte	76                      @ DW_AT_virtuality
+	.byte	11                      @ DW_FORM_data1
+	.byte	77                      @ DW_AT_vtable_elem_location
+	.byte	24                      @ DW_FORM_exprloc
+	.byte	60                      @ DW_AT_declaration
+	.byte	25                      @ DW_FORM_flag_present
+	.byte	63                      @ DW_AT_external
+	.byte	25                      @ DW_FORM_flag_present
+	.byte	50                      @ DW_AT_accessibility
+	.byte	11                      @ DW_FORM_data1
+	.byte	29                      @ DW_AT_containing_type
+	.byte	19                      @ DW_FORM_ref4
+	.byte	0                       @ EOM(1)
+	.byte	0                       @ EOM(2)
+	.byte	38                      @ Abbreviation Code
+	.byte	2                       @ DW_TAG_class_type
+	.byte	1                       @ DW_CHILDREN_yes
+	.byte	29                      @ DW_AT_containing_type
+	.byte	19                      @ DW_FORM_ref4
+	.byte	54                      @ DW_AT_calling_convention
+	.byte	11                      @ DW_FORM_data1
+	.byte	3                       @ DW_AT_name
+	.byte	14                      @ DW_FORM_strp
+	.byte	11                      @ DW_AT_byte_size
+	.byte	11                      @ DW_FORM_data1
+	.byte	58                      @ DW_AT_decl_file
+	.byte	11                      @ DW_FORM_data1
+	.byte	59                      @ DW_AT_decl_line
+	.byte	11                      @ DW_FORM_data1
+	.byte	0                       @ EOM(1)
+	.byte	0                       @ EOM(2)
+	.byte	39                      @ Abbreviation Code
+	.byte	46                      @ DW_TAG_subprogram
+	.byte	1                       @ DW_CHILDREN_yes
+	.byte	3                       @ DW_AT_name
+	.byte	14                      @ DW_FORM_strp
+	.byte	60                      @ DW_AT_declaration
+	.byte	25                      @ DW_FORM_flag_present
+	.byte	52                      @ DW_AT_artificial
+	.byte	25                      @ DW_FORM_flag_present
+	.byte	63                      @ DW_AT_external
+	.byte	25                      @ DW_FORM_flag_present
+	.byte	50                      @ DW_AT_accessibility
+	.byte	11                      @ DW_FORM_data1
+	.byte	0                       @ EOM(1)
+	.byte	0                       @ EOM(2)
+	.byte	40                      @ Abbreviation Code
+	.byte	13                      @ DW_TAG_member
+	.byte	0                       @ DW_CHILDREN_no
+	.byte	3                       @ DW_AT_name
+	.byte	14                      @ DW_FORM_strp
+	.byte	73                      @ DW_AT_type
+	.byte	19                      @ DW_FORM_ref4
+	.byte	56                      @ DW_AT_data_member_location
+	.byte	11                      @ DW_FORM_data1
+	.byte	52                      @ DW_AT_artificial
+	.byte	25                      @ DW_FORM_flag_present
+	.byte	0                       @ EOM(1)
+	.byte	0                       @ EOM(2)
+	.byte	41                      @ Abbreviation Code
 	.byte	15                      @ DW_TAG_pointer_type
 	.byte	0                       @ DW_CHILDREN_no
 	.byte	73                      @ DW_AT_type
@@ -1784,21 +2086,48 @@ _ZTI23AVCDecoderConfiguration:
 	.byte	14                      @ DW_FORM_strp
 	.byte	0                       @ EOM(1)
 	.byte	0                       @ EOM(2)
-	.byte	37                      @ Abbreviation Code
+	.byte	42                      @ Abbreviation Code
 	.byte	21                      @ DW_TAG_subroutine_type
 	.byte	0                       @ DW_CHILDREN_no
 	.byte	73                      @ DW_AT_type
 	.byte	19                      @ DW_FORM_ref4
 	.byte	0                       @ EOM(1)
 	.byte	0                       @ EOM(2)
-	.byte	38                      @ Abbreviation Code
+	.byte	43                      @ Abbreviation Code
+	.byte	1                       @ DW_TAG_array_type
+	.byte	1                       @ DW_CHILDREN_yes
+	.byte	73                      @ DW_AT_type
+	.byte	19                      @ DW_FORM_ref4
+	.byte	0                       @ EOM(1)
+	.byte	0                       @ EOM(2)
+	.byte	44                      @ Abbreviation Code
+	.byte	33                      @ DW_TAG_subrange_type
+	.byte	0                       @ DW_CHILDREN_no
+	.byte	73                      @ DW_AT_type
+	.byte	19                      @ DW_FORM_ref4
+	.byte	55                      @ DW_AT_count
+	.byte	5                       @ DW_FORM_data2
+	.byte	0                       @ EOM(1)
+	.byte	0                       @ EOM(2)
+	.byte	45                      @ Abbreviation Code
+	.byte	36                      @ DW_TAG_base_type
+	.byte	0                       @ DW_CHILDREN_no
+	.byte	3                       @ DW_AT_name
+	.byte	14                      @ DW_FORM_strp
+	.byte	11                      @ DW_AT_byte_size
+	.byte	11                      @ DW_FORM_data1
+	.byte	62                      @ DW_AT_encoding
+	.byte	11                      @ DW_FORM_data1
+	.byte	0                       @ EOM(1)
+	.byte	0                       @ EOM(2)
+	.byte	46                      @ Abbreviation Code
 	.byte	16                      @ DW_TAG_reference_type
 	.byte	0                       @ DW_CHILDREN_no
 	.byte	73                      @ DW_AT_type
 	.byte	19                      @ DW_FORM_ref4
 	.byte	0                       @ EOM(1)
 	.byte	0                       @ EOM(2)
-	.byte	39                      @ Abbreviation Code
+	.byte	47                      @ Abbreviation Code
 	.byte	2                       @ DW_TAG_class_type
 	.byte	1                       @ DW_CHILDREN_yes
 	.byte	54                      @ DW_AT_calling_convention
@@ -1813,7 +2142,7 @@ _ZTI23AVCDecoderConfiguration:
 	.byte	11                      @ DW_FORM_data1
 	.byte	0                       @ EOM(1)
 	.byte	0                       @ EOM(2)
-	.byte	40                      @ Abbreviation Code
+	.byte	48                      @ Abbreviation Code
 	.byte	13                      @ DW_TAG_member
 	.byte	0                       @ DW_CHILDREN_no
 	.byte	3                       @ DW_AT_name
@@ -1830,7 +2159,7 @@ _ZTI23AVCDecoderConfiguration:
 	.byte	11                      @ DW_FORM_data1
 	.byte	0                       @ EOM(1)
 	.byte	0                       @ EOM(2)
-	.byte	41                      @ Abbreviation Code
+	.byte	49                      @ Abbreviation Code
 	.byte	46                      @ DW_TAG_subprogram
 	.byte	1                       @ DW_CHILDREN_yes
 	.byte	17                      @ DW_AT_low_pc
@@ -1851,7 +2180,7 @@ _ZTI23AVCDecoderConfiguration:
 	.byte	19                      @ DW_FORM_ref4
 	.byte	0                       @ EOM(1)
 	.byte	0                       @ EOM(2)
-	.byte	42                      @ Abbreviation Code
+	.byte	50                      @ Abbreviation Code
 	.byte	5                       @ DW_TAG_formal_parameter
 	.byte	0                       @ DW_CHILDREN_no
 	.byte	2                       @ DW_AT_location
@@ -1864,7 +2193,7 @@ _ZTI23AVCDecoderConfiguration:
 	.byte	25                      @ DW_FORM_flag_present
 	.byte	0                       @ EOM(1)
 	.byte	0                       @ EOM(2)
-	.byte	43                      @ Abbreviation Code
+	.byte	51                      @ Abbreviation Code
 	.byte	5                       @ DW_TAG_formal_parameter
 	.byte	0                       @ DW_CHILDREN_no
 	.byte	2                       @ DW_AT_location
@@ -1879,7 +2208,7 @@ _ZTI23AVCDecoderConfiguration:
 	.byte	19                      @ DW_FORM_ref4
 	.byte	0                       @ EOM(1)
 	.byte	0                       @ EOM(2)
-	.byte	44                      @ Abbreviation Code
+	.byte	52                      @ Abbreviation Code
 	.byte	46                      @ DW_TAG_subprogram
 	.byte	1                       @ DW_CHILDREN_yes
 	.byte	17                      @ DW_AT_low_pc
@@ -1896,7 +2225,7 @@ _ZTI23AVCDecoderConfiguration:
 	.byte	19                      @ DW_FORM_ref4
 	.byte	0                       @ EOM(1)
 	.byte	0                       @ EOM(2)
-	.byte	45                      @ Abbreviation Code
+	.byte	53                      @ Abbreviation Code
 	.byte	52                      @ DW_TAG_variable
 	.byte	0                       @ DW_CHILDREN_no
 	.byte	2                       @ DW_AT_location
@@ -1911,14 +2240,14 @@ _ZTI23AVCDecoderConfiguration:
 	.byte	19                      @ DW_FORM_ref4
 	.byte	0                       @ EOM(1)
 	.byte	0                       @ EOM(2)
-	.byte	46                      @ Abbreviation Code
+	.byte	54                      @ Abbreviation Code
 	.byte	11                      @ DW_TAG_lexical_block
 	.byte	1                       @ DW_CHILDREN_yes
 	.byte	85                      @ DW_AT_ranges
 	.byte	23                      @ DW_FORM_sec_offset
 	.byte	0                       @ EOM(1)
 	.byte	0                       @ EOM(2)
-	.byte	47                      @ Abbreviation Code
+	.byte	55                      @ Abbreviation Code
 	.byte	11                      @ DW_TAG_lexical_block
 	.byte	1                       @ DW_CHILDREN_yes
 	.byte	17                      @ DW_AT_low_pc
@@ -1927,7 +2256,26 @@ _ZTI23AVCDecoderConfiguration:
 	.byte	6                       @ DW_FORM_data4
 	.byte	0                       @ EOM(1)
 	.byte	0                       @ EOM(2)
-	.byte	48                      @ Abbreviation Code
+	.byte	56                      @ Abbreviation Code
+	.byte	46                      @ DW_TAG_subprogram
+	.byte	1                       @ DW_CHILDREN_yes
+	.byte	17                      @ DW_AT_low_pc
+	.byte	1                       @ DW_FORM_addr
+	.byte	18                      @ DW_AT_high_pc
+	.byte	6                       @ DW_FORM_data4
+	.byte	64                      @ DW_AT_frame_base
+	.byte	24                      @ DW_FORM_exprloc
+	.byte	100                     @ DW_AT_object_pointer
+	.byte	19                      @ DW_FORM_ref4
+	.byte	58                      @ DW_AT_decl_file
+	.byte	11                      @ DW_FORM_data1
+	.byte	59                      @ DW_AT_decl_line
+	.byte	11                      @ DW_FORM_data1
+	.byte	71                      @ DW_AT_specification
+	.byte	19                      @ DW_FORM_ref4
+	.byte	0                       @ EOM(1)
+	.byte	0                       @ EOM(2)
+	.byte	57                      @ Abbreviation Code
 	.byte	46                      @ DW_TAG_subprogram
 	.byte	1                       @ DW_CHILDREN_yes
 	.byte	17                      @ DW_AT_low_pc
@@ -1948,7 +2296,7 @@ _ZTI23AVCDecoderConfiguration:
 	.short	4                       @ DWARF version number
 	.long	.debug_abbrev           @ Offset Into Abbrev. Section
 	.byte	4                       @ Address Size (in bytes)
-	.byte	1                       @ Abbrev [1] 0xb:0xf46 DW_TAG_compile_unit
+	.byte	1                       @ Abbrev [1] 0xb:0x10d1 DW_TAG_compile_unit
 	.long	.Linfo_string0          @ DW_AT_producer
 	.short	4                       @ DW_AT_language
 	.long	.Linfo_string1          @ DW_AT_name
@@ -3502,450 +3850,668 @@ _ZTI23AVCDecoderConfiguration:
 	.byte	0                       @ End Of Children Mark
 	.byte	16                      @ Abbrev [16] 0xb90:0x5 DW_TAG_const_type
 	.long	1063                    @ DW_AT_type
-	.byte	30                      @ Abbrev [30] 0xb95:0xb4 DW_TAG_class_type
+	.byte	30                      @ Abbrev [30] 0xb95:0xf3 DW_TAG_class_type
+	.long	3241                    @ DW_AT_containing_type
+	.byte	4                       @ DW_AT_calling_convention
+	.long	.Linfo_string169        @ DW_AT_name
+	.short	1032                    @ DW_AT_byte_size
+	.byte	22                      @ DW_AT_decl_file
+	.byte	11                      @ DW_AT_decl_line
+	.byte	31                      @ Abbrev [31] 0xba3:0x7 DW_TAG_inheritance
+	.long	3208                    @ DW_AT_type
+	.byte	0                       @ DW_AT_data_member_location
+	.byte	1                       @ DW_AT_accessibility
+                                        @ DW_ACCESS_public
+	.byte	12                      @ Abbrev [12] 0xbaa:0xc DW_TAG_member
+	.long	.Linfo_string166        @ DW_AT_name
+	.long	3366                    @ DW_AT_type
+	.byte	22                      @ DW_AT_decl_file
+	.byte	30                      @ DW_AT_decl_line
+	.byte	4                       @ DW_AT_data_member_location
+	.byte	32                      @ Abbrev [32] 0xbb6:0xd DW_TAG_member
+	.long	.Linfo_string168        @ DW_AT_name
+	.long	830                     @ DW_AT_type
+	.byte	22                      @ DW_AT_decl_file
+	.byte	31                      @ DW_AT_decl_line
+	.short	1028                    @ DW_AT_data_member_location
+	.byte	33                      @ Abbrev [33] 0xbc3:0x13 DW_TAG_subprogram
+	.long	.Linfo_string169        @ DW_AT_name
+	.byte	22                      @ DW_AT_decl_file
+	.byte	14                      @ DW_AT_decl_line
+                                        @ DW_AT_declaration
+                                        @ DW_AT_external
+	.byte	1                       @ DW_AT_accessibility
+                                        @ DW_ACCESS_public
+	.byte	34                      @ Abbrev [34] 0xbcb:0x5 DW_TAG_formal_parameter
+	.long	3386                    @ DW_AT_type
+                                        @ DW_AT_artificial
+	.byte	14                      @ Abbrev [14] 0xbd0:0x5 DW_TAG_formal_parameter
+	.long	3391                    @ DW_AT_type
+	.byte	0                       @ End Of Children Mark
+	.byte	35                      @ Abbrev [35] 0xbd6:0x16 DW_TAG_subprogram
+	.long	.Linfo_string176        @ DW_AT_name
+	.byte	22                      @ DW_AT_decl_file
+	.byte	16                      @ DW_AT_decl_line
+	.byte	1                       @ DW_AT_virtuality
+	.byte	2                       @ DW_AT_vtable_elem_location
+	.byte	16
+	.byte	0
+                                        @ DW_AT_declaration
+                                        @ DW_AT_external
+	.byte	1                       @ DW_AT_accessibility
+                                        @ DW_ACCESS_public
 	.long	2965                    @ DW_AT_containing_type
+	.byte	34                      @ Abbrev [34] 0xbe6:0x5 DW_TAG_formal_parameter
+	.long	3386                    @ DW_AT_type
+                                        @ DW_AT_artificial
+	.byte	0                       @ End Of Children Mark
+	.byte	36                      @ Abbrev [36] 0xbec:0x16 DW_TAG_subprogram
+	.long	.Linfo_string177        @ DW_AT_linkage_name
+	.long	.Linfo_string178        @ DW_AT_name
+	.byte	22                      @ DW_AT_decl_file
+	.byte	18                      @ DW_AT_decl_line
+	.long	3496                    @ DW_AT_type
+                                        @ DW_AT_declaration
+                                        @ DW_AT_external
+	.byte	1                       @ DW_AT_accessibility
+                                        @ DW_ACCESS_public
+	.byte	34                      @ Abbrev [34] 0xbfc:0x5 DW_TAG_formal_parameter
+	.long	3386                    @ DW_AT_type
+                                        @ DW_AT_artificial
+	.byte	0                       @ End Of Children Mark
+	.byte	36                      @ Abbrev [36] 0xc02:0x16 DW_TAG_subprogram
+	.long	.Linfo_string179        @ DW_AT_linkage_name
+	.long	.Linfo_string180        @ DW_AT_name
+	.byte	22                      @ DW_AT_decl_file
+	.byte	20                      @ DW_AT_decl_line
+	.long	830                     @ DW_AT_type
+                                        @ DW_AT_declaration
+                                        @ DW_AT_external
+	.byte	1                       @ DW_AT_accessibility
+                                        @ DW_ACCESS_public
+	.byte	34                      @ Abbrev [34] 0xc12:0x5 DW_TAG_formal_parameter
+	.long	3386                    @ DW_AT_type
+                                        @ DW_AT_artificial
+	.byte	0                       @ End Of Children Mark
+	.byte	37                      @ Abbrev [37] 0xc18:0x23 DW_TAG_subprogram
+	.long	.Linfo_string181        @ DW_AT_linkage_name
+	.long	.Linfo_string161        @ DW_AT_name
+	.byte	22                      @ DW_AT_decl_file
+	.byte	22                      @ DW_AT_decl_line
+	.long	1158                    @ DW_AT_type
+	.byte	1                       @ DW_AT_virtuality
+	.byte	2                       @ DW_AT_vtable_elem_location
+	.byte	16
+	.byte	0
+                                        @ DW_AT_declaration
+                                        @ DW_AT_external
+	.byte	1                       @ DW_AT_accessibility
+                                        @ DW_ACCESS_public
+	.long	2965                    @ DW_AT_containing_type
+	.byte	34                      @ Abbrev [34] 0xc30:0x5 DW_TAG_formal_parameter
+	.long	3386                    @ DW_AT_type
+                                        @ DW_AT_artificial
+	.byte	14                      @ Abbrev [14] 0xc35:0x5 DW_TAG_formal_parameter
+	.long	1158                    @ DW_AT_type
+	.byte	0                       @ End Of Children Mark
+	.byte	37                      @ Abbrev [37] 0xc3b:0x1e DW_TAG_subprogram
+	.long	.Linfo_string182        @ DW_AT_linkage_name
+	.long	.Linfo_string163        @ DW_AT_name
+	.byte	22                      @ DW_AT_decl_file
+	.byte	24                      @ DW_AT_decl_line
+	.long	830                     @ DW_AT_type
+	.byte	1                       @ DW_AT_virtuality
+	.byte	2                       @ DW_AT_vtable_elem_location
+	.byte	16
+	.byte	1
+                                        @ DW_AT_declaration
+                                        @ DW_AT_external
+	.byte	1                       @ DW_AT_accessibility
+                                        @ DW_ACCESS_public
+	.long	2965                    @ DW_AT_containing_type
+	.byte	34                      @ Abbrev [34] 0xc53:0x5 DW_TAG_formal_parameter
+	.long	3386                    @ DW_AT_type
+                                        @ DW_AT_artificial
+	.byte	0                       @ End Of Children Mark
+	.byte	18                      @ Abbrev [18] 0xc59:0x2e DW_TAG_subprogram
+	.long	.Linfo_string183        @ DW_AT_linkage_name
+	.long	.Linfo_string184        @ DW_AT_name
+	.byte	22                      @ DW_AT_decl_file
+	.byte	27                      @ DW_AT_decl_line
+	.long	830                     @ DW_AT_type
+                                        @ DW_AT_declaration
+                                        @ DW_AT_external
+	.byte	14                      @ Abbrev [14] 0xc68:0x5 DW_TAG_formal_parameter
+	.long	830                     @ DW_AT_type
+	.byte	14                      @ Abbrev [14] 0xc6d:0x5 DW_TAG_formal_parameter
+	.long	3496                    @ DW_AT_type
+	.byte	14                      @ Abbrev [14] 0xc72:0x5 DW_TAG_formal_parameter
+	.long	830                     @ DW_AT_type
+	.byte	14                      @ Abbrev [14] 0xc77:0x5 DW_TAG_formal_parameter
+	.long	3496                    @ DW_AT_type
+	.byte	14                      @ Abbrev [14] 0xc7c:0x5 DW_TAG_formal_parameter
+	.long	3496                    @ DW_AT_type
+	.byte	14                      @ Abbrev [14] 0xc81:0x5 DW_TAG_formal_parameter
+	.long	3506                    @ DW_AT_type
+	.byte	0                       @ End Of Children Mark
+	.byte	0                       @ End Of Children Mark
+	.byte	38                      @ Abbrev [38] 0xc88:0x21 DW_TAG_class_type
+	.long	3241                    @ DW_AT_containing_type
+	.byte	4                       @ DW_AT_calling_convention
+	.long	.Linfo_string165        @ DW_AT_name
+	.byte	4                       @ DW_AT_byte_size
+	.byte	21                      @ DW_AT_decl_file
+	.byte	11                      @ DW_AT_decl_line
+	.byte	31                      @ Abbrev [31] 0xc95:0x7 DW_TAG_inheritance
+	.long	3241                    @ DW_AT_type
+	.byte	0                       @ DW_AT_data_member_location
+	.byte	1                       @ DW_AT_accessibility
+                                        @ DW_ACCESS_public
+	.byte	39                      @ Abbrev [39] 0xc9c:0xc DW_TAG_subprogram
+	.long	.Linfo_string165        @ DW_AT_name
+                                        @ DW_AT_declaration
+                                        @ DW_AT_artificial
+                                        @ DW_AT_external
+	.byte	1                       @ DW_AT_accessibility
+                                        @ DW_ACCESS_public
+	.byte	34                      @ Abbrev [34] 0xca2:0x5 DW_TAG_formal_parameter
+	.long	3563                    @ DW_AT_type
+                                        @ DW_AT_artificial
+	.byte	0                       @ End Of Children Mark
+	.byte	0                       @ End Of Children Mark
+	.byte	38                      @ Abbrev [38] 0xca9:0x65 DW_TAG_class_type
+	.long	3241                    @ DW_AT_containing_type
 	.byte	4                       @ DW_AT_calling_convention
 	.long	.Linfo_string164        @ DW_AT_name
-	.byte	12                      @ DW_AT_byte_size
+	.byte	4                       @ DW_AT_byte_size
 	.byte	20                      @ DW_AT_decl_file
-	.byte	10                      @ DW_AT_decl_line
-	.byte	31                      @ Abbrev [31] 0xba2:0xa DW_TAG_member
+	.byte	9                       @ DW_AT_decl_line
+	.byte	40                      @ Abbrev [40] 0xcb6:0xa DW_TAG_member
 	.long	.Linfo_string158        @ DW_AT_name
-	.long	3145                    @ DW_AT_type
+	.long	3342                    @ DW_AT_type
 	.byte	0                       @ DW_AT_data_member_location
                                         @ DW_AT_artificial
-	.byte	12                      @ Abbrev [12] 0xbac:0xc DW_TAG_member
-	.long	.Linfo_string160        @ DW_AT_name
-	.long	3164                    @ DW_AT_type
-	.byte	20                      @ DW_AT_decl_file
-	.byte	26                      @ DW_AT_decl_line
-	.byte	4                       @ DW_AT_data_member_location
-	.byte	12                      @ Abbrev [12] 0xbb8:0xc DW_TAG_member
+	.byte	37                      @ Abbrev [37] 0xcc0:0x23 DW_TAG_subprogram
+	.long	.Linfo_string160        @ DW_AT_linkage_name
 	.long	.Linfo_string161        @ DW_AT_name
-	.long	830                     @ DW_AT_type
 	.byte	20                      @ DW_AT_decl_file
-	.byte	27                      @ DW_AT_decl_line
-	.byte	8                       @ DW_AT_data_member_location
-	.byte	32                      @ Abbrev [32] 0xbc4:0x2f DW_TAG_subprogram
+	.byte	12                      @ DW_AT_decl_line
+	.long	1158                    @ DW_AT_type
+	.byte	2                       @ DW_AT_virtuality
+	.byte	2                       @ DW_AT_vtable_elem_location
+	.byte	16
+	.byte	0
+                                        @ DW_AT_declaration
+                                        @ DW_AT_external
+	.byte	1                       @ DW_AT_accessibility
+                                        @ DW_ACCESS_public
+	.long	3241                    @ DW_AT_containing_type
+	.byte	34                      @ Abbrev [34] 0xcd8:0x5 DW_TAG_formal_parameter
+	.long	3361                    @ DW_AT_type
+                                        @ DW_AT_artificial
+	.byte	14                      @ Abbrev [14] 0xcdd:0x5 DW_TAG_formal_parameter
+	.long	1158                    @ DW_AT_type
+	.byte	0                       @ End Of Children Mark
+	.byte	37                      @ Abbrev [37] 0xce3:0x1e DW_TAG_subprogram
 	.long	.Linfo_string162        @ DW_AT_linkage_name
 	.long	.Linfo_string163        @ DW_AT_name
 	.byte	20                      @ DW_AT_decl_file
 	.byte	13                      @ DW_AT_decl_line
 	.long	830                     @ DW_AT_type
-                                        @ DW_AT_declaration
-                                        @ DW_AT_external
-	.byte	1                       @ DW_AT_accessibility
-                                        @ DW_ACCESS_public
-	.byte	14                      @ Abbrev [14] 0xbd4:0x5 DW_TAG_formal_parameter
-	.long	830                     @ DW_AT_type
-	.byte	14                      @ Abbrev [14] 0xbd9:0x5 DW_TAG_formal_parameter
-	.long	3164                    @ DW_AT_type
-	.byte	14                      @ Abbrev [14] 0xbde:0x5 DW_TAG_formal_parameter
-	.long	830                     @ DW_AT_type
-	.byte	14                      @ Abbrev [14] 0xbe3:0x5 DW_TAG_formal_parameter
-	.long	3164                    @ DW_AT_type
-	.byte	14                      @ Abbrev [14] 0xbe8:0x5 DW_TAG_formal_parameter
-	.long	3164                    @ DW_AT_type
-	.byte	14                      @ Abbrev [14] 0xbed:0x5 DW_TAG_formal_parameter
-	.long	3169                    @ DW_AT_type
-	.byte	0                       @ End Of Children Mark
-	.byte	33                      @ Abbrev [33] 0xbf3:0x13 DW_TAG_subprogram
-	.long	.Linfo_string164        @ DW_AT_name
-	.byte	20                      @ DW_AT_decl_file
-	.byte	17                      @ DW_AT_decl_line
-                                        @ DW_AT_declaration
-                                        @ DW_AT_external
-	.byte	1                       @ DW_AT_accessibility
-                                        @ DW_ACCESS_public
-	.byte	34                      @ Abbrev [34] 0xbfb:0x5 DW_TAG_formal_parameter
-	.long	3174                    @ DW_AT_type
-                                        @ DW_AT_artificial
-	.byte	14                      @ Abbrev [14] 0xc00:0x5 DW_TAG_formal_parameter
-	.long	3179                    @ DW_AT_type
-	.byte	0                       @ End Of Children Mark
-	.byte	35                      @ Abbrev [35] 0xc06:0x16 DW_TAG_subprogram
-	.long	.Linfo_string171        @ DW_AT_name
-	.byte	20                      @ DW_AT_decl_file
-	.byte	19                      @ DW_AT_decl_line
-	.byte	1                       @ DW_AT_virtuality
+	.byte	2                       @ DW_AT_virtuality
 	.byte	2                       @ DW_AT_vtable_elem_location
 	.byte	16
-	.byte	0
+	.byte	1
                                         @ DW_AT_declaration
                                         @ DW_AT_external
 	.byte	1                       @ DW_AT_accessibility
                                         @ DW_ACCESS_public
-	.long	2965                    @ DW_AT_containing_type
-	.byte	34                      @ Abbrev [34] 0xc16:0x5 DW_TAG_formal_parameter
-	.long	3174                    @ DW_AT_type
+	.long	3241                    @ DW_AT_containing_type
+	.byte	34                      @ Abbrev [34] 0xcfb:0x5 DW_TAG_formal_parameter
+	.long	3361                    @ DW_AT_type
                                         @ DW_AT_artificial
 	.byte	0                       @ End Of Children Mark
-	.byte	32                      @ Abbrev [32] 0xc1c:0x16 DW_TAG_subprogram
-	.long	.Linfo_string172        @ DW_AT_linkage_name
-	.long	.Linfo_string173        @ DW_AT_name
-	.byte	20                      @ DW_AT_decl_file
-	.byte	21                      @ DW_AT_decl_line
-	.long	3164                    @ DW_AT_type
+	.byte	39                      @ Abbrev [39] 0xd01:0xc DW_TAG_subprogram
+	.long	.Linfo_string164        @ DW_AT_name
                                         @ DW_AT_declaration
+                                        @ DW_AT_artificial
                                         @ DW_AT_external
 	.byte	1                       @ DW_AT_accessibility
                                         @ DW_ACCESS_public
-	.byte	34                      @ Abbrev [34] 0xc2c:0x5 DW_TAG_formal_parameter
-	.long	3174                    @ DW_AT_type
-                                        @ DW_AT_artificial
-	.byte	0                       @ End Of Children Mark
-	.byte	32                      @ Abbrev [32] 0xc32:0x16 DW_TAG_subprogram
-	.long	.Linfo_string174        @ DW_AT_linkage_name
-	.long	.Linfo_string175        @ DW_AT_name
-	.byte	20                      @ DW_AT_decl_file
-	.byte	23                      @ DW_AT_decl_line
-	.long	830                     @ DW_AT_type
-                                        @ DW_AT_declaration
-                                        @ DW_AT_external
-	.byte	1                       @ DW_AT_accessibility
-                                        @ DW_ACCESS_public
-	.byte	34                      @ Abbrev [34] 0xc42:0x5 DW_TAG_formal_parameter
-	.long	3174                    @ DW_AT_type
+	.byte	34                      @ Abbrev [34] 0xd07:0x5 DW_TAG_formal_parameter
+	.long	3361                    @ DW_AT_type
                                         @ DW_AT_artificial
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
-	.byte	15                      @ Abbrev [15] 0xc49:0x5 DW_TAG_pointer_type
-	.long	3150                    @ DW_AT_type
-	.byte	36                      @ Abbrev [36] 0xc4e:0x9 DW_TAG_pointer_type
-	.long	3159                    @ DW_AT_type
+	.byte	15                      @ Abbrev [15] 0xd0e:0x5 DW_TAG_pointer_type
+	.long	3347                    @ DW_AT_type
+	.byte	41                      @ Abbrev [41] 0xd13:0x9 DW_TAG_pointer_type
+	.long	3356                    @ DW_AT_type
 	.long	.Linfo_string159        @ DW_AT_name
-	.byte	37                      @ Abbrev [37] 0xc57:0x5 DW_TAG_subroutine_type
+	.byte	42                      @ Abbrev [42] 0xd1c:0x5 DW_TAG_subroutine_type
 	.long	830                     @ DW_AT_type
-	.byte	15                      @ Abbrev [15] 0xc5c:0x5 DW_TAG_pointer_type
+	.byte	15                      @ Abbrev [15] 0xd21:0x5 DW_TAG_pointer_type
+	.long	3241                    @ DW_AT_type
+	.byte	43                      @ Abbrev [43] 0xd26:0xd DW_TAG_array_type
 	.long	2051                    @ DW_AT_type
-	.byte	15                      @ Abbrev [15] 0xc61:0x5 DW_TAG_pointer_type
-	.long	830                     @ DW_AT_type
-	.byte	15                      @ Abbrev [15] 0xc66:0x5 DW_TAG_pointer_type
+	.byte	44                      @ Abbrev [44] 0xd2b:0x7 DW_TAG_subrange_type
+	.long	3379                    @ DW_AT_type
+	.short	1024                    @ DW_AT_count
+	.byte	0                       @ End Of Children Mark
+	.byte	45                      @ Abbrev [45] 0xd33:0x7 DW_TAG_base_type
+	.long	.Linfo_string167        @ DW_AT_name
+	.byte	8                       @ DW_AT_byte_size
+	.byte	7                       @ DW_AT_encoding
+	.byte	15                      @ Abbrev [15] 0xd3a:0x5 DW_TAG_pointer_type
 	.long	2965                    @ DW_AT_type
-	.byte	38                      @ Abbrev [38] 0xc6b:0x5 DW_TAG_reference_type
-	.long	3184                    @ DW_AT_type
-	.byte	39                      @ Abbrev [39] 0xc70:0x64 DW_TAG_class_type
+	.byte	46                      @ Abbrev [46] 0xd3f:0x5 DW_TAG_reference_type
+	.long	3396                    @ DW_AT_type
+	.byte	47                      @ Abbrev [47] 0xd44:0x64 DW_TAG_class_type
 	.byte	4                       @ DW_AT_calling_convention
-	.long	.Linfo_string169        @ DW_AT_name
+	.long	.Linfo_string174        @ DW_AT_name
 	.byte	16                      @ DW_AT_byte_size
-	.byte	21                      @ DW_AT_decl_file
+	.byte	23                      @ DW_AT_decl_file
 	.byte	10                      @ DW_AT_decl_line
-	.byte	40                      @ Abbrev [40] 0xc79:0xd DW_TAG_member
-	.long	.Linfo_string165        @ DW_AT_name
-	.long	3164                    @ DW_AT_type
-	.byte	21                      @ DW_AT_decl_file
+	.byte	48                      @ Abbrev [48] 0xd4d:0xd DW_TAG_member
+	.long	.Linfo_string170        @ DW_AT_name
+	.long	3496                    @ DW_AT_type
+	.byte	23                      @ DW_AT_decl_file
 	.byte	16                      @ DW_AT_decl_line
 	.byte	0                       @ DW_AT_data_member_location
 	.byte	1                       @ DW_AT_accessibility
                                         @ DW_ACCESS_public
-	.byte	40                      @ Abbrev [40] 0xc86:0xd DW_TAG_member
-	.long	.Linfo_string166        @ DW_AT_name
+	.byte	48                      @ Abbrev [48] 0xd5a:0xd DW_TAG_member
+	.long	.Linfo_string171        @ DW_AT_name
 	.long	830                     @ DW_AT_type
-	.byte	21                      @ DW_AT_decl_file
+	.byte	23                      @ DW_AT_decl_file
 	.byte	17                      @ DW_AT_decl_line
 	.byte	4                       @ DW_AT_data_member_location
 	.byte	1                       @ DW_AT_accessibility
                                         @ DW_ACCESS_public
-	.byte	40                      @ Abbrev [40] 0xc93:0xd DW_TAG_member
-	.long	.Linfo_string167        @ DW_AT_name
-	.long	3164                    @ DW_AT_type
-	.byte	21                      @ DW_AT_decl_file
+	.byte	48                      @ Abbrev [48] 0xd67:0xd DW_TAG_member
+	.long	.Linfo_string172        @ DW_AT_name
+	.long	3496                    @ DW_AT_type
+	.byte	23                      @ DW_AT_decl_file
 	.byte	18                      @ DW_AT_decl_line
 	.byte	8                       @ DW_AT_data_member_location
 	.byte	1                       @ DW_AT_accessibility
                                         @ DW_ACCESS_public
-	.byte	40                      @ Abbrev [40] 0xca0:0xd DW_TAG_member
-	.long	.Linfo_string168        @ DW_AT_name
+	.byte	48                      @ Abbrev [48] 0xd74:0xd DW_TAG_member
+	.long	.Linfo_string173        @ DW_AT_name
 	.long	830                     @ DW_AT_type
-	.byte	21                      @ DW_AT_decl_file
+	.byte	23                      @ DW_AT_decl_file
 	.byte	19                      @ DW_AT_decl_line
 	.byte	12                      @ DW_AT_data_member_location
 	.byte	1                       @ DW_AT_accessibility
                                         @ DW_ACCESS_public
-	.byte	33                      @ Abbrev [33] 0xcad:0x18 DW_TAG_subprogram
-	.long	.Linfo_string169        @ DW_AT_name
-	.byte	21                      @ DW_AT_decl_file
+	.byte	33                      @ Abbrev [33] 0xd81:0x18 DW_TAG_subprogram
+	.long	.Linfo_string174        @ DW_AT_name
+	.byte	23                      @ DW_AT_decl_file
 	.byte	13                      @ DW_AT_decl_line
                                         @ DW_AT_declaration
                                         @ DW_AT_external
 	.byte	1                       @ DW_AT_accessibility
                                         @ DW_ACCESS_public
-	.byte	34                      @ Abbrev [34] 0xcb5:0x5 DW_TAG_formal_parameter
-	.long	3284                    @ DW_AT_type
+	.byte	34                      @ Abbrev [34] 0xd89:0x5 DW_TAG_formal_parameter
+	.long	3501                    @ DW_AT_type
                                         @ DW_AT_artificial
-	.byte	14                      @ Abbrev [14] 0xcba:0x5 DW_TAG_formal_parameter
-	.long	3164                    @ DW_AT_type
-	.byte	14                      @ Abbrev [14] 0xcbf:0x5 DW_TAG_formal_parameter
+	.byte	14                      @ Abbrev [14] 0xd8e:0x5 DW_TAG_formal_parameter
+	.long	3496                    @ DW_AT_type
+	.byte	14                      @ Abbrev [14] 0xd93:0x5 DW_TAG_formal_parameter
 	.long	830                     @ DW_AT_type
 	.byte	0                       @ End Of Children Mark
-	.byte	33                      @ Abbrev [33] 0xcc5:0xe DW_TAG_subprogram
-	.long	.Linfo_string170        @ DW_AT_name
-	.byte	21                      @ DW_AT_decl_file
+	.byte	33                      @ Abbrev [33] 0xd99:0xe DW_TAG_subprogram
+	.long	.Linfo_string175        @ DW_AT_name
+	.byte	23                      @ DW_AT_decl_file
 	.byte	14                      @ DW_AT_decl_line
                                         @ DW_AT_declaration
                                         @ DW_AT_external
 	.byte	1                       @ DW_AT_accessibility
                                         @ DW_ACCESS_public
-	.byte	34                      @ Abbrev [34] 0xccd:0x5 DW_TAG_formal_parameter
-	.long	3284                    @ DW_AT_type
+	.byte	34                      @ Abbrev [34] 0xda1:0x5 DW_TAG_formal_parameter
+	.long	3501                    @ DW_AT_type
                                         @ DW_AT_artificial
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
-	.byte	15                      @ Abbrev [15] 0xcd4:0x5 DW_TAG_pointer_type
-	.long	3184                    @ DW_AT_type
-	.byte	41                      @ Abbrev [41] 0xcd9:0x34 DW_TAG_subprogram
+	.byte	15                      @ Abbrev [15] 0xda8:0x5 DW_TAG_pointer_type
+	.long	2051                    @ DW_AT_type
+	.byte	15                      @ Abbrev [15] 0xdad:0x5 DW_TAG_pointer_type
+	.long	3396                    @ DW_AT_type
+	.byte	15                      @ Abbrev [15] 0xdb2:0x5 DW_TAG_pointer_type
+	.long	830                     @ DW_AT_type
+	.byte	49                      @ Abbrev [49] 0xdb7:0x34 DW_TAG_subprogram
 	.long	.Lfunc_begin0           @ DW_AT_low_pc
 	.long	.Lfunc_end0-.Lfunc_begin0 @ DW_AT_high_pc
 	.byte	1                       @ DW_AT_frame_base
 	.byte	87
-	.long	3314                    @ DW_AT_object_pointer
+	.long	3536                    @ DW_AT_object_pointer
 	.byte	19                      @ DW_AT_decl_file
-	.byte	58                      @ DW_AT_decl_line
-	.long	.Linfo_string188        @ DW_AT_linkage_name
-	.long	3059                    @ DW_AT_specification
-	.byte	42                      @ Abbrev [42] 0xcf2:0xc DW_TAG_formal_parameter
+	.byte	60                      @ DW_AT_decl_line
+	.long	.Linfo_string197        @ DW_AT_linkage_name
+	.long	3011                    @ DW_AT_specification
+	.byte	50                      @ Abbrev [50] 0xdd0:0xc DW_TAG_formal_parameter
 	.byte	2                       @ DW_AT_location
 	.byte	125
 	.byte	28
-	.long	.Linfo_string191        @ DW_AT_name
-	.long	3915                    @ DW_AT_type
+	.long	.Linfo_string202        @ DW_AT_name
+	.long	4300                    @ DW_AT_type
                                         @ DW_AT_artificial
-	.byte	43                      @ Abbrev [43] 0xcfe:0xe DW_TAG_formal_parameter
+	.byte	51                      @ Abbrev [51] 0xddc:0xe DW_TAG_formal_parameter
 	.byte	2                       @ DW_AT_location
 	.byte	125
 	.byte	24
-	.long	.Linfo_string192        @ DW_AT_name
+	.long	.Linfo_string203        @ DW_AT_name
 	.byte	19                      @ DW_AT_decl_file
-	.byte	58                      @ DW_AT_decl_line
-	.long	3179                    @ DW_AT_type
+	.byte	60                      @ DW_AT_decl_line
+	.long	3391                    @ DW_AT_type
 	.byte	0                       @ End Of Children Mark
-	.byte	44                      @ Abbrev [44] 0xd0d:0xed DW_TAG_subprogram
+	.byte	15                      @ Abbrev [15] 0xdeb:0x5 DW_TAG_pointer_type
+	.long	3208                    @ DW_AT_type
+	.byte	49                      @ Abbrev [49] 0xdf0:0x26 DW_TAG_subprogram
 	.long	.Lfunc_begin1           @ DW_AT_low_pc
 	.long	.Lfunc_end1-.Lfunc_begin1 @ DW_AT_high_pc
 	.byte	1                       @ DW_AT_frame_base
 	.byte	87
-	.byte	19                      @ DW_AT_decl_file
-	.byte	10                      @ DW_AT_decl_line
-	.long	3012                    @ DW_AT_specification
-	.byte	43                      @ Abbrev [43] 0xd1e:0xf DW_TAG_formal_parameter
-	.byte	3                       @ DW_AT_location
-	.byte	125
-	.asciz	"\330"
-	.long	.Linfo_string193        @ DW_AT_name
-	.byte	19                      @ DW_AT_decl_file
-	.byte	10                      @ DW_AT_decl_line
-	.long	830                     @ DW_AT_type
-	.byte	43                      @ Abbrev [43] 0xd2d:0xf DW_TAG_formal_parameter
-	.byte	3                       @ DW_AT_location
-	.byte	125
-	.asciz	"\324"
-	.long	.Linfo_string194        @ DW_AT_name
-	.byte	19                      @ DW_AT_decl_file
-	.byte	10                      @ DW_AT_decl_line
-	.long	3164                    @ DW_AT_type
-	.byte	43                      @ Abbrev [43] 0xd3c:0xf DW_TAG_formal_parameter
-	.byte	3                       @ DW_AT_location
-	.byte	125
-	.asciz	"\320"
-	.long	.Linfo_string195        @ DW_AT_name
-	.byte	19                      @ DW_AT_decl_file
-	.byte	10                      @ DW_AT_decl_line
-	.long	830                     @ DW_AT_type
-	.byte	43                      @ Abbrev [43] 0xd4b:0xf DW_TAG_formal_parameter
-	.byte	3                       @ DW_AT_location
-	.byte	125
-	.asciz	"\314"
-	.long	.Linfo_string196        @ DW_AT_name
-	.byte	19                      @ DW_AT_decl_file
-	.byte	10                      @ DW_AT_decl_line
-	.long	3164                    @ DW_AT_type
-	.byte	43                      @ Abbrev [43] 0xd5a:0xe DW_TAG_formal_parameter
-	.byte	2                       @ DW_AT_location
-	.byte	145
-	.byte	8
-	.long	.Linfo_string197        @ DW_AT_name
-	.byte	19                      @ DW_AT_decl_file
+	.long	3593                    @ DW_AT_object_pointer
+	.byte	21                      @ DW_AT_decl_file
 	.byte	11                      @ DW_AT_decl_line
-	.long	3164                    @ DW_AT_type
-	.byte	43                      @ Abbrev [43] 0xd68:0xe DW_TAG_formal_parameter
+	.long	.Linfo_string198        @ DW_AT_linkage_name
+	.long	3228                    @ DW_AT_specification
+	.byte	50                      @ Abbrev [50] 0xe09:0xc DW_TAG_formal_parameter
 	.byte	2                       @ DW_AT_location
-	.byte	145
-	.byte	12
-	.long	.Linfo_string198        @ DW_AT_name
-	.byte	19                      @ DW_AT_decl_file
-	.byte	11                      @ DW_AT_decl_line
-	.long	3169                    @ DW_AT_type
-	.byte	45                      @ Abbrev [45] 0xd76:0xe DW_TAG_variable
-	.byte	2                       @ DW_AT_location
-	.byte	145
-	.byte	83
-	.long	.Linfo_string199        @ DW_AT_name
-	.byte	19                      @ DW_AT_decl_file
-	.byte	14                      @ DW_AT_decl_line
-	.long	2073                    @ DW_AT_type
-	.byte	45                      @ Abbrev [45] 0xd84:0xf DW_TAG_variable
-	.byte	3                       @ DW_AT_location
 	.byte	125
-	.asciz	"\350"
-	.long	.Linfo_string200        @ DW_AT_name
-	.byte	19                      @ DW_AT_decl_file
-	.byte	15                      @ DW_AT_decl_line
-	.long	830                     @ DW_AT_type
-	.byte	46                      @ Abbrev [46] 0xd93:0x66 DW_TAG_lexical_block
-	.long	.Ldebug_ranges0         @ DW_AT_ranges
-	.byte	45                      @ Abbrev [45] 0xd98:0xf DW_TAG_variable
-	.byte	3                       @ DW_AT_location
-	.byte	125
-	.asciz	"\334"
-	.long	.Linfo_string201        @ DW_AT_name
-	.byte	19                      @ DW_AT_decl_file
-	.byte	37                      @ DW_AT_decl_line
-	.long	3691                    @ DW_AT_type
-	.byte	45                      @ Abbrev [45] 0xda7:0xf DW_TAG_variable
-	.byte	3                       @ DW_AT_location
-	.byte	125
-	.asciz	"\304"
+	.byte	4
 	.long	.Linfo_string202        @ DW_AT_name
-	.byte	19                      @ DW_AT_decl_file
-	.byte	38                      @ DW_AT_decl_line
-	.long	830                     @ DW_AT_type
-	.byte	45                      @ Abbrev [45] 0xdb6:0xe DW_TAG_variable
-	.byte	2                       @ DW_AT_location
-	.byte	125
-	.byte	56
-	.long	.Linfo_string203        @ DW_AT_name
-	.byte	19                      @ DW_AT_decl_file
-	.byte	39                      @ DW_AT_decl_line
-	.long	830                     @ DW_AT_type
-	.byte	45                      @ Abbrev [45] 0xdc4:0xe DW_TAG_variable
-	.byte	2                       @ DW_AT_location
-	.byte	125
-	.byte	48
-	.long	.Linfo_string205        @ DW_AT_name
-	.byte	19                      @ DW_AT_decl_file
-	.byte	45                      @ DW_AT_decl_line
-	.long	830                     @ DW_AT_type
-	.byte	45                      @ Abbrev [45] 0xdd2:0xe DW_TAG_variable
-	.byte	2                       @ DW_AT_location
-	.byte	125
-	.byte	44
-	.long	.Linfo_string206        @ DW_AT_name
-	.byte	19                      @ DW_AT_decl_file
-	.byte	46                      @ DW_AT_decl_line
-	.long	830                     @ DW_AT_type
-	.byte	47                      @ Abbrev [47] 0xde0:0x18 DW_TAG_lexical_block
-	.long	.Ltmp31                 @ DW_AT_low_pc
-	.long	.Ltmp32-.Ltmp31         @ DW_AT_high_pc
-	.byte	45                      @ Abbrev [45] 0xde9:0xe DW_TAG_variable
-	.byte	2                       @ DW_AT_location
-	.byte	125
-	.byte	52
-	.long	.Linfo_string204        @ DW_AT_name
-	.byte	19                      @ DW_AT_decl_file
-	.byte	43                      @ DW_AT_decl_line
-	.long	830                     @ DW_AT_type
+	.long	4305                    @ DW_AT_type
+                                        @ DW_AT_artificial
 	.byte	0                       @ End Of Children Mark
-	.byte	0                       @ End Of Children Mark
-	.byte	0                       @ End Of Children Mark
-	.byte	41                      @ Abbrev [41] 0xdfa:0x26 DW_TAG_subprogram
+	.byte	52                      @ Abbrev [52] 0xe16:0xed DW_TAG_subprogram
 	.long	.Lfunc_begin2           @ DW_AT_low_pc
 	.long	.Lfunc_end2-.Lfunc_begin2 @ DW_AT_high_pc
 	.byte	1                       @ DW_AT_frame_base
 	.byte	87
-	.long	3603                    @ DW_AT_object_pointer
 	.byte	19                      @ DW_AT_decl_file
-	.byte	64                      @ DW_AT_decl_line
-	.long	.Linfo_string189        @ DW_AT_linkage_name
-	.long	3078                    @ DW_AT_specification
-	.byte	42                      @ Abbrev [42] 0xe13:0xc DW_TAG_formal_parameter
+	.byte	10                      @ DW_AT_decl_line
+	.long	3161                    @ DW_AT_specification
+	.byte	51                      @ Abbrev [51] 0xe27:0xf DW_TAG_formal_parameter
+	.byte	3                       @ DW_AT_location
+	.byte	125
+	.asciz	"\330"
+	.long	.Linfo_string204        @ DW_AT_name
+	.byte	19                      @ DW_AT_decl_file
+	.byte	10                      @ DW_AT_decl_line
+	.long	830                     @ DW_AT_type
+	.byte	51                      @ Abbrev [51] 0xe36:0xf DW_TAG_formal_parameter
+	.byte	3                       @ DW_AT_location
+	.byte	125
+	.asciz	"\324"
+	.long	.Linfo_string205        @ DW_AT_name
+	.byte	19                      @ DW_AT_decl_file
+	.byte	10                      @ DW_AT_decl_line
+	.long	3496                    @ DW_AT_type
+	.byte	51                      @ Abbrev [51] 0xe45:0xf DW_TAG_formal_parameter
+	.byte	3                       @ DW_AT_location
+	.byte	125
+	.asciz	"\320"
+	.long	.Linfo_string206        @ DW_AT_name
+	.byte	19                      @ DW_AT_decl_file
+	.byte	10                      @ DW_AT_decl_line
+	.long	830                     @ DW_AT_type
+	.byte	51                      @ Abbrev [51] 0xe54:0xf DW_TAG_formal_parameter
+	.byte	3                       @ DW_AT_location
+	.byte	125
+	.asciz	"\314"
+	.long	.Linfo_string207        @ DW_AT_name
+	.byte	19                      @ DW_AT_decl_file
+	.byte	10                      @ DW_AT_decl_line
+	.long	3496                    @ DW_AT_type
+	.byte	51                      @ Abbrev [51] 0xe63:0xe DW_TAG_formal_parameter
+	.byte	2                       @ DW_AT_location
+	.byte	145
+	.byte	8
+	.long	.Linfo_string208        @ DW_AT_name
+	.byte	19                      @ DW_AT_decl_file
+	.byte	11                      @ DW_AT_decl_line
+	.long	3496                    @ DW_AT_type
+	.byte	51                      @ Abbrev [51] 0xe71:0xe DW_TAG_formal_parameter
+	.byte	2                       @ DW_AT_location
+	.byte	145
+	.byte	12
+	.long	.Linfo_string209        @ DW_AT_name
+	.byte	19                      @ DW_AT_decl_file
+	.byte	11                      @ DW_AT_decl_line
+	.long	3506                    @ DW_AT_type
+	.byte	53                      @ Abbrev [53] 0xe7f:0xe DW_TAG_variable
+	.byte	2                       @ DW_AT_location
+	.byte	145
+	.byte	83
+	.long	.Linfo_string210        @ DW_AT_name
+	.byte	19                      @ DW_AT_decl_file
+	.byte	14                      @ DW_AT_decl_line
+	.long	2073                    @ DW_AT_type
+	.byte	53                      @ Abbrev [53] 0xe8d:0xf DW_TAG_variable
+	.byte	3                       @ DW_AT_location
+	.byte	125
+	.asciz	"\350"
+	.long	.Linfo_string211        @ DW_AT_name
+	.byte	19                      @ DW_AT_decl_file
+	.byte	15                      @ DW_AT_decl_line
+	.long	830                     @ DW_AT_type
+	.byte	54                      @ Abbrev [54] 0xe9c:0x66 DW_TAG_lexical_block
+	.long	.Ldebug_ranges0         @ DW_AT_ranges
+	.byte	53                      @ Abbrev [53] 0xea1:0xf DW_TAG_variable
+	.byte	3                       @ DW_AT_location
+	.byte	125
+	.asciz	"\334"
+	.long	.Linfo_string212        @ DW_AT_name
+	.byte	19                      @ DW_AT_decl_file
+	.byte	39                      @ DW_AT_decl_line
+	.long	4076                    @ DW_AT_type
+	.byte	53                      @ Abbrev [53] 0xeb0:0xf DW_TAG_variable
+	.byte	3                       @ DW_AT_location
+	.byte	125
+	.asciz	"\304"
+	.long	.Linfo_string213        @ DW_AT_name
+	.byte	19                      @ DW_AT_decl_file
+	.byte	40                      @ DW_AT_decl_line
+	.long	830                     @ DW_AT_type
+	.byte	53                      @ Abbrev [53] 0xebf:0xe DW_TAG_variable
 	.byte	2                       @ DW_AT_location
 	.byte	125
-	.byte	8
-	.long	.Linfo_string191        @ DW_AT_name
-	.long	3915                    @ DW_AT_type
-                                        @ DW_AT_artificial
+	.byte	56
+	.long	.Linfo_string214        @ DW_AT_name
+	.byte	19                      @ DW_AT_decl_file
+	.byte	41                      @ DW_AT_decl_line
+	.long	830                     @ DW_AT_type
+	.byte	53                      @ Abbrev [53] 0xecd:0xe DW_TAG_variable
+	.byte	2                       @ DW_AT_location
+	.byte	125
+	.byte	48
+	.long	.Linfo_string216        @ DW_AT_name
+	.byte	19                      @ DW_AT_decl_file
+	.byte	47                      @ DW_AT_decl_line
+	.long	830                     @ DW_AT_type
+	.byte	53                      @ Abbrev [53] 0xedb:0xe DW_TAG_variable
+	.byte	2                       @ DW_AT_location
+	.byte	125
+	.byte	44
+	.long	.Linfo_string217        @ DW_AT_name
+	.byte	19                      @ DW_AT_decl_file
+	.byte	48                      @ DW_AT_decl_line
+	.long	830                     @ DW_AT_type
+	.byte	55                      @ Abbrev [55] 0xee9:0x18 DW_TAG_lexical_block
+	.long	.Ltmp34                 @ DW_AT_low_pc
+	.long	.Ltmp35-.Ltmp34         @ DW_AT_high_pc
+	.byte	53                      @ Abbrev [53] 0xef2:0xe DW_TAG_variable
+	.byte	2                       @ DW_AT_location
+	.byte	125
+	.byte	52
+	.long	.Linfo_string215        @ DW_AT_name
+	.byte	19                      @ DW_AT_decl_file
+	.byte	45                      @ DW_AT_decl_line
+	.long	830                     @ DW_AT_type
 	.byte	0                       @ End Of Children Mark
-	.byte	41                      @ Abbrev [41] 0xe20:0x26 DW_TAG_subprogram
+	.byte	0                       @ End Of Children Mark
+	.byte	0                       @ End Of Children Mark
+	.byte	49                      @ Abbrev [49] 0xf03:0x26 DW_TAG_subprogram
 	.long	.Lfunc_begin3           @ DW_AT_low_pc
 	.long	.Lfunc_end3-.Lfunc_begin3 @ DW_AT_high_pc
 	.byte	1                       @ DW_AT_frame_base
 	.byte	87
-	.long	3641                    @ DW_AT_object_pointer
+	.long	3868                    @ DW_AT_object_pointer
 	.byte	19                      @ DW_AT_decl_file
-	.byte	64                      @ DW_AT_decl_line
-	.long	.Linfo_string190        @ DW_AT_linkage_name
-	.long	3078                    @ DW_AT_specification
-	.byte	42                      @ Abbrev [42] 0xe39:0xc DW_TAG_formal_parameter
+	.byte	65                      @ DW_AT_decl_line
+	.long	.Linfo_string199        @ DW_AT_linkage_name
+	.long	3030                    @ DW_AT_specification
+	.byte	50                      @ Abbrev [50] 0xf1c:0xc DW_TAG_formal_parameter
+	.byte	2                       @ DW_AT_location
+	.byte	125
+	.byte	0
+	.long	.Linfo_string202        @ DW_AT_name
+	.long	4300                    @ DW_AT_type
+                                        @ DW_AT_artificial
+	.byte	0                       @ End Of Children Mark
+	.byte	49                      @ Abbrev [49] 0xf29:0x26 DW_TAG_subprogram
+	.long	.Lfunc_begin4           @ DW_AT_low_pc
+	.long	.Lfunc_end4-.Lfunc_begin4 @ DW_AT_high_pc
+	.byte	1                       @ DW_AT_frame_base
+	.byte	87
+	.long	3906                    @ DW_AT_object_pointer
+	.byte	19                      @ DW_AT_decl_file
+	.byte	65                      @ DW_AT_decl_line
+	.long	.Linfo_string200        @ DW_AT_linkage_name
+	.long	3030                    @ DW_AT_specification
+	.byte	50                      @ Abbrev [50] 0xf42:0xc DW_TAG_formal_parameter
 	.byte	2                       @ DW_AT_location
 	.byte	125
 	.byte	12
-	.long	.Linfo_string191        @ DW_AT_name
-	.long	3915                    @ DW_AT_type
+	.long	.Linfo_string202        @ DW_AT_name
+	.long	4300                    @ DW_AT_type
                                         @ DW_AT_artificial
 	.byte	0                       @ End Of Children Mark
-	.byte	39                      @ Abbrev [39] 0xe46:0x20 DW_TAG_class_type
+	.byte	56                      @ Abbrev [56] 0xf4f:0x30 DW_TAG_subprogram
+	.long	.Lfunc_begin5           @ DW_AT_low_pc
+	.long	.Lfunc_end5-.Lfunc_begin5 @ DW_AT_high_pc
+	.byte	1                       @ DW_AT_frame_base
+	.byte	87
+	.long	3940                    @ DW_AT_object_pointer
+	.byte	19                      @ DW_AT_decl_file
+	.byte	68                      @ DW_AT_decl_line
+	.long	3096                    @ DW_AT_specification
+	.byte	50                      @ Abbrev [50] 0xf64:0xc DW_TAG_formal_parameter
+	.byte	2                       @ DW_AT_location
+	.byte	125
+	.byte	12
+	.long	.Linfo_string202        @ DW_AT_name
+	.long	4300                    @ DW_AT_type
+                                        @ DW_AT_artificial
+	.byte	51                      @ Abbrev [51] 0xf70:0xe DW_TAG_formal_parameter
+	.byte	2                       @ DW_AT_location
+	.byte	125
+	.byte	8
+	.long	.Linfo_string208        @ DW_AT_name
+	.byte	19                      @ DW_AT_decl_file
+	.byte	68                      @ DW_AT_decl_line
+	.long	1158                    @ DW_AT_type
+	.byte	0                       @ End Of Children Mark
+	.byte	56                      @ Abbrev [56] 0xf7f:0x22 DW_TAG_subprogram
+	.long	.Lfunc_begin6           @ DW_AT_low_pc
+	.long	.Lfunc_end6-.Lfunc_begin6 @ DW_AT_high_pc
+	.byte	1                       @ DW_AT_frame_base
+	.byte	87
+	.long	3988                    @ DW_AT_object_pointer
+	.byte	19                      @ DW_AT_decl_file
+	.byte	73                      @ DW_AT_decl_line
+	.long	3131                    @ DW_AT_specification
+	.byte	50                      @ Abbrev [50] 0xf94:0xc DW_TAG_formal_parameter
+	.byte	2                       @ DW_AT_location
+	.byte	125
+	.byte	0
+	.long	.Linfo_string202        @ DW_AT_name
+	.long	4300                    @ DW_AT_type
+                                        @ DW_AT_artificial
+	.byte	0                       @ End Of Children Mark
+	.byte	49                      @ Abbrev [49] 0xfa1:0x26 DW_TAG_subprogram
+	.long	.Lfunc_begin7           @ DW_AT_low_pc
+	.long	.Lfunc_end7-.Lfunc_begin7 @ DW_AT_high_pc
+	.byte	1                       @ DW_AT_frame_base
+	.byte	87
+	.long	4026                    @ DW_AT_object_pointer
+	.byte	20                      @ DW_AT_decl_file
+	.byte	9                       @ DW_AT_decl_line
+	.long	.Linfo_string201        @ DW_AT_linkage_name
+	.long	3329                    @ DW_AT_specification
+	.byte	50                      @ Abbrev [50] 0xfba:0xc DW_TAG_formal_parameter
+	.byte	2                       @ DW_AT_location
+	.byte	125
+	.byte	0
+	.long	.Linfo_string202        @ DW_AT_name
+	.long	4310                    @ DW_AT_type
+                                        @ DW_AT_artificial
+	.byte	0                       @ End Of Children Mark
+	.byte	47                      @ Abbrev [47] 0xfc7:0x20 DW_TAG_class_type
 	.byte	5                       @ DW_AT_calling_convention
-	.long	.Linfo_string187        @ DW_AT_name
+	.long	.Linfo_string196        @ DW_AT_name
 	.byte	1                       @ DW_AT_byte_size
-	.byte	22                      @ DW_AT_decl_file
+	.byte	24                      @ DW_AT_decl_file
 	.byte	11                      @ DW_AT_decl_line
-	.byte	32                      @ Abbrev [32] 0xe4f:0x16 DW_TAG_subprogram
-	.long	.Linfo_string176        @ DW_AT_linkage_name
-	.long	.Linfo_string177        @ DW_AT_name
-	.byte	22                      @ DW_AT_decl_file
+	.byte	36                      @ Abbrev [36] 0xfd0:0x16 DW_TAG_subprogram
+	.long	.Linfo_string185        @ DW_AT_linkage_name
+	.long	.Linfo_string186        @ DW_AT_name
+	.byte	24                      @ DW_AT_decl_file
 	.byte	13                      @ DW_AT_decl_line
 	.long	830                     @ DW_AT_type
                                         @ DW_AT_declaration
                                         @ DW_AT_external
 	.byte	1                       @ DW_AT_accessibility
                                         @ DW_ACCESS_public
-	.byte	14                      @ Abbrev [14] 0xe5f:0x5 DW_TAG_formal_parameter
-	.long	3686                    @ DW_AT_type
+	.byte	14                      @ Abbrev [14] 0xfe0:0x5 DW_TAG_formal_parameter
+	.long	4071                    @ DW_AT_type
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
-	.byte	38                      @ Abbrev [38] 0xe66:0x5 DW_TAG_reference_type
-	.long	3691                    @ DW_AT_type
-	.byte	30                      @ Abbrev [30] 0xe6b:0x89 DW_TAG_class_type
-	.long	3691                    @ DW_AT_containing_type
+	.byte	46                      @ Abbrev [46] 0xfe7:0x5 DW_TAG_reference_type
+	.long	4076                    @ DW_AT_type
+	.byte	38                      @ Abbrev [38] 0xfec:0x89 DW_TAG_class_type
+	.long	4076                    @ DW_AT_containing_type
 	.byte	4                       @ DW_AT_calling_convention
-	.long	.Linfo_string181        @ DW_AT_name
+	.long	.Linfo_string190        @ DW_AT_name
 	.byte	12                      @ DW_AT_byte_size
-	.byte	23                      @ DW_AT_decl_file
+	.byte	25                      @ DW_AT_decl_file
 	.byte	10                      @ DW_AT_decl_line
-	.byte	31                      @ Abbrev [31] 0xe78:0xa DW_TAG_member
-	.long	.Linfo_string178        @ DW_AT_name
-	.long	3145                    @ DW_AT_type
+	.byte	40                      @ Abbrev [40] 0xff9:0xa DW_TAG_member
+	.long	.Linfo_string187        @ DW_AT_name
+	.long	3342                    @ DW_AT_type
 	.byte	0                       @ DW_AT_data_member_location
                                         @ DW_AT_artificial
-	.byte	12                      @ Abbrev [12] 0xe82:0xc DW_TAG_member
-	.long	.Linfo_string179        @ DW_AT_name
-	.long	3164                    @ DW_AT_type
-	.byte	23                      @ DW_AT_decl_file
+	.byte	12                      @ Abbrev [12] 0x1003:0xc DW_TAG_member
+	.long	.Linfo_string188        @ DW_AT_name
+	.long	3496                    @ DW_AT_type
+	.byte	25                      @ DW_AT_decl_file
 	.byte	19                      @ DW_AT_decl_line
 	.byte	4                       @ DW_AT_data_member_location
-	.byte	12                      @ Abbrev [12] 0xe8e:0xc DW_TAG_member
-	.long	.Linfo_string180        @ DW_AT_name
+	.byte	12                      @ Abbrev [12] 0x100f:0xc DW_TAG_member
+	.long	.Linfo_string189        @ DW_AT_name
 	.long	105                     @ DW_AT_type
-	.byte	23                      @ DW_AT_decl_file
+	.byte	25                      @ DW_AT_decl_file
 	.byte	20                      @ DW_AT_decl_line
 	.byte	8                       @ DW_AT_data_member_location
-	.byte	33                      @ Abbrev [33] 0xe9a:0x13 DW_TAG_subprogram
-	.long	.Linfo_string181        @ DW_AT_name
-	.byte	23                      @ DW_AT_decl_file
+	.byte	33                      @ Abbrev [33] 0x101b:0x13 DW_TAG_subprogram
+	.long	.Linfo_string190        @ DW_AT_name
+	.byte	25                      @ DW_AT_decl_file
 	.byte	12                      @ DW_AT_decl_line
                                         @ DW_AT_declaration
                                         @ DW_AT_external
 	.byte	1                       @ DW_AT_accessibility
                                         @ DW_ACCESS_public
-	.byte	34                      @ Abbrev [34] 0xea2:0x5 DW_TAG_formal_parameter
-	.long	3828                    @ DW_AT_type
+	.byte	34                      @ Abbrev [34] 0x1023:0x5 DW_TAG_formal_parameter
+	.long	4213                    @ DW_AT_type
                                         @ DW_AT_artificial
-	.byte	14                      @ Abbrev [14] 0xea7:0x5 DW_TAG_formal_parameter
-	.long	3164                    @ DW_AT_type
+	.byte	14                      @ Abbrev [14] 0x1028:0x5 DW_TAG_formal_parameter
+	.long	3496                    @ DW_AT_type
 	.byte	0                       @ End Of Children Mark
-	.byte	35                      @ Abbrev [35] 0xead:0x16 DW_TAG_subprogram
-	.long	.Linfo_string182        @ DW_AT_name
-	.byte	23                      @ DW_AT_decl_file
+	.byte	35                      @ Abbrev [35] 0x102e:0x16 DW_TAG_subprogram
+	.long	.Linfo_string191        @ DW_AT_name
+	.byte	25                      @ DW_AT_decl_file
 	.byte	14                      @ DW_AT_decl_line
 	.byte	1                       @ DW_AT_virtuality
 	.byte	2                       @ DW_AT_vtable_elem_location
@@ -3955,97 +4521,101 @@ _ZTI23AVCDecoderConfiguration:
                                         @ DW_AT_external
 	.byte	1                       @ DW_AT_accessibility
                                         @ DW_ACCESS_public
-	.long	3691                    @ DW_AT_containing_type
-	.byte	34                      @ Abbrev [34] 0xebd:0x5 DW_TAG_formal_parameter
-	.long	3828                    @ DW_AT_type
+	.long	4076                    @ DW_AT_containing_type
+	.byte	34                      @ Abbrev [34] 0x103e:0x5 DW_TAG_formal_parameter
+	.long	4213                    @ DW_AT_type
                                         @ DW_AT_artificial
 	.byte	0                       @ End Of Children Mark
-	.byte	32                      @ Abbrev [32] 0xec3:0x1b DW_TAG_subprogram
-	.long	.Linfo_string183        @ DW_AT_linkage_name
-	.long	.Linfo_string184        @ DW_AT_name
-	.byte	23                      @ DW_AT_decl_file
+	.byte	36                      @ Abbrev [36] 0x1044:0x1b DW_TAG_subprogram
+	.long	.Linfo_string192        @ DW_AT_linkage_name
+	.long	.Linfo_string193        @ DW_AT_name
+	.byte	25                      @ DW_AT_decl_file
 	.byte	16                      @ DW_AT_decl_line
 	.long	830                     @ DW_AT_type
                                         @ DW_AT_declaration
                                         @ DW_AT_external
 	.byte	1                       @ DW_AT_accessibility
                                         @ DW_ACCESS_public
-	.byte	34                      @ Abbrev [34] 0xed3:0x5 DW_TAG_formal_parameter
-	.long	3828                    @ DW_AT_type
+	.byte	34                      @ Abbrev [34] 0x1054:0x5 DW_TAG_formal_parameter
+	.long	4213                    @ DW_AT_type
                                         @ DW_AT_artificial
-	.byte	14                      @ Abbrev [14] 0xed8:0x5 DW_TAG_formal_parameter
+	.byte	14                      @ Abbrev [14] 0x1059:0x5 DW_TAG_formal_parameter
 	.long	830                     @ DW_AT_type
 	.byte	0                       @ End Of Children Mark
-	.byte	18                      @ Abbrev [18] 0xede:0x15 DW_TAG_subprogram
-	.long	.Linfo_string185        @ DW_AT_linkage_name
-	.long	.Linfo_string186        @ DW_AT_name
-	.byte	23                      @ DW_AT_decl_file
+	.byte	18                      @ Abbrev [18] 0x105f:0x15 DW_TAG_subprogram
+	.long	.Linfo_string194        @ DW_AT_linkage_name
+	.long	.Linfo_string195        @ DW_AT_name
+	.byte	25                      @ DW_AT_decl_file
 	.byte	22                      @ DW_AT_decl_line
 	.long	830                     @ DW_AT_type
                                         @ DW_AT_declaration
                                         @ DW_AT_external
-	.byte	34                      @ Abbrev [34] 0xeed:0x5 DW_TAG_formal_parameter
-	.long	3828                    @ DW_AT_type
+	.byte	34                      @ Abbrev [34] 0x106e:0x5 DW_TAG_formal_parameter
+	.long	4213                    @ DW_AT_type
                                         @ DW_AT_artificial
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
-	.byte	15                      @ Abbrev [15] 0xef4:0x5 DW_TAG_pointer_type
-	.long	3691                    @ DW_AT_type
-	.byte	48                      @ Abbrev [48] 0xef9:0x52 DW_TAG_subprogram
-	.long	.Lfunc_begin4           @ DW_AT_low_pc
-	.long	.Lfunc_end4-.Lfunc_begin4 @ DW_AT_high_pc
+	.byte	15                      @ Abbrev [15] 0x1075:0x5 DW_TAG_pointer_type
+	.long	4076                    @ DW_AT_type
+	.byte	57                      @ Abbrev [57] 0x107a:0x52 DW_TAG_subprogram
+	.long	.Lfunc_begin8           @ DW_AT_low_pc
+	.long	.Lfunc_end8-.Lfunc_begin8 @ DW_AT_high_pc
 	.byte	1                       @ DW_AT_frame_base
 	.byte	87
-	.long	3663                    @ DW_AT_specification
-	.byte	43                      @ Abbrev [43] 0xf08:0xe DW_TAG_formal_parameter
+	.long	4048                    @ DW_AT_specification
+	.byte	51                      @ Abbrev [51] 0x1089:0xe DW_TAG_formal_parameter
 	.byte	2                       @ DW_AT_location
 	.byte	125
 	.byte	12
-	.long	.Linfo_string207        @ DW_AT_name
-	.byte	22                      @ DW_AT_decl_file
+	.long	.Linfo_string218        @ DW_AT_name
+	.byte	24                      @ DW_AT_decl_file
 	.byte	13                      @ DW_AT_decl_line
-	.long	3686                    @ DW_AT_type
-	.byte	45                      @ Abbrev [45] 0xf16:0xe DW_TAG_variable
+	.long	4071                    @ DW_AT_type
+	.byte	53                      @ Abbrev [53] 0x1097:0xe DW_TAG_variable
 	.byte	2                       @ DW_AT_location
 	.byte	125
 	.byte	8
-	.long	.Linfo_string208        @ DW_AT_name
-	.byte	22                      @ DW_AT_decl_file
+	.long	.Linfo_string219        @ DW_AT_name
+	.byte	24                      @ DW_AT_decl_file
 	.byte	14                      @ DW_AT_decl_line
 	.long	830                     @ DW_AT_type
-	.byte	45                      @ Abbrev [45] 0xf24:0xe DW_TAG_variable
+	.byte	53                      @ Abbrev [53] 0x10a5:0xe DW_TAG_variable
 	.byte	2                       @ DW_AT_location
 	.byte	125
 	.byte	0
-	.long	.Linfo_string210        @ DW_AT_name
-	.byte	22                      @ DW_AT_decl_file
+	.long	.Linfo_string221        @ DW_AT_name
+	.byte	24                      @ DW_AT_decl_file
 	.byte	19                      @ DW_AT_decl_line
 	.long	830                     @ DW_AT_type
-	.byte	47                      @ Abbrev [47] 0xf32:0x18 DW_TAG_lexical_block
-	.long	.Ltmp53                 @ DW_AT_low_pc
-	.long	.Ltmp58-.Ltmp53         @ DW_AT_high_pc
-	.byte	45                      @ Abbrev [45] 0xf3b:0xe DW_TAG_variable
+	.byte	55                      @ Abbrev [55] 0x10b3:0x18 DW_TAG_lexical_block
+	.long	.Ltmp60                 @ DW_AT_low_pc
+	.long	.Ltmp65-.Ltmp60         @ DW_AT_high_pc
+	.byte	53                      @ Abbrev [53] 0x10bc:0xe DW_TAG_variable
 	.byte	2                       @ DW_AT_location
 	.byte	125
 	.byte	4
-	.long	.Linfo_string209        @ DW_AT_name
-	.byte	22                      @ DW_AT_decl_file
+	.long	.Linfo_string220        @ DW_AT_name
+	.byte	24                      @ DW_AT_decl_file
 	.byte	15                      @ DW_AT_decl_line
 	.long	830                     @ DW_AT_type
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
-	.byte	15                      @ Abbrev [15] 0xf4b:0x5 DW_TAG_pointer_type
+	.byte	15                      @ Abbrev [15] 0x10cc:0x5 DW_TAG_pointer_type
 	.long	2965                    @ DW_AT_type
+	.byte	15                      @ Abbrev [15] 0x10d1:0x5 DW_TAG_pointer_type
+	.long	3208                    @ DW_AT_type
+	.byte	15                      @ Abbrev [15] 0x10d6:0x5 DW_TAG_pointer_type
+	.long	3241                    @ DW_AT_type
 	.byte	0                       @ End Of Children Mark
 .Ldebug_info_end0:
 	.section	.debug_ranges,"",%progbits
 .Ldebug_ranges0:
-	.long	.Ltmp23
-	.long	.Ltmp28
-	.long	.Ltmp29
-	.long	.Ltmp37
-	.long	.Ltmp38
-	.long	.Ltmp39
+	.long	.Ltmp26
+	.long	.Ltmp31
+	.long	.Ltmp32
+	.long	.Ltmp40
+	.long	.Ltmp41
+	.long	.Ltmp42
 	.long	0
 	.long	0
 .Ldebug_ranges1:
@@ -4059,6 +4629,14 @@ _ZTI23AVCDecoderConfiguration:
 	.long	.Lfunc_end3
 	.long	.Lfunc_begin4
 	.long	.Lfunc_end4
+	.long	.Lfunc_begin5
+	.long	.Lfunc_end5
+	.long	.Lfunc_begin6
+	.long	.Lfunc_end6
+	.long	.Lfunc_begin7
+	.long	.Lfunc_end7
+	.long	.Lfunc_begin8
+	.long	.Lfunc_end8
 	.long	0
 	.long	0
 	.section	.debug_macinfo,"",%progbits

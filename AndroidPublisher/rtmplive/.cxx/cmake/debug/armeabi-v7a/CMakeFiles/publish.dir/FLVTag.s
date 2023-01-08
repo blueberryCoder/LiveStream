@@ -37,16 +37,16 @@
 	.file	15 "/Users/bytedance" "Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/string.h"
 	.file	16 "/Users/bytedance" "Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/bits/fortify/string.h"
 	.file	17 "/Users/bytedance" "Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/c++/v1/string.h"
-	.section	.text._ZN6FLVTagC2EhjjR11IFLVTagData,"ax",%progbits
-	.globl	_ZN6FLVTagC2EhjjR11IFLVTagData @ -- Begin function _ZN6FLVTagC2EhjjR11IFLVTagData
+	.section	.text._ZN6FLVTagC2EhjjP11IFLVTagData,"ax",%progbits
+	.globl	_ZN6FLVTagC2EhjjP11IFLVTagData @ -- Begin function _ZN6FLVTagC2EhjjP11IFLVTagData
 	.p2align	2
-	.type	_ZN6FLVTagC2EhjjR11IFLVTagData,%function
-	.code	16                      @ @_ZN6FLVTagC2EhjjR11IFLVTagData
+	.type	_ZN6FLVTagC2EhjjP11IFLVTagData,%function
+	.code	16                      @ @_ZN6FLVTagC2EhjjP11IFLVTagData
 	.thumb_func
-_ZN6FLVTagC2EhjjR11IFLVTagData:
+_ZN6FLVTagC2EhjjP11IFLVTagData:
 .Lfunc_begin0:
 	.file	18 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive" "src/main/cpp/FLVTag.cpp"
-	.loc	18 13 0                 @ src/main/cpp/FLVTag.cpp:13:0
+	.loc	18 14 0                 @ src/main/cpp/FLVTag.cpp:14:0
 	.fnstart
 	.cfi_sections .debug_frame
 	.cfi_startproc
@@ -61,8 +61,8 @@ _ZN6FLVTagC2EhjjR11IFLVTagData:
 	.setfp	r7, sp, #8
 	add	r7, sp, #8
 	.cfi_def_cfa r7, 8
-	.pad	#56
-	sub	sp, #56
+	.pad	#40
+	sub	sp, #40
 	ldr.w	r12, [r7, #8]
 	mov	lr, r1
 	ldr	r4, .LCPI0_0
@@ -70,207 +70,150 @@ _ZN6FLVTagC2EhjjR11IFLVTagData:
 	add	r4, pc
 	ldr	r4, [r4]
 	ldr	r5, [r4]
-	str	r5, [sp, #52]
-	str	r0, [sp, #44]
+	str	r5, [sp, #36]
+	str	r0, [sp, #28]
 	strb	r1, [r7, #-21]
-	str	r2, [sp, #36]
-	str	r3, [sp, #32]
-	ldr	r0, [sp, #44]
+	str	r2, [sp, #20]
+	str	r3, [sp, #16]
+	ldr	r0, [sp, #28]
 .Ltmp0:
-	.loc	18 13 3 prologue_end    @ src/main/cpp/FLVTag.cpp:13:3
-	ldr	r1, .LCPI0_1
+	.loc	18 8 9 prologue_end     @ src/main/cpp/FLVTag.cpp:8:9
+	str	r0, [sp, #12]           @ 4-byte Spill
+	str.w	r12, [sp, #8]           @ 4-byte Spill
+	str.w	lr, [sp, #4]            @ 4-byte Spill
+	str	r4, [sp]                @ 4-byte Spill
+	bl	_ZN7IBufferC2Ev
+	.loc	18 14 1                 @ src/main/cpp/FLVTag.cpp:14:1
+	ldr	r0, .LCPI0_1
 .LPC0_1:
-	add	r1, pc
-	ldr	r1, [r1]
-	adds	r1, #8
-	str	r1, [r0]
-.Ltmp1:
-	.loc	18 14 30                @ src/main/cpp/FLVTag.cpp:14:30
-	ldr	r1, [r7, #8]
-	.loc	18 14 35 is_stmt 0      @ src/main/cpp/FLVTag.cpp:14:35
-	ldr	r2, [r1]
-	ldr	r2, [r2, #4]
-	str	r0, [sp, #28]           @ 4-byte Spill
-	mov	r0, r1
-	str.w	r12, [sp, #24]          @ 4-byte Spill
-	str.w	lr, [sp, #20]           @ 4-byte Spill
-	str	r4, [sp, #16]           @ 4-byte Spill
-	blx	r2
-	.loc	18 14 28                @ src/main/cpp/FLVTag.cpp:14:28
-	adds	r0, #128
-	.loc	18 14 15                @ src/main/cpp/FLVTag.cpp:14:15
-	bl	_Znaj
-	.loc	18 14 13                @ src/main/cpp/FLVTag.cpp:14:13
-	ldr	r1, [sp, #28]           @ 4-byte Reload
-	str	r0, [r1, #4]
+	add	r0, pc
+	ldr	r0, [r0]
+	adds	r0, #8
+	ldr	r1, [sp, #12]           @ 4-byte Reload
+	str	r0, [r1]
+	.loc	18 13 14                @ src/main/cpp/FLVTag.cpp:13:14
+	ldrb	r0, [r7, #-21]
+	.loc	18 13 4 is_stmt 0       @ src/main/cpp/FLVTag.cpp:13:4
+	strb.w	r0, [r1, #136]
+	.loc	18 13 36                @ src/main/cpp/FLVTag.cpp:13:36
+	ldr	r0, [sp, #20]
+	.loc	18 13 25                @ src/main/cpp/FLVTag.cpp:13:25
+	str.w	r0, [r1, #140]
+	.loc	18 13 60                @ src/main/cpp/FLVTag.cpp:13:60
+	ldr	r0, [sp, #16]
+	.loc	18 13 48                @ src/main/cpp/FLVTag.cpp:13:48
+	str.w	r0, [r1, #144]
+	.loc	18 13 78                @ src/main/cpp/FLVTag.cpp:13:78
+	ldr	r0, [r7, #8]
+	.loc	18 13 72                @ src/main/cpp/FLVTag.cpp:13:72
+	str.w	r0, [r1, #148]
 	movs	r0, #0
-	.loc	18 16 9 is_stmt 1       @ src/main/cpp/FLVTag.cpp:16:9
-	str	r0, [sp, #48]
-	.loc	18 17 20                @ src/main/cpp/FLVTag.cpp:17:20
+.Ltmp1:
+	.loc	18 15 9 is_stmt 1       @ src/main/cpp/FLVTag.cpp:15:9
+	str	r0, [sp, #32]
+	.loc	18 16 20                @ src/main/cpp/FLVTag.cpp:16:20
 	ldrb	r2, [r7, #-21]
-	.loc	18 17 5 is_stmt 0       @ src/main/cpp/FLVTag.cpp:17:5
-	ldr	r3, [r1, #4]
-	.loc	18 17 14                @ src/main/cpp/FLVTag.cpp:17:14
-	ldr.w	r12, [sp, #48]
+	.loc	18 16 5 is_stmt 0       @ src/main/cpp/FLVTag.cpp:16:5
+	adds	r3, r1, #4
+	.loc	18 16 14                @ src/main/cpp/FLVTag.cpp:16:14
+	ldr.w	r12, [sp, #32]
 	add.w	lr, r12, #1
-	str.w	lr, [sp, #48]
-	.loc	18 17 18                @ src/main/cpp/FLVTag.cpp:17:18
+	str.w	lr, [sp, #32]
+	.loc	18 16 18                @ src/main/cpp/FLVTag.cpp:16:18
+	strb.w	r2, [r3, r12]
+	.loc	18 18 21 is_stmt 1      @ src/main/cpp/FLVTag.cpp:18:21
+	ldrh.w	r2, [sp, #22]
+	.loc	18 18 14 is_stmt 0      @ src/main/cpp/FLVTag.cpp:18:14
+	ldr.w	r12, [sp, #32]
+	add.w	lr, r12, #1
+	str.w	lr, [sp, #32]
+	.loc	18 18 18                @ src/main/cpp/FLVTag.cpp:18:18
 	strb.w	r2, [r3, r12]
 	.loc	18 19 21 is_stmt 1      @ src/main/cpp/FLVTag.cpp:19:21
-	ldrh.w	r2, [sp, #38]
-	.loc	18 19 5 is_stmt 0       @ src/main/cpp/FLVTag.cpp:19:5
-	ldr	r3, [r1, #4]
+	ldr	r2, [sp, #20]
+	.loc	18 19 31 is_stmt 0      @ src/main/cpp/FLVTag.cpp:19:31
+	lsrs	r2, r2, #8
 	.loc	18 19 14                @ src/main/cpp/FLVTag.cpp:19:14
-	ldr.w	r12, [sp, #48]
+	ldr.w	r12, [sp, #32]
 	add.w	lr, r12, #1
-	str.w	lr, [sp, #48]
+	str.w	lr, [sp, #32]
 	.loc	18 19 18                @ src/main/cpp/FLVTag.cpp:19:18
 	strb.w	r2, [r3, r12]
 	.loc	18 20 21 is_stmt 1      @ src/main/cpp/FLVTag.cpp:20:21
-	ldr	r2, [sp, #36]
-	.loc	18 20 31 is_stmt 0      @ src/main/cpp/FLVTag.cpp:20:31
-	lsrs	r2, r2, #8
-	.loc	18 20 5                 @ src/main/cpp/FLVTag.cpp:20:5
-	ldr	r3, [r1, #4]
-	.loc	18 20 14                @ src/main/cpp/FLVTag.cpp:20:14
-	ldr.w	r12, [sp, #48]
+	ldr	r2, [sp, #20]
+	.loc	18 20 14 is_stmt 0      @ src/main/cpp/FLVTag.cpp:20:14
+	ldr.w	r12, [sp, #32]
 	add.w	lr, r12, #1
-	str.w	lr, [sp, #48]
+	str.w	lr, [sp, #32]
 	.loc	18 20 18                @ src/main/cpp/FLVTag.cpp:20:18
 	strb.w	r2, [r3, r12]
-	.loc	18 21 21 is_stmt 1      @ src/main/cpp/FLVTag.cpp:21:21
-	ldr	r2, [sp, #36]
-	.loc	18 21 5 is_stmt 0       @ src/main/cpp/FLVTag.cpp:21:5
-	ldr	r3, [r1, #4]
-	.loc	18 21 14                @ src/main/cpp/FLVTag.cpp:21:14
-	ldr.w	r12, [sp, #48]
+	.loc	18 22 21 is_stmt 1      @ src/main/cpp/FLVTag.cpp:22:21
+	ldrh.w	r2, [sp, #18]
+	.loc	18 22 14 is_stmt 0      @ src/main/cpp/FLVTag.cpp:22:14
+	ldr.w	r12, [sp, #32]
 	add.w	lr, r12, #1
-	str.w	lr, [sp, #48]
-	.loc	18 21 18                @ src/main/cpp/FLVTag.cpp:21:18
+	str.w	lr, [sp, #32]
+	.loc	18 22 18                @ src/main/cpp/FLVTag.cpp:22:18
 	strb.w	r2, [r3, r12]
 	.loc	18 23 21 is_stmt 1      @ src/main/cpp/FLVTag.cpp:23:21
-	ldrh.w	r2, [sp, #34]
-	.loc	18 23 5 is_stmt 0       @ src/main/cpp/FLVTag.cpp:23:5
-	ldr	r3, [r1, #4]
+	ldr	r2, [sp, #16]
+	.loc	18 23 32 is_stmt 0      @ src/main/cpp/FLVTag.cpp:23:32
+	lsrs	r2, r2, #8
 	.loc	18 23 14                @ src/main/cpp/FLVTag.cpp:23:14
-	ldr.w	r12, [sp, #48]
+	ldr.w	r12, [sp, #32]
 	add.w	lr, r12, #1
-	str.w	lr, [sp, #48]
+	str.w	lr, [sp, #32]
 	.loc	18 23 18                @ src/main/cpp/FLVTag.cpp:23:18
 	strb.w	r2, [r3, r12]
 	.loc	18 24 21 is_stmt 1      @ src/main/cpp/FLVTag.cpp:24:21
-	ldr	r2, [sp, #32]
-	.loc	18 24 32 is_stmt 0      @ src/main/cpp/FLVTag.cpp:24:32
-	lsrs	r2, r2, #8
-	.loc	18 24 5                 @ src/main/cpp/FLVTag.cpp:24:5
-	ldr	r3, [r1, #4]
-	.loc	18 24 14                @ src/main/cpp/FLVTag.cpp:24:14
-	ldr.w	r12, [sp, #48]
+	ldr	r2, [sp, #16]
+	.loc	18 24 14 is_stmt 0      @ src/main/cpp/FLVTag.cpp:24:14
+	ldr.w	r12, [sp, #32]
 	add.w	lr, r12, #1
-	str.w	lr, [sp, #48]
+	str.w	lr, [sp, #32]
 	.loc	18 24 18                @ src/main/cpp/FLVTag.cpp:24:18
 	strb.w	r2, [r3, r12]
 	.loc	18 25 21 is_stmt 1      @ src/main/cpp/FLVTag.cpp:25:21
-	ldr	r2, [sp, #32]
-	.loc	18 25 5 is_stmt 0       @ src/main/cpp/FLVTag.cpp:25:5
-	ldr	r3, [r1, #4]
-	.loc	18 25 14                @ src/main/cpp/FLVTag.cpp:25:14
-	ldr.w	r12, [sp, #48]
+	ldrb.w	r2, [sp, #23]
+	.loc	18 25 14 is_stmt 0      @ src/main/cpp/FLVTag.cpp:25:14
+	ldr.w	r12, [sp, #32]
 	add.w	lr, r12, #1
-	str.w	lr, [sp, #48]
+	str.w	lr, [sp, #32]
 	.loc	18 25 18                @ src/main/cpp/FLVTag.cpp:25:18
 	strb.w	r2, [r3, r12]
-	.loc	18 26 21 is_stmt 1      @ src/main/cpp/FLVTag.cpp:26:21
-	ldrb.w	r2, [sp, #39]
-	.loc	18 26 5 is_stmt 0       @ src/main/cpp/FLVTag.cpp:26:5
-	ldr	r3, [r1, #4]
-	.loc	18 26 14                @ src/main/cpp/FLVTag.cpp:26:14
-	ldr.w	r12, [sp, #48]
-	add.w	lr, r12, #1
-	str.w	lr, [sp, #48]
-	.loc	18 26 18                @ src/main/cpp/FLVTag.cpp:26:18
-	strb.w	r2, [r3, r12]
-	.loc	18 28 5 is_stmt 1       @ src/main/cpp/FLVTag.cpp:28:5
-	ldr	r2, [r1, #4]
-	.loc	18 28 14 is_stmt 0      @ src/main/cpp/FLVTag.cpp:28:14
-	ldr	r3, [sp, #48]
-	add.w	r12, r3, #1
-	str.w	r12, [sp, #48]
-	.loc	18 28 18                @ src/main/cpp/FLVTag.cpp:28:18
-	strb	r0, [r2, r3]
-	.loc	18 29 5 is_stmt 1       @ src/main/cpp/FLVTag.cpp:29:5
-	ldr	r2, [r1, #4]
-	.loc	18 29 14 is_stmt 0      @ src/main/cpp/FLVTag.cpp:29:14
-	ldr	r3, [sp, #48]
-	add.w	r12, r3, #1
-	str.w	r12, [sp, #48]
-	.loc	18 29 18                @ src/main/cpp/FLVTag.cpp:29:18
-	strb	r0, [r2, r3]
-	.loc	18 30 5 is_stmt 1       @ src/main/cpp/FLVTag.cpp:30:5
-	ldr	r2, [r1, #4]
-	.loc	18 30 14 is_stmt 0      @ src/main/cpp/FLVTag.cpp:30:14
-	ldr	r3, [sp, #48]
-	add.w	r12, r3, #1
-	str.w	r12, [sp, #48]
-	.loc	18 30 18                @ src/main/cpp/FLVTag.cpp:30:18
-	strb	r0, [r2, r3]
-	.loc	18 32 13 is_stmt 1      @ src/main/cpp/FLVTag.cpp:32:13
-	ldr	r0, [r1, #4]
-	.loc	18 32 21 is_stmt 0      @ src/main/cpp/FLVTag.cpp:32:21
-	ldr	r2, [sp, #48]
-	.loc	18 32 13                @ src/main/cpp/FLVTag.cpp:32:13
-	add	r0, r2
-	.loc	18 32 25                @ src/main/cpp/FLVTag.cpp:32:25
-	ldr	r2, [r7, #8]
-	.loc	18 32 30                @ src/main/cpp/FLVTag.cpp:32:30
-	ldr	r3, [r2]
-	ldr	r3, [r3]
-	str	r0, [sp, #12]           @ 4-byte Spill
-	mov	r0, r2
-	blx	r3
-	.loc	18 32 43                @ src/main/cpp/FLVTag.cpp:32:43
-	ldr	r1, [r7, #8]
-	.loc	18 32 48                @ src/main/cpp/FLVTag.cpp:32:48
-	ldr	r2, [r1]
-	ldr	r2, [r2, #4]
-	str	r0, [sp, #8]            @ 4-byte Spill
-	mov	r0, r1
-	blx	r2
-	.loc	18 32 5                 @ src/main/cpp/FLVTag.cpp:32:5
-	ldr	r1, [sp, #12]           @ 4-byte Reload
-	str	r0, [sp, #4]            @ 4-byte Spill
-	mov	r0, r1
-	ldr	r1, [sp, #8]            @ 4-byte Reload
-	ldr	r2, [sp, #4]            @ 4-byte Reload
-	bl	__aeabi_memcpy
-	.loc	18 33 10 is_stmt 1      @ src/main/cpp/FLVTag.cpp:33:10
-	ldr	r1, [r7, #8]
-	.loc	18 33 15 is_stmt 0      @ src/main/cpp/FLVTag.cpp:33:15
-	ldr	r2, [r1]
-	ldr	r2, [r2, #4]
-	str	r0, [sp]                @ 4-byte Spill
-	mov	r0, r1
-	blx	r2
-	.loc	18 33 7                 @ src/main/cpp/FLVTag.cpp:33:7
-	ldr	r1, [sp, #48]
-	add	r0, r1
-	str	r0, [sp, #48]
-	.loc	18 35 13 is_stmt 1      @ src/main/cpp/FLVTag.cpp:35:13
-	ldr	r0, [sp, #48]
-	.loc	18 35 11 is_stmt 0      @ src/main/cpp/FLVTag.cpp:35:11
-	ldr	r1, [sp, #28]           @ 4-byte Reload
-	str	r0, [r1, #8]
-	ldr	r0, [sp, #16]           @ 4-byte Reload
+	.loc	18 27 14 is_stmt 1      @ src/main/cpp/FLVTag.cpp:27:14
+	ldr	r2, [sp, #32]
+	add.w	r12, r2, #1
+	str.w	r12, [sp, #32]
+	.loc	18 27 18 is_stmt 0      @ src/main/cpp/FLVTag.cpp:27:18
+	strb	r0, [r3, r2]
+	.loc	18 28 14 is_stmt 1      @ src/main/cpp/FLVTag.cpp:28:14
+	ldr	r2, [sp, #32]
+	add.w	r12, r2, #1
+	str.w	r12, [sp, #32]
+	.loc	18 28 18 is_stmt 0      @ src/main/cpp/FLVTag.cpp:28:18
+	strb	r0, [r3, r2]
+	.loc	18 29 14 is_stmt 1      @ src/main/cpp/FLVTag.cpp:29:14
+	ldr	r2, [sp, #32]
+	add.w	r12, r2, #1
+	str.w	r12, [sp, #32]
+	.loc	18 29 18 is_stmt 0      @ src/main/cpp/FLVTag.cpp:29:18
+	strb	r0, [r3, r2]
+	.loc	18 31 13 is_stmt 1      @ src/main/cpp/FLVTag.cpp:31:13
+	ldr	r0, [sp, #32]
+	.loc	18 31 11 is_stmt 0      @ src/main/cpp/FLVTag.cpp:31:11
+	str.w	r0, [r1, #132]
+	ldr	r0, [sp]                @ 4-byte Reload
 	ldr	r2, [r0]
-	ldr	r3, [sp, #52]
+	ldr	r3, [sp, #36]
 	cmp	r2, r3
 	bne	.LBB0_2
 	b	.LBB0_1
 .Ltmp2:
 .LBB0_1:                                @ %SP_return
-	.loc	18 37 1 is_stmt 1       @ src/main/cpp/FLVTag.cpp:37:1
-	ldr	r0, [sp, #28]           @ 4-byte Reload
-	add	sp, #56
+	.loc	18 32 1 is_stmt 1       @ src/main/cpp/FLVTag.cpp:32:1
+	ldr	r0, [sp, #12]           @ 4-byte Reload
+	add	sp, #40
 	pop	{r4, r5, r7, pc}
 .LBB0_2:                                @ %CallStackCheckFailBlk
 	.loc	18 0 0 is_stmt 0        @ src/main/cpp/FLVTag.cpp:0:0
@@ -285,72 +228,76 @@ _ZN6FLVTagC2EhjjR11IFLVTagData:
 .Ltmp5:
 	.long	_ZTV6FLVTag(GOT_PREL)-((.LPC0_1+4)-.Ltmp5)
 .Lfunc_end0:
-	.size	_ZN6FLVTagC2EhjjR11IFLVTagData, .Lfunc_end0-_ZN6FLVTagC2EhjjR11IFLVTagData
+	.size	_ZN6FLVTagC2EhjjP11IFLVTagData, .Lfunc_end0-_ZN6FLVTagC2EhjjP11IFLVTagData
 	.cfi_endproc
-	.file	19 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive" "src/main/cpp/FLVTag.h"
-	.file	20 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive" "src/main/cpp/IFLVTagData.h"
+	.file	19 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive" "src/main/cpp/IBuffer.h"
+	.file	20 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive" "src/main/cpp/FLVTag.h"
+	.file	21 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive" "src/main/cpp/IFLVTagData.h"
 	.fnend
                                         @ -- End function
-	.section	.text._ZN6FLVTagD2Ev,"ax",%progbits
-	.globl	_ZN6FLVTagD2Ev          @ -- Begin function _ZN6FLVTagD2Ev
+	.section	.text._ZN7IBufferC2Ev,"axG",%progbits,_ZN7IBufferC2Ev,comdat
+	.weak	_ZN7IBufferC2Ev         @ -- Begin function _ZN7IBufferC2Ev
 	.p2align	2
-	.type	_ZN6FLVTagD2Ev,%function
-	.code	16                      @ @_ZN6FLVTagD2Ev
+	.type	_ZN7IBufferC2Ev,%function
+	.code	16                      @ @_ZN7IBufferC2Ev
 	.thumb_func
-_ZN6FLVTagD2Ev:
+_ZN7IBufferC2Ev:
 .Lfunc_begin1:
-	.loc	18 39 0 is_stmt 1       @ src/main/cpp/FLVTag.cpp:39:0
+	.loc	19 9 0 is_stmt 1        @ src/main/cpp/IBuffer.h:9:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
-	.save	{r7, lr}
-	push	{r7, lr}
-	.cfi_def_cfa_offset 8
-	.cfi_offset lr, -4
-	.cfi_offset r7, -8
-	.setfp	r7, sp
-	mov	r7, sp
-	.cfi_def_cfa_register r7
-	.pad	#16
-	sub	sp, #16
-	str	r0, [sp, #8]
-	ldr	r0, [sp, #8]
-	str	r0, [sp, #12]
+	.pad	#4
+	sub	sp, #4
+	.cfi_def_cfa_offset 4
+	str	r0, [sp]
+	ldr	r0, [sp]
 .Ltmp6:
-	.loc	18 39 19 prologue_end   @ src/main/cpp/FLVTag.cpp:39:19
+	.loc	19 9 7 prologue_end     @ src/main/cpp/IBuffer.h:9:7
 	ldr	r1, .LCPI1_0
 .LPC1_0:
 	add	r1, pc
 	ldr	r1, [r1]
 	adds	r1, #8
 	str	r1, [r0]
+	add	sp, #4
+	bx	lr
 .Ltmp7:
-	.loc	18 40 14                @ src/main/cpp/FLVTag.cpp:40:14
-	ldr	r0, [r0, #4]
-	.loc	18 40 5 is_stmt 0       @ src/main/cpp/FLVTag.cpp:40:5
-	cmp	r0, #0
-	str	r0, [sp, #4]            @ 4-byte Spill
-	beq	.LBB1_2
-	b	.LBB1_1
-.LBB1_1:
-	ldr	r0, [sp, #4]            @ 4-byte Reload
-	bl	_ZdaPv
-	b	.LBB1_2
-.Ltmp8:
-.LBB1_2:
-	.loc	18 41 1 is_stmt 1       @ src/main/cpp/FLVTag.cpp:41:1
-	ldr	r0, [sp, #12]
-	add	sp, #16
-	pop	{r7, pc}
-.Ltmp9:
 	.p2align	2
-@ %bb.3:
-	.loc	18 0 1 is_stmt 0        @ src/main/cpp/FLVTag.cpp:0:1
+@ %bb.1:
+	.loc	19 0 7 is_stmt 0        @ src/main/cpp/IBuffer.h:0:7
 .LCPI1_0:
-.Ltmp10:
-	.long	_ZTV6FLVTag(GOT_PREL)-((.LPC1_0+4)-.Ltmp10)
+.Ltmp8:
+	.long	_ZTV7IBuffer(GOT_PREL)-((.LPC1_0+4)-.Ltmp8)
 .Lfunc_end1:
-	.size	_ZN6FLVTagD2Ev, .Lfunc_end1-_ZN6FLVTagD2Ev
+	.size	_ZN7IBufferC2Ev, .Lfunc_end1-_ZN7IBufferC2Ev
+	.cfi_endproc
+	.fnend
+                                        @ -- End function
+	.section	.text._ZN6FLVTagD2Ev,"ax",%progbits
+	.globl	_ZN6FLVTagD2Ev          @ -- Begin function _ZN6FLVTagD2Ev
+	.p2align	1
+	.type	_ZN6FLVTagD2Ev,%function
+	.code	16                      @ @_ZN6FLVTagD2Ev
+	.thumb_func
+_ZN6FLVTagD2Ev:
+.Lfunc_begin2:
+	.loc	18 34 0 is_stmt 1       @ src/main/cpp/FLVTag.cpp:34:0
+	.fnstart
+	.cfi_startproc
+@ %bb.0:
+	.pad	#4
+	sub	sp, #4
+	.cfi_def_cfa_offset 4
+	str	r0, [sp]
+	ldr	r0, [sp]
+.Ltmp9:
+	.loc	18 35 1 prologue_end    @ src/main/cpp/FLVTag.cpp:35:1
+	add	sp, #4
+	bx	lr
+.Ltmp10:
+.Lfunc_end2:
+	.size	_ZN6FLVTagD2Ev, .Lfunc_end2-_ZN6FLVTagD2Ev
 	.cfi_endproc
 	.fnend
                                         @ -- End function
@@ -361,8 +308,8 @@ _ZN6FLVTagD2Ev:
 	.code	16                      @ @_ZN6FLVTagD0Ev
 	.thumb_func
 _ZN6FLVTagD0Ev:
-.Lfunc_begin2:
-	.loc	18 39 0 is_stmt 1       @ src/main/cpp/FLVTag.cpp:39:0
+.Lfunc_begin3:
+	.loc	18 34 0                 @ src/main/cpp/FLVTag.cpp:34:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
@@ -379,19 +326,129 @@ _ZN6FLVTagD0Ev:
 	str	r0, [sp, #12]
 	ldr	r0, [sp, #12]
 .Ltmp11:
-	.loc	18 39 19 prologue_end   @ src/main/cpp/FLVTag.cpp:39:19
+	.loc	18 34 19 prologue_end   @ src/main/cpp/FLVTag.cpp:34:19
 	str	r0, [sp, #8]            @ 4-byte Spill
 	bl	_ZN6FLVTagD1Ev
 	ldr	r1, [sp, #8]            @ 4-byte Reload
 	str	r0, [sp, #4]            @ 4-byte Spill
 	mov	r0, r1
 	bl	_ZdlPv
-	.loc	18 41 1                 @ src/main/cpp/FLVTag.cpp:41:1
+	.loc	18 35 1                 @ src/main/cpp/FLVTag.cpp:35:1
 	add	sp, #16
 	pop	{r7, pc}
 .Ltmp12:
-.Lfunc_end2:
-	.size	_ZN6FLVTagD0Ev, .Lfunc_end2-_ZN6FLVTagD0Ev
+.Lfunc_end3:
+	.size	_ZN6FLVTagD0Ev, .Lfunc_end3-_ZN6FLVTagD0Ev
+	.cfi_endproc
+	.fnend
+                                        @ -- End function
+	.section	.text._ZN6FLVTag7WriteToEPc,"ax",%progbits
+	.globl	_ZN6FLVTag7WriteToEPc   @ -- Begin function _ZN6FLVTag7WriteToEPc
+	.p2align	1
+	.type	_ZN6FLVTag7WriteToEPc,%function
+	.code	16                      @ @_ZN6FLVTag7WriteToEPc
+	.thumb_func
+_ZN6FLVTag7WriteToEPc:
+.Lfunc_begin4:
+	.loc	18 37 0                 @ src/main/cpp/FLVTag.cpp:37:0
+	.fnstart
+	.cfi_startproc
+@ %bb.0:
+	.save	{r7, lr}
+	push	{r7, lr}
+	.cfi_def_cfa_offset 8
+	.cfi_offset lr, -4
+	.cfi_offset r7, -8
+	.setfp	r7, sp
+	mov	r7, sp
+	.cfi_def_cfa_register r7
+	.pad	#16
+	sub	sp, #16
+	str	r0, [sp, #12]
+	str	r1, [sp, #8]
+	ldr	r0, [sp, #12]
+.Ltmp13:
+	.loc	18 38 12 prologue_end   @ src/main/cpp/FLVTag.cpp:38:12
+	ldr	r1, [sp, #8]
+	.loc	18 38 20 is_stmt 0      @ src/main/cpp/FLVTag.cpp:38:20
+	adds	r2, r0, #4
+	.loc	18 38 29                @ src/main/cpp/FLVTag.cpp:38:29
+	ldr.w	r3, [r0, #132]
+	.loc	18 38 5                 @ src/main/cpp/FLVTag.cpp:38:5
+	str	r0, [sp, #4]            @ 4-byte Spill
+	mov	r0, r1
+	mov	r1, r2
+	mov	r2, r3
+	bl	__aeabi_memcpy
+	.loc	18 39 15 is_stmt 1      @ src/main/cpp/FLVTag.cpp:39:15
+	ldr	r1, [sp, #4]            @ 4-byte Reload
+	ldr.w	r2, [r1, #132]
+	.loc	18 39 12 is_stmt 0      @ src/main/cpp/FLVTag.cpp:39:12
+	ldr	r3, [sp, #8]
+	add	r2, r3
+	str	r2, [sp, #8]
+	.loc	18 40 12 is_stmt 1      @ src/main/cpp/FLVTag.cpp:40:12
+	ldr.w	r2, [r1, #148]
+	.loc	18 40 27 is_stmt 0      @ src/main/cpp/FLVTag.cpp:40:27
+	ldr	r1, [sp, #8]
+	.loc	18 40 19                @ src/main/cpp/FLVTag.cpp:40:19
+	ldr	r3, [r2]
+	ldr	r3, [r3]
+	str	r0, [sp]                @ 4-byte Spill
+	mov	r0, r2
+	blx	r3
+	.loc	18 40 5                 @ src/main/cpp/FLVTag.cpp:40:5
+	add	sp, #16
+	pop	{r7, pc}
+.Ltmp14:
+.Lfunc_end4:
+	.size	_ZN6FLVTag7WriteToEPc, .Lfunc_end4-_ZN6FLVTag7WriteToEPc
+	.cfi_endproc
+	.fnend
+                                        @ -- End function
+	.section	.text._ZN6FLVTag4SizeEv,"ax",%progbits
+	.globl	_ZN6FLVTag4SizeEv       @ -- Begin function _ZN6FLVTag4SizeEv
+	.p2align	1
+	.type	_ZN6FLVTag4SizeEv,%function
+	.code	16                      @ @_ZN6FLVTag4SizeEv
+	.thumb_func
+_ZN6FLVTag4SizeEv:
+.Lfunc_begin5:
+	.loc	18 43 0 is_stmt 1       @ src/main/cpp/FLVTag.cpp:43:0
+	.fnstart
+	.cfi_startproc
+@ %bb.0:
+	.save	{r7, lr}
+	push	{r7, lr}
+	.cfi_def_cfa_offset 8
+	.cfi_offset lr, -4
+	.cfi_offset r7, -8
+	.setfp	r7, sp
+	mov	r7, sp
+	.cfi_def_cfa_register r7
+	.pad	#8
+	sub	sp, #8
+	str	r0, [sp, #4]
+	ldr	r0, [sp, #4]
+.Ltmp15:
+	.loc	18 44 12 prologue_end   @ src/main/cpp/FLVTag.cpp:44:12
+	ldr.w	r1, [r0, #132]
+	.loc	18 44 20 is_stmt 0      @ src/main/cpp/FLVTag.cpp:44:20
+	ldr.w	r0, [r0, #148]
+	.loc	18 44 27                @ src/main/cpp/FLVTag.cpp:44:27
+	ldr	r2, [r0]
+	ldr	r2, [r2, #4]
+	str	r1, [sp]                @ 4-byte Spill
+	blx	r2
+	.loc	18 44 18                @ src/main/cpp/FLVTag.cpp:44:18
+	ldr	r1, [sp]                @ 4-byte Reload
+	add	r0, r1
+	.loc	18 44 5                 @ src/main/cpp/FLVTag.cpp:44:5
+	add	sp, #8
+	pop	{r7, pc}
+.Ltmp16:
+.Lfunc_end5:
+	.size	_ZN6FLVTag4SizeEv, .Lfunc_end5-_ZN6FLVTag4SizeEv
 	.cfi_endproc
 	.fnend
                                         @ -- End function
@@ -402,9 +459,11 @@ _ZN6FLVTagD0Ev:
 _ZTV6FLVTag:
 	.long	0
 	.long	_ZTI6FLVTag
+	.long	_ZN6FLVTag7WriteToEPc
+	.long	_ZN6FLVTag4SizeEv
 	.long	_ZN6FLVTagD1Ev
 	.long	_ZN6FLVTagD0Ev
-	.size	_ZTV6FLVTag, 16
+	.size	_ZTV6FLVTag, 24
 
 	.type	_ZTS6FLVTag,%object     @ @_ZTS6FLVTag
 	.section	.rodata._ZTS6FLVTag,"a",%progbits
@@ -413,15 +472,47 @@ _ZTS6FLVTag:
 	.asciz	"6FLVTag"
 	.size	_ZTS6FLVTag, 8
 
+	.type	_ZTS7IBuffer,%object    @ @_ZTS7IBuffer
+	.section	.rodata._ZTS7IBuffer,"aG",%progbits,_ZTS7IBuffer,comdat
+	.weak	_ZTS7IBuffer
+_ZTS7IBuffer:
+	.asciz	"7IBuffer"
+	.size	_ZTS7IBuffer, 9
+
+	.type	_ZTI7IBuffer,%object    @ @_ZTI7IBuffer
+	.section	.data.rel.ro._ZTI7IBuffer,"aGw",%progbits,_ZTI7IBuffer,comdat
+	.weak	_ZTI7IBuffer
+	.p2align	2
+_ZTI7IBuffer:
+	.long	_ZTVN10__cxxabiv117__class_type_infoE+8
+	.long	_ZTS7IBuffer
+	.size	_ZTI7IBuffer, 8
+
 	.type	_ZTI6FLVTag,%object     @ @_ZTI6FLVTag
 	.section	.data.rel.ro._ZTI6FLVTag,"aw",%progbits
 	.globl	_ZTI6FLVTag
 	.p2align	2
 _ZTI6FLVTag:
-	.long	_ZTVN10__cxxabiv117__class_type_infoE+8
+	.long	_ZTVN10__cxxabiv121__vmi_class_type_infoE+8
 	.long	_ZTS6FLVTag
-	.size	_ZTI6FLVTag, 8
+	.long	0                       @ 0x0
+	.long	1                       @ 0x1
+	.long	_ZTI7IBuffer
+	.long	0                       @ 0x0
+	.size	_ZTI6FLVTag, 24
 
+	.type	_ZTV7IBuffer,%object    @ @_ZTV7IBuffer
+	.section	.data.rel.ro._ZTV7IBuffer,"aGw",%progbits,_ZTV7IBuffer,comdat
+	.weak	_ZTV7IBuffer
+	.p2align	2
+_ZTV7IBuffer:
+	.long	0
+	.long	_ZTI7IBuffer
+	.long	__cxa_pure_virtual
+	.long	__cxa_pure_virtual
+	.size	_ZTV7IBuffer, 16
+
+	.file	22 "<stdin>"
 	.section	.debug_str,"MS",%progbits,1
 .Linfo_string0:
 	.asciz	"Android (7019983 based on r365631c3) clang version 9.0.9 (https://android.googlesource.com/toolchain/llvm-project a2a1e703c0edb03ba29944e529ccbf457742737b) (based on LLVM 9.0.9svn)" @ string offset=0
@@ -720,59 +811,71 @@ _ZTI6FLVTag:
 .Linfo_string147:
 	.asciz	"strlen"                @ string offset=1872
 .Linfo_string148:
-	.asciz	"_vptr$FLVTag"          @ string offset=1879
+	.asciz	"_vptr$IBuffer"         @ string offset=1879
 .Linfo_string149:
-	.asciz	"__vtbl_ptr_type"       @ string offset=1892
+	.asciz	"__vtbl_ptr_type"       @ string offset=1893
 .Linfo_string150:
-	.asciz	"AUDIO"                 @ string offset=1908
+	.asciz	"_ZN7IBuffer7WriteToEPc" @ string offset=1909
 .Linfo_string151:
-	.asciz	"VIDEO"                 @ string offset=1914
+	.asciz	"WriteTo"               @ string offset=1932
 .Linfo_string152:
-	.asciz	"SCRIPT_DATA"           @ string offset=1920
+	.asciz	"_ZN7IBuffer4SizeEv"    @ string offset=1940
 .Linfo_string153:
-	.asciz	"buffer_"               @ string offset=1932
+	.asciz	"Size"                  @ string offset=1959
 .Linfo_string154:
-	.asciz	"size_"                 @ string offset=1940
+	.asciz	"IBuffer"               @ string offset=1964
 .Linfo_string155:
-	.asciz	"FLVTag"                @ string offset=1946
+	.asciz	"AUDIO"                 @ string offset=1972
 .Linfo_string156:
-	.asciz	"_vptr$IFLVTagData"     @ string offset=1953
+	.asciz	"VIDEO"                 @ string offset=1978
 .Linfo_string157:
-	.asciz	"_ZN11IFLVTagData9GetBufferEv" @ string offset=1971
+	.asciz	"SCRIPT_DATA"           @ string offset=1984
 .Linfo_string158:
-	.asciz	"GetBuffer"             @ string offset=2000
+	.asciz	"buffer_"               @ string offset=1996
 .Linfo_string159:
-	.asciz	"_ZN11IFLVTagData13GetBufferSizeEv" @ string offset=2010
+	.asciz	"__ARRAY_SIZE_TYPE__"   @ string offset=2004
 .Linfo_string160:
-	.asciz	"GetBufferSize"         @ string offset=2044
+	.asciz	"size_"                 @ string offset=2024
 .Linfo_string161:
-	.asciz	"IFLVTagData"           @ string offset=2058
+	.asciz	"tag_type_"             @ string offset=2030
 .Linfo_string162:
-	.asciz	"~FLVTag"               @ string offset=2070
+	.asciz	"data_size_"            @ string offset=2040
 .Linfo_string163:
-	.asciz	"_ZN6FLVTag9GetBufferEv" @ string offset=2078
+	.asciz	"time_stamp_"           @ string offset=2051
 .Linfo_string164:
-	.asciz	"_ZN6FLVTag7GetSizeEv"  @ string offset=2101
+	.asciz	"data_"                 @ string offset=2063
 .Linfo_string165:
-	.asciz	"GetSize"               @ string offset=2122
+	.asciz	"IFLVTagData"           @ string offset=2069
 .Linfo_string166:
-	.asciz	"_ZN6FLVTagC2EhjjR11IFLVTagData" @ string offset=2130
+	.asciz	"FLVTag"                @ string offset=2081
 .Linfo_string167:
-	.asciz	"_ZN6FLVTagD2Ev"        @ string offset=2161
+	.asciz	"~FLVTag"               @ string offset=2088
 .Linfo_string168:
-	.asciz	"_ZN6FLVTagD0Ev"        @ string offset=2176
+	.asciz	"_ZN6FLVTag7WriteToEPc" @ string offset=2096
 .Linfo_string169:
-	.asciz	"this"                  @ string offset=2191
+	.asciz	"_ZN6FLVTag4SizeEv"     @ string offset=2118
 .Linfo_string170:
-	.asciz	"tag_type"              @ string offset=2196
+	.asciz	"_ZN6FLVTagC2EhjjP11IFLVTagData" @ string offset=2136
 .Linfo_string171:
-	.asciz	"data_size"             @ string offset=2205
+	.asciz	"_ZN7IBufferC2Ev"       @ string offset=2167
 .Linfo_string172:
-	.asciz	"time_stamp"            @ string offset=2215
+	.asciz	"_ZN6FLVTagD2Ev"        @ string offset=2183
 .Linfo_string173:
-	.asciz	"data"                  @ string offset=2226
+	.asciz	"_ZN6FLVTagD0Ev"        @ string offset=2198
 .Linfo_string174:
-	.asciz	"i"                     @ string offset=2231
+	.asciz	"this"                  @ string offset=2213
+.Linfo_string175:
+	.asciz	"tag_type"              @ string offset=2218
+.Linfo_string176:
+	.asciz	"data_size"             @ string offset=2227
+.Linfo_string177:
+	.asciz	"time_stamp"            @ string offset=2237
+.Linfo_string178:
+	.asciz	"data"                  @ string offset=2248
+.Linfo_string179:
+	.asciz	"i"                     @ string offset=2253
+.Linfo_string180:
+	.asciz	"output"                @ string offset=2255
 	.section	.debug_abbrev,"",%progbits
 	.byte	1                       @ Abbreviation Code
 	.byte	17                      @ DW_TAG_compile_unit
@@ -1129,16 +1232,12 @@ _ZTI6FLVTag:
 	.byte	0                       @ EOM(1)
 	.byte	0                       @ EOM(2)
 	.byte	29                      @ Abbreviation Code
-	.byte	13                      @ DW_TAG_member
+	.byte	28                      @ DW_TAG_inheritance
 	.byte	0                       @ DW_CHILDREN_no
-	.byte	3                       @ DW_AT_name
-	.byte	14                      @ DW_FORM_strp
 	.byte	73                      @ DW_AT_type
 	.byte	19                      @ DW_FORM_ref4
 	.byte	56                      @ DW_AT_data_member_location
 	.byte	11                      @ DW_FORM_data1
-	.byte	52                      @ DW_AT_artificial
-	.byte	25                      @ DW_FORM_flag_present
 	.byte	0                       @ EOM(1)
 	.byte	0                       @ EOM(2)
 	.byte	30                      @ Abbreviation Code
@@ -1224,50 +1323,6 @@ _ZTI6FLVTag:
 	.byte	11                      @ DW_FORM_data1
 	.byte	73                      @ DW_AT_type
 	.byte	19                      @ DW_FORM_ref4
-	.byte	60                      @ DW_AT_declaration
-	.byte	25                      @ DW_FORM_flag_present
-	.byte	63                      @ DW_AT_external
-	.byte	25                      @ DW_FORM_flag_present
-	.byte	50                      @ DW_AT_accessibility
-	.byte	11                      @ DW_FORM_data1
-	.byte	0                       @ EOM(1)
-	.byte	0                       @ EOM(2)
-	.byte	35                      @ Abbreviation Code
-	.byte	15                      @ DW_TAG_pointer_type
-	.byte	0                       @ DW_CHILDREN_no
-	.byte	73                      @ DW_AT_type
-	.byte	19                      @ DW_FORM_ref4
-	.byte	3                       @ DW_AT_name
-	.byte	14                      @ DW_FORM_strp
-	.byte	0                       @ EOM(1)
-	.byte	0                       @ EOM(2)
-	.byte	36                      @ Abbreviation Code
-	.byte	21                      @ DW_TAG_subroutine_type
-	.byte	0                       @ DW_CHILDREN_no
-	.byte	73                      @ DW_AT_type
-	.byte	19                      @ DW_FORM_ref4
-	.byte	0                       @ EOM(1)
-	.byte	0                       @ EOM(2)
-	.byte	37                      @ Abbreviation Code
-	.byte	16                      @ DW_TAG_reference_type
-	.byte	0                       @ DW_CHILDREN_no
-	.byte	73                      @ DW_AT_type
-	.byte	19                      @ DW_FORM_ref4
-	.byte	0                       @ EOM(1)
-	.byte	0                       @ EOM(2)
-	.byte	38                      @ Abbreviation Code
-	.byte	46                      @ DW_TAG_subprogram
-	.byte	1                       @ DW_CHILDREN_yes
-	.byte	110                     @ DW_AT_linkage_name
-	.byte	14                      @ DW_FORM_strp
-	.byte	3                       @ DW_AT_name
-	.byte	14                      @ DW_FORM_strp
-	.byte	58                      @ DW_AT_decl_file
-	.byte	11                      @ DW_FORM_data1
-	.byte	59                      @ DW_AT_decl_line
-	.byte	11                      @ DW_FORM_data1
-	.byte	73                      @ DW_AT_type
-	.byte	19                      @ DW_FORM_ref4
 	.byte	76                      @ DW_AT_virtuality
 	.byte	11                      @ DW_FORM_data1
 	.byte	77                      @ DW_AT_vtable_elem_location
@@ -1282,7 +1337,89 @@ _ZTI6FLVTag:
 	.byte	19                      @ DW_FORM_ref4
 	.byte	0                       @ EOM(1)
 	.byte	0                       @ EOM(2)
+	.byte	35                      @ Abbreviation Code
+	.byte	13                      @ DW_TAG_member
+	.byte	0                       @ DW_CHILDREN_no
+	.byte	3                       @ DW_AT_name
+	.byte	14                      @ DW_FORM_strp
+	.byte	73                      @ DW_AT_type
+	.byte	19                      @ DW_FORM_ref4
+	.byte	56                      @ DW_AT_data_member_location
+	.byte	11                      @ DW_FORM_data1
+	.byte	52                      @ DW_AT_artificial
+	.byte	25                      @ DW_FORM_flag_present
+	.byte	0                       @ EOM(1)
+	.byte	0                       @ EOM(2)
+	.byte	36                      @ Abbreviation Code
+	.byte	46                      @ DW_TAG_subprogram
+	.byte	1                       @ DW_CHILDREN_yes
+	.byte	3                       @ DW_AT_name
+	.byte	14                      @ DW_FORM_strp
+	.byte	60                      @ DW_AT_declaration
+	.byte	25                      @ DW_FORM_flag_present
+	.byte	52                      @ DW_AT_artificial
+	.byte	25                      @ DW_FORM_flag_present
+	.byte	63                      @ DW_AT_external
+	.byte	25                      @ DW_FORM_flag_present
+	.byte	50                      @ DW_AT_accessibility
+	.byte	11                      @ DW_FORM_data1
+	.byte	0                       @ EOM(1)
+	.byte	0                       @ EOM(2)
+	.byte	37                      @ Abbreviation Code
+	.byte	15                      @ DW_TAG_pointer_type
+	.byte	0                       @ DW_CHILDREN_no
+	.byte	73                      @ DW_AT_type
+	.byte	19                      @ DW_FORM_ref4
+	.byte	3                       @ DW_AT_name
+	.byte	14                      @ DW_FORM_strp
+	.byte	0                       @ EOM(1)
+	.byte	0                       @ EOM(2)
+	.byte	38                      @ Abbreviation Code
+	.byte	21                      @ DW_TAG_subroutine_type
+	.byte	0                       @ DW_CHILDREN_no
+	.byte	73                      @ DW_AT_type
+	.byte	19                      @ DW_FORM_ref4
+	.byte	0                       @ EOM(1)
+	.byte	0                       @ EOM(2)
 	.byte	39                      @ Abbreviation Code
+	.byte	1                       @ DW_TAG_array_type
+	.byte	1                       @ DW_CHILDREN_yes
+	.byte	73                      @ DW_AT_type
+	.byte	19                      @ DW_FORM_ref4
+	.byte	0                       @ EOM(1)
+	.byte	0                       @ EOM(2)
+	.byte	40                      @ Abbreviation Code
+	.byte	33                      @ DW_TAG_subrange_type
+	.byte	0                       @ DW_CHILDREN_no
+	.byte	73                      @ DW_AT_type
+	.byte	19                      @ DW_FORM_ref4
+	.byte	55                      @ DW_AT_count
+	.byte	11                      @ DW_FORM_data1
+	.byte	0                       @ EOM(1)
+	.byte	0                       @ EOM(2)
+	.byte	41                      @ Abbreviation Code
+	.byte	36                      @ DW_TAG_base_type
+	.byte	0                       @ DW_CHILDREN_no
+	.byte	3                       @ DW_AT_name
+	.byte	14                      @ DW_FORM_strp
+	.byte	11                      @ DW_AT_byte_size
+	.byte	11                      @ DW_FORM_data1
+	.byte	62                      @ DW_AT_encoding
+	.byte	11                      @ DW_FORM_data1
+	.byte	0                       @ EOM(1)
+	.byte	0                       @ EOM(2)
+	.byte	42                      @ Abbreviation Code
+	.byte	28                      @ DW_TAG_inheritance
+	.byte	0                       @ DW_CHILDREN_no
+	.byte	73                      @ DW_AT_type
+	.byte	19                      @ DW_FORM_ref4
+	.byte	56                      @ DW_AT_data_member_location
+	.byte	11                      @ DW_FORM_data1
+	.byte	50                      @ DW_AT_accessibility
+	.byte	11                      @ DW_FORM_data1
+	.byte	0                       @ EOM(1)
+	.byte	0                       @ EOM(2)
+	.byte	43                      @ Abbreviation Code
 	.byte	46                      @ DW_TAG_subprogram
 	.byte	1                       @ DW_CHILDREN_yes
 	.byte	17                      @ DW_AT_low_pc
@@ -1303,7 +1440,7 @@ _ZTI6FLVTag:
 	.byte	19                      @ DW_FORM_ref4
 	.byte	0                       @ EOM(1)
 	.byte	0                       @ EOM(2)
-	.byte	40                      @ Abbreviation Code
+	.byte	44                      @ Abbreviation Code
 	.byte	5                       @ DW_TAG_formal_parameter
 	.byte	0                       @ DW_CHILDREN_no
 	.byte	2                       @ DW_AT_location
@@ -1316,7 +1453,7 @@ _ZTI6FLVTag:
 	.byte	25                      @ DW_FORM_flag_present
 	.byte	0                       @ EOM(1)
 	.byte	0                       @ EOM(2)
-	.byte	41                      @ Abbreviation Code
+	.byte	45                      @ Abbreviation Code
 	.byte	5                       @ DW_TAG_formal_parameter
 	.byte	0                       @ DW_CHILDREN_no
 	.byte	2                       @ DW_AT_location
@@ -1331,7 +1468,7 @@ _ZTI6FLVTag:
 	.byte	19                      @ DW_FORM_ref4
 	.byte	0                       @ EOM(1)
 	.byte	0                       @ EOM(2)
-	.byte	42                      @ Abbreviation Code
+	.byte	46                      @ Abbreviation Code
 	.byte	11                      @ DW_TAG_lexical_block
 	.byte	1                       @ DW_CHILDREN_yes
 	.byte	17                      @ DW_AT_low_pc
@@ -1340,7 +1477,7 @@ _ZTI6FLVTag:
 	.byte	6                       @ DW_FORM_data4
 	.byte	0                       @ EOM(1)
 	.byte	0                       @ EOM(2)
-	.byte	43                      @ Abbreviation Code
+	.byte	47                      @ Abbreviation Code
 	.byte	52                      @ DW_TAG_variable
 	.byte	0                       @ DW_CHILDREN_no
 	.byte	2                       @ DW_AT_location
@@ -1355,6 +1492,25 @@ _ZTI6FLVTag:
 	.byte	19                      @ DW_FORM_ref4
 	.byte	0                       @ EOM(1)
 	.byte	0                       @ EOM(2)
+	.byte	48                      @ Abbreviation Code
+	.byte	46                      @ DW_TAG_subprogram
+	.byte	1                       @ DW_CHILDREN_yes
+	.byte	17                      @ DW_AT_low_pc
+	.byte	1                       @ DW_FORM_addr
+	.byte	18                      @ DW_AT_high_pc
+	.byte	6                       @ DW_FORM_data4
+	.byte	64                      @ DW_AT_frame_base
+	.byte	24                      @ DW_FORM_exprloc
+	.byte	100                     @ DW_AT_object_pointer
+	.byte	19                      @ DW_FORM_ref4
+	.byte	58                      @ DW_AT_decl_file
+	.byte	11                      @ DW_FORM_data1
+	.byte	59                      @ DW_AT_decl_line
+	.byte	11                      @ DW_FORM_data1
+	.byte	71                      @ DW_AT_specification
+	.byte	19                      @ DW_FORM_ref4
+	.byte	0                       @ EOM(1)
+	.byte	0                       @ EOM(2)
 	.byte	0                       @ EOM(3)
 	.section	.debug_info,"",%progbits
 .Lcu_begin0:
@@ -1363,7 +1519,7 @@ _ZTI6FLVTag:
 	.short	4                       @ DWARF version number
 	.long	.debug_abbrev           @ Offset Into Abbrev. Section
 	.byte	4                       @ Address Size (in bytes)
-	.byte	1                       @ Abbrev [1] 0xb:0xd45 DW_TAG_compile_unit
+	.byte	1                       @ Abbrev [1] 0xb:0xe3c DW_TAG_compile_unit
 	.long	.Linfo_string0          @ DW_AT_producer
 	.short	4                       @ DW_AT_language
 	.long	.Linfo_string1          @ DW_AT_name
@@ -2883,84 +3039,106 @@ _ZTI6FLVTag:
 	.byte	0                       @ End Of Children Mark
 	.byte	14                      @ Abbrev [14] 0xb4d:0x5 DW_TAG_const_type
 	.long	996                     @ DW_AT_type
-	.byte	28                      @ Abbrev [28] 0xb52:0xbb DW_TAG_class_type
-	.long	2898                    @ DW_AT_containing_type
+	.byte	28                      @ Abbrev [28] 0xb52:0xfc DW_TAG_class_type
+	.long	3150                    @ DW_AT_containing_type
 	.byte	4                       @ DW_AT_calling_convention
-	.long	.Linfo_string155        @ DW_AT_name
-	.byte	12                      @ DW_AT_byte_size
-	.byte	19                      @ DW_AT_decl_file
+	.long	.Linfo_string166        @ DW_AT_name
+	.byte	152                     @ DW_AT_byte_size
+	.byte	20                      @ DW_AT_decl_file
 	.byte	11                      @ DW_AT_decl_line
-	.byte	29                      @ Abbrev [29] 0xb5f:0xa DW_TAG_member
-	.long	.Linfo_string148        @ DW_AT_name
-	.long	3085                    @ DW_AT_type
+	.byte	29                      @ Abbrev [29] 0xb5f:0x6 DW_TAG_inheritance
+	.long	3150                    @ DW_AT_type
 	.byte	0                       @ DW_AT_data_member_location
-                                        @ DW_AT_artificial
-	.byte	30                      @ Abbrev [30] 0xb69:0xd DW_TAG_member
-	.long	.Linfo_string150        @ DW_AT_name
-	.long	3104                    @ DW_AT_type
-	.byte	19                      @ DW_AT_decl_file
+	.byte	30                      @ Abbrev [30] 0xb65:0xd DW_TAG_member
+	.long	.Linfo_string155        @ DW_AT_name
+	.long	3275                    @ DW_AT_type
+	.byte	20                      @ DW_AT_decl_file
 	.byte	14                      @ DW_AT_decl_line
                                         @ DW_AT_external
                                         @ DW_AT_declaration
 	.byte	1                       @ DW_AT_accessibility
                                         @ DW_ACCESS_public
 	.byte	8                       @ DW_AT_const_value
-	.byte	30                      @ Abbrev [30] 0xb76:0xd DW_TAG_member
-	.long	.Linfo_string151        @ DW_AT_name
-	.long	3104                    @ DW_AT_type
-	.byte	19                      @ DW_AT_decl_file
+	.byte	30                      @ Abbrev [30] 0xb72:0xd DW_TAG_member
+	.long	.Linfo_string156        @ DW_AT_name
+	.long	3275                    @ DW_AT_type
+	.byte	20                      @ DW_AT_decl_file
 	.byte	15                      @ DW_AT_decl_line
                                         @ DW_AT_external
                                         @ DW_AT_declaration
 	.byte	1                       @ DW_AT_accessibility
                                         @ DW_ACCESS_public
 	.byte	9                       @ DW_AT_const_value
-	.byte	30                      @ Abbrev [30] 0xb83:0xd DW_TAG_member
-	.long	.Linfo_string152        @ DW_AT_name
-	.long	3104                    @ DW_AT_type
-	.byte	19                      @ DW_AT_decl_file
+	.byte	30                      @ Abbrev [30] 0xb7f:0xd DW_TAG_member
+	.long	.Linfo_string157        @ DW_AT_name
+	.long	3275                    @ DW_AT_type
+	.byte	20                      @ DW_AT_decl_file
 	.byte	16                      @ DW_AT_decl_line
                                         @ DW_AT_external
                                         @ DW_AT_declaration
 	.byte	1                       @ DW_AT_accessibility
                                         @ DW_ACCESS_public
 	.byte	18                      @ DW_AT_const_value
-	.byte	10                      @ Abbrev [10] 0xb90:0xc DW_TAG_member
-	.long	.Linfo_string153        @ DW_AT_name
-	.long	1091                    @ DW_AT_type
-	.byte	19                      @ DW_AT_decl_file
-	.byte	36                      @ DW_AT_decl_line
+	.byte	10                      @ Abbrev [10] 0xb8c:0xc DW_TAG_member
+	.long	.Linfo_string158        @ DW_AT_name
+	.long	3280                    @ DW_AT_type
+	.byte	20                      @ DW_AT_decl_file
+	.byte	29                      @ DW_AT_decl_line
 	.byte	4                       @ DW_AT_data_member_location
-	.byte	10                      @ Abbrev [10] 0xb9c:0xc DW_TAG_member
-	.long	.Linfo_string154        @ DW_AT_name
+	.byte	10                      @ Abbrev [10] 0xb98:0xc DW_TAG_member
+	.long	.Linfo_string160        @ DW_AT_name
 	.long	2042                    @ DW_AT_type
-	.byte	19                      @ DW_AT_decl_file
-	.byte	37                      @ DW_AT_decl_line
-	.byte	8                       @ DW_AT_data_member_location
-	.byte	31                      @ Abbrev [31] 0xba8:0x22 DW_TAG_subprogram
-	.long	.Linfo_string155        @ DW_AT_name
-	.byte	19                      @ DW_AT_decl_file
+	.byte	20                      @ DW_AT_decl_file
+	.byte	30                      @ DW_AT_decl_line
+	.byte	132                     @ DW_AT_data_member_location
+	.byte	10                      @ Abbrev [10] 0xba4:0xc DW_TAG_member
+	.long	.Linfo_string161        @ DW_AT_name
+	.long	1984                    @ DW_AT_type
+	.byte	20                      @ DW_AT_decl_file
+	.byte	32                      @ DW_AT_decl_line
+	.byte	136                     @ DW_AT_data_member_location
+	.byte	10                      @ Abbrev [10] 0xbb0:0xc DW_TAG_member
+	.long	.Linfo_string162        @ DW_AT_name
+	.long	2042                    @ DW_AT_type
+	.byte	20                      @ DW_AT_decl_file
+	.byte	33                      @ DW_AT_decl_line
+	.byte	140                     @ DW_AT_data_member_location
+	.byte	10                      @ Abbrev [10] 0xbbc:0xc DW_TAG_member
+	.long	.Linfo_string163        @ DW_AT_name
+	.long	2042                    @ DW_AT_type
+	.byte	20                      @ DW_AT_decl_file
+	.byte	34                      @ DW_AT_decl_line
+	.byte	144                     @ DW_AT_data_member_location
+	.byte	10                      @ Abbrev [10] 0xbc8:0xc DW_TAG_member
+	.long	.Linfo_string164        @ DW_AT_name
+	.long	3299                    @ DW_AT_type
+	.byte	20                      @ DW_AT_decl_file
+	.byte	35                      @ DW_AT_decl_line
+	.byte	148                     @ DW_AT_data_member_location
+	.byte	31                      @ Abbrev [31] 0xbd4:0x22 DW_TAG_subprogram
+	.long	.Linfo_string166        @ DW_AT_name
+	.byte	20                      @ DW_AT_decl_file
 	.byte	18                      @ DW_AT_decl_line
                                         @ DW_AT_declaration
                                         @ DW_AT_external
 	.byte	1                       @ DW_AT_accessibility
                                         @ DW_ACCESS_public
-	.byte	32                      @ Abbrev [32] 0xbb0:0x5 DW_TAG_formal_parameter
-	.long	3109                    @ DW_AT_type
+	.byte	32                      @ Abbrev [32] 0xbdc:0x5 DW_TAG_formal_parameter
+	.long	3325                    @ DW_AT_type
                                         @ DW_AT_artificial
-	.byte	12                      @ Abbrev [12] 0xbb5:0x5 DW_TAG_formal_parameter
+	.byte	12                      @ Abbrev [12] 0xbe1:0x5 DW_TAG_formal_parameter
 	.long	1984                    @ DW_AT_type
-	.byte	12                      @ Abbrev [12] 0xbba:0x5 DW_TAG_formal_parameter
+	.byte	12                      @ Abbrev [12] 0xbe6:0x5 DW_TAG_formal_parameter
 	.long	2042                    @ DW_AT_type
-	.byte	12                      @ Abbrev [12] 0xbbf:0x5 DW_TAG_formal_parameter
+	.byte	12                      @ Abbrev [12] 0xbeb:0x5 DW_TAG_formal_parameter
 	.long	2042                    @ DW_AT_type
-	.byte	12                      @ Abbrev [12] 0xbc4:0x5 DW_TAG_formal_parameter
-	.long	3114                    @ DW_AT_type
+	.byte	12                      @ Abbrev [12] 0xbf0:0x5 DW_TAG_formal_parameter
+	.long	3299                    @ DW_AT_type
 	.byte	0                       @ End Of Children Mark
-	.byte	33                      @ Abbrev [33] 0xbca:0x16 DW_TAG_subprogram
-	.long	.Linfo_string162        @ DW_AT_name
-	.byte	19                      @ DW_AT_decl_file
-	.byte	25                      @ DW_AT_decl_line
+	.byte	33                      @ Abbrev [33] 0xbf6:0x16 DW_TAG_subprogram
+	.long	.Linfo_string167        @ DW_AT_name
+	.byte	20                      @ DW_AT_decl_file
+	.byte	24                      @ DW_AT_decl_line
 	.byte	1                       @ DW_AT_virtuality
 	.byte	2                       @ DW_AT_vtable_elem_location
 	.byte	16
@@ -2970,70 +3148,69 @@ _ZTI6FLVTag:
 	.byte	1                       @ DW_AT_accessibility
                                         @ DW_ACCESS_public
 	.long	2898                    @ DW_AT_containing_type
-	.byte	32                      @ Abbrev [32] 0xbda:0x5 DW_TAG_formal_parameter
-	.long	3109                    @ DW_AT_type
-                                        @ DW_AT_artificial
-	.byte	0                       @ End Of Children Mark
-	.byte	34                      @ Abbrev [34] 0xbe0:0x16 DW_TAG_subprogram
-	.long	.Linfo_string163        @ DW_AT_linkage_name
-	.long	.Linfo_string158        @ DW_AT_name
-	.byte	19                      @ DW_AT_decl_file
-	.byte	27                      @ DW_AT_decl_line
-	.long	996                     @ DW_AT_type
-                                        @ DW_AT_declaration
-                                        @ DW_AT_external
-	.byte	1                       @ DW_AT_accessibility
-                                        @ DW_ACCESS_public
-	.byte	32                      @ Abbrev [32] 0xbf0:0x5 DW_TAG_formal_parameter
-	.long	3109                    @ DW_AT_type
-                                        @ DW_AT_artificial
-	.byte	0                       @ End Of Children Mark
-	.byte	34                      @ Abbrev [34] 0xbf6:0x16 DW_TAG_subprogram
-	.long	.Linfo_string164        @ DW_AT_linkage_name
-	.long	.Linfo_string165        @ DW_AT_name
-	.byte	19                      @ DW_AT_decl_file
-	.byte	31                      @ DW_AT_decl_line
-	.long	756                     @ DW_AT_type
-                                        @ DW_AT_declaration
-                                        @ DW_AT_external
-	.byte	1                       @ DW_AT_accessibility
-                                        @ DW_ACCESS_public
 	.byte	32                      @ Abbrev [32] 0xc06:0x5 DW_TAG_formal_parameter
-	.long	3109                    @ DW_AT_type
+	.long	3325                    @ DW_AT_type
+                                        @ DW_AT_artificial
+	.byte	0                       @ End Of Children Mark
+	.byte	34                      @ Abbrev [34] 0xc0c:0x23 DW_TAG_subprogram
+	.long	.Linfo_string168        @ DW_AT_linkage_name
+	.long	.Linfo_string151        @ DW_AT_name
+	.byte	20                      @ DW_AT_decl_file
+	.byte	25                      @ DW_AT_decl_line
+	.long	1091                    @ DW_AT_type
+	.byte	1                       @ DW_AT_virtuality
+	.byte	2                       @ DW_AT_vtable_elem_location
+	.byte	16
+	.byte	0
+                                        @ DW_AT_declaration
+                                        @ DW_AT_external
+	.byte	1                       @ DW_AT_accessibility
+                                        @ DW_ACCESS_public
+	.long	2898                    @ DW_AT_containing_type
+	.byte	32                      @ Abbrev [32] 0xc24:0x5 DW_TAG_formal_parameter
+	.long	3325                    @ DW_AT_type
+                                        @ DW_AT_artificial
+	.byte	12                      @ Abbrev [12] 0xc29:0x5 DW_TAG_formal_parameter
+	.long	1091                    @ DW_AT_type
+	.byte	0                       @ End Of Children Mark
+	.byte	34                      @ Abbrev [34] 0xc2f:0x1e DW_TAG_subprogram
+	.long	.Linfo_string169        @ DW_AT_linkage_name
+	.long	.Linfo_string153        @ DW_AT_name
+	.byte	20                      @ DW_AT_decl_file
+	.byte	26                      @ DW_AT_decl_line
+	.long	756                     @ DW_AT_type
+	.byte	1                       @ DW_AT_virtuality
+	.byte	2                       @ DW_AT_vtable_elem_location
+	.byte	16
+	.byte	1
+                                        @ DW_AT_declaration
+                                        @ DW_AT_external
+	.byte	1                       @ DW_AT_accessibility
+                                        @ DW_ACCESS_public
+	.long	2898                    @ DW_AT_containing_type
+	.byte	32                      @ Abbrev [32] 0xc47:0x5 DW_TAG_formal_parameter
+	.long	3325                    @ DW_AT_type
                                         @ DW_AT_artificial
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
-	.byte	13                      @ Abbrev [13] 0xc0d:0x5 DW_TAG_pointer_type
-	.long	3090                    @ DW_AT_type
-	.byte	35                      @ Abbrev [35] 0xc12:0x9 DW_TAG_pointer_type
-	.long	3099                    @ DW_AT_type
-	.long	.Linfo_string149        @ DW_AT_name
-	.byte	36                      @ Abbrev [36] 0xc1b:0x5 DW_TAG_subroutine_type
-	.long	756                     @ DW_AT_type
-	.byte	14                      @ Abbrev [14] 0xc20:0x5 DW_TAG_const_type
-	.long	756                     @ DW_AT_type
-	.byte	13                      @ Abbrev [13] 0xc25:0x5 DW_TAG_pointer_type
-	.long	2898                    @ DW_AT_type
-	.byte	37                      @ Abbrev [37] 0xc2a:0x5 DW_TAG_reference_type
-	.long	3119                    @ DW_AT_type
-	.byte	28                      @ Abbrev [28] 0xc2f:0x54 DW_TAG_class_type
-	.long	3119                    @ DW_AT_containing_type
+	.byte	28                      @ Abbrev [28] 0xc4e:0x65 DW_TAG_class_type
+	.long	3150                    @ DW_AT_containing_type
 	.byte	4                       @ DW_AT_calling_convention
-	.long	.Linfo_string161        @ DW_AT_name
+	.long	.Linfo_string154        @ DW_AT_name
 	.byte	4                       @ DW_AT_byte_size
-	.byte	20                      @ DW_AT_decl_file
+	.byte	19                      @ DW_AT_decl_file
 	.byte	9                       @ DW_AT_decl_line
-	.byte	29                      @ Abbrev [29] 0xc3c:0xa DW_TAG_member
-	.long	.Linfo_string156        @ DW_AT_name
-	.long	3085                    @ DW_AT_type
+	.byte	35                      @ Abbrev [35] 0xc5b:0xa DW_TAG_member
+	.long	.Linfo_string148        @ DW_AT_name
+	.long	3251                    @ DW_AT_type
 	.byte	0                       @ DW_AT_data_member_location
                                         @ DW_AT_artificial
-	.byte	38                      @ Abbrev [38] 0xc46:0x1e DW_TAG_subprogram
-	.long	.Linfo_string157        @ DW_AT_linkage_name
-	.long	.Linfo_string158        @ DW_AT_name
-	.byte	20                      @ DW_AT_decl_file
-	.byte	11                      @ DW_AT_decl_line
-	.long	996                     @ DW_AT_type
+	.byte	34                      @ Abbrev [34] 0xc65:0x23 DW_TAG_subprogram
+	.long	.Linfo_string150        @ DW_AT_linkage_name
+	.long	.Linfo_string151        @ DW_AT_name
+	.byte	19                      @ DW_AT_decl_file
+	.byte	12                      @ DW_AT_decl_line
+	.long	1091                    @ DW_AT_type
 	.byte	2                       @ DW_AT_virtuality
 	.byte	2                       @ DW_AT_vtable_elem_location
 	.byte	16
@@ -3042,15 +3219,17 @@ _ZTI6FLVTag:
                                         @ DW_AT_external
 	.byte	1                       @ DW_AT_accessibility
                                         @ DW_ACCESS_public
-	.long	3119                    @ DW_AT_containing_type
-	.byte	32                      @ Abbrev [32] 0xc5e:0x5 DW_TAG_formal_parameter
-	.long	3203                    @ DW_AT_type
+	.long	3150                    @ DW_AT_containing_type
+	.byte	32                      @ Abbrev [32] 0xc7d:0x5 DW_TAG_formal_parameter
+	.long	3270                    @ DW_AT_type
                                         @ DW_AT_artificial
+	.byte	12                      @ Abbrev [12] 0xc82:0x5 DW_TAG_formal_parameter
+	.long	1091                    @ DW_AT_type
 	.byte	0                       @ End Of Children Mark
-	.byte	38                      @ Abbrev [38] 0xc64:0x1e DW_TAG_subprogram
-	.long	.Linfo_string159        @ DW_AT_linkage_name
-	.long	.Linfo_string160        @ DW_AT_name
-	.byte	20                      @ DW_AT_decl_file
+	.byte	34                      @ Abbrev [34] 0xc88:0x1e DW_TAG_subprogram
+	.long	.Linfo_string152        @ DW_AT_linkage_name
+	.long	.Linfo_string153        @ DW_AT_name
+	.byte	19                      @ DW_AT_decl_file
 	.byte	13                      @ DW_AT_decl_line
 	.long	756                     @ DW_AT_type
 	.byte	2                       @ DW_AT_virtuality
@@ -3061,114 +3240,223 @@ _ZTI6FLVTag:
                                         @ DW_AT_external
 	.byte	1                       @ DW_AT_accessibility
                                         @ DW_ACCESS_public
-	.long	3119                    @ DW_AT_containing_type
-	.byte	32                      @ Abbrev [32] 0xc7c:0x5 DW_TAG_formal_parameter
-	.long	3203                    @ DW_AT_type
+	.long	3150                    @ DW_AT_containing_type
+	.byte	32                      @ Abbrev [32] 0xca0:0x5 DW_TAG_formal_parameter
+	.long	3270                    @ DW_AT_type
+                                        @ DW_AT_artificial
+	.byte	0                       @ End Of Children Mark
+	.byte	36                      @ Abbrev [36] 0xca6:0xc DW_TAG_subprogram
+	.long	.Linfo_string154        @ DW_AT_name
+                                        @ DW_AT_declaration
+                                        @ DW_AT_artificial
+                                        @ DW_AT_external
+	.byte	1                       @ DW_AT_accessibility
+                                        @ DW_ACCESS_public
+	.byte	32                      @ Abbrev [32] 0xcac:0x5 DW_TAG_formal_parameter
+	.long	3270                    @ DW_AT_type
                                         @ DW_AT_artificial
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
-	.byte	13                      @ Abbrev [13] 0xc83:0x5 DW_TAG_pointer_type
-	.long	3119                    @ DW_AT_type
-	.byte	39                      @ Abbrev [39] 0xc88:0x76 DW_TAG_subprogram
+	.byte	13                      @ Abbrev [13] 0xcb3:0x5 DW_TAG_pointer_type
+	.long	3256                    @ DW_AT_type
+	.byte	37                      @ Abbrev [37] 0xcb8:0x9 DW_TAG_pointer_type
+	.long	3265                    @ DW_AT_type
+	.long	.Linfo_string149        @ DW_AT_name
+	.byte	38                      @ Abbrev [38] 0xcc1:0x5 DW_TAG_subroutine_type
+	.long	756                     @ DW_AT_type
+	.byte	13                      @ Abbrev [13] 0xcc6:0x5 DW_TAG_pointer_type
+	.long	3150                    @ DW_AT_type
+	.byte	14                      @ Abbrev [14] 0xccb:0x5 DW_TAG_const_type
+	.long	756                     @ DW_AT_type
+	.byte	39                      @ Abbrev [39] 0xcd0:0xc DW_TAG_array_type
+	.long	1006                    @ DW_AT_type
+	.byte	40                      @ Abbrev [40] 0xcd5:0x6 DW_TAG_subrange_type
+	.long	3292                    @ DW_AT_type
+	.byte	128                     @ DW_AT_count
+	.byte	0                       @ End Of Children Mark
+	.byte	41                      @ Abbrev [41] 0xcdc:0x7 DW_TAG_base_type
+	.long	.Linfo_string159        @ DW_AT_name
+	.byte	8                       @ DW_AT_byte_size
+	.byte	7                       @ DW_AT_encoding
+	.byte	13                      @ Abbrev [13] 0xce3:0x5 DW_TAG_pointer_type
+	.long	3304                    @ DW_AT_type
+	.byte	28                      @ Abbrev [28] 0xce8:0x15 DW_TAG_class_type
+	.long	3150                    @ DW_AT_containing_type
+	.byte	4                       @ DW_AT_calling_convention
+	.long	.Linfo_string165        @ DW_AT_name
+	.byte	4                       @ DW_AT_byte_size
+	.byte	21                      @ DW_AT_decl_file
+	.byte	28                      @ DW_AT_decl_line
+	.byte	42                      @ Abbrev [42] 0xcf5:0x7 DW_TAG_inheritance
+	.long	3150                    @ DW_AT_type
+	.byte	0                       @ DW_AT_data_member_location
+	.byte	1                       @ DW_AT_accessibility
+                                        @ DW_ACCESS_public
+	.byte	0                       @ End Of Children Mark
+	.byte	13                      @ Abbrev [13] 0xcfd:0x5 DW_TAG_pointer_type
+	.long	2898                    @ DW_AT_type
+	.byte	43                      @ Abbrev [43] 0xd02:0x76 DW_TAG_subprogram
 	.long	.Lfunc_begin0           @ DW_AT_low_pc
 	.long	.Lfunc_end0-.Lfunc_begin0 @ DW_AT_high_pc
 	.byte	1                       @ DW_AT_frame_base
 	.byte	87
-	.long	3233                    @ DW_AT_object_pointer
+	.long	3355                    @ DW_AT_object_pointer
 	.byte	18                      @ DW_AT_decl_file
 	.byte	8                       @ DW_AT_decl_line
-	.long	.Linfo_string166        @ DW_AT_linkage_name
-	.long	2984                    @ DW_AT_specification
-	.byte	40                      @ Abbrev [40] 0xca1:0xc DW_TAG_formal_parameter
+	.long	.Linfo_string170        @ DW_AT_linkage_name
+	.long	3028                    @ DW_AT_specification
+	.byte	44                      @ Abbrev [44] 0xd1b:0xc DW_TAG_formal_parameter
 	.byte	2                       @ DW_AT_location
 	.byte	125
-	.byte	44
-	.long	.Linfo_string169        @ DW_AT_name
-	.long	3402                    @ DW_AT_type
+	.byte	28
+	.long	.Linfo_string174        @ DW_AT_name
+	.long	3644                    @ DW_AT_type
                                         @ DW_AT_artificial
-	.byte	41                      @ Abbrev [41] 0xcad:0xe DW_TAG_formal_parameter
+	.byte	45                      @ Abbrev [45] 0xd27:0xe DW_TAG_formal_parameter
 	.byte	2                       @ DW_AT_location
 	.byte	145
 	.byte	107
-	.long	.Linfo_string170        @ DW_AT_name
+	.long	.Linfo_string175        @ DW_AT_name
 	.byte	18                      @ DW_AT_decl_file
 	.byte	9                       @ DW_AT_decl_line
 	.long	1984                    @ DW_AT_type
-	.byte	41                      @ Abbrev [41] 0xcbb:0xe DW_TAG_formal_parameter
+	.byte	45                      @ Abbrev [45] 0xd35:0xe DW_TAG_formal_parameter
 	.byte	2                       @ DW_AT_location
 	.byte	125
-	.byte	36
-	.long	.Linfo_string171        @ DW_AT_name
+	.byte	20
+	.long	.Linfo_string176        @ DW_AT_name
 	.byte	18                      @ DW_AT_decl_file
 	.byte	10                      @ DW_AT_decl_line
 	.long	2042                    @ DW_AT_type
-	.byte	41                      @ Abbrev [41] 0xcc9:0xe DW_TAG_formal_parameter
+	.byte	45                      @ Abbrev [45] 0xd43:0xe DW_TAG_formal_parameter
 	.byte	2                       @ DW_AT_location
 	.byte	125
-	.byte	32
-	.long	.Linfo_string172        @ DW_AT_name
+	.byte	16
+	.long	.Linfo_string177        @ DW_AT_name
 	.byte	18                      @ DW_AT_decl_file
 	.byte	11                      @ DW_AT_decl_line
 	.long	2042                    @ DW_AT_type
-	.byte	41                      @ Abbrev [41] 0xcd7:0xe DW_TAG_formal_parameter
+	.byte	45                      @ Abbrev [45] 0xd51:0xe DW_TAG_formal_parameter
 	.byte	2                       @ DW_AT_location
 	.byte	145
 	.byte	8
-	.long	.Linfo_string173        @ DW_AT_name
+	.long	.Linfo_string178        @ DW_AT_name
 	.byte	18                      @ DW_AT_decl_file
 	.byte	12                      @ DW_AT_decl_line
-	.long	3114                    @ DW_AT_type
-	.byte	42                      @ Abbrev [42] 0xce5:0x18 DW_TAG_lexical_block
+	.long	3299                    @ DW_AT_type
+	.byte	46                      @ Abbrev [46] 0xd5f:0x18 DW_TAG_lexical_block
 	.long	.Ltmp1                  @ DW_AT_low_pc
 	.long	.Ltmp2-.Ltmp1           @ DW_AT_high_pc
-	.byte	43                      @ Abbrev [43] 0xcee:0xe DW_TAG_variable
+	.byte	47                      @ Abbrev [47] 0xd68:0xe DW_TAG_variable
 	.byte	2                       @ DW_AT_location
 	.byte	125
-	.byte	48
-	.long	.Linfo_string174        @ DW_AT_name
+	.byte	32
+	.long	.Linfo_string179        @ DW_AT_name
 	.byte	18                      @ DW_AT_decl_file
-	.byte	16                      @ DW_AT_decl_line
+	.byte	15                      @ DW_AT_decl_line
 	.long	756                     @ DW_AT_type
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
-	.byte	39                      @ Abbrev [39] 0xcfe:0x26 DW_TAG_subprogram
+	.byte	43                      @ Abbrev [43] 0xd78:0x26 DW_TAG_subprogram
 	.long	.Lfunc_begin1           @ DW_AT_low_pc
 	.long	.Lfunc_end1-.Lfunc_begin1 @ DW_AT_high_pc
 	.byte	1                       @ DW_AT_frame_base
 	.byte	87
-	.long	3351                    @ DW_AT_object_pointer
-	.byte	18                      @ DW_AT_decl_file
-	.byte	39                      @ DW_AT_decl_line
-	.long	.Linfo_string167        @ DW_AT_linkage_name
-	.long	3018                    @ DW_AT_specification
-	.byte	40                      @ Abbrev [40] 0xd17:0xc DW_TAG_formal_parameter
+	.long	3473                    @ DW_AT_object_pointer
+	.byte	19                      @ DW_AT_decl_file
+	.byte	9                       @ DW_AT_decl_line
+	.long	.Linfo_string171        @ DW_AT_linkage_name
+	.long	3238                    @ DW_AT_specification
+	.byte	44                      @ Abbrev [44] 0xd91:0xc DW_TAG_formal_parameter
 	.byte	2                       @ DW_AT_location
 	.byte	125
-	.byte	8
-	.long	.Linfo_string169        @ DW_AT_name
-	.long	3402                    @ DW_AT_type
+	.byte	0
+	.long	.Linfo_string174        @ DW_AT_name
+	.long	3649                    @ DW_AT_type
                                         @ DW_AT_artificial
 	.byte	0                       @ End Of Children Mark
-	.byte	39                      @ Abbrev [39] 0xd24:0x26 DW_TAG_subprogram
+	.byte	43                      @ Abbrev [43] 0xd9e:0x26 DW_TAG_subprogram
 	.long	.Lfunc_begin2           @ DW_AT_low_pc
 	.long	.Lfunc_end2-.Lfunc_begin2 @ DW_AT_high_pc
 	.byte	1                       @ DW_AT_frame_base
 	.byte	87
-	.long	3389                    @ DW_AT_object_pointer
+	.long	3511                    @ DW_AT_object_pointer
 	.byte	18                      @ DW_AT_decl_file
-	.byte	39                      @ DW_AT_decl_line
-	.long	.Linfo_string168        @ DW_AT_linkage_name
-	.long	3018                    @ DW_AT_specification
-	.byte	40                      @ Abbrev [40] 0xd3d:0xc DW_TAG_formal_parameter
+	.byte	34                      @ DW_AT_decl_line
+	.long	.Linfo_string172        @ DW_AT_linkage_name
+	.long	3062                    @ DW_AT_specification
+	.byte	44                      @ Abbrev [44] 0xdb7:0xc DW_TAG_formal_parameter
+	.byte	2                       @ DW_AT_location
+	.byte	125
+	.byte	0
+	.long	.Linfo_string174        @ DW_AT_name
+	.long	3644                    @ DW_AT_type
+                                        @ DW_AT_artificial
+	.byte	0                       @ End Of Children Mark
+	.byte	43                      @ Abbrev [43] 0xdc4:0x26 DW_TAG_subprogram
+	.long	.Lfunc_begin3           @ DW_AT_low_pc
+	.long	.Lfunc_end3-.Lfunc_begin3 @ DW_AT_high_pc
+	.byte	1                       @ DW_AT_frame_base
+	.byte	87
+	.long	3549                    @ DW_AT_object_pointer
+	.byte	18                      @ DW_AT_decl_file
+	.byte	34                      @ DW_AT_decl_line
+	.long	.Linfo_string173        @ DW_AT_linkage_name
+	.long	3062                    @ DW_AT_specification
+	.byte	44                      @ Abbrev [44] 0xddd:0xc DW_TAG_formal_parameter
 	.byte	2                       @ DW_AT_location
 	.byte	125
 	.byte	12
-	.long	.Linfo_string169        @ DW_AT_name
-	.long	3402                    @ DW_AT_type
+	.long	.Linfo_string174        @ DW_AT_name
+	.long	3644                    @ DW_AT_type
                                         @ DW_AT_artificial
 	.byte	0                       @ End Of Children Mark
-	.byte	13                      @ Abbrev [13] 0xd4a:0x5 DW_TAG_pointer_type
+	.byte	48                      @ Abbrev [48] 0xdea:0x30 DW_TAG_subprogram
+	.long	.Lfunc_begin4           @ DW_AT_low_pc
+	.long	.Lfunc_end4-.Lfunc_begin4 @ DW_AT_high_pc
+	.byte	1                       @ DW_AT_frame_base
+	.byte	87
+	.long	3583                    @ DW_AT_object_pointer
+	.byte	18                      @ DW_AT_decl_file
+	.byte	37                      @ DW_AT_decl_line
+	.long	3084                    @ DW_AT_specification
+	.byte	44                      @ Abbrev [44] 0xdff:0xc DW_TAG_formal_parameter
+	.byte	2                       @ DW_AT_location
+	.byte	125
+	.byte	12
+	.long	.Linfo_string174        @ DW_AT_name
+	.long	3644                    @ DW_AT_type
+                                        @ DW_AT_artificial
+	.byte	45                      @ Abbrev [45] 0xe0b:0xe DW_TAG_formal_parameter
+	.byte	2                       @ DW_AT_location
+	.byte	125
+	.byte	8
+	.long	.Linfo_string180        @ DW_AT_name
+	.byte	18                      @ DW_AT_decl_file
+	.byte	37                      @ DW_AT_decl_line
+	.long	1091                    @ DW_AT_type
+	.byte	0                       @ End Of Children Mark
+	.byte	48                      @ Abbrev [48] 0xe1a:0x22 DW_TAG_subprogram
+	.long	.Lfunc_begin5           @ DW_AT_low_pc
+	.long	.Lfunc_end5-.Lfunc_begin5 @ DW_AT_high_pc
+	.byte	1                       @ DW_AT_frame_base
+	.byte	87
+	.long	3631                    @ DW_AT_object_pointer
+	.byte	18                      @ DW_AT_decl_file
+	.byte	43                      @ DW_AT_decl_line
+	.long	3119                    @ DW_AT_specification
+	.byte	44                      @ Abbrev [44] 0xe2f:0xc DW_TAG_formal_parameter
+	.byte	2                       @ DW_AT_location
+	.byte	125
+	.byte	4
+	.long	.Linfo_string174        @ DW_AT_name
+	.long	3644                    @ DW_AT_type
+                                        @ DW_AT_artificial
+	.byte	0                       @ End Of Children Mark
+	.byte	13                      @ Abbrev [13] 0xe3c:0x5 DW_TAG_pointer_type
 	.long	2898                    @ DW_AT_type
+	.byte	13                      @ Abbrev [13] 0xe41:0x5 DW_TAG_pointer_type
+	.long	3150                    @ DW_AT_type
 	.byte	0                       @ End Of Children Mark
 .Ldebug_info_end0:
 	.section	.debug_ranges,"",%progbits
@@ -3179,14 +3467,20 @@ _ZTI6FLVTag:
 	.long	.Lfunc_end1
 	.long	.Lfunc_begin2
 	.long	.Lfunc_end2
+	.long	.Lfunc_begin3
+	.long	.Lfunc_end3
+	.long	.Lfunc_begin4
+	.long	.Lfunc_end4
+	.long	.Lfunc_begin5
+	.long	.Lfunc_end5
 	.long	0
 	.long	0
 	.section	.debug_macinfo,"",%progbits
 	.byte	0                       @ End Of Macro List Mark
 
-	.globl	_ZN6FLVTagC1EhjjR11IFLVTagData
-	.type	_ZN6FLVTagC1EhjjR11IFLVTagData,%function
-.set _ZN6FLVTagC1EhjjR11IFLVTagData, _ZN6FLVTagC2EhjjR11IFLVTagData
+	.globl	_ZN6FLVTagC1EhjjP11IFLVTagData
+	.type	_ZN6FLVTagC1EhjjP11IFLVTagData,%function
+.set _ZN6FLVTagC1EhjjP11IFLVTagData, _ZN6FLVTagC2EhjjP11IFLVTagData
 	.globl	_ZN6FLVTagD1Ev
 	.type	_ZN6FLVTagD1Ev,%function
 .set _ZN6FLVTagD1Ev, _ZN6FLVTagD2Ev

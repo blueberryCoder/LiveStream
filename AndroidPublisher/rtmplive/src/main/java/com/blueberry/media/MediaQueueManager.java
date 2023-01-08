@@ -41,4 +41,11 @@ public class MediaQueueManager {
     public AudioPacket takeAudioPacket() throws InterruptedException {
         return audioPacketQueue.take();
     }
+
+    public VideoPacket pollVideoPacket()  {
+        return videoPacketQueue.poll();
+    }
+    public AudioPacket pollAudioPacket()  {
+        return audioPacketQueue.poll();
+    }
 }

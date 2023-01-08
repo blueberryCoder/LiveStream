@@ -186,42 +186,72 @@ typedef int64_t intmax_t;
 
 
 
+# 1 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/IBuffer.h" 1
 
-class IFLVTagData {
+
+
+
+
+
+
+
+class IBuffer {
+
 public:
-    virtual const char *GetBuffer() = 0;
+    virtual char *WriteTo(char *output) = 0;
+    virtual int Size() = 0;
 
-    virtual int GetBufferSize() = 0;
+};
+# 9 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/IFLVTagData.h" 2
+
+typedef enum {
+    ADPCM = 1,
+    MP3 = 2,
+    LINEAR_PCM_LITTLE_ENDIAN = 3,
+    NELLYMOSER_16K_MONO = 4,
+    NELLYMOSER_8K_MONO = 5,
+    NELLYMOSER = 6,
+    A_LAW_PCM = 7,
+    MU_LAW_PCM = 8,
+    RESERVED = 9,
+    AAC = 10,
+    SPEEX = 11,
+    MP3_8_K = 14,
+    DEVICE_SPECIFIC_SOUND = 15,
+} AudioCodecId;
+
+typedef AudioCodecId SoundFormat;
+
+class IFLVTagData : public IBuffer {
+
 };
 # 10 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/FLVTag.h" 2
 
-class FLVTag {
+class FLVTag : IBuffer {
 
 public:
     static constexpr int AUDIO = 8;
     static constexpr int VIDEO = 9;
     static constexpr int SCRIPT_DATA = 18;
 
-    FLVTag( uint8_t tag_type,
-            uint32_t data_size,
-            uint32_t time_stamp,
-            IFLVTagData& data
+    FLVTag(uint8_t tag_type,
+           uint32_t data_size,
+           uint32_t time_stamp,
+           IFLVTagData *data
     );
 
-
     virtual ~FLVTag();
-
-    const char *GetBuffer() {
-        return buffer_;
-    }
-
-    int GetSize() {
-        return size_;
-    }
+    char *WriteTo(char *output) override;
+    int Size() override;
 
 private :
-    char *buffer_;
+    char buffer_[128];
     uint32_t size_;
+
+    uint8_t tag_type_;
+    uint32_t data_size_;
+    uint32_t time_stamp_;
+    IFLVTagData *data_;
 };
 # 6 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/FLVTag.cpp" 2
 # 1 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/c++/v1/memory" 1 3
@@ -17693,10 +17723,9 @@ FLVTag::FLVTag(
         uint8_t tag_type,
         uint32_t data_size,
         uint32_t time_stamp,
-        IFLVTagData &data
-) {
-    buffer_ = new char[128 + data.GetBufferSize()];
-
+        IFLVTagData* data
+): tag_type_(tag_type), data_size_(data_size), time_stamp_(time_stamp),data_(data)
+{
     int i = 0;
     buffer_[i++] = tag_type;
 
@@ -17713,13 +17742,18 @@ FLVTag::FLVTag(
     buffer_[i++] = 0;
     buffer_[i++] = 0;
 
-    memcpy(&buffer_[i], data.GetBuffer(), data.GetBufferSize());
-    i += data.GetBufferSize();
-
     size_ = i;
-
 }
 
 FLVTag::~FLVTag() {
-    delete[] buffer_;
+}
+
+char *FLVTag::WriteTo(char *output) {
+    memcpy(output, buffer_, size_);
+    output += size_;
+    return data_->WriteTo(output);
+}
+
+int FLVTag::Size() {
+    return size_ + data_->Size();
 }

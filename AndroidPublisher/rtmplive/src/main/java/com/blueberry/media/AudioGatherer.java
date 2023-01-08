@@ -103,7 +103,7 @@ public class AudioGatherer {
         loop = false;
         if(workThread!=null) {
             workThread.interrupt();
-            Log.i(TAG, "stop");
+            Log.i(TAG, "Stop");
         }
         mAudioRecord.stop();
     }

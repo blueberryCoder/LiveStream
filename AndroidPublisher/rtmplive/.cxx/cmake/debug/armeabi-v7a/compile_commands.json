@@ -31,8 +31,32 @@
 
 {
   "directory": "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/.cxx/cmake/debug/armeabi-v7a",
+  "command": "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=armv7-none-linux-androideabi16 --gcc-toolchain=/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DNO_CRYPTO -Dpublish_EXPORTS -I/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/librtmp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -frtti -fexceptions -save-temps=obj -O0 -fno-limit-debug-info  -fPIC   -o CMakeFiles/publish.dir/AACAudioData.cpp.o -c /Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/AACAudioData.cpp",
+  "file": "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/AACAudioData.cpp"
+},
+
+{
+  "directory": "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/.cxx/cmake/debug/armeabi-v7a",
   "command": "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=armv7-none-linux-androideabi16 --gcc-toolchain=/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DNO_CRYPTO -Dpublish_EXPORTS -I/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/librtmp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -frtti -fexceptions -save-temps=obj -O0 -fno-limit-debug-info  -fPIC   -o CMakeFiles/publish.dir/AVCDecoderConfiguration.cpp.o -c /Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/AVCDecoderConfiguration.cpp",
   "file": "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/AVCDecoderConfiguration.cpp"
+},
+
+{
+  "directory": "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/.cxx/cmake/debug/armeabi-v7a",
+  "command": "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=armv7-none-linux-androideabi16 --gcc-toolchain=/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DNO_CRYPTO -Dpublish_EXPORTS -I/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/librtmp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -frtti -fexceptions -save-temps=obj -O0 -fno-limit-debug-info  -fPIC   -o CMakeFiles/publish.dir/AVCNaluPacket.cpp.o -c /Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/AVCNaluPacket.cpp",
+  "file": "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/AVCNaluPacket.cpp"
+},
+
+{
+  "directory": "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/.cxx/cmake/debug/armeabi-v7a",
+  "command": "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=armv7-none-linux-androideabi16 --gcc-toolchain=/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DNO_CRYPTO -Dpublish_EXPORTS -I/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/librtmp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -frtti -fexceptions -save-temps=obj -O0 -fno-limit-debug-info  -fPIC   -o CMakeFiles/publish.dir/AVCVideoPacket.cpp.o -c /Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/AVCVideoPacket.cpp",
+  "file": "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/AVCVideoPacket.cpp"
+},
+
+{
+  "directory": "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/.cxx/cmake/debug/armeabi-v7a",
+  "command": "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=armv7-none-linux-androideabi16 --gcc-toolchain=/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DNO_CRYPTO -Dpublish_EXPORTS -I/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/librtmp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -frtti -fexceptions -save-temps=obj -O0 -fno-limit-debug-info  -fPIC   -o CMakeFiles/publish.dir/AudioData.cpp.o -c /Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/AudioData.cpp",
+  "file": "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/AudioData.cpp"
 },
 
 {
@@ -45,12 +69,6 @@
   "directory": "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/.cxx/cmake/debug/armeabi-v7a",
   "command": "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=armv7-none-linux-androideabi16 --gcc-toolchain=/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DNO_CRYPTO -Dpublish_EXPORTS -I/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/librtmp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -frtti -fexceptions -save-temps=obj -O0 -fno-limit-debug-info  -fPIC   -o CMakeFiles/publish.dir/FLVTag.cpp.o -c /Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/FLVTag.cpp",
   "file": "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/FLVTag.cpp"
-},
-
-{
-  "directory": "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/.cxx/cmake/debug/armeabi-v7a",
-  "command": "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=armv7-none-linux-androideabi16 --gcc-toolchain=/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DNO_CRYPTO -Dpublish_EXPORTS -I/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/librtmp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -frtti -fexceptions -save-temps=obj -O0 -fno-limit-debug-info  -fPIC   -o CMakeFiles/publish.dir/FLVTagData.cpp.o -c /Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/FLVTagData.cpp",
-  "file": "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/FLVTagData.cpp"
 },
 
 {
@@ -79,6 +97,36 @@
 
 {
   "directory": "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/.cxx/cmake/debug/armeabi-v7a",
+  "command": "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=armv7-none-linux-androideabi16 --gcc-toolchain=/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DNO_CRYPTO -Dpublish_EXPORTS -I/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/librtmp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -frtti -fexceptions -save-temps=obj -O0 -fno-limit-debug-info  -fPIC   -o CMakeFiles/publish.dir/IAVCPacketData.cpp.o -c /Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/IAVCPacketData.cpp",
+  "file": "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/IAVCPacketData.cpp"
+},
+
+{
+  "directory": "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/.cxx/cmake/debug/armeabi-v7a",
+  "command": "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=armv7-none-linux-androideabi16 --gcc-toolchain=/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DNO_CRYPTO -Dpublish_EXPORTS -I/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/librtmp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -frtti -fexceptions -save-temps=obj -O0 -fno-limit-debug-info  -fPIC   -o CMakeFiles/publish.dir/IBuffer.cpp.o -c /Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/IBuffer.cpp",
+  "file": "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/IBuffer.cpp"
+},
+
+{
+  "directory": "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/.cxx/cmake/debug/armeabi-v7a",
+  "command": "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=armv7-none-linux-androideabi16 --gcc-toolchain=/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DNO_CRYPTO -Dpublish_EXPORTS -I/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/librtmp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -frtti -fexceptions -save-temps=obj -O0 -fno-limit-debug-info  -fPIC   -o CMakeFiles/publish.dir/IFLVTagData.cpp.o -c /Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/IFLVTagData.cpp",
+  "file": "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/IFLVTagData.cpp"
+},
+
+{
+  "directory": "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/.cxx/cmake/debug/armeabi-v7a",
+  "command": "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=armv7-none-linux-androideabi16 --gcc-toolchain=/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DNO_CRYPTO -Dpublish_EXPORTS -I/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/librtmp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -frtti -fexceptions -save-temps=obj -O0 -fno-limit-debug-info  -fPIC   -o CMakeFiles/publish.dir/ISoundData.cpp.o -c /Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/ISoundData.cpp",
+  "file": "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/ISoundData.cpp"
+},
+
+{
+  "directory": "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/.cxx/cmake/debug/armeabi-v7a",
+  "command": "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=armv7-none-linux-androideabi16 --gcc-toolchain=/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DNO_CRYPTO -Dpublish_EXPORTS -I/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/librtmp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -frtti -fexceptions -save-temps=obj -O0 -fno-limit-debug-info  -fPIC   -o CMakeFiles/publish.dir/IVideoPacket.cpp.o -c /Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/IVideoPacket.cpp",
+  "file": "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/IVideoPacket.cpp"
+},
+
+{
+  "directory": "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/.cxx/cmake/debug/armeabi-v7a",
   "command": "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=armv7-none-linux-androideabi16 --gcc-toolchain=/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DNO_CRYPTO -Dpublish_EXPORTS -I/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/librtmp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -frtti -fexceptions -save-temps=obj -O0 -fno-limit-debug-info  -fPIC   -o CMakeFiles/publish.dir/OnMetaData.cpp.o -c /Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/OnMetaData.cpp",
   "file": "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/OnMetaData.cpp"
 },
@@ -87,6 +135,12 @@
   "directory": "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/.cxx/cmake/debug/armeabi-v7a",
   "command": "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=armv7-none-linux-androideabi16 --gcc-toolchain=/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DNO_CRYPTO -Dpublish_EXPORTS -I/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/librtmp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -frtti -fexceptions -save-temps=obj -O0 -fno-limit-debug-info  -fPIC   -o CMakeFiles/publish.dir/RtmpClient.cpp.o -c /Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/RtmpClient.cpp",
   "file": "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/RtmpClient.cpp"
+},
+
+{
+  "directory": "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/.cxx/cmake/debug/armeabi-v7a",
+  "command": "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=armv7-none-linux-androideabi16 --gcc-toolchain=/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DNO_CRYPTO -Dpublish_EXPORTS -I/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/librtmp  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -frtti -fexceptions -save-temps=obj -O0 -fno-limit-debug-info  -fPIC   -o CMakeFiles/publish.dir/VideoData.cpp.o -c /Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/VideoData.cpp",
+  "file": "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/VideoData.cpp"
 },
 
 {

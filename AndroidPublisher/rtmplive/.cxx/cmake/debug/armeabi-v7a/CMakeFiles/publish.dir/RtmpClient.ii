@@ -53319,6 +53319,91 @@ extern __attribute__ ((__visibility__("default"))) wostream wclog;
 
 } }
 # 13 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/RtmpClient.h" 2
+# 1 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/FLVTag.h" 1
+
+
+
+
+
+
+
+
+# 1 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/IFLVTagData.h" 1
+
+
+
+
+
+
+
+# 1 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/IBuffer.h" 1
+
+
+
+
+
+
+
+
+class IBuffer {
+
+public:
+    virtual char *WriteTo(char *output) = 0;
+    virtual int Size() = 0;
+
+};
+# 9 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/IFLVTagData.h" 2
+
+typedef enum {
+    ADPCM = 1,
+    MP3 = 2,
+    LINEAR_PCM_LITTLE_ENDIAN = 3,
+    NELLYMOSER_16K_MONO = 4,
+    NELLYMOSER_8K_MONO = 5,
+    NELLYMOSER = 6,
+    A_LAW_PCM = 7,
+    MU_LAW_PCM = 8,
+    RESERVED = 9,
+    AAC = 10,
+    SPEEX = 11,
+    MP3_8_K = 14,
+    DEVICE_SPECIFIC_SOUND = 15,
+} AudioCodecId;
+
+typedef AudioCodecId SoundFormat;
+
+class IFLVTagData : public IBuffer {
+
+};
+# 10 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/FLVTag.h" 2
+
+class FLVTag : IBuffer {
+
+public:
+    static constexpr int AUDIO = 8;
+    static constexpr int VIDEO = 9;
+    static constexpr int SCRIPT_DATA = 18;
+
+    FLVTag(uint8_t tag_type,
+           uint32_t data_size,
+           uint32_t time_stamp,
+           IFLVTagData *data
+    );
+
+    virtual ~FLVTag();
+    char *WriteTo(char *output) override;
+    int Size() override;
+
+private :
+    char buffer_[128];
+    uint32_t size_;
+
+    uint8_t tag_type_;
+    uint32_t data_size_;
+    uint32_t time_stamp_;
+    IFLVTagData *data_;
+};
+# 14 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/RtmpClient.h" 2
 
 
 extern "C" {
@@ -53724,7 +53809,7 @@ extern "C"
 
 
 };
-# 19 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/RtmpClient.h" 2
+# 20 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/RtmpClient.h" 2
 # 1 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/librtmp/rtmp_sys.h" 1
 # 46 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/librtmp/rtmp_sys.h"
 # 1 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/sys/socket.h" 1 3 4
@@ -55172,16 +55257,16 @@ int inet_pton(int __af, const char* __src, void* __dst);
 
 }
 # 53 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/librtmp/rtmp_sys.h" 2
-# 20 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/RtmpClient.h" 2
+# 21 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/RtmpClient.h" 2
 
 
 
 # 1 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/c++/v1/stdlib.h" 1 3
-# 24 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/RtmpClient.h" 2
+# 25 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/RtmpClient.h" 2
 
 
 }
-# 47 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/RtmpClient.h"
+# 48 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/RtmpClient.h"
 class RtmpClient {
 
 private:
@@ -55207,16 +55292,11 @@ public:
 
     int Connect();
 
-    int sendSpsAndPps(uint8_t *sps, int spsLen, uint8_t *pps, int ppsLen,
-                      long timestamp);
+    int SendAVCData(uint8_t *data, int len, long timestamp);
 
-    int sendVideoData(uint8_t *data, int len, long timestamp);
+    int SendAACData(uint8_t *data, int len, long timestamp);
 
-    int sendAacSpec(uint8_t *data, int len);
-
-    int sendAacData(uint8_t *data, int len, long timestamp);
-
-    int stop();
+    int Stop();
 
     int SendDataFrame(
             double width,
@@ -55228,13 +55308,15 @@ public:
             double audioSampleRate,
             double audioSampleSize,
             bool stereo
-                      );
+    );
 
 private:
+
     int SendNALSPS(uint8_t *data, int length, long timestamp);
 
     int SendAACSpecific(uint8_t *data, int length, long timestamp);
 
+    int SendFlvTag(FLVTag flag_tag);
 };
 # 16 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/RtmpClient.cpp" 2
 # 1 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/H264Parser.h" 1
@@ -55390,13 +55472,23 @@ public:
 };
 # 19 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/RtmpClient.cpp" 2
 # 1 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/AVCDecoderConfiguration.h" 1
-# 10 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/AVCDecoderConfiguration.h"
-class AVCDecoderConfiguration {
-public:
-    static inline int
-    ParseSPSAndPPS(int sps_length, uint8_t *sps, int pps_length, uint8_t *pps, uint8_t *output,
-                   int *length);
 
+
+
+
+
+
+
+
+# 1 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/IAVCPacketData.h" 1
+# 11 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/IAVCPacketData.h"
+class IAVCPacketData : public IBuffer {
+
+};
+# 10 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/AVCDecoderConfiguration.h" 2
+
+class AVCDecoderConfiguration : public IAVCPacketData {
+public:
 
     AVCDecoderConfiguration(H264Params &params);
 
@@ -55406,58 +55498,23 @@ public:
 
     inline int GetBufferLength() { return buffer_length_; }
 
+    char *WriteTo(char *output) override;
+
+    int Size() override;
+
 private :
-    uint8_t *buffer_;
+    static inline int ParseSPSAndPPS(int sps_length, uint8_t *sps, int pps_length, uint8_t *pps,
+                                     uint8_t *output, int *length);
+
+    uint8_t buffer_[1024];
     int buffer_length_;
+
+
 };
 # 20 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/RtmpClient.cpp" 2
 # 1 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/OnMetaData.h" 1
-# 11 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/OnMetaData.h"
-# 1 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/IFLVTagData.h" 1
-
-
-
-
-
-
-
-
-class IFLVTagData {
-public:
-    virtual const char *GetBuffer() = 0;
-
-    virtual int GetBufferSize() = 0;
-};
-# 12 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/OnMetaData.h" 2
-
-
+# 14 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/OnMetaData.h"
 using namespace std;
-typedef enum {
-    JEPEG = 1,
-    SORENSON_H263 = 2,
-    SCREEN_VIDEO = 3,
-    ON2_VP6 = 4,
-    ON2_VP6_WITH_ALPHA_CHANNEL = 5,
-    SCREEN_VIDEO_VERSION = 6,
-    AVC_ = 7
-} VideoCodecId;
-
-typedef enum {
-    ADPCM = 1,
-    MP3 = 2,
-    LINEAR_PCM_LITTLE_ENDIAN = 3,
-    NELLYMOSER_16K_MONO = 4,
-    NELLYMOSER_8K_MONO = 5,
-    NELLYMOSER = 6,
-    A_LAW_PCM = 7,
-    MU_LAW_PCM = 8,
-    RESERVED = 9,
-    AAC = 10,
-    SPEEX = 11,
-    MP3_8_K = 14,
-    DEVICE_SPECIFIC_SOUND = 15,
-} AudioCodecId;
-
 
 class OnMetaData : public IFLVTagData {
 public:
@@ -55499,55 +55556,190 @@ public:
 
     virtual ~OnMetaData();
 
-    const char * GetBuffer() override {
-        return buffer_;
-    }
+    char *WriteTo(char *output) override;
 
-    int GetBufferSize() override {
-        return size_;
-    };
+    int Size() override;
 
 private:
     char *buffer_;
     int size_;
 };
 # 21 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/RtmpClient.cpp" 2
-# 1 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/FLVTag.h" 1
-# 11 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/FLVTag.h"
-class FLVTag {
+
+# 1 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/AudioData.h" 1
+# 10 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/AudioData.h"
+# 1 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/ISoundData.h" 1
+
+
+
+
+
+
+
+
+class ISoundData: public IBuffer{
+};
+# 11 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/AudioData.h" 2
+
+
+
+
+class AudioData : public IFLVTagData {
 
 public:
-    static constexpr int AUDIO = 8;
-    static constexpr int VIDEO = 9;
-    static constexpr int SCRIPT_DATA = 18;
-
-    FLVTag( uint8_t tag_type,
-            uint32_t data_size,
-            uint32_t time_stamp,
-            IFLVTagData& data
+    AudioData(uint8_t sound_format,
+              uint8_t sound_rate,
+              uint8_t sound_size,
+              uint8_t sound_type,
+              ISoundData *sound_data
     );
+    virtual ~AudioData();
 
+    char * WriteTo(char * output) override;
 
-    virtual ~FLVTag();
+    int Size() override;
 
-    const char *GetBuffer() {
-        return buffer_;
-    }
-
-    int GetSize() {
-        return size_;
-    }
-
-private :
-    char *buffer_;
-    uint32_t size_;
+private:
+    uint8_t sound_format_;
+    uint8_t sound_rate_;
+    uint8_t sound_size_;
+    uint8_t sound_type_;
+    ISoundData* sound_data_;
 };
-# 22 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/RtmpClient.cpp" 2
+# 23 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/RtmpClient.cpp" 2
+# 1 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/AACAudioData.h" 1
+# 12 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/AACAudioData.h"
+typedef enum {
+    AAC_SEQ = 0,
+    AAC_RAW = 1
+} AACPacketType;
+
+class AACAudioData : public ISoundData {
+
+
+public:
+    class IAACData : public IBuffer {
+    };
+
+    class AACAudioSpecificConfig : public IAACData {
+    public:
+        AACAudioSpecificConfig(char *buffer, int length);
+        char * WriteTo(char * output) override;
+        int Size() override;
+
+    private:
+        char *buffer_;
+        int size_;
+    };
+
+    class AACAudioFrameData : public IAACData {
+    public:
+        AACAudioFrameData(char *buffer, int length);
+        char * WriteTo(char * output) override;
+        int Size() override;
+
+    private:
+        char *buffer_;
+        int size_;
+    };
+    AACAudioData(AACPacketType packet_type, IAACData* data) ;
+    char * WriteTo(char * output) override;
+
+    int Size() override;
+
+private:
+    AACPacketType packet_type_;
+    IAACData * data_;
+
+};
+# 24 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/RtmpClient.cpp" 2
+# 1 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/AVCNaluPacket.h" 1
+# 11 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/AVCNaluPacket.h"
+class AVCNaluPacket : public IAVCPacketData {
+public:
+    AVCNaluPacket(uint8_t* buffer,int length);
+    virtual ~AVCNaluPacket();
+
+    char *WriteTo(char *output) override;
+    int Size() override;
+
+private:
+    uint8_t * buffer_;
+    int size_;
+};
+# 25 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/RtmpClient.cpp" 2
+# 1 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/AVCVideoPacket.h" 1
+# 11 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/AVCVideoPacket.h"
+# 1 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/IVideoPacket.h" 1
+# 10 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/IVideoPacket.h"
+class IVideoPacket : public IBuffer {
+
+};
+# 12 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/AVCVideoPacket.h" 2
+
+class AVCVideoPacket : public IVideoPacket {
+
+public:
+    typedef enum {
+        AVC_SEQ = 0,
+        AVC_NALU = 1,
+        AVC_END = 2
+    } AVCPacketType;
+
+    AVCVideoPacket(AVCPacketType packet_type, uint32_t cts, IAVCPacketData *data);
+
+    ~AVCVideoPacket();
+
+    char *WriteTo(char *output) override;
+
+    int Size() override;
+
+private:
+    AVCPacketType avc_packet_type_;
+    uint32_t cts_;
+    IAVCPacketData *data_;
+};
+# 26 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/RtmpClient.cpp" 2
+# 1 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/VideoData.h" 1
+# 12 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/VideoData.h"
+class VideoData : public IFLVTagData {
+
+public:
+    typedef enum {
+       KEY_FRAME = 1 ,
+       INTER_FRAME = 2,
+       DISPOSABLE_FRAME = 3,
+       RESERVED = 4,
+       VIDEO_INFO_ = 5
+    } FrameType;
+
+    typedef enum {
+        JEPEG = 1,
+        SORENSON_H263 = 2,
+        SCREEN_VIDEO = 3,
+        ON2_VP6 = 4,
+        ON2_VP6_WITH_ALPHA_CHANNEL = 5,
+        SCREEN_VIDEO_VERSION = 6,
+        AVC_ = 7
+    } VideoCodecId;
+
+    VideoData(FrameType frame_type, VideoCodecId codec_id, IVideoPacket *video_packet);
+    virtual ~VideoData();
+
+    char *WriteTo(char *output) override;
+    int Size() override;
+
+private:
+    FrameType frame_type_;
+    VideoCodecId codec_id_;
+    IVideoPacket *video_packet_;
+
+};
+# 27 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/RtmpClient.cpp" 2
 
 RtmpClient::RtmpClient(std::string url, int timeOut,
                        bool enable_dump_video, std::string dump_video_path,
-                       bool enable_dump_audio, std::string dump_audio_path
-)
+                       bool enable_dump_audio, std::string dump_audio_path)
         : url_(std::move(url)),
           time_out_(timeOut),
           enable_dump_video_(enable_dump_video),
@@ -55570,7 +55762,7 @@ RtmpClient::RtmpClient(std::string url, int timeOut,
 
 }
 
-RtmpClient::~RtmpClient() { stop(); }
+RtmpClient::~RtmpClient() { Stop(); }
 
 int RtmpClient::Connect() {
     __android_log_print(ANDROID_LOG_INFO, "PUBLISH-C","RtmpClient: CONNECT");
@@ -55595,62 +55787,6 @@ int RtmpClient::Connect() {
     return 0;
 }
 
-int RtmpClient::sendSpsAndPps(uint8_t *sps, int spsLen, uint8_t *pps, int ppsLen, long timestamp) {
-
-    int i;
-    RTMPPacket *packet = (RTMPPacket *) malloc((sizeof(RTMPPacket)+18) + 1024);
-    memset(packet, 0, (sizeof(RTMPPacket)+18));
-    packet->m_body = (char *) packet + (sizeof(RTMPPacket)+18);
-    uint8_t *body = (uint8_t *) packet->m_body;
-
-    i = 0;
-    body[i++] = 0x17;
-    body[i++] = 0x00;
-
-    body[i++] = 0x00;
-    body[i++] = 0x00;
-    body[i++] = 0x00;
-
-
-    body[i++] = 0x01;
-    body[i++] = sps[1];
-    body[i++] = sps[2];
-    body[i++] = sps[3];
-    body[i++] = 0xff;
-
-
-    body[i++] = 0xe1;
-    body[i++] = (spsLen >> 8) & 0xff;
-    body[i++] = spsLen & 0xff;
-
-    memcpy(&body[i], sps, spsLen);
-
-    i += spsLen;
-
-
-    body[i++] = 0x01;
-
-    body[i++] = (ppsLen >> 8) & 0xff;
-    body[i++] = ppsLen & 0xff;
-    memcpy(&body[i], pps, ppsLen);
-    i += ppsLen;
-
-    packet->m_packetType = 0x09;
-    packet->m_nBodySize = i;
-    packet->m_nChannel = 0x04;
-    packet->m_nTimeStamp = 0;
-    packet->m_hasAbsTimestamp = 0;
-    packet->m_headerType = 1;
-    packet->m_nInfoField2 = rtmp_->m_stream_id;
-
-
-    if (RTMP_IsConnected(rtmp_)) {
-        RTMP_SendPacket(rtmp_, packet, 1);
-    }
-    free(packet);
-    return 0;
-}
-
 int RtmpClient::SendDataFrame(
         double width,
         double height,
@@ -55661,47 +55797,41 @@ int RtmpClient::SendDataFrame(
         double audioSampleSize,
         bool stereo
 ) {
-
     videoDataRate /= 1000;
     audioDataRate /= 1000;
-
     OnMetaData metaData(0,
                         width,
                         height,
                         videoDataRate,
                         frameRate,
-                        VideoCodecId::AVC_,
+                        VideoData::VideoCodecId::AVC_,
                         audioDataRate,
                         audioSampleRate,
                         audioSampleSize,
                         AudioCodecId::AAC,
                         0,
                         stereo);
-
-    FLVTag flvTag(FLVTag::SCRIPT_DATA, metaData.GetBufferSize(), 0, metaData);
-
-    RTMP_Write(this->rtmp_, flvTag.GetBuffer(), flvTag.GetSize());
-
-    return 0;
+    FLVTag flv_tag(FLVTag::SCRIPT_DATA, metaData.Size(), 0, &metaData);
+    return SendFlvTag(flv_tag);
 }
 
 
-int RtmpClient::sendVideoData(uint8_t *buf, int len, long timestamp) {
-    auto start_code_size = H264Parser::FindStartCode(buf, len);
+int RtmpClient::SendAVCData(uint8_t *data, int len, long timestamp) {
+    auto start_code_size = H264Parser::FindStartCode(data, len);
     if (start_code_size > 0) {
 
-        buf += start_code_size;
+        data += start_code_size;
         len -= start_code_size;
-        H264Parser::RemoveEmulationPreventionCode(buf, len);
+        H264Parser::RemoveEmulationPreventionCode(data, len);
     }
-    auto nal_header = buf[0];
+    auto nal_header = data[0];
     switch (nal_header & 0x1F) {
         case H264Parser::H264_NAL_SPS: {
-            this->SendNALSPS(buf, len, timestamp);
+            this->SendNALSPS(data, len, timestamp);
             return 0;
         }
         case H264Parser::H264_NAL_PPS: {
-            __android_log_print(ANDROID_LOG_INFO, "PUBLISH-C","VIDEO PPS: %s", HexUtil::Bytes2Hex(buf, len).c_str());
+            __android_log_print(ANDROID_LOG_INFO, "PUBLISH-C","VIDEO PPS: %s", HexUtil::Bytes2Hex(data, len).c_str());
             break;
         }
         case H264Parser::H264_NAL_IDR_SLICE: {
@@ -55712,175 +55842,72 @@ int RtmpClient::sendVideoData(uint8_t *buf, int len, long timestamp) {
             __android_log_print(ANDROID_LOG_INFO, "PUBLISH-C","VIDEO H264_NAL_SLICE");
         }
     }
-# 202 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/RtmpClient.cpp"
-    auto frame_type = 0x02;
+
+    auto frame_type = VideoData::FrameType::INTER_FRAME;
     if ((nal_header & 0x1F) == H264Parser::H264_NAL_IDR_SLICE) {
-        frame_type = 0x01;
+        frame_type = VideoData::FrameType::KEY_FRAME;
     } else {
-        frame_type = 0x02;
+        frame_type = VideoData::FrameType::INTER_FRAME;
     }
-    auto codec_id = 0x07;
-    auto avc_packet_type = 0x01;
 
-    auto *packet = new RTMPPacket();
-    RTMPPacket_Alloc(packet, len + 9);
-    RTMPPacket_Reset(packet);
+    AVCNaluPacket avc_nalu_packet(data, len);
 
-    packet->m_body[0] = frame_type << 4 | codec_id;
-    packet->m_body[1] = avc_packet_type;
-    packet->m_body[2] = 0;
-    packet->m_body[3] = 0;
-    packet->m_body[4] = 0;
-
-    packet->m_body[5] = (len >> 24) & 0xFF;
-    packet->m_body[6] = (len >> 16) & 0xFF;
-    packet->m_body[7] = (len >> 8) & 0xFF;
-    packet->m_body[8] = (len) & 0xFF;
-
-
-    packet->m_hasAbsTimestamp = 0;
-    packet->m_packetType = 0x09;
-    packet->m_nInfoField2 = rtmp_->m_stream_id;
-    packet->m_nChannel = 0x04;
-    packet->m_headerType = 0;
-    packet->m_nTimeStamp = timestamp;
-    packet->m_nBodySize = len + 9;
-
-    memcpy(&packet->m_body[9], buf, len);
-    if (RTMP_IsConnected(rtmp_)) {
-        RTMP_SendPacket(rtmp_, packet, 1);
-        if (enable_dump_video_) {
-            dump_video_stream_.write(packet->m_body, packet->m_nBodySize);
-        }
-        __android_log_print(ANDROID_LOG_DEBUG, "PUBLISH-C","send Video packet");;
-    }
-    RTMPPacket_Free(packet);
-    free(packet);
-    return 0;
+    AVCVideoPacket avc_packet(AVCVideoPacket::AVC_NALU, 0, &avc_nalu_packet);
+    VideoData video_data(frame_type, VideoData::VideoCodecId::AVC_, &avc_packet);
+    FLVTag flv_tag(FLVTag::VIDEO, video_data.Size(), timestamp, &video_data);
+    return SendFlvTag(flv_tag);
 }
 
 int RtmpClient::SendNALSPS(uint8_t *data, int length, long timestamp) {
     H264Params params(data, length);
-    AVCDecoderConfiguration avcDecoderConfiguration(params);
-
-    auto frame_type = 0x02;
-    auto codec_id = 0x07;
-    auto avc_packet_type = 0x00;
-
-    auto buffer_len = avcDecoderConfiguration.GetBufferLength();
-    auto *packet = new RTMPPacket();
-    auto insert_len = 5;
-    RTMPPacket_Alloc(packet, buffer_len + insert_len);
-    RTMPPacket_Reset(packet);
-
-    packet->m_body[0] = frame_type << 4 | codec_id;
-    packet->m_body[1] = avc_packet_type;
-    packet->m_body[2] = 0;
-    packet->m_body[3] = 0;
-    packet->m_body[4] = 0;
-# 275 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/RtmpClient.cpp"
-    packet->m_hasAbsTimestamp = 0;
-    packet->m_packetType = 0x09;
-    packet->m_nInfoField2 = rtmp_->m_stream_id;
-    packet->m_nChannel = 0x04;
-    packet->m_headerType = 0;
-    packet->m_nTimeStamp = timestamp;
-    packet->m_nBodySize = buffer_len + insert_len;
-
-    memcpy(&packet->m_body[insert_len], avcDecoderConfiguration.GetBuffer(), buffer_len);
-
-    if (RTMP_IsConnected(rtmp_)) {
-        RTMP_SendPacket(rtmp_, packet, 1);
-        if (enable_dump_video_) {
-            dump_video_stream_.write(packet->m_body, packet->m_nBodySize);
-        }
-        __android_log_print(ANDROID_LOG_DEBUG, "PUBLISH-C","send Video packet");;
-    }
-    RTMPPacket_Free(packet);
-    free(packet);
-
-    return 0;
+    AVCDecoderConfiguration avc_decoder_configuration(params);
+    AVCVideoPacket avc_packet(AVCVideoPacket::AVC_SEQ, timestamp, &avc_decoder_configuration);
+    VideoData video_data(VideoData::FrameType::INTER_FRAME, VideoData::VideoCodecId::AVC_, &
+    avc_packet);
+    FLVTag flv_tag(FLVTag::VIDEO, video_data.Size(), timestamp, &video_data);
+    return SendFlvTag(flv_tag);
 }
 
-int RtmpClient::sendAacData(uint8_t *buf, int len, long timeOffset) {
-
+int RtmpClient::SendAACData(uint8_t *data, int len, long timestamp) {
     if (len == 2) {
-        __android_log_print(ANDROID_LOG_INFO, "PUBLISH-C","AAConfig: %s", HexUtil::Bytes2Hex(buf, len).c_str());
-        return SendAACSpecific(buf, len, timeOffset);
+        __android_log_print(ANDROID_LOG_INFO, "PUBLISH-C","AAConfig: %s", HexUtil::Bytes2Hex(data, len).c_str());
+        return SendAACSpecific(data, len, timestamp);
+    } else {
+        auto aac_frame = AACAudioData::AACAudioFrameData((char *) data, len);
+        AACAudioData aacAudioData(AACPacketType::AAC_RAW, &aac_frame);
+        AudioData audioData(SoundFormat::AAC,
+                            3,
+                            1,
+                            1,
+                            &aacAudioData
+        );
+        FLVTag flvTag(FLVTag::AUDIO, audioData.Size(), timestamp, &audioData);
+        return SendFlvTag(flvTag);
     }
-    auto *packet = new RTMPPacket();
-    auto insert_length = 2;
-    RTMPPacket_Alloc(packet, len + insert_length);
-    RTMPPacket_Reset(packet);
-    packet->m_body[0] = 0xAF;
-    packet->m_body[1] = 0x01;
-
-    packet->m_packetType = 0x08;
-    packet->m_nBodySize = len + insert_length;
-    packet->m_nChannel = 0x05;
-    packet->m_nTimeStamp = timeOffset;
-    packet->m_hasAbsTimestamp = 0;
-    packet->m_headerType = 0;
-    packet->m_nInfoField2 = rtmp_->m_stream_id;
-
-
-    memcpy(&packet->m_body[insert_length], buf, len);
-
-    if (RTMP_IsConnected(rtmp_)) {
-        RTMP_SendPacket(rtmp_, packet, 1);
-        if (enable_dump_audio_) {
-            dump_audio_stream_.write(packet->m_body, packet->m_nBodySize);
-        }
-    }
-    RTMPPacket_Free(packet);
-    free(packet);
-    return 0;
 }
 
 int RtmpClient::SendAACSpecific(uint8_t *data, int len, long timestamp) {
-    auto insert_length = 2;
-    auto *packet = new RTMPPacket();
-    RTMPPacket_Alloc(packet, len + insert_length);
-    RTMPPacket_Reset(packet);
-
-    packet->m_packetType = 0x08;
-    packet->m_nBodySize = len + insert_length;
-    packet->m_nChannel = 0x05;
-    packet->m_nTimeStamp = timestamp;
-    packet->m_hasAbsTimestamp = 0;
-    packet->m_headerType = 0;
-    packet->m_nInfoField2 = rtmp_->m_stream_id;
-
-
-
-
-
-
-
-    packet->m_body[0] = 0xAF;
-    packet->m_body[1] = 0x00;
-
-
-    memcpy(&packet->m_body[insert_length], data, len);
-
-    if (RTMP_IsConnected(rtmp_)) {
-        RTMP_SendPacket(rtmp_, packet, 1);
-        if (enable_dump_audio_) {
-            dump_audio_stream_.write(packet->m_body, packet->m_nBodySize);
-        }
-    }
-    RTMPPacket_Free(packet);
-    free(packet);
-    return 0;
+    auto specific_config = AACAudioData::AACAudioSpecificConfig((char *) data, len);
+    AACAudioData aacAudioData(AACPacketType::AAC_SEQ, &specific_config);
+    AudioData audioData(SoundFormat::AAC,
+                        3,
+                        1,
+                        1,
+                        &aacAudioData
+    );
+    FLVTag flvTag(FLVTag::AUDIO, audioData.Size(), timestamp, &audioData);
+    return SendFlvTag(flvTag);
 }
 
-int RtmpClient::sendAacSpec(uint8_t *data, int spec_len) {
-# 397 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/RtmpClient.cpp"
-    return 0;
+int RtmpClient::SendFlvTag(FLVTag flag_tag) {
+    auto buffer = new char[flag_tag.Size() + 4];
+    flag_tag.WriteTo(buffer);
+    int ret = RTMP_Write(this->rtmp_, buffer, flag_tag.Size());
+    delete[] buffer;
+    return ret;
 }
 
-
-int RtmpClient::stop() {
+int RtmpClient::Stop() {
     if (enable_dump_video_) {
         dump_video_stream_.close();
     }

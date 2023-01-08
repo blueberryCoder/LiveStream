@@ -1,0 +1,29 @@
+# 1 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/IBuffer.cpp"
+# 1 "<built-in>" 1
+# 1 "<built-in>" 3
+# 412 "<built-in>" 3
+# 1 "<command line>" 1
+# 1 "<built-in>" 2
+# 1 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/IBuffer.cpp" 2
+
+
+
+
+# 1 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/IBuffer.h" 1
+
+
+
+
+
+
+
+
+class IBuffer {
+
+public:
+    virtual char *WriteTo(char *output) = 0;
+    virtual int Size() = 0;
+
+};
+# 6 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/IBuffer.cpp" 2
+

@@ -54286,6 +54286,91 @@ extern __attribute__ ((__visibility__("default"))) wostream wclog;
 
 } }
 # 13 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/RtmpClient.h" 2
+# 1 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/FLVTag.h" 1
+
+
+
+
+
+
+
+
+# 1 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/IFLVTagData.h" 1
+
+
+
+
+
+
+
+# 1 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/IBuffer.h" 1
+
+
+
+
+
+
+
+
+class IBuffer {
+
+public:
+    virtual char *WriteTo(char *output) = 0;
+    virtual int Size() = 0;
+
+};
+# 9 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/IFLVTagData.h" 2
+
+typedef enum {
+    ADPCM = 1,
+    MP3 = 2,
+    LINEAR_PCM_LITTLE_ENDIAN = 3,
+    NELLYMOSER_16K_MONO = 4,
+    NELLYMOSER_8K_MONO = 5,
+    NELLYMOSER = 6,
+    A_LAW_PCM = 7,
+    MU_LAW_PCM = 8,
+    RESERVED = 9,
+    AAC = 10,
+    SPEEX = 11,
+    MP3_8_K = 14,
+    DEVICE_SPECIFIC_SOUND = 15,
+} AudioCodecId;
+
+typedef AudioCodecId SoundFormat;
+
+class IFLVTagData : public IBuffer {
+
+};
+# 10 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/FLVTag.h" 2
+
+class FLVTag : IBuffer {
+
+public:
+    static constexpr int AUDIO = 8;
+    static constexpr int VIDEO = 9;
+    static constexpr int SCRIPT_DATA = 18;
+
+    FLVTag(uint8_t tag_type,
+           uint32_t data_size,
+           uint32_t time_stamp,
+           IFLVTagData *data
+    );
+
+    virtual ~FLVTag();
+    char *WriteTo(char *output) override;
+    int Size() override;
+
+private :
+    char buffer_[128];
+    uint32_t size_;
+
+    uint8_t tag_type_;
+    uint32_t data_size_;
+    uint32_t time_stamp_;
+    IFLVTagData *data_;
+};
+# 14 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/RtmpClient.h" 2
 
 
 extern "C" {
@@ -54691,7 +54776,7 @@ extern "C"
 
 
 };
-# 19 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/RtmpClient.h" 2
+# 20 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/RtmpClient.h" 2
 # 1 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/librtmp/rtmp_sys.h" 1
 # 46 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/librtmp/rtmp_sys.h"
 # 1 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/sys/socket.h" 1 3 4
@@ -56139,16 +56224,16 @@ int inet_pton(int __af, const char* __src, void* __dst);
 
 }
 # 53 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/librtmp/rtmp_sys.h" 2
-# 20 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/RtmpClient.h" 2
+# 21 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/RtmpClient.h" 2
 
 
 
 # 1 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/c++/v1/stdlib.h" 1 3
-# 24 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/RtmpClient.h" 2
+# 25 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/RtmpClient.h" 2
 
 
 }
-# 47 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/RtmpClient.h"
+# 48 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/RtmpClient.h"
 class RtmpClient {
 
 private:
@@ -56174,16 +56259,11 @@ public:
 
     int Connect();
 
-    int sendSpsAndPps(uint8_t *sps, int spsLen, uint8_t *pps, int ppsLen,
-                      long timestamp);
+    int SendAVCData(uint8_t *data, int len, long timestamp);
 
-    int sendVideoData(uint8_t *data, int len, long timestamp);
+    int SendAACData(uint8_t *data, int len, long timestamp);
 
-    int sendAacSpec(uint8_t *data, int len);
-
-    int sendAacData(uint8_t *data, int len, long timestamp);
-
-    int stop();
+    int Stop();
 
     int SendDataFrame(
             double width,
@@ -56195,13 +56275,15 @@ public:
             double audioSampleRate,
             double audioSampleSize,
             bool stereo
-                      );
+    );
 
 private:
+
     int SendNALSPS(uint8_t *data, int length, long timestamp);
 
     int SendAACSpecific(uint8_t *data, int length, long timestamp);
 
+    int SendFlvTag(FLVTag flag_tag);
 };
 # 4 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/publish_jni.cpp" 2
 
@@ -56245,54 +56327,26 @@ Java_com_blueberry_media_PublishJni_init(JNIEnv *env,
     rtmp->Connect();
     return reinterpret_cast<long> (rtmp);
 }
-
-
-__attribute__ ((visibility ("default"))) jint
-Java_com_blueberry_media_PublishJni_sendSpsAndPps(JNIEnv *env, jclass type, jlong cptr,
-                                                  jbyteArray sps_, jint spsLen, jbyteArray pps_,
-                                                  jint ppsLen, jlong timestamp) {
-    jbyte *sps = env->GetByteArrayElements(sps_, __null);
-    jbyte *pps = env->GetByteArrayElements(pps_, __null);
-    RtmpClient *rtmp = reinterpret_cast<RtmpClient *>(cptr);
-    int ret = rtmp->sendSpsAndPps((uint8_t *) sps, spsLen, (uint8_t *) pps, ppsLen, timestamp);
-
-    env->ReleaseByteArrayElements(sps_, sps, 0);
-    env->ReleaseByteArrayElements(pps_, pps, 0);
-    return ret;
-}
-
+# 53 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/publish_jni.cpp"
 __attribute__ ((visibility ("default"))) jint
 Java_com_blueberry_media_PublishJni_sendVideoData(JNIEnv *env, jclass type, jlong cptr,
                                                   jbyteArray data_, jint len, jlong timestamp) {
     jbyte *data = env->GetByteArrayElements(data_, __null);
     RtmpClient *rtmp = reinterpret_cast<RtmpClient *> (cptr);
-    int ret = rtmp->sendVideoData((uint8_t *) data, len, timestamp);
+    int ret = rtmp->SendAVCData((uint8_t *) data, len, timestamp);
 
     env->ReleaseByteArrayElements(data_, data, 0);
 
     return ret;
 }
-
-
-__attribute__ ((visibility ("default"))) jint
-Java_com_blueberry_media_PublishJni_sendAacSpec(JNIEnv *env, jclass type, jlong cptr,
-                                                jbyteArray data_, jint len) {
-    jbyte *data = env->GetByteArrayElements(data_, __null);
-
-    RtmpClient *rtmp = reinterpret_cast<RtmpClient *> (cptr);
-    int ret = rtmp->sendAacSpec((uint8_t *) data, len);
-
-    env->ReleaseByteArrayElements(data_, data, 0);
-    return ret;
-}
-
+# 78 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/publish_jni.cpp"
 __attribute__ ((visibility ("default"))) jint
 Java_com_blueberry_media_PublishJni_sendAacData(JNIEnv *env, jclass type, jlong cptr,
                                                 jbyteArray data_, jint len, jlong timestamp) {
     jbyte *data = env->GetByteArrayElements(data_, __null);
 
     auto *rtmp = reinterpret_cast<RtmpClient *> (cptr);
-    int ret = rtmp->sendAacData((uint8_t *) data, len, timestamp);
+    int ret = rtmp->SendAACData((uint8_t *) data, len, timestamp);
 
     env->ReleaseByteArrayElements(data_, data, 0);
     return ret;
@@ -56300,7 +56354,7 @@ Java_com_blueberry_media_PublishJni_sendAacData(JNIEnv *env, jclass type, jlong 
 
 __attribute__ ((visibility ("default"))) jint
 Java_com_blueberry_media_PublishJni_stop(JNIEnv *env, jclass type, jlong cptr) {
-    RtmpClient *rtmp = reinterpret_cast<RtmpClient *> (cptr);
+    auto *rtmp = reinterpret_cast<RtmpClient *> (cptr);
     delete rtmp;
     return 0;
 }

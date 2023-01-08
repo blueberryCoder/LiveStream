@@ -59,3 +59,12 @@ OnMetaData::OnMetaData(
 OnMetaData::~OnMetaData() {
     delete[] buffer_;
 }
+
+char *OnMetaData::WriteTo(char *output) {
+    memcpy(output, buffer_, size_);
+    return output + size_;
+}
+
+int OnMetaData::Size() {
+    return size_;
+}

@@ -30430,26 +30430,23 @@ extern "C"
 
 
 
+# 1 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/IBuffer.h" 1
 
-class IFLVTagData {
+
+
+
+
+
+
+
+class IBuffer {
+
 public:
-    virtual const char *GetBuffer() = 0;
+    virtual char *WriteTo(char *output) = 0;
+    virtual int Size() = 0;
 
-    virtual int GetBufferSize() = 0;
 };
-# 12 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/OnMetaData.h" 2
-
-
-using namespace std;
-typedef enum {
-    JEPEG = 1,
-    SORENSON_H263 = 2,
-    SCREEN_VIDEO = 3,
-    ON2_VP6 = 4,
-    ON2_VP6_WITH_ALPHA_CHANNEL = 5,
-    SCREEN_VIDEO_VERSION = 6,
-    AVC_ = 7
-} VideoCodecId;
+# 9 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/IFLVTagData.h" 2
 
 typedef enum {
     ADPCM = 1,
@@ -30467,6 +30464,15 @@ typedef enum {
     DEVICE_SPECIFIC_SOUND = 15,
 } AudioCodecId;
 
+typedef AudioCodecId SoundFormat;
+
+class IFLVTagData : public IBuffer {
+
+};
+# 12 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/OnMetaData.h" 2
+
+
+using namespace std;
 
 class OnMetaData : public IFLVTagData {
 public:
@@ -30508,13 +30514,9 @@ public:
 
     virtual ~OnMetaData();
 
-    const char * GetBuffer() override {
-        return buffer_;
-    }
+    char *WriteTo(char *output) override;
 
-    int GetBufferSize() override {
-        return size_;
-    };
+    int Size() override;
 
 private:
     char *buffer_;
@@ -30576,4 +30578,13 @@ OnMetaData::OnMetaData(
 
 OnMetaData::~OnMetaData() {
     delete[] buffer_;
+}
+
+char *OnMetaData::WriteTo(char *output) {
+    memcpy(output, buffer_, size_);
+    return output + size_;
+}
+
+int OnMetaData::Size() {
+    return size_;
 }

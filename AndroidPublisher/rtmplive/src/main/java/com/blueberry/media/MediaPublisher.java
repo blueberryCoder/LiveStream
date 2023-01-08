@@ -19,7 +19,6 @@ public class MediaPublisher {
 
     private Config mConfig;
 
-
     private Thread workThread;
     private VideoGatherer mVideoGatherer;
     private AudioGatherer mAudioGatherer;
@@ -71,20 +70,15 @@ public class MediaPublisher {
                 }
                 while (loop && !Thread.interrupted()) {
                     // send Video Packet;
-                    try {
-                        AudioPacket audioPacket = mediaQueueManager.takeAudioPacket();
+                    AudioPacket audioPacket = mediaQueueManager.pollAudioPacket();
+                    if (audioPacket != null) {
                         mRtmpPublisher.sendAacData(audioPacket.getData(),
                                 audioPacket.getData().length, audioPacket.getTimestamp());
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
                     }
-
-                    try {
-                        VideoPacket videoPacket = mediaQueueManager.takeVideoPacket();
+                    VideoPacket videoPacket = mediaQueueManager.pollVideoPacket();
+                    if (videoPacket != null) {
                         mRtmpPublisher.sendVideoData(videoPacket.getData(),
                                 videoPacket.getData().length, videoPacket.getTimestamp());
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
                     }
                 }
             }
@@ -265,22 +259,25 @@ public class MediaPublisher {
     }
 
     private boolean isSendMetaData = false;
+    private long metaDataTimestamp = 0;
+
 
     private void onEncodedAvcFrame(ByteBuffer bb, final MediaCodec.BufferInfo vBufferInfo) {
         Logger.i(TAG, "onEncodedAvcFrame: ");
+        tryToSendMetaData();
+
         // AnnexB : 0 0 0 1
         //          0 0 1
         final byte[] bytes = new byte[vBufferInfo.size];
         bb.get(bytes);
         VideoPacket packet = new VideoPacket();
         packet.setData(bytes);
-        packet.setTimestamp(System.currentTimeMillis());
+        packet.setTimestamp(System.currentTimeMillis() - metaDataTimestamp);
         try {
             mediaQueueManager.enqueueVideoPacket(packet);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        tryToSendMetaData();
     }
 
     private void tryToSendMetaData() {
@@ -300,25 +297,25 @@ public class MediaPublisher {
             Logger.i(TAG, "enqueue metadata: " + metaData);
             mediaQueueManager.enqueueMetaData(metaData);
             isSendMetaData = true;
+            metaDataTimestamp = System.currentTimeMillis();
         }
     }
 
     private void onEncodeAacFrame(ByteBuffer bb, final MediaCodec.BufferInfo aBufferInfo) {
         Logger.d(TAG, "onEncodeAacFrame");
-
+        tryToSendMetaData();
 
         final byte[] bytes = new byte[aBufferInfo.size];
         bb.get(bytes);
 
         AudioPacket audioPacket = new AudioPacket();
         audioPacket.setData(bytes);
-        audioPacket.setTimestamp(System.currentTimeMillis());
+        audioPacket.setTimestamp(System.currentTimeMillis() - metaDataTimestamp);
         try {
             mediaQueueManager.enqueueAudioPacket(audioPacket);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        tryToSendMetaData();
     }
 }

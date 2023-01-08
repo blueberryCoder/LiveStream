@@ -9,10 +9,9 @@ FLVTag::FLVTag(
         uint8_t tag_type, // u8
         uint32_t data_size,
         uint32_t time_stamp,
-        IFLVTagData &data
-) {
-    buffer_ = new char[128 + data.GetBufferSize()];
-
+        IFLVTagData* data
+): tag_type_(tag_type), data_size_(data_size), time_stamp_(time_stamp),data_(data)
+{
     int i = 0;
     buffer_[i++] = tag_type;
 
@@ -29,13 +28,18 @@ FLVTag::FLVTag(
     buffer_[i++] = 0;
     buffer_[i++] = 0; // stream id always 0
 
-    memcpy(&buffer_[i], data.GetBuffer(), data.GetBufferSize());
-    i += data.GetBufferSize();
-
     size_ = i;
-
 }
 
 FLVTag::~FLVTag() {
-    delete[] buffer_;
+}
+
+char *FLVTag::WriteTo(char *output) {
+    memcpy(output, buffer_, size_);
+    output += size_;
+    return data_->WriteTo(output);
+}
+
+int FLVTag::Size() {
+    return size_ + data_->Size();
 }

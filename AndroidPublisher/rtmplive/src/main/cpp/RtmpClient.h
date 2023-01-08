@@ -10,6 +10,7 @@
 #include "common.h"
 #include <fstream>
 #include <iostream>
+#include "FLVTag.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -69,16 +70,11 @@ public:
 
     int Connect();
 
-    int sendSpsAndPps(BYTE *sps, int spsLen, BYTE *pps, int ppsLen,
-                      long timestamp);
+    int SendAVCData(BYTE *data, int len, long timestamp);
 
-    int sendVideoData(BYTE *data, int len, long timestamp);
+    int SendAACData(BYTE *data, int len, long timestamp);
 
-    int sendAacSpec(BYTE *data, int len);
-
-    int sendAacData(BYTE *data, int len, long timestamp);
-
-    int stop();
+    int Stop();
 
     int SendDataFrame(
             double width,
@@ -90,13 +86,15 @@ public:
             double audioSampleRate,
             double audioSampleSize,
             bool stereo
-                      );
+    );
 
 private:
+
     int SendNALSPS(uint8_t *data, int length, long timestamp);
 
     int SendAACSpecific(uint8_t *data, int length, long timestamp);
 
+    int SendFlvTag(FLVTag flag_tag);
 };
 
 
