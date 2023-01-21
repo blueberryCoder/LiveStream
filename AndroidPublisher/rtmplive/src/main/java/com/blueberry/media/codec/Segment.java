@@ -6,8 +6,8 @@ package com.blueberry.media.codec;
 public class Segment {
 
     private byte[] buffer;
-    private int start = 0;
-    private int length = 0;
+    private int start;
+    private int length;
 
     public Segment(byte[] buffer, int start, int length) {
         this.buffer = buffer;

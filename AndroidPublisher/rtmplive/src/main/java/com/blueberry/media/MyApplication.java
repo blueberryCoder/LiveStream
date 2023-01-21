@@ -6,8 +6,6 @@ import com.blueberry.media.utils.ApplicationHolder;
 
 /**
  * Created by muyonggang on 2023/1/1
- *
- * @author muyonggang@bytedance.com
  */
 public class MyApplication extends Application {
 

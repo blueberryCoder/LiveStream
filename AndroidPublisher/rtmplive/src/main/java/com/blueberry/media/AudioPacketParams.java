@@ -9,6 +9,13 @@ public class AudioPacketParams {
     private int sampleRate;
     private boolean stereo;
 
+    public AudioPacketParams(double bitRate, int sampleSize, int sampleRate, boolean stereo) {
+        this.bitRate = bitRate;
+        this.sampleSize = sampleSize;
+        this.sampleRate = sampleRate;
+        this.stereo = stereo;
+    }
+
     public boolean isStereo() {
         return stereo;
     }

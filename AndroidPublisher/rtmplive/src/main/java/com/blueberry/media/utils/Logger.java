@@ -15,6 +15,7 @@ public class Logger {
     public static void v(String tag, String message) {
         Log.v(appendTag(tag), message);
     }
+
     public static void d(String tag, String message) {
         Log.d(appendTag(tag), message);
     }
@@ -24,8 +25,9 @@ public class Logger {
     }
 
     public static void w(String tag, String message) {
-        Log.w( appendTag(tag),message);
+        Log.w(appendTag(tag), message);
     }
+
     public static void e(String tag, String message) {
         Log.e(appendTag(tag), message);
     }

@@ -1,5 +1,5 @@
 //
-// Created by bytedance on 2022/12/25.
+// Created by blueberry on 2022/12/25.
 //
 
 #ifndef ANDROIDPUBLISHER_JNI_UTILS_H

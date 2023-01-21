@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
 
     private Button btnToggle;
     private EditText etUrl;
-    private SurfaceView mSurfaceView;
 
     private SurfaceHolder mSurfaceHolder;
     private MediaPublisher mMediaPublisher;
@@ -37,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Logger.d(TAG, "onCreate");
         initView();
         mMediaPublisher = MediaPublisher
                 .newInstance(new Config.Builder()
@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
                         .setDumpVideoRawPath(this.getExternalCacheDir() + File.separator + "test.yuv")
                         .build());
         mMediaPublisher.init();
+        mMediaPublisher.initVideoGatherer(this, mSurfaceHolder);
     }
 
     private String getPublishUrl() {
@@ -66,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
         etUrl = findViewById(R.id.et_url);
         etUrl.setText(URL);
         btnToggle = (Button) findViewById(R.id.btn_toggle);
-        mSurfaceView = (SurfaceView) findViewById(R.id.surface_view);
+        SurfaceView mSurfaceView = (SurfaceView) findViewById(R.id.surface_view);
         mSurfaceView.setKeepScreenOn(true);
         mSurfaceHolder = mSurfaceView.getHolder();
         mSurfaceHolder.addCallback(this);
@@ -84,8 +85,6 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
     private void start() {
         mMediaPublisher.initAudioGatherer();
         mMediaPublisher.initEncoders();
-        mMediaPublisher.startGather();
-        mMediaPublisher.startEncoder();
 
         if (mProgressDialog != null) {
             mProgressDialog.dismiss();
@@ -101,6 +100,10 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
                     btnToggle.setText(getString(R.string.stop));
                     mProgressDialog.dismiss();
                 });
+
+
+                mMediaPublisher.startGather();
+                mMediaPublisher.startEncoder();
             }
 
             @Override
@@ -119,14 +122,12 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
     protected void onResume() {
         super.onResume();
         Logger.d(TAG, "onResume: ");
-        mMediaPublisher.initVideoGatherer(this, mSurfaceHolder);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         Logger.d(TAG, "onPause: ");
-        stop();
     }
 
     private void stop() {
@@ -161,6 +162,7 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        stop();
         mMediaPublisher.release();
     }
 

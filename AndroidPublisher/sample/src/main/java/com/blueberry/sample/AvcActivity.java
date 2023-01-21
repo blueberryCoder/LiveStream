@@ -8,9 +8,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.blueberry.media.Yuv420Util;
 import com.blueberry.media.codec.Segment;
-import com.blueberry.media.codec.VideoAvcReceivedResult;
-import com.blueberry.media.codec.VideoAvcSendResult;
-import com.blueberry.media.codec.VideoEncoder;
+import com.blueberry.media.codec.CodecReceivedResult;
+import com.blueberry.media.codec.CodecSendResult;
+import com.blueberry.media.codec.video.VideoEncoder;
 import com.blueberry.media.utils.IOUtils;
 import com.blueberry.media.utils.Logger;
 import com.blueberry.sample.utils.FileConsts;
@@ -31,7 +31,6 @@ public class AvcActivity extends AppCompatActivity {
     private String yuvPath;
     private String outputAvcPath;
     private static final String TAG = "VideoEncoder-AVC";
-//    private static final int BUFFER_LENGTH = 81920;
 
 //    private static final int width = 176;
 //    private static final int height = 144;
@@ -76,7 +75,7 @@ public class AvcActivity extends AppCompatActivity {
         new Thread() {
             @Override
             public void run() {
-                videoEncoder = new VideoEncoder();
+                videoEncoder = VideoEncoder.newInstance();
 //                videoEncoder.initVideoEncoder(720, 480, 15, 700_000);
                 videoEncoder.initVideoEncoder(width, height, FPS, 700_000);
                 videoEncoder.start();
@@ -108,32 +107,32 @@ public class AvcActivity extends AppCompatActivity {
                         }
                         while (!queue.isEmpty()) {
                             Segment segment = queue.peek();
-                            VideoAvcSendResult sentResult= videoEncoder.sendData(segment.getBuffer(), segment.getStart(), segment.remain(), isEnd);
+                            CodecSendResult sentResult= videoEncoder.sendData(segment.getBuffer(), segment.getStart(), segment.remain(), isEnd);
                             segment.plus(sentResult.getSent());
                             if (segment.remain() == 0) {
                                 queue.poll();
                             }
-                            if(sentResult.getType() != VideoAvcSendResult.Type.SUCCESS){
+                            if(sentResult.getType() != CodecSendResult.Type.SUCCESS){
                                 // try -again
                                 // should consume
                                 break ;
                             }
                         }
 
-                        VideoAvcReceivedResult videoAvcReceivedResult = null;
+                        CodecReceivedResult codecReceivedResult = null;
                         do {
-                            videoAvcReceivedResult = videoEncoder.receiveData();
-                            if (videoAvcReceivedResult.getType() == VideoAvcReceivedResult.Type.NALU
-                                    || (videoAvcReceivedResult.getType() == VideoAvcReceivedResult.Type.CONFIG &&
-                                    videoAvcReceivedResult.getBuffer() != null)) {
+                            codecReceivedResult = videoEncoder.receiveData();
+                            if (codecReceivedResult.getType() == CodecReceivedResult.Type.NALU
+                                    || (codecReceivedResult.getType() == CodecReceivedResult.Type.CONFIG &&
+                                    codecReceivedResult.getBuffer() != null)) {
 //                                MediaCodec.BufferInfo bufferInfo = videoAvcReceivedResult.getBufferInfo();
-                                fos.write(videoAvcReceivedResult.getBuffer());
-                                if (videoAvcReceivedResult.isEnd()) {
+                                fos.write(codecReceivedResult.getBuffer());
+                                if (codecReceivedResult.isEnd()) {
                                     fos.flush();
                                     break outter;
                                 }
                             }
-                        } while (videoAvcReceivedResult.getType() != VideoAvcReceivedResult.Type.TRY_AGAIN);
+                        } while (codecReceivedResult.getType() != CodecReceivedResult.Type.TRY_AGAIN);
                     }
                 } catch (IOException e) {
                     e.printStackTrace();

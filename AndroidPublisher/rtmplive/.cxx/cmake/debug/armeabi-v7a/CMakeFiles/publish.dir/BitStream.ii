@@ -1,0 +1,220 @@
+# 1 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/BitStream.cpp"
+# 1 "<built-in>" 1
+# 1 "<built-in>" 3
+# 412 "<built-in>" 3
+# 1 "<command line>" 1
+# 1 "<built-in>" 2
+# 1 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/BitStream.cpp" 2
+
+
+
+
+# 1 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/BitStream.h" 1
+
+
+
+
+
+
+
+# 1 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/c++/v1/stdint.h" 1 3
+# 106 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/c++/v1/stdint.h" 3
+# 1 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/c++/v1/__config" 1 3
+# 21 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/c++/v1/__config" 3
+# 215 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/c++/v1/__config" 3
+# 1 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/features.h" 1 3 4
+# 36 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/features.h" 3 4
+# 1 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/sys/cdefs.h" 1 3 4
+# 356 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/sys/cdefs.h" 3 4
+# 1 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/android/versioning.h" 1 3 4
+# 357 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/sys/cdefs.h" 2 3 4
+# 1 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/android/api-level.h" 1 3 4
+# 41 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/android/api-level.h" 3 4
+extern "C" {
+# 150 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/android/api-level.h" 3 4
+# 1 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/bits/get_device_api_level_inlines.h" 1 3 4
+# 35 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/bits/get_device_api_level_inlines.h" 3 4
+extern "C" {
+
+
+int __system_property_get(const char* __name, char* __value);
+int atoi(const char* __s) __attribute__((__pure__));
+
+static inline int android_get_device_api_level() {
+  char value[92] = { 0 };
+  if (__system_property_get("ro.build.version.sdk", value) < 1) return -1;
+  int api_level = atoi(value);
+  return (api_level > 0) ? api_level : -1;
+}
+
+}
+# 151 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/android/api-level.h" 2 3 4
+# 166 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/android/api-level.h" 3 4
+}
+# 358 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/sys/cdefs.h" 2 3 4
+
+# 1 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/android/ndk-version.h" 1 3 4
+# 360 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/sys/cdefs.h" 2 3 4
+# 37 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/features.h" 2 3 4
+# 216 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/c++/v1/__config" 2 3
+# 756 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/c++/v1/__config" 3
+namespace std { inline namespace __ndk1 { } }
+# 107 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/c++/v1/stdint.h" 2 3
+# 110 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/c++/v1/stdint.h" 3
+# 123 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/c++/v1/stdint.h" 3
+# 1 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/9.0.9/include/stdint.h" 1 3
+# 52 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/9.0.9/include/stdint.h" 3
+# 1 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/stdint.h" 1 3 4
+# 32 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/stdint.h" 3 4
+# 1 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/bits/wchar_limits.h" 1 3 4
+# 33 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/stdint.h" 2 3 4
+# 1 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/c++/v1/stddef.h" 1 3 4
+# 43 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/c++/v1/stddef.h" 3
+
+
+# 1 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/9.0.9/include/stddef.h" 1 3
+# 35 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/9.0.9/include/stddef.h" 3
+typedef int ptrdiff_t;
+# 46 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/9.0.9/include/stddef.h" 3
+typedef unsigned int size_t;
+# 102 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/9.0.9/include/stddef.h" 3
+# 1 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/9.0.9/include/__stddef_max_align_t.h" 1 3
+# 19 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/9.0.9/include/__stddef_max_align_t.h" 3
+typedef struct {
+  long long __clang_max_align_nonce1
+      __attribute__((__aligned__(__alignof__(long long))));
+  long double __clang_max_align_nonce2
+      __attribute__((__aligned__(__alignof__(long double))));
+} max_align_t;
+# 103 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/9.0.9/include/stddef.h" 2 3
+# 46 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/c++/v1/stddef.h" 2 3
+
+
+
+extern "C++" {
+
+# 1 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/c++/v1/__nullptr" 1 3
+# 17 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/c++/v1/__nullptr" 3
+# 54 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/c++/v1/__nullptr" 3
+namespace std
+{
+    typedef decltype(nullptr) nullptr_t;
+}
+# 51 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/c++/v1/stddef.h" 2 3
+using std::nullptr_t;
+}
+# 34 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/stdint.h" 2 3 4
+
+
+typedef signed char __int8_t;
+typedef unsigned char __uint8_t;
+typedef short __int16_t;
+typedef unsigned short __uint16_t;
+typedef int __int32_t;
+typedef unsigned int __uint32_t;
+
+
+
+
+typedef long long __int64_t;
+typedef unsigned long long __uint64_t;
+
+
+
+
+
+
+typedef int __intptr_t;
+typedef unsigned int __uintptr_t;
+
+
+typedef __int8_t int8_t;
+typedef __uint8_t uint8_t;
+
+typedef __int16_t int16_t;
+typedef __uint16_t uint16_t;
+
+typedef __int32_t int32_t;
+typedef __uint32_t uint32_t;
+
+typedef __int64_t int64_t;
+typedef __uint64_t uint64_t;
+
+typedef __intptr_t intptr_t;
+typedef __uintptr_t uintptr_t;
+
+typedef int8_t int_least8_t;
+typedef uint8_t uint_least8_t;
+
+typedef int16_t int_least16_t;
+typedef uint16_t uint_least16_t;
+
+typedef int32_t int_least32_t;
+typedef uint32_t uint_least32_t;
+
+typedef int64_t int_least64_t;
+typedef uint64_t uint_least64_t;
+
+typedef int8_t int_fast8_t;
+typedef uint8_t uint_fast8_t;
+
+typedef int64_t int_fast64_t;
+typedef uint64_t uint_fast64_t;
+
+
+
+
+
+
+
+typedef int32_t int_fast16_t;
+typedef uint32_t uint_fast16_t;
+typedef int32_t int_fast32_t;
+typedef uint32_t uint_fast32_t;
+
+
+typedef uint64_t uintmax_t;
+typedef int64_t intmax_t;
+# 53 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/lib64/clang/9.0.9/include/stdint.h" 2 3
+# 124 "/Users/bytedance/Library/Android/sdk/ndk/21.4.7075529/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/c++/v1/stdint.h" 2 3
+# 9 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/BitStream.h" 2
+
+class BitStream {
+public:
+    BitStream(uint8_t *data);
+
+    virtual ~BitStream();
+
+    int ReadBits(int num);
+
+private :
+    uint8_t *data_;
+    unsigned int index_;
+
+    int ReadBits1();
+
+};
+# 6 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/BitStream.cpp" 2
+
+BitStream::BitStream(uint8_t *data) : data_(data), index_(0) {
+}
+
+BitStream::~BitStream() {
+}
+
+int BitStream::ReadBits(int num) {
+    int result = 0;
+    for (int i = 0; i < num; i++) {
+        result <<= 0x1;
+        result |= ReadBits1();
+    }
+    return result;
+}
+
+int BitStream::ReadBits1() {
+    uint8_t result = data_[index_ >> 3];
+    result <<= index_ & 0x7;
+    result >>= 8 - 1;
+    index_++;
+    return result;
+}

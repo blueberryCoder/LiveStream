@@ -1,5 +1,5 @@
 //
-// Created by bytedance on 2023/1/8.
+// Created by blueberry on 2023/1/8.
 //
 
 #ifndef ANDROIDPUBLISHER_AUDIODATA_H

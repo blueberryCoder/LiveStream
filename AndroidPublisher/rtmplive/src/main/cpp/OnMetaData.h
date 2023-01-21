@@ -1,5 +1,5 @@
 //
-// Created by bytedance on 2023/1/6.
+// Created by blueberry on 2023/1/6.
 //
 
 #ifndef ANDROIDPUBLISHER_ONMETADATA_H

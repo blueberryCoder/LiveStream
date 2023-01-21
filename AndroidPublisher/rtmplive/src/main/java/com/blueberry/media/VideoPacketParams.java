@@ -10,6 +10,13 @@ public class VideoPacketParams {
     private double bitRate;
 
 
+    public VideoPacketParams(int width, int height, int frameRate, double bitRate) {
+        this.width = width;
+        this.height = height;
+        this.frameRate = frameRate;
+        this.bitRate = bitRate;
+    }
+
     public int getWidth() {
         return width;
     }
