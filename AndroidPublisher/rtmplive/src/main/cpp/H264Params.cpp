@@ -11,10 +11,13 @@ H264Params::H264Params(uint8_t *data, int length) {
     if (index >= 0) {
         this->sps_length_ = index;
         this->sps_ = data;
-        this->pps_ = &data[index];
-        auto start_code_size = H264Parser::RemoveEmulationPreventionCode(this->pps_, length -
-                                                                                     this->sps_length_);
-        this->pps_length_ = length - index - start_code_size;
+
+        auto pps_raw = &data[index];
+        auto pps_raw_length  = length - index;
+        auto start_code_size = H264Parser::FindStartCode(pps_raw, pps_raw_length);
+
+        this->pps_ = &pps_raw[start_code_size] ;
+        this->pps_length_ = pps_raw_length - start_code_size;
     };
 }
 

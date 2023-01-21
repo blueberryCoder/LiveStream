@@ -54321,24 +54321,6 @@ public:
 };
 # 9 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/IFLVTagData.h" 2
 
-typedef enum {
-    ADPCM = 1,
-    MP3 = 2,
-    LINEAR_PCM_LITTLE_ENDIAN = 3,
-    NELLYMOSER_16K_MONO = 4,
-    NELLYMOSER_8K_MONO = 5,
-    NELLYMOSER = 6,
-    A_LAW_PCM = 7,
-    MU_LAW_PCM = 8,
-    RESERVED = 9,
-    AAC = 10,
-    SPEEX = 11,
-    MP3_8_K = 14,
-    DEVICE_SPECIFIC_SOUND = 15,
-} AudioCodecId;
-
-typedef AudioCodecId SoundFormat;
-
 class IFLVTagData : public IBuffer {
 
 };
@@ -56249,10 +56231,15 @@ private:
     std::string dump_audio_path_;
     std::ofstream dump_audio_stream_;
 
+    bool enable_dump_flv_;
+    std::string dump_flv_path_;
+    std::ofstream dump_flv_stream_;
+
 public:
     RtmpClient(std::string url, int timeOut,
                bool enable_dump_video, std::string dump_video_path,
-               bool enable_dump_audio, std::string dump_audio_path
+               bool enable_dump_audio, std::string dump_audio_path,
+               bool enable_dump_flv, std::string dump_flv_path
     );
 
     ~RtmpClient();
@@ -56279,11 +56266,16 @@ public:
 
 private:
 
+    static constexpr int SIZE_COMPLEMENT = 11;
+
     int SendNALSPS(uint8_t *data, int length, long timestamp);
 
     int SendAACSpecific(uint8_t *data, int length, long timestamp);
 
     int SendFlvTag(FLVTag flag_tag);
+
+
+    uint8_t flv_header_[9];
 };
 # 4 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/publish_jni.cpp" 2
 
@@ -56310,24 +56302,31 @@ Java_com_blueberry_media_PublishJni_init(JNIEnv *env,
                                          jboolean dumpVideo,
                                          jstring dumpVideoPath,
                                          jboolean dumpAudio,
-                                         jstring dumpAudioPath
+                                         jstring dumpAudioPath,
+                                         jboolean dumpFlv,
+                                         jstring dumpFlvPath
 ) {
 
-    __android_log_print(ANDROID_LOG_INFO, "PUBLISH-C","JNI %s %s","init" ,__FUNCTION__);
-    std::string url = GetStringUTFFromJString(env,url_);
-    std::string dump_video_path = GetStringUTFFromJString(env,dumpVideoPath);
-    std::string dump_audio_path = GetStringUTFFromJString(env,dumpAudioPath);
+
+    std::string url = GetStringUTFFromJString(env, url_);
+    std::string dump_video_path = GetStringUTFFromJString(env, dumpVideoPath);
+    std::string dump_audio_path = GetStringUTFFromJString(env, dumpAudioPath);
+    std::string dump_flv_path = GetStringUTFFromJString(env, dumpFlvPath);
+
+    __android_log_print(ANDROID_LOG_INFO, "PUBLISH-C","JNI init flv_path=%s", dump_flv_path.c_str());
 
     auto rtmp = new RtmpClient(url, timeOut,
                                dumpVideo == 1,
                                dump_video_path,
                                dumpAudio == 1,
-                               dump_audio_path
+                               dump_audio_path,
+                               dumpFlv == 1,
+                               dump_flv_path
                                );
     rtmp->Connect();
     return reinterpret_cast<long> (rtmp);
 }
-# 53 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/publish_jni.cpp"
+
 __attribute__ ((visibility ("default"))) jint
 Java_com_blueberry_media_PublishJni_sendVideoData(JNIEnv *env, jclass type, jlong cptr,
                                                   jbyteArray data_, jint len, jlong timestamp) {
@@ -56339,7 +56338,7 @@ Java_com_blueberry_media_PublishJni_sendVideoData(JNIEnv *env, jclass type, jlon
 
     return ret;
 }
-# 78 "/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/src/main/cpp/publish_jni.cpp"
+
 __attribute__ ((visibility ("default"))) jint
 Java_com_blueberry_media_PublishJni_sendAacData(JNIEnv *env, jclass type, jlong cptr,
                                                 jbyteArray data_, jint len, jlong timestamp) {

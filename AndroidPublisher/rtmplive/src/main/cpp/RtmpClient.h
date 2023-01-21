@@ -60,10 +60,15 @@ private:
     std::string dump_audio_path_;
     std::ofstream dump_audio_stream_;
 
+    bool enable_dump_flv_;
+    std::string dump_flv_path_;
+    std::ofstream dump_flv_stream_;
+
 public:
     RtmpClient(std::string url, int timeOut,
                bool enable_dump_video, std::string dump_video_path,
-               bool enable_dump_audio, std::string dump_audio_path
+               bool enable_dump_audio, std::string dump_audio_path,
+               bool enable_dump_flv, std::string dump_flv_path
     );
 
     ~RtmpClient();
@@ -89,12 +94,17 @@ public:
     );
 
 private:
+    // For FLV version 1 previous tag should add 11.
+    static constexpr int SIZE_COMPLEMENT = 11;
 
     int SendNALSPS(uint8_t *data, int length, long timestamp);
 
     int SendAACSpecific(uint8_t *data, int length, long timestamp);
 
     int SendFlvTag(FLVTag flag_tag);
+
+//    uint32_t previous_tag_size_ = 0;
+    uint8_t flv_header_[9];
 };
 
 

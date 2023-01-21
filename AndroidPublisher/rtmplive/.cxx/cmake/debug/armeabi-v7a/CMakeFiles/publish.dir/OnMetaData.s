@@ -690,7 +690,7 @@ _ZN10OnMetaDataC2Edddddddddddb:
 	.thumb_func
 _ZN11IFLVTagDataC2Ev:
 .Lfunc_begin1:
-	.loc	40 28 0 is_stmt 1       @ src/main/cpp/IFLVTagData.h:28:0
+	.loc	40 10 0 is_stmt 1       @ src/main/cpp/IFLVTagData.h:10:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
@@ -707,7 +707,7 @@ _ZN11IFLVTagDataC2Ev:
 	str	r0, [sp, #4]
 	ldr	r0, [sp, #4]
 .Ltmp6:
-	.loc	40 28 7 prologue_end    @ src/main/cpp/IFLVTagData.h:28:7
+	.loc	40 10 7 prologue_end    @ src/main/cpp/IFLVTagData.h:10:7
 	str	r0, [sp]                @ 4-byte Spill
 	bl	_ZN7IBufferC2Ev
 	ldr	r0, .LCPI1_0
@@ -7028,7 +7028,7 @@ _ZTV7IBuffer:
 	.long	.Linfo_string349        @ DW_AT_name
 	.byte	4                       @ DW_AT_byte_size
 	.byte	40                      @ DW_AT_decl_file
-	.byte	28                      @ DW_AT_decl_line
+	.byte	10                      @ DW_AT_decl_line
 	.byte	44                      @ Abbrev [44] 0x1ee2:0x7 DW_TAG_inheritance
 	.long	7926                    @ DW_AT_type
 	.byte	0                       @ DW_AT_data_member_location
@@ -7324,7 +7324,7 @@ _ZTV7IBuffer:
 	.byte	87
 	.long	8450                    @ DW_AT_object_pointer
 	.byte	40                      @ DW_AT_decl_file
-	.byte	28                      @ DW_AT_decl_line
+	.byte	10                      @ DW_AT_decl_line
 	.long	.Linfo_string379        @ DW_AT_linkage_name
 	.long	7913                    @ DW_AT_specification
 	.byte	55                      @ Abbrev [55] 0x2102:0xc DW_TAG_formal_parameter

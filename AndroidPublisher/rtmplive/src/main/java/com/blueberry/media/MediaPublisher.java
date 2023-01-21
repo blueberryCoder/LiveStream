@@ -5,8 +5,15 @@ import android.media.MediaCodec;
 import android.util.Log;
 import android.view.SurfaceHolder;
 
+import com.blueberry.media.rtmp.RtmpCallback;
+import com.blueberry.media.rtmp.RtmpError;
+import com.blueberry.media.rtmp.RtmpErrorConst;
+import com.blueberry.media.utils.HexUtils;
 import com.blueberry.media.utils.Logger;
+import com.blueberry.media.utils.ThreadUtils;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 
@@ -25,10 +32,12 @@ public class MediaPublisher {
     private MediaEncoder mMediaEncoder;
 
     private RtmpPublisher mRtmpPublisher;
-    public boolean isPublish;
+    private boolean isPublishing;
     private boolean loop;
 
-    private MediaQueueManager mediaQueueManager = MediaQueueManager.newInstance();
+    private final MediaQueueManager mediaQueueManager = MediaQueueManager.newInstance();
+    private FileOutputStream of;
+    private AVSync avSync;
 
     public static MediaPublisher newInstance(Config config) {
         return new MediaPublisher(config);
@@ -36,6 +45,13 @@ public class MediaPublisher {
 
     private MediaPublisher(Config config) {
         this.mConfig = config;
+        if (config.enableDumpVideoRaw) {
+            try {
+                of = new FileOutputStream(config.dumpVideoRawPath);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     /**
@@ -51,7 +67,6 @@ public class MediaPublisher {
         workThread = new Thread("publish-thread") {
             @Override
             public void run() {
-                // wait for MetaData
                 try {
                     MetaData data = mediaQueueManager.takeMetaData();
                     mRtmpPublisher.sendMetaData(
@@ -148,49 +163,56 @@ public class MediaPublisher {
         mMediaEncoder.start();
     }
 
+    public boolean isPublishing() {
+        return isPublishing;
+    }
+
     /**
      * 发布
      */
-    public void starPublish() {
-        new Thread() {
-            @Override
-            public void run() {
-                if (isPublish) {
-                    Logger.i(TAG, "already start published");
-                    return;
-                }
-                Logger.i(TAG, "starPublish: ");
-                int ret = mRtmpPublisher.init(
-                        mConfig.publishUrl,
-                        mConfig.timeOut,
-                        mConfig.enableDumpVideo,
-                        mConfig.dumpVideoPath,
-                        mConfig.enableDumpAudio,
-                        mConfig.dumpAudioPath
-                );
-                if (ret < 0) {
-                    Logger.e(TAG, "connect failed");
-                    return;
-                }
-                Logger.i(TAG, "start publish success. ");
-                isPublish = true;
+    public void starPublish(RtmpCallback callback) {
+        ThreadUtils.runOnIoThread(() -> {
+            if (isPublishing) {
+                Logger.w(TAG, "already start published");
+                callback.onFailed(RtmpErrorConst.ERR_IS_PUBLISHING);
+                return;
             }
-        }.start();
+            Logger.d(TAG, "starPublish: ");
+            int ret = mRtmpPublisher.init(
+                    mConfig.publishUrl,
+                    mConfig.timeOut,
+                    mConfig.enableDumpVideo,
+                    mConfig.dumpVideoPath,
+                    mConfig.enableDumpAudio,
+                    mConfig.dumpAudioPath,
+                    mConfig.enableDumpFlv,
+                    mConfig.dumpFlvPath
+            );
+            if (ret < 0) {
+                Logger.e(TAG, "connect failed");
+                callback.onFailed(new RtmpError(ret, "connect failed"));
+                return;
+            }
+            isPublishing = true;
+            avSync = new AVSync();
+            callback.onSuccess();
+            Logger.d(TAG, "start publish success. ");
+        });
     }
 
 
     /**
      * 停止发布
      */
-    public void stopPublish() {
-        new Thread() {
-            @Override
-            public void run() {
-                loop = false;
-                mRtmpPublisher.stop();
-                workThread.interrupt();
-            }
-        }.start();
+    public void stopPublish(RtmpCallback callback) {
+        ThreadUtils.runOnIoThread(() -> {
+            loop = false;
+            mRtmpPublisher.stop();
+            workThread.interrupt();
+            isPublishing = false;
+
+            callback.onSuccess();
+        });
     }
 
     /**
@@ -211,11 +233,10 @@ public class MediaPublisher {
      * 释放
      */
     public void release() {
-        Log.i(TAG, "release: ");
+        Logger.i(TAG, "release: ");
         mMediaEncoder.release();
         mVideoGatherer.release();
         mAudioGatherer.release();
-
         loop = false;
         if (workThread != null) {
             workThread.interrupt();
@@ -223,25 +244,22 @@ public class MediaPublisher {
     }
 
     private void setListener() {
-        mVideoGatherer.setCallback(new VideoGatherer.Callback() {
-            @Override
-            public void onReceive(byte[] data, int colorFormat) {
-                if (isPublish) {
-                    mMediaEncoder.putVideoData(data);
-                } else {
-//                    Logger.w(TAG, "onReceive: publish is false");
+        mVideoGatherer.setCallback((data, colorFormat) -> {
+            if (isPublishing) {
+                if (mConfig.enableDumpVideoRaw) {
+                    try {
+                        of.write(data);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
+                mMediaEncoder.putVideoData(data);
             }
         });
 
-        mAudioGatherer.setCallback(new AudioGatherer.Callback() {
-            @Override
-            public void audioData(byte[] data) {
-                if (isPublish) {
-                    mMediaEncoder.putAudioData(data);
-                } else {
-//                    Logger.w(TAG, "onReceive: publish is false");
-                }
+        mAudioGatherer.setCallback(data -> {
+            if (isPublishing) {
+                mMediaEncoder.putAudioData(data);
             }
         });
 
@@ -259,20 +277,19 @@ public class MediaPublisher {
     }
 
     private boolean isSendMetaData = false;
-    private long metaDataTimestamp = 0;
-
 
     private void onEncodedAvcFrame(ByteBuffer bb, final MediaCodec.BufferInfo vBufferInfo) {
-        Logger.i(TAG, "onEncodedAvcFrame: ");
         tryToSendMetaData();
 
         // AnnexB : 0 0 0 1
         //          0 0 1
         final byte[] bytes = new byte[vBufferInfo.size];
-        bb.get(bytes);
+        bb.get(bytes, vBufferInfo.offset, vBufferInfo.size);
+        Logger.i(TAG, "onEncodedAvcFrame: info.offset=" + vBufferInfo.offset +
+                ",size=" + vBufferInfo.size + ",data=" + HexUtils.bytes2String(bytes, 4));
         VideoPacket packet = new VideoPacket();
         packet.setData(bytes);
-        packet.setTimestamp(System.currentTimeMillis() - metaDataTimestamp);
+        packet.setTimestamp(avSync.getRelativeTimestamp());
         try {
             mediaQueueManager.enqueueVideoPacket(packet);
         } catch (InterruptedException e) {
@@ -290,14 +307,14 @@ public class MediaPublisher {
             metaData.setHeight(videoPacketParams.getHeight());
             metaData.setFps(videoPacketParams.getFrameRate());
             metaData.setVideoBitRate(videoPacketParams.getBitRate());
-
             metaData.setAudioSampleSize(audioPacketParams.getSampleSize());
             metaData.setAudioSampleRate(audioPacketParams.getSampleRate());
             metaData.setAudioBitRate(audioPacketParams.getBitRate());
-            Logger.i(TAG, "enqueue metadata: " + metaData);
+            metaData.setStereo(audioPacketParams.isStereo());
+            Logger.d(TAG, "enqueue metadata: " + metaData);
             mediaQueueManager.enqueueMetaData(metaData);
             isSendMetaData = true;
-            metaDataTimestamp = System.currentTimeMillis();
+            avSync.logSetDataFrame();
         }
     }
 
@@ -310,12 +327,11 @@ public class MediaPublisher {
 
         AudioPacket audioPacket = new AudioPacket();
         audioPacket.setData(bytes);
-        audioPacket.setTimestamp(System.currentTimeMillis() - metaDataTimestamp);
+        audioPacket.setTimestamp(avSync.getRelativeTimestamp());
         try {
             mediaQueueManager.enqueueAudioPacket(audioPacket);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
     }
 }

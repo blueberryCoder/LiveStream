@@ -6,20 +6,23 @@
 #include "AVCDecoderConfiguration.h"
 #include <memory>
 #include "logger.h"
-
+#include "HexUtil.h"
 inline int AVCDecoderConfiguration::ParseSPSAndPPS(int sps_length, uint8_t *sps, int pps_length, uint8_t *pps,
                                         uint8_t *output, int *length) {
-    // https://ossrs.io/lts/en-us/assets/files/ISO_IEC_14496-15-AVC-format-2012-345a5b466cc73e978fd9dd0840361e8b.pdf 5.2.4.1.1
     // H.264 7.3.2.1
+    LOGI("Parse SPS Params sps_length=%d, sps=%s, pps_length=%d, pps=%s",
+         sps_length, HexUtil::Bytes2Hex(sps, sps_length).c_str(),
+         pps_length, HexUtil::Bytes2Hex(pps, pps_length).c_str())
+
     auto profile_idc = sps[0];
     int i = 0;
-    output[i++] = 0x1; // configuration version
-    output[i++] = sps[1]; // avc_profile_indication, ISO/IEC  14496-10
-    output[i++] = sps[2]; // profile_compatibility
-    output[i++] = sps[3]; // avc level indication
+    output[i++] = 0x1;      // configuration version
+    output[i++] = sps[1];   // avc_profile_indication, ISO/IEC  14496-10
+    output[i++] = sps[2];   // profile_compatibility
+    output[i++] = sps[3];   // avc level indication
 
-    output[i++] = 0xFF; // u(6)=0b111111, u(2) = 0x11 lengthSizeMinusOne
-    output[i++] = 0xE1; // u(3) = 0b111, numOfSequenceParamsSets 1
+    output[i++] = 0xFF;     // u(6)=0b111111, u(2)= 0x11 lengthSizeMinusOne
+    output[i++] = 0xE1;     // u(3)=0b111, numOfSequenceParamsSets 1
 
     output[i++] = (sps_length >> 8) & 0xFF;
     output[i++] = (sps_length) & 0xFF; // SPS length

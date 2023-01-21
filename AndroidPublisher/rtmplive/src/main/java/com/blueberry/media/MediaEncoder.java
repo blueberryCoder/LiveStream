@@ -18,7 +18,9 @@ import static android.media.MediaFormat.KEY_FRAME_RATE;
 import static android.media.MediaFormat.KEY_I_FRAME_INTERVAL;
 import static android.media.MediaFormat.KEY_MAX_INPUT_SIZE;
 
+import com.blueberry.media.utils.HexUtils;
 import com.blueberry.media.utils.Logger;
+import com.blueberry.media.utils.TimeUtils;
 
 
 /**
@@ -44,8 +46,8 @@ public class MediaEncoder {
     // pcm data queue
     private LinkedBlockingQueue<byte[]> audioQueue;
 
-    private VideoPacketParams currentVideoParams = new VideoPacketParams();
-    private AudioPacketParams currentAudioParams= new AudioPacketParams();
+    private final VideoPacketParams currentVideoParams = new VideoPacketParams();
+    private final AudioPacketParams currentAudioParams = new AudioPacketParams();
 
 
     public AudioPacketParams getCurrentAudioParams() {
@@ -110,9 +112,11 @@ public class MediaEncoder {
         format.setInteger(KEY_BIT_RATE, bitRate);
         aencoder.configure(format, null, null, MediaCodec.CONFIGURE_FLAG_ENCODE);
 
-        this.currentAudioParams.setSampleRate( audioGatherParams.getSampleRate());
+        this.currentAudioParams.setSampleRate(audioGatherParams.getSampleRate());
         this.currentAudioParams.setSampleSize(audioGatherParams.getSampleSize());
         this.currentAudioParams.setBitRate(bitRate);
+        this.currentAudioParams.setStereo(true);
+
 
         audioQueue = new LinkedBlockingQueue<>();
         aEncoder = aencoder;
@@ -123,15 +127,12 @@ public class MediaEncoder {
      * init video encoder.
      */
     public int initVideoEncoder(int width, int height, int fps) throws IOException {
-
+        Logger.i(TAG, "init video encoder: width=" + width + ",height=" + height + ",fps=" + fps);
         MediaCodecInfo mediaCodecInfo = getMediaCodecInfoByType(MediaFormat.MIMETYPE_VIDEO_AVC);
+        assert mediaCodecInfo != null;
         int colorFormat = getColorFormat(mediaCodecInfo);
         MediaCodec vencoder = MediaCodec.createByCodecName(mediaCodecInfo.getName());
-        MediaFormat format = MediaFormat.createVideoFormat(
-                MediaFormat.MIMETYPE_VIDEO_AVC,
-                width,
-                height);
-        format.setInteger(KEY_MAX_INPUT_SIZE, 0);
+        MediaFormat format = MediaFormat.createVideoFormat(MediaFormat.MIMETYPE_VIDEO_AVC, width, height);
         format.setInteger(KEY_BIT_RATE, mConfig.bitrate);
         format.setInteger(KEY_COLOR_FORMAT, colorFormat);
         format.setInteger(KEY_FRAME_RATE, fps);
@@ -162,9 +163,8 @@ public class MediaEncoder {
         videoEncoderThread = new Thread() {
             @Override
             public void run() {
-                presentationTimeUs = System.currentTimeMillis() * 1000;
                 vEncoder.start();
-                Logger.i(TAG,"video encoder started.");
+                Logger.i(TAG, "video encoder started.");
                 while (videoEncoderLoop && !Thread.interrupted()) {
                     try {
                         byte[] data = videoQueue.take(); //待编码的数据
@@ -196,9 +196,8 @@ public class MediaEncoder {
         audioEncoderThread = new Thread() {
             @Override
             public void run() {
-                presentationTimeUs = System.currentTimeMillis() * 1000;
                 aEncoder.start();
-                Logger.i(TAG,"audio encoder start.");
+                Logger.i(TAG, "audio encoder start.");
                 while (audioEncoderLoop && !Thread.interrupted()) {
                     try {
                         byte[] data = audioQueue.take();
@@ -276,34 +275,46 @@ public class MediaEncoder {
     }
 
     /**
-     * 视频编码
+     * encode video
      *
      * @param dstByte
      */
     private void encodeVideoData(byte[] dstByte) {
-        Logger.i(TAG, "encodeVideoData: data.length = " + dstByte.length);
-        int timeout = 100;
-        int offset = 0;
-        while (offset < dstByte.length) {
-            int inputBufferId = vEncoder.dequeueInputBuffer(timeout);
-            if (inputBufferId >= 0) {
-                // fill inputBuffers[inputBufferId] with valid data
-                ByteBuffer bb = vEncoder.getInputBuffer(inputBufferId);
-                int len = Math.min(bb.limit(), dstByte.length - offset);
-                bb.put(dstByte, offset, len);
-                long pts = new Date().getTime() * 1000 - presentationTimeUs;
-                vEncoder.queueInputBuffer(inputBufferId, 0, dstByte.length, pts, 0);
-                offset += len;
-            }
+        int timeout = 1000;
+        int inputBufferId = vEncoder.dequeueInputBuffer(timeout);
+        if (inputBufferId >= 0) {
+            ByteBuffer bb = vEncoder.getInputBuffer(inputBufferId);
+            Logger.d(TAG, "encodeVideoData: input buffer idx= " + inputBufferId + "data.length=" + dstByte.length + ",limit=" + bb.limit());
+            bb.put(dstByte);
+            vEncoder.queueInputBuffer(inputBufferId, 0, dstByte.length, TimeUtils.currentUs(), 0);
+        }
 
+        while (true) {
             int outputBufferId = vEncoder.dequeueOutputBuffer(vBufferInfo, timeout);
+            // outputBuffers[outputBufferId] is ready to be processed or rendered.
             if (outputBufferId >= 0) {
-                // outputBuffers[outputBufferId] is ready to be processed or rendered.
                 ByteBuffer bb = vEncoder.getOutputBuffer(outputBufferId);
+                MediaFormat bufferFormat = vEncoder.getOutputFormat(outputBufferId);
                 if (null != mCallback) {
+                    Logger.d(TAG, "encodeVideoData output video data ");
                     mCallback.outputVideoData(bb, vBufferInfo);
                 }
-                vEncoder.releaseOutputBuffer(outputBufferId, false);
+                vEncoder.releaseOutputBuffer(outputBufferId,false);
+            } else if (outputBufferId == MediaCodec.INFO_OUTPUT_FORMAT_CHANGED) {
+                MediaFormat format = vEncoder.getOutputFormat();
+                ByteBuffer csd0 = format.getByteBuffer("csd-0");
+                ByteBuffer csd1 = format.getByteBuffer("csd-1");
+                byte[] spsArr = csd0.array();
+                byte[] ppsArr = csd1.array();
+//                sps=00000001 67640016ACB405A1ED00DA1426A0
+//                pps=00000001 68EE06F2C0
+                Logger.i(TAG, "sps=" + HexUtils.bytes2String(spsArr));
+                Logger.i(TAG, "pps=" + HexUtils.bytes2String(ppsArr));
+                Logger.i(TAG, "encodeVideoData format changed data" + vEncoder.getOutputFormat());
+                break;
+            } else {
+                Logger.i(TAG, "encodeVideoData other output " + vEncoder.getOutputFormat());
+                break;
             }
         }
     }
@@ -326,11 +337,11 @@ public class MediaEncoder {
                 if (inputBuffer == null) {
                     throw new RuntimeException("MediaCodec Error get input buffer is null");
                 }
-                int limit = inputBuffer.limit();
+                int limit = inputBuffer.limit(); // 4096
+                Logger.d(TAG, "Audio,data.length=" + data.length + ",limit=" + limit);
                 int length = Math.min(limit, data.length - offset);
                 inputBuffer.put(data, offset, length);
-                long pts = new Date().getTime() * 1000 - presentationTimeUs;
-                aEncoder.queueInputBuffer(inputBufferId, 0, length, pts, 0);
+                aEncoder.queueInputBuffer(inputBufferId, 0, length,  TimeUtils.currentUs(), 0);
                 offset += length;
             }
 
@@ -344,40 +355,25 @@ public class MediaEncoder {
                 aEncoder.releaseOutputBuffer(outputBufferId, false);
             }
         }
-
     }
 
 
     private static int getColorFormat(MediaCodecInfo mediaCodecInfo) {
-        int matchedForamt = 0;
-        MediaCodecInfo.CodecCapabilities codecCapabilities =
-                mediaCodecInfo.getCapabilitiesForType(MediaFormat.MIMETYPE_VIDEO_AVC);
+        int targetFormat = MediaCodecInfo.CodecCapabilities.COLOR_FormatYUV420Planar;
+        MediaCodecInfo.CodecCapabilities codecCapabilities
+                = mediaCodecInfo.getCapabilitiesForType(MediaFormat.MIMETYPE_VIDEO_AVC);
+
+        boolean supported = false;
         for (int i = 0; i < codecCapabilities.colorFormats.length; i++) {
-            int format = codecCapabilities.colorFormats[i];
-            if (format >= codecCapabilities.COLOR_FormatYUV420Planar &&
-                    format <= codecCapabilities.COLOR_FormatYUV420PackedSemiPlanar
-            ) {
-                if (format >= matchedForamt) {
-                    matchedForamt = format;
-                }
+            if (codecCapabilities.colorFormats[i] == targetFormat) {
+                supported = true;
+                break;
             }
         }
-        switch (matchedForamt) {
-            case MediaCodecInfo.CodecCapabilities.COLOR_FormatYUV420Planar:
-                Log.i(TAG, "selected yuv420p");
-                break;
-            case MediaCodecInfo.CodecCapabilities.COLOR_FormatYUV420PackedPlanar:
-                Log.i(TAG, "selected yuv420pp");
-                break;
-            case MediaCodecInfo.CodecCapabilities.COLOR_FormatYUV420SemiPlanar:
-                Log.i(TAG, "selected yuv420sp");
-                break;
-            case MediaCodecInfo.CodecCapabilities.COLOR_FormatYUV420PackedSemiPlanar:
-                Log.i(TAG, "selected yuv420psp");
-                break;
-
+        if (!supported) {
+            throw new IllegalStateException("current only support YUV420");
         }
-        return matchedForamt;
+        return targetFormat;
     }
 
     private static MediaCodecInfo getMediaCodecInfoByType(String mimeType) {

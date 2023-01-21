@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btn_rtmp_publish"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/rtmp_publish" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_star"
-        android:text="start"
+        android:id="@+id/btn_test_avc"
+        android:text="@string/test_avc_encoder"
         />
+
 </LinearLayout>

@@ -17,10 +17,11 @@ import static android.hardware.Camera.Parameters.FOCUS_MODE_AUTO;
 import static android.hardware.Camera.Parameters.PREVIEW_FPS_MAX_INDEX;
 import static android.hardware.Camera.Parameters.PREVIEW_FPS_MIN_INDEX;
 
+import com.blueberry.media.utils.Logger;
+
 /**
  * Created by blueberry on 3/6/2017.
  */
-
 public class VideoGatherer {
     private static final String TAG = "VideoGatherer";
 
@@ -33,7 +34,8 @@ public class VideoGatherer {
     private boolean loop;
     private Callback mCallback;
 
-    private VideoGatherParams currentParams = new VideoGatherParams();
+    private final VideoGatherParams currentParams = new VideoGatherParams();
+
     public VideoGatherParams getCurrentParams() {
         return currentParams;
     }
@@ -59,6 +61,13 @@ public class VideoGatherer {
             this.data = data;
         }
 
+        @Override
+        public String toString() {
+            return "PixelData{" +
+                    "format=" + format +
+                    ", length=" + data.length +
+                    '}';
+        }
     }
 
     interface Callback {
@@ -97,53 +106,26 @@ public class VideoGatherer {
         initWorkThread();
         loop = true;
         workThread.start();
-//        return new Params(previewSize.width, previewSize.height);
     }
 
     private void initWorkThread() {
         workThread = new Thread() {
-            private long preTime;
             //YUV420
-            byte[] dstByte = new byte[calculateFrameSize(ImageFormat.NV21)];
+            final byte[] dstByte = new byte[calculateFrameSize(ImageFormat.NV21)];
 
             @Override
             public void run() {
                 while (loop && !Thread.interrupted()) {
                     try {
+                        // 518400
+                        // 720 * 480 * 1.5
                         PixelData pixelData = mQueue.take();
-                        // 处理
-                        if (colorFormat == MediaCodecInfo.CodecCapabilities.COLOR_FormatYUV420SemiPlanar) {
-                            Yuv420Util.Nv21ToYuv420SP(pixelData.data, dstByte, previewSize.width, previewSize.height);
-                        } else if (colorFormat == MediaCodecInfo.CodecCapabilities.COLOR_FormatYUV420Planar) {
-                            Yuv420Util.Nv21ToI420(pixelData.data, dstByte, previewSize.width, previewSize.height);
-                        } else if (colorFormat == MediaCodecInfo.CodecCapabilities.COLOR_FormatYUV420Flexible) {
-                            // Yuv420_888
-                        } else if (colorFormat == MediaCodecInfo.CodecCapabilities.COLOR_FormatYUV420PackedPlanar) {
-                            // Yuv420packedPlannar 和 yuv420sp很像
-                            // 区别在于 加入 width = 4的话 y1,y2,y3 ,y4公用 u1v1
-                            // 而 yuv420dp 则是 y1y2y5y6 共用 u1v1
-                            //这样处理的话颜色核能会有些失真。
-                            Yuv420Util.Nv21ToYuv420SP(pixelData.data, dstByte, previewSize.width, previewSize.height);
-                        } else if (colorFormat == MediaCodecInfo.CodecCapabilities.COLOR_FormatYUV420PackedSemiPlanar) {
-                        } else {
-                            System.arraycopy(pixelData.data, 0, dstByte, 0, pixelData.data.length);
-                        }
-
+                        Yuv420Util.Nv21ToI420(pixelData.data, dstByte, previewSize.width, previewSize.height);
                         if (mCallback != null) {
+                            // call to media codec
                             mCallback.onReceive(dstByte, colorFormat);
                         }
-                        //处理完成之后调用 addCallbackBuffer()
-                        if (preTime != 0) {
-                            // 延时
-                            int shouldDelay = (int) (1000.0 / config.fps);
-                            int realDelay = (int) (System.currentTimeMillis() - preTime);
-                            int delta = shouldDelay - realDelay;
-                            if (delta > 0) {
-                                sleep(delta);
-                            }
-                        }
                         addCallbackBuffer(pixelData.data);
-                        preTime = System.currentTimeMillis();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                         break;
@@ -238,7 +220,7 @@ public class VideoGatherer {
 
         this.currentParams.setPreviewWidth(previewSize.width);
         this.currentParams.setPreviewHeight(previewSize.height);
-        this.currentParams.setFrameRate(destRange[PREVIEW_FPS_MIN_INDEX]/1000);
+        this.currentParams.setFrameRate(destRange[PREVIEW_FPS_MIN_INDEX] / 1000);
     }
 
     public static void setCameraDisplayOrientation(Activity activity,

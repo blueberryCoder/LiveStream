@@ -6,7 +6,16 @@ package com.blueberry.media;
 public class AudioPacketParams {
     private double bitRate;
     private int sampleSize;
-    private  int sampleRate;
+    private int sampleRate;
+    private boolean stereo;
+
+    public boolean isStereo() {
+        return stereo;
+    }
+
+    public void setStereo(boolean stereo) {
+        this.stereo = stereo;
+    }
 
     public int getSampleSize() {
         return sampleSize;

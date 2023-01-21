@@ -8,7 +8,6 @@ import com.blueberry.media.utils.Logger;
 
 /**
  * Created by blueberry on 3/6/2017.
- * <p>
  */
 
 public class AudioGatherer {
@@ -22,7 +21,7 @@ public class AudioGatherer {
     private Thread workThread;
     private boolean loop;
     private Callback mCallback;
-    private AudioGatherParams currentParams = new AudioGatherParams() ;
+    private final AudioGatherParams currentParams = new AudioGatherParams() ;
 
 
     public AudioGatherParams getCurrentParams() {
@@ -44,10 +43,9 @@ public class AudioGatherer {
     public void initAudioDevice() {
         int[] sampleRates = {44100, 22050, 16000, 11025, 8000, 4000};
         for (int sampleRate : sampleRates) {
-            //编码制式
             int audioFormat = mConfig.audioFormat;
-            // stereo 立体声，
             int channelConfig = mConfig.channelConfig;
+
             int bufferSize = 2 * AudioRecord.getMinBufferSize(sampleRate, channelConfig, audioFormat);
             mAudioRecord = new AudioRecord(MediaRecorder.AudioSource.MIC,
                     sampleRate,
@@ -58,7 +56,6 @@ public class AudioGatherer {
                 continue;
             }
             this.buffer = new byte[Math.min(80920, bufferSize)];
-
             this.currentParams.setSampleRate(sampleRate);
             this.currentParams.setChannelCount(getChannelCount(channelConfig));
             this.currentParams.setSampleSize(16); // TODO should follow size
@@ -80,8 +77,9 @@ public class AudioGatherer {
                 mAudioRecord.startRecording();
                 while (loop && !Thread.interrupted()) {
                     int size = mAudioRecord.read(buffer, 0, buffer.length);
+                    Logger.v(TAG, "read size=" + size);
                     if (size < 0) {
-                        Logger.i(TAG, "audio ignore ,no data to read");
+                        Logger.w(TAG, "audio ignore ,no data to read");
                         break;
                     }
                     if (loop) {

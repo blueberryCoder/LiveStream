@@ -77,28 +77,28 @@ _ZN10H264ParamsC2EPhi:
 	.setfp	r7, sp
 	mov	r7, sp
 	.cfi_def_cfa_register r7
-	.pad	#32
-	sub	sp, #32
-	str	r0, [sp, #24]
-	str	r1, [sp, #20]
-	str	r2, [sp, #16]
-	ldr	r0, [sp, #24]
-	str	r0, [sp, #28]
+	.pad	#40
+	sub	sp, #40
+	str	r0, [sp, #32]
+	str	r1, [sp, #28]
+	str	r2, [sp, #24]
+	ldr	r0, [sp, #32]
+	str	r0, [sp, #36]
 .Ltmp0:
 	.loc	36 10 45 prologue_end   @ src/main/cpp/H264Params.cpp:10:45
-	ldr	r1, [sp, #20]
+	ldr	r1, [sp, #28]
 	.loc	36 10 51 is_stmt 0      @ src/main/cpp/H264Params.cpp:10:51
-	ldr	r2, [sp, #16]
+	ldr	r2, [sp, #24]
 	.loc	36 10 17                @ src/main/cpp/H264Params.cpp:10:17
 	str	r0, [sp, #4]            @ 4-byte Spill
 	mov	r0, r1
 	mov	r1, r2
 	bl	_ZN10H264Parser15SearchStartCodeEPhi
 	.loc	36 10 9                 @ src/main/cpp/H264Params.cpp:10:9
-	str	r0, [sp, #12]
+	str	r0, [sp, #20]
 .Ltmp1:
 	.loc	36 11 9 is_stmt 1       @ src/main/cpp/H264Params.cpp:11:9
-	ldr	r0, [sp, #12]
+	ldr	r0, [sp, #20]
 .Ltmp2:
 	.loc	36 11 9 is_stmt 0       @ src/main/cpp/H264Params.cpp:11:9
 	cmp	r0, #0
@@ -107,55 +107,62 @@ _ZN10H264ParamsC2EPhi:
 .LBB0_1:
 .Ltmp3:
 	.loc	36 12 29 is_stmt 1      @ src/main/cpp/H264Params.cpp:12:29
-	ldr	r0, [sp, #12]
+	ldr	r0, [sp, #20]
 	.loc	36 12 27 is_stmt 0      @ src/main/cpp/H264Params.cpp:12:27
 	ldr	r1, [sp, #4]            @ 4-byte Reload
 	str	r0, [r1, #4]
 	.loc	36 13 22 is_stmt 1      @ src/main/cpp/H264Params.cpp:13:22
-	ldr	r0, [sp, #20]
+	ldr	r0, [sp, #28]
 	.loc	36 13 20 is_stmt 0      @ src/main/cpp/H264Params.cpp:13:20
 	str	r0, [r1]
-	.loc	36 14 23 is_stmt 1      @ src/main/cpp/H264Params.cpp:14:23
-	ldr	r0, [sp, #20]
-	.loc	36 14 28 is_stmt 0      @ src/main/cpp/H264Params.cpp:14:28
-	ldr	r2, [sp, #12]
-	.loc	36 14 23                @ src/main/cpp/H264Params.cpp:14:23
+	.loc	36 15 25 is_stmt 1      @ src/main/cpp/H264Params.cpp:15:25
+	ldr	r0, [sp, #28]
+	.loc	36 15 30 is_stmt 0      @ src/main/cpp/H264Params.cpp:15:30
+	ldr	r2, [sp, #20]
+	.loc	36 15 25                @ src/main/cpp/H264Params.cpp:15:25
 	add	r0, r2
-	.loc	36 14 20                @ src/main/cpp/H264Params.cpp:14:20
-	str	r0, [r1, #8]
-	.loc	36 16 92 is_stmt 1      @ src/main/cpp/H264Params.cpp:16:92
-	ldr	r0, [r1, #4]
-	.loc	36 15 80                @ src/main/cpp/H264Params.cpp:15:80
-	ldr	r2, [r1, #8]
-	.loc	36 15 86 is_stmt 0      @ src/main/cpp/H264Params.cpp:15:86
-	ldr	r3, [sp, #16]
-	.loc	36 15 93                @ src/main/cpp/H264Params.cpp:15:93
-	subs	r1, r3, r0
-	.loc	36 15 32                @ src/main/cpp/H264Params.cpp:15:32
-	mov	r0, r2
-	bl	_ZN10H264Parser29RemoveEmulationPreventionCodeEPhi
 	.loc	36 15 14                @ src/main/cpp/H264Params.cpp:15:14
-	str	r0, [sp, #8]
-	.loc	36 17 29 is_stmt 1      @ src/main/cpp/H264Params.cpp:17:29
+	str	r0, [sp, #16]
+	.loc	36 16 31 is_stmt 1      @ src/main/cpp/H264Params.cpp:16:31
+	ldr	r0, [sp, #24]
+	.loc	36 16 40 is_stmt 0      @ src/main/cpp/H264Params.cpp:16:40
+	ldr	r2, [sp, #20]
+	.loc	36 16 38                @ src/main/cpp/H264Params.cpp:16:38
+	subs	r0, r0, r2
+	.loc	36 16 14                @ src/main/cpp/H264Params.cpp:16:14
+	str	r0, [sp, #12]
+	.loc	36 17 58 is_stmt 1      @ src/main/cpp/H264Params.cpp:17:58
 	ldr	r0, [sp, #16]
-	.loc	36 17 38 is_stmt 0      @ src/main/cpp/H264Params.cpp:17:38
+	.loc	36 17 67 is_stmt 0      @ src/main/cpp/H264Params.cpp:17:67
 	ldr	r1, [sp, #12]
-	.loc	36 17 36                @ src/main/cpp/H264Params.cpp:17:36
-	subs	r0, r0, r1
-	.loc	36 17 46                @ src/main/cpp/H264Params.cpp:17:46
+	.loc	36 17 32                @ src/main/cpp/H264Params.cpp:17:32
+	bl	_ZN10H264Parser13FindStartCodeEPhi
+	.loc	36 17 14                @ src/main/cpp/H264Params.cpp:17:14
+	str	r0, [sp, #8]
+	.loc	36 19 23 is_stmt 1      @ src/main/cpp/H264Params.cpp:19:23
+	ldr	r0, [sp, #16]
+	.loc	36 19 31 is_stmt 0      @ src/main/cpp/H264Params.cpp:19:31
 	ldr	r1, [sp, #8]
-	.loc	36 17 44                @ src/main/cpp/H264Params.cpp:17:44
-	subs	r0, r0, r1
-	.loc	36 17 27                @ src/main/cpp/H264Params.cpp:17:27
+	.loc	36 19 23                @ src/main/cpp/H264Params.cpp:19:23
+	add	r0, r1
+	.loc	36 19 20                @ src/main/cpp/H264Params.cpp:19:20
 	ldr	r1, [sp, #4]            @ 4-byte Reload
+	str	r0, [r1, #8]
+	.loc	36 20 29 is_stmt 1      @ src/main/cpp/H264Params.cpp:20:29
+	ldr	r0, [sp, #12]
+	.loc	36 20 46 is_stmt 0      @ src/main/cpp/H264Params.cpp:20:46
+	ldr	r2, [sp, #8]
+	.loc	36 20 44                @ src/main/cpp/H264Params.cpp:20:44
+	subs	r0, r0, r2
+	.loc	36 20 27                @ src/main/cpp/H264Params.cpp:20:27
 	str	r0, [r1, #12]
-	.loc	36 18 5 is_stmt 1       @ src/main/cpp/H264Params.cpp:18:5
+	.loc	36 21 5 is_stmt 1       @ src/main/cpp/H264Params.cpp:21:5
 	b	.LBB0_2
 .Ltmp4:
 .LBB0_2:
-	.loc	36 19 1                 @ src/main/cpp/H264Params.cpp:19:1
-	ldr	r0, [sp, #28]
-	add	sp, #32
+	.loc	36 22 1                 @ src/main/cpp/H264Params.cpp:22:1
+	ldr	r0, [sp, #36]
+	add	sp, #40
 	pop	{r7, pc}
 .Ltmp5:
 .Lfunc_end0:
@@ -347,149 +354,175 @@ _ZN10H264Parser15SearchStartCodeEPhi:
 	.cfi_endproc
 	.fnend
                                         @ -- End function
-	.section	.text._ZN10H264Parser29RemoveEmulationPreventionCodeEPhi,"axG",%progbits,_ZN10H264Parser29RemoveEmulationPreventionCodeEPhi,comdat
-	.weak	_ZN10H264Parser29RemoveEmulationPreventionCodeEPhi @ -- Begin function _ZN10H264Parser29RemoveEmulationPreventionCodeEPhi
+	.section	.text._ZN10H264Parser13FindStartCodeEPhi,"axG",%progbits,_ZN10H264Parser13FindStartCodeEPhi,comdat
+	.weak	_ZN10H264Parser13FindStartCodeEPhi @ -- Begin function _ZN10H264Parser13FindStartCodeEPhi
 	.p2align	1
-	.type	_ZN10H264Parser29RemoveEmulationPreventionCodeEPhi,%function
-	.code	16                      @ @_ZN10H264Parser29RemoveEmulationPreventionCodeEPhi
+	.type	_ZN10H264Parser13FindStartCodeEPhi,%function
+	.code	16                      @ @_ZN10H264Parser13FindStartCodeEPhi
 	.thumb_func
-_ZN10H264Parser29RemoveEmulationPreventionCodeEPhi:
+_ZN10H264Parser13FindStartCodeEPhi:
 .Lfunc_begin2:
-	.loc	38 59 0                 @ src/main/cpp/H264Parser.h:59:0
+	.loc	38 80 0                 @ src/main/cpp/H264Parser.h:80:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
-	.save	{r7, lr}
-	push	{r7, lr}
-	.cfi_def_cfa_offset 8
-	.cfi_offset lr, -4
-	.cfi_offset r7, -8
-	.setfp	r7, sp
-	mov	r7, sp
-	.cfi_def_cfa_register r7
-	.pad	#24
-	sub	sp, #24
-	str	r0, [sp, #20]
-	str	r1, [sp, #16]
-.Ltmp16:
-	.loc	38 60 29 prologue_end   @ src/main/cpp/H264Parser.h:60:29
-	ldr	r0, [sp, #20]
-	.loc	38 60 18 is_stmt 0      @ src/main/cpp/H264Parser.h:60:18
-	str	r0, [sp, #12]
-	movs	r0, #0
-	.loc	38 61 13 is_stmt 1      @ src/main/cpp/H264Parser.h:61:13
-	str	r0, [sp, #8]
-	.loc	38 61 20 is_stmt 0      @ src/main/cpp/H264Parser.h:61:20
+	.pad	#12
+	sub	sp, #12
+	.cfi_def_cfa_offset 12
 	str	r0, [sp, #4]
-	.loc	38 62 9 is_stmt 1       @ src/main/cpp/H264Parser.h:62:9
-	b	.LBB2_1
-.LBB2_1:                                @ =>This Inner Loop Header: Depth=1
-	.loc	38 62 16 is_stmt 0      @ src/main/cpp/H264Parser.h:62:16
-	ldr	r0, [sp, #8]
-	.loc	38 62 20                @ src/main/cpp/H264Parser.h:62:20
-	ldr	r1, [sp, #16]
-	.loc	38 62 9                 @ src/main/cpp/H264Parser.h:62:9
-	cmp	r0, r1
-	bge	.LBB2_7
-	b	.LBB2_2
-.LBB2_2:                                @   in Loop: Header=BB2_1 Depth=1
+	str	r1, [sp]
+.Ltmp16:
+	.loc	38 81 13 prologue_end   @ src/main/cpp/H264Parser.h:81:13
+	ldr	r0, [sp]
 .Ltmp17:
-	.loc	38 63 17 is_stmt 1      @ src/main/cpp/H264Parser.h:63:17
-	ldr	r0, [sp, #16]
-	.loc	38 63 26 is_stmt 0      @ src/main/cpp/H264Parser.h:63:26
-	ldr	r1, [sp, #8]
-	.loc	38 63 24                @ src/main/cpp/H264Parser.h:63:24
-	subs	r0, r0, r1
-	.loc	38 63 32                @ src/main/cpp/H264Parser.h:63:32
+	.loc	38 81 13 is_stmt 0      @ src/main/cpp/H264Parser.h:81:13
 	cmp	r0, #4
-	blt	.LBB2_5
-	b	.LBB2_3
-.LBB2_3:                                @   in Loop: Header=BB2_1 Depth=1
-	.loc	38 63 43                @ src/main/cpp/H264Parser.h:63:43
-	ldr	r0, [sp, #20]
-	.loc	38 63 48                @ src/main/cpp/H264Parser.h:63:48
-	ldr	r1, [sp, #8]
-	.loc	38 63 43                @ src/main/cpp/H264Parser.h:63:43
-	add	r0, r1
-	.loc	38 63 35                @ src/main/cpp/H264Parser.h:63:35
-	bl	_ZN10H264Parser6Read24EPh
+	blt	.LBB2_12
+	b	.LBB2_1
+.LBB2_1:
 .Ltmp18:
-	.loc	38 63 17                @ src/main/cpp/H264Parser.h:63:17
-	cmp	r0, #3
+	.loc	38 82 18 is_stmt 1      @ src/main/cpp/H264Parser.h:82:18
+	ldr	r0, [sp, #4]
+	ldrb	r0, [r0]
+	.loc	38 82 26 is_stmt 0      @ src/main/cpp/H264Parser.h:82:26
+	cmp	r0, #0
+	bne	.LBB2_5
+	b	.LBB2_2
+.LBB2_2:
+	.loc	38 82 30                @ src/main/cpp/H264Parser.h:82:30
+	ldr	r0, [sp, #4]
+	ldrb	r0, [r0, #1]
+	.loc	38 82 38                @ src/main/cpp/H264Parser.h:82:38
+	cmp	r0, #0
+	bne	.LBB2_5
+	b	.LBB2_3
+.LBB2_3:
+	.loc	38 82 41                @ src/main/cpp/H264Parser.h:82:41
+	ldr	r0, [sp, #4]
+	ldrb	r0, [r0, #2]
+.Ltmp19:
+	.loc	38 82 17                @ src/main/cpp/H264Parser.h:82:17
+	cmp	r0, #1
 	bne	.LBB2_5
 	b	.LBB2_4
-.LBB2_4:                                @   in Loop: Header=BB2_1 Depth=1
-.Ltmp19:
-	.loc	38 64 33 is_stmt 1      @ src/main/cpp/H264Parser.h:64:33
-	ldr	r0, [sp, #20]
-	.loc	38 64 39 is_stmt 0      @ src/main/cpp/H264Parser.h:64:39
-	ldr	r1, [sp, #8]
-	adds	r2, r1, #1
-	str	r2, [sp, #8]
-	.loc	38 64 33                @ src/main/cpp/H264Parser.h:64:33
-	ldrb	r0, [r0, r1]
-	.loc	38 64 17                @ src/main/cpp/H264Parser.h:64:17
-	ldr	r1, [sp, #12]
-	.loc	38 64 27                @ src/main/cpp/H264Parser.h:64:27
-	ldr	r2, [sp, #4]
-	adds	r3, r2, #1
-	str	r3, [sp, #4]
-	.loc	38 64 31                @ src/main/cpp/H264Parser.h:64:31
-	strb	r0, [r1, r2]
-	.loc	38 65 33 is_stmt 1      @ src/main/cpp/H264Parser.h:65:33
-	ldr	r0, [sp, #20]
-	.loc	38 65 39 is_stmt 0      @ src/main/cpp/H264Parser.h:65:39
-	ldr	r1, [sp, #8]
-	adds	r2, r1, #1
-	str	r2, [sp, #8]
-	.loc	38 65 33                @ src/main/cpp/H264Parser.h:65:33
-	ldrb	r0, [r0, r1]
-	.loc	38 65 17                @ src/main/cpp/H264Parser.h:65:17
-	ldr	r1, [sp, #12]
-	.loc	38 65 27                @ src/main/cpp/H264Parser.h:65:27
-	ldr	r2, [sp, #4]
-	adds	r3, r2, #1
-	str	r3, [sp, #4]
-	.loc	38 65 31                @ src/main/cpp/H264Parser.h:65:31
-	strb	r0, [r1, r2]
-	.loc	38 66 18 is_stmt 1      @ src/main/cpp/H264Parser.h:66:18
-	ldr	r0, [sp, #8]
-	adds	r0, #1
-	str	r0, [sp, #8]
-	.loc	38 67 13                @ src/main/cpp/H264Parser.h:67:13
-	b	.LBB2_6
+.LBB2_4:
+	.loc	38 0 17                 @ src/main/cpp/H264Parser.h:0:17
+	movs	r0, #3
 .Ltmp20:
-.LBB2_5:                                @   in Loop: Header=BB2_1 Depth=1
-	.loc	38 68 29                @ src/main/cpp/H264Parser.h:68:29
-	ldr	r0, [sp, #20]
-	.loc	38 68 35 is_stmt 0      @ src/main/cpp/H264Parser.h:68:35
-	ldr	r1, [sp, #8]
-	adds	r2, r1, #1
-	str	r2, [sp, #8]
-	.loc	38 68 29                @ src/main/cpp/H264Parser.h:68:29
-	ldrb	r0, [r0, r1]
-	.loc	38 68 17                @ src/main/cpp/H264Parser.h:68:17
-	ldr	r1, [sp, #20]
-	.loc	38 68 23                @ src/main/cpp/H264Parser.h:68:23
-	ldr	r2, [sp, #4]
-	adds	r3, r2, #1
-	str	r3, [sp, #4]
-	.loc	38 68 27                @ src/main/cpp/H264Parser.h:68:27
-	strb	r0, [r1, r2]
-	b	.LBB2_6
+	.loc	38 84 17 is_stmt 1      @ src/main/cpp/H264Parser.h:84:17
+	str	r0, [sp, #8]
+	b	.LBB2_20
 .Ltmp21:
-.LBB2_6:                                @   in Loop: Header=BB2_1 Depth=1
-	.loc	38 62 9 is_stmt 1       @ src/main/cpp/H264Parser.h:62:9
-	b	.LBB2_1
-.LBB2_7:
-	.loc	38 71 16                @ src/main/cpp/H264Parser.h:71:16
+.LBB2_5:
+	.loc	38 85 25                @ src/main/cpp/H264Parser.h:85:25
 	ldr	r0, [sp, #4]
-	.loc	38 71 9 is_stmt 0       @ src/main/cpp/H264Parser.h:71:9
-	add	sp, #24
-	pop	{r7, pc}
+	ldrb	r0, [r0]
+	.loc	38 85 33 is_stmt 0      @ src/main/cpp/H264Parser.h:85:33
+	cmp	r0, #0
+	bne	.LBB2_10
+	b	.LBB2_6
+.LBB2_6:
+	.loc	38 85 37                @ src/main/cpp/H264Parser.h:85:37
+	ldr	r0, [sp, #4]
+	ldrb	r0, [r0, #1]
+	.loc	38 85 45                @ src/main/cpp/H264Parser.h:85:45
+	cmp	r0, #0
+	bne	.LBB2_10
+	b	.LBB2_7
+.LBB2_7:
+	.loc	38 85 49                @ src/main/cpp/H264Parser.h:85:49
+	ldr	r0, [sp, #4]
+	ldrb	r0, [r0, #2]
+	.loc	38 85 57                @ src/main/cpp/H264Parser.h:85:57
+	cmp	r0, #0
+	bne	.LBB2_10
+	b	.LBB2_8
+.LBB2_8:
+	.loc	38 85 60                @ src/main/cpp/H264Parser.h:85:60
+	ldr	r0, [sp, #4]
+	ldrb	r0, [r0, #3]
 .Ltmp22:
+	.loc	38 85 24                @ src/main/cpp/H264Parser.h:85:24
+	cmp	r0, #1
+	bne	.LBB2_10
+	b	.LBB2_9
+.LBB2_9:
+	.loc	38 0 24                 @ src/main/cpp/H264Parser.h:0:24
+	movs	r0, #4
+.Ltmp23:
+	.loc	38 87 17 is_stmt 1      @ src/main/cpp/H264Parser.h:87:17
+	str	r0, [sp, #8]
+	b	.LBB2_20
+.Ltmp24:
+.LBB2_10:
+	.loc	38 0 17 is_stmt 0       @ src/main/cpp/H264Parser.h:0:17
+	b	.LBB2_11
+.LBB2_11:
+	.loc	38 89 9 is_stmt 1       @ src/main/cpp/H264Parser.h:89:9
+	b	.LBB2_19
+.Ltmp25:
+.LBB2_12:
+	.loc	38 89 20 is_stmt 0      @ src/main/cpp/H264Parser.h:89:20
+	ldr	r0, [sp]
+.Ltmp26:
+	.loc	38 89 20                @ src/main/cpp/H264Parser.h:89:20
+	cmp	r0, #3
+	blt	.LBB2_18
+	b	.LBB2_13
+.LBB2_13:
+.Ltmp27:
+	.loc	38 91 18 is_stmt 1      @ src/main/cpp/H264Parser.h:91:18
+	ldr	r0, [sp, #4]
+	ldrb	r0, [r0]
+	.loc	38 91 26 is_stmt 0      @ src/main/cpp/H264Parser.h:91:26
+	cmp	r0, #0
+	bne	.LBB2_17
+	b	.LBB2_14
+.LBB2_14:
+	.loc	38 91 30                @ src/main/cpp/H264Parser.h:91:30
+	ldr	r0, [sp, #4]
+	ldrb	r0, [r0, #1]
+	.loc	38 91 38                @ src/main/cpp/H264Parser.h:91:38
+	cmp	r0, #0
+	bne	.LBB2_17
+	b	.LBB2_15
+.LBB2_15:
+	.loc	38 91 41                @ src/main/cpp/H264Parser.h:91:41
+	ldr	r0, [sp, #4]
+	ldrb	r0, [r0, #2]
+.Ltmp28:
+	.loc	38 91 17                @ src/main/cpp/H264Parser.h:91:17
+	cmp	r0, #1
+	bne	.LBB2_17
+	b	.LBB2_16
+.LBB2_16:
+	.loc	38 0 17                 @ src/main/cpp/H264Parser.h:0:17
+	movs	r0, #3
+.Ltmp29:
+	.loc	38 92 17 is_stmt 1      @ src/main/cpp/H264Parser.h:92:17
+	str	r0, [sp, #8]
+	b	.LBB2_20
+.Ltmp30:
+.LBB2_17:
+	.loc	38 94 9                 @ src/main/cpp/H264Parser.h:94:9
+	b	.LBB2_18
+.Ltmp31:
+.LBB2_18:
+	.loc	38 0 9 is_stmt 0        @ src/main/cpp/H264Parser.h:0:9
+	b	.LBB2_19
+.LBB2_19:
+	movs	r0, #0
+	.loc	38 95 9 is_stmt 1       @ src/main/cpp/H264Parser.h:95:9
+	str	r0, [sp, #8]
+	b	.LBB2_20
+.LBB2_20:
+	.loc	38 96 5                 @ src/main/cpp/H264Parser.h:96:5
+	ldr	r0, [sp, #8]
+	add	sp, #12
+	bx	lr
+.Ltmp32:
 .Lfunc_end2:
-	.size	_ZN10H264Parser29RemoveEmulationPreventionCodeEPhi, .Lfunc_end2-_ZN10H264Parser29RemoveEmulationPreventionCodeEPhi
+	.size	_ZN10H264Parser13FindStartCodeEPhi, .Lfunc_end2-_ZN10H264Parser13FindStartCodeEPhi
 	.cfi_endproc
 	.fnend
                                         @ -- End function
@@ -501,7 +534,7 @@ _ZN10H264Parser29RemoveEmulationPreventionCodeEPhi:
 	.thumb_func
 _ZN10H264ParamsD2Ev:
 .Lfunc_begin3:
-	.loc	36 21 0 is_stmt 1       @ src/main/cpp/H264Params.cpp:21:0
+	.loc	36 24 0                 @ src/main/cpp/H264Params.cpp:24:0
 	.fnstart
 	.cfi_startproc
 @ %bb.0:
@@ -510,65 +543,13 @@ _ZN10H264ParamsD2Ev:
 	.cfi_def_cfa_offset 4
 	str	r0, [sp]
 	ldr	r0, [sp]
-.Ltmp23:
-	.loc	36 21 27 prologue_end   @ src/main/cpp/H264Params.cpp:21:27
+.Ltmp33:
+	.loc	36 24 27 prologue_end   @ src/main/cpp/H264Params.cpp:24:27
 	add	sp, #4
 	bx	lr
-.Ltmp24:
+.Ltmp34:
 .Lfunc_end3:
 	.size	_ZN10H264ParamsD2Ev, .Lfunc_end3-_ZN10H264ParamsD2Ev
-	.cfi_endproc
-	.fnend
-                                        @ -- End function
-	.section	.text._ZN10H264Parser6Read24EPh,"axG",%progbits,_ZN10H264Parser6Read24EPh,comdat
-	.weak	_ZN10H264Parser6Read24EPh @ -- Begin function _ZN10H264Parser6Read24EPh
-	.p2align	1
-	.type	_ZN10H264Parser6Read24EPh,%function
-	.code	16                      @ @_ZN10H264Parser6Read24EPh
-	.thumb_func
-_ZN10H264Parser6Read24EPh:
-.Lfunc_begin4:
-	.loc	38 111 0                @ src/main/cpp/H264Parser.h:111:0
-	.fnstart
-	.cfi_startproc
-@ %bb.0:
-	.pad	#8
-	sub	sp, #8
-	.cfi_def_cfa_offset 8
-	str	r0, [sp, #4]
-	movs	r0, #0
-.Ltmp25:
-	.loc	38 112 13 prologue_end  @ src/main/cpp/H264Parser.h:112:13
-	str	r0, [sp]
-	.loc	38 113 19               @ src/main/cpp/H264Parser.h:113:19
-	ldr	r0, [sp, #4]
-	ldrb	r0, [r0]
-	.loc	38 113 16 is_stmt 0     @ src/main/cpp/H264Parser.h:113:16
-	ldr	r1, [sp]
-	orr.w	r0, r1, r0, lsl #16
-	str	r0, [sp]
-	.loc	38 114 19 is_stmt 1     @ src/main/cpp/H264Parser.h:114:19
-	ldr	r0, [sp, #4]
-	ldrb	r0, [r0, #1]
-	.loc	38 114 16 is_stmt 0     @ src/main/cpp/H264Parser.h:114:16
-	ldr	r1, [sp]
-	orr.w	r0, r1, r0, lsl #8
-	str	r0, [sp]
-	.loc	38 115 19 is_stmt 1     @ src/main/cpp/H264Parser.h:115:19
-	ldr	r0, [sp, #4]
-	ldrb	r0, [r0, #2]
-	.loc	38 115 16 is_stmt 0     @ src/main/cpp/H264Parser.h:115:16
-	ldr	r1, [sp]
-	orrs	r0, r1
-	str	r0, [sp]
-	.loc	38 116 16 is_stmt 1     @ src/main/cpp/H264Parser.h:116:16
-	ldr	r0, [sp]
-	.loc	38 116 9 is_stmt 0      @ src/main/cpp/H264Parser.h:116:9
-	add	sp, #8
-	bx	lr
-.Ltmp26:
-.Lfunc_end4:
-	.size	_ZN10H264Parser6Read24EPh, .Lfunc_end4-_ZN10H264Parser6Read24EPh
 	.cfi_endproc
 	.fnend
                                         @ -- End function
@@ -1262,15 +1243,13 @@ _ZN10H264Parser6Read24EPh:
 .Linfo_string343:
 	.asciz	"index"                 @ string offset=4019
 .Linfo_string344:
-	.asciz	"start_code_size"       @ string offset=4025
+	.asciz	"pps_raw"               @ string offset=4025
 .Linfo_string345:
-	.asciz	"i"                     @ string offset=4041
+	.asciz	"pps_raw_length"        @ string offset=4033
 .Linfo_string346:
-	.asciz	"dst_data"              @ string offset=4043
+	.asciz	"start_code_size"       @ string offset=4048
 .Linfo_string347:
-	.asciz	"j"                     @ string offset=4052
-.Linfo_string348:
-	.asciz	"result"                @ string offset=4054
+	.asciz	"i"                     @ string offset=4064
 	.section	.debug_abbrev,"",%progbits
 	.byte	1                       @ Abbreviation Code
 	.byte	17                      @ DW_TAG_compile_unit
@@ -1928,7 +1907,7 @@ _ZN10H264Parser6Read24EPh:
 	.short	4                       @ DWARF version number
 	.long	.debug_abbrev           @ Offset Into Abbrev. Section
 	.byte	4                       @ Address Size (in bytes)
-	.byte	1                       @ Abbrev [1] 0xb:0x1ec5 DW_TAG_compile_unit
+	.byte	1                       @ Abbrev [1] 0xb:0x1e90 DW_TAG_compile_unit
 	.long	.Linfo_string0          @ DW_AT_producer
 	.short	4                       @ DW_AT_language
 	.long	.Linfo_string1          @ DW_AT_name
@@ -5925,7 +5904,7 @@ _ZN10H264Parser6Read24EPh:
 	.long	3601                    @ DW_AT_type
 	.byte	15                      @ Abbrev [15] 0x1cf7:0x5 DW_TAG_pointer_type
 	.long	7310                    @ DW_AT_type
-	.byte	44                      @ Abbrev [44] 0x1cfc:0x72 DW_TAG_subprogram
+	.byte	44                      @ Abbrev [44] 0x1cfc:0x8e DW_TAG_subprogram
 	.long	.Lfunc_begin0           @ DW_AT_low_pc
 	.long	.Lfunc_end0-.Lfunc_begin0 @ DW_AT_high_pc
 	.byte	1                       @ DW_AT_frame_base
@@ -5938,14 +5917,14 @@ _ZN10H264Parser6Read24EPh:
 	.byte	45                      @ Abbrev [45] 0x1d15:0xc DW_TAG_formal_parameter
 	.byte	2                       @ DW_AT_location
 	.byte	125
-	.byte	24
+	.byte	32
 	.long	.Linfo_string340        @ DW_AT_name
-	.long	7882                    @ DW_AT_type
+	.long	7824                    @ DW_AT_type
                                         @ DW_AT_artificial
 	.byte	46                      @ Abbrev [46] 0x1d21:0xe DW_TAG_formal_parameter
 	.byte	2                       @ DW_AT_location
 	.byte	125
-	.byte	20
+	.byte	28
 	.long	.Linfo_string341        @ DW_AT_name
 	.byte	36                      @ DW_AT_decl_file
 	.byte	9                       @ DW_AT_decl_line
@@ -5953,43 +5932,59 @@ _ZN10H264Parser6Read24EPh:
 	.byte	46                      @ Abbrev [46] 0x1d2f:0xe DW_TAG_formal_parameter
 	.byte	2                       @ DW_AT_location
 	.byte	125
-	.byte	16
+	.byte	24
 	.long	.Linfo_string342        @ DW_AT_name
 	.byte	36                      @ DW_AT_decl_file
 	.byte	9                       @ DW_AT_decl_line
 	.long	1803                    @ DW_AT_type
-	.byte	47                      @ Abbrev [47] 0x1d3d:0x30 DW_TAG_lexical_block
+	.byte	47                      @ Abbrev [47] 0x1d3d:0x4c DW_TAG_lexical_block
 	.long	.Ltmp0                  @ DW_AT_low_pc
 	.long	.Ltmp4-.Ltmp0           @ DW_AT_high_pc
 	.byte	48                      @ Abbrev [48] 0x1d46:0xe DW_TAG_variable
 	.byte	2                       @ DW_AT_location
 	.byte	125
-	.byte	12
+	.byte	20
 	.long	.Linfo_string343        @ DW_AT_name
 	.byte	36                      @ DW_AT_decl_file
 	.byte	10                      @ DW_AT_decl_line
 	.long	1803                    @ DW_AT_type
-	.byte	47                      @ Abbrev [47] 0x1d54:0x18 DW_TAG_lexical_block
+	.byte	47                      @ Abbrev [47] 0x1d54:0x34 DW_TAG_lexical_block
 	.long	.Ltmp3                  @ DW_AT_low_pc
 	.long	.Ltmp4-.Ltmp3           @ DW_AT_high_pc
 	.byte	48                      @ Abbrev [48] 0x1d5d:0xe DW_TAG_variable
 	.byte	2                       @ DW_AT_location
 	.byte	125
-	.byte	8
+	.byte	16
 	.long	.Linfo_string344        @ DW_AT_name
 	.byte	36                      @ DW_AT_decl_file
 	.byte	15                      @ DW_AT_decl_line
+	.long	7829                    @ DW_AT_type
+	.byte	48                      @ Abbrev [48] 0x1d6b:0xe DW_TAG_variable
+	.byte	2                       @ DW_AT_location
+	.byte	125
+	.byte	12
+	.long	.Linfo_string345        @ DW_AT_name
+	.byte	36                      @ DW_AT_decl_file
+	.byte	16                      @ DW_AT_decl_line
+	.long	1803                    @ DW_AT_type
+	.byte	48                      @ Abbrev [48] 0x1d79:0xe DW_TAG_variable
+	.byte	2                       @ DW_AT_location
+	.byte	125
+	.byte	8
+	.long	.Linfo_string346        @ DW_AT_name
+	.byte	36                      @ DW_AT_decl_file
+	.byte	17                      @ DW_AT_decl_line
 	.long	1803                    @ DW_AT_type
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
-	.byte	40                      @ Abbrev [40] 0x1d6e:0x70 DW_TAG_class_type
+	.byte	40                      @ Abbrev [40] 0x1d8a:0x70 DW_TAG_class_type
 	.byte	5                       @ DW_AT_calling_convention
 	.long	.Linfo_string337        @ DW_AT_name
 	.byte	1                       @ DW_AT_byte_size
 	.byte	38                      @ DW_AT_decl_file
 	.byte	10                      @ DW_AT_decl_line
-	.byte	49                      @ Abbrev [49] 0x1d77:0x1b DW_TAG_subprogram
+	.byte	49                      @ Abbrev [49] 0x1d93:0x1b DW_TAG_subprogram
 	.long	.Linfo_string329        @ DW_AT_linkage_name
 	.long	.Linfo_string330        @ DW_AT_name
 	.byte	38                      @ DW_AT_decl_file
@@ -5999,12 +5994,12 @@ _ZN10H264Parser6Read24EPh:
                                         @ DW_AT_external
 	.byte	1                       @ DW_AT_accessibility
                                         @ DW_ACCESS_public
-	.byte	14                      @ Abbrev [14] 0x1d87:0x5 DW_TAG_formal_parameter
+	.byte	14                      @ Abbrev [14] 0x1da3:0x5 DW_TAG_formal_parameter
 	.long	7410                    @ DW_AT_type
-	.byte	14                      @ Abbrev [14] 0x1d8c:0x5 DW_TAG_formal_parameter
+	.byte	14                      @ Abbrev [14] 0x1da8:0x5 DW_TAG_formal_parameter
 	.long	1803                    @ DW_AT_type
 	.byte	0                       @ End Of Children Mark
-	.byte	49                      @ Abbrev [49] 0x1d92:0x1b DW_TAG_subprogram
+	.byte	49                      @ Abbrev [49] 0x1dae:0x1b DW_TAG_subprogram
 	.long	.Linfo_string331        @ DW_AT_linkage_name
 	.long	.Linfo_string332        @ DW_AT_name
 	.byte	38                      @ DW_AT_decl_file
@@ -6014,12 +6009,12 @@ _ZN10H264Parser6Read24EPh:
                                         @ DW_AT_external
 	.byte	1                       @ DW_AT_accessibility
                                         @ DW_ACCESS_public
-	.byte	14                      @ Abbrev [14] 0x1da2:0x5 DW_TAG_formal_parameter
+	.byte	14                      @ Abbrev [14] 0x1dbe:0x5 DW_TAG_formal_parameter
 	.long	7410                    @ DW_AT_type
-	.byte	14                      @ Abbrev [14] 0x1da7:0x5 DW_TAG_formal_parameter
+	.byte	14                      @ Abbrev [14] 0x1dc3:0x5 DW_TAG_formal_parameter
 	.long	1803                    @ DW_AT_type
 	.byte	0                       @ End Of Children Mark
-	.byte	49                      @ Abbrev [49] 0x1dad:0x1b DW_TAG_subprogram
+	.byte	49                      @ Abbrev [49] 0x1dc9:0x1b DW_TAG_subprogram
 	.long	.Linfo_string333        @ DW_AT_linkage_name
 	.long	.Linfo_string334        @ DW_AT_name
 	.byte	38                      @ DW_AT_decl_file
@@ -6029,12 +6024,12 @@ _ZN10H264Parser6Read24EPh:
                                         @ DW_AT_external
 	.byte	1                       @ DW_AT_accessibility
                                         @ DW_ACCESS_public
-	.byte	14                      @ Abbrev [14] 0x1dbd:0x5 DW_TAG_formal_parameter
+	.byte	14                      @ Abbrev [14] 0x1dd9:0x5 DW_TAG_formal_parameter
 	.long	7410                    @ DW_AT_type
-	.byte	14                      @ Abbrev [14] 0x1dc2:0x5 DW_TAG_formal_parameter
+	.byte	14                      @ Abbrev [14] 0x1dde:0x5 DW_TAG_formal_parameter
 	.long	1803                    @ DW_AT_type
 	.byte	0                       @ End Of Children Mark
-	.byte	18                      @ Abbrev [18] 0x1dc8:0x15 DW_TAG_subprogram
+	.byte	18                      @ Abbrev [18] 0x1de4:0x15 DW_TAG_subprogram
 	.long	.Linfo_string335        @ DW_AT_linkage_name
 	.long	.Linfo_string336        @ DW_AT_name
 	.byte	38                      @ DW_AT_decl_file
@@ -6042,17 +6037,17 @@ _ZN10H264Parser6Read24EPh:
 	.long	1803                    @ DW_AT_type
                                         @ DW_AT_declaration
                                         @ DW_AT_external
-	.byte	14                      @ Abbrev [14] 0x1dd7:0x5 DW_TAG_formal_parameter
+	.byte	14                      @ Abbrev [14] 0x1df3:0x5 DW_TAG_formal_parameter
 	.long	7410                    @ DW_AT_type
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
-	.byte	50                      @ Abbrev [50] 0x1dde:0x44 DW_TAG_subprogram
+	.byte	50                      @ Abbrev [50] 0x1dfa:0x44 DW_TAG_subprogram
 	.long	.Lfunc_begin1           @ DW_AT_low_pc
 	.long	.Lfunc_end1-.Lfunc_begin1 @ DW_AT_high_pc
 	.byte	1                       @ DW_AT_frame_base
 	.byte	87
-	.long	7597                    @ DW_AT_specification
-	.byte	46                      @ Abbrev [46] 0x1ded:0xe DW_TAG_formal_parameter
+	.long	7625                    @ DW_AT_specification
+	.byte	46                      @ Abbrev [46] 0x1e09:0xe DW_TAG_formal_parameter
 	.byte	2                       @ DW_AT_location
 	.byte	125
 	.byte	8
@@ -6060,7 +6055,7 @@ _ZN10H264Parser6Read24EPh:
 	.byte	38                      @ DW_AT_decl_file
 	.byte	98                      @ DW_AT_decl_line
 	.long	7410                    @ DW_AT_type
-	.byte	46                      @ Abbrev [46] 0x1dfb:0xe DW_TAG_formal_parameter
+	.byte	46                      @ Abbrev [46] 0x1e17:0xe DW_TAG_formal_parameter
 	.byte	2                       @ DW_AT_location
 	.byte	125
 	.byte	4
@@ -6068,109 +6063,64 @@ _ZN10H264Parser6Read24EPh:
 	.byte	38                      @ DW_AT_decl_file
 	.byte	98                      @ DW_AT_decl_line
 	.long	1803                    @ DW_AT_type
-	.byte	47                      @ Abbrev [47] 0x1e09:0x18 DW_TAG_lexical_block
+	.byte	47                      @ Abbrev [47] 0x1e25:0x18 DW_TAG_lexical_block
 	.long	.Ltmp6                  @ DW_AT_low_pc
 	.long	.Ltmp14-.Ltmp6          @ DW_AT_high_pc
-	.byte	48                      @ Abbrev [48] 0x1e12:0xe DW_TAG_variable
+	.byte	48                      @ Abbrev [48] 0x1e2e:0xe DW_TAG_variable
 	.byte	2                       @ DW_AT_location
 	.byte	125
 	.byte	0
-	.long	.Linfo_string345        @ DW_AT_name
+	.long	.Linfo_string347        @ DW_AT_name
 	.byte	38                      @ DW_AT_decl_file
 	.byte	99                      @ DW_AT_decl_line
 	.long	1803                    @ DW_AT_type
 	.byte	0                       @ End Of Children Mark
 	.byte	0                       @ End Of Children Mark
-	.byte	50                      @ Abbrev [50] 0x1e22:0x56 DW_TAG_subprogram
+	.byte	50                      @ Abbrev [50] 0x1e3e:0x2c DW_TAG_subprogram
 	.long	.Lfunc_begin2           @ DW_AT_low_pc
 	.long	.Lfunc_end2-.Lfunc_begin2 @ DW_AT_high_pc
 	.byte	1                       @ DW_AT_frame_base
 	.byte	87
-	.long	7543                    @ DW_AT_specification
-	.byte	46                      @ Abbrev [46] 0x1e31:0xe DW_TAG_formal_parameter
-	.byte	2                       @ DW_AT_location
-	.byte	125
-	.byte	20
-	.long	.Linfo_string341        @ DW_AT_name
-	.byte	38                      @ DW_AT_decl_file
-	.byte	59                      @ DW_AT_decl_line
-	.long	7410                    @ DW_AT_type
-	.byte	46                      @ Abbrev [46] 0x1e3f:0xe DW_TAG_formal_parameter
-	.byte	2                       @ DW_AT_location
-	.byte	125
-	.byte	16
-	.long	.Linfo_string342        @ DW_AT_name
-	.byte	38                      @ DW_AT_decl_file
-	.byte	59                      @ DW_AT_decl_line
-	.long	1803                    @ DW_AT_type
-	.byte	48                      @ Abbrev [48] 0x1e4d:0xe DW_TAG_variable
-	.byte	2                       @ DW_AT_location
-	.byte	125
-	.byte	12
-	.long	.Linfo_string346        @ DW_AT_name
-	.byte	38                      @ DW_AT_decl_file
-	.byte	60                      @ DW_AT_decl_line
-	.long	7410                    @ DW_AT_type
-	.byte	48                      @ Abbrev [48] 0x1e5b:0xe DW_TAG_variable
-	.byte	2                       @ DW_AT_location
-	.byte	125
-	.byte	8
-	.long	.Linfo_string345        @ DW_AT_name
-	.byte	38                      @ DW_AT_decl_file
-	.byte	61                      @ DW_AT_decl_line
-	.long	1803                    @ DW_AT_type
-	.byte	48                      @ Abbrev [48] 0x1e69:0xe DW_TAG_variable
+	.long	7598                    @ DW_AT_specification
+	.byte	46                      @ Abbrev [46] 0x1e4d:0xe DW_TAG_formal_parameter
 	.byte	2                       @ DW_AT_location
 	.byte	125
 	.byte	4
-	.long	.Linfo_string347        @ DW_AT_name
+	.long	.Linfo_string341        @ DW_AT_name
 	.byte	38                      @ DW_AT_decl_file
-	.byte	61                      @ DW_AT_decl_line
+	.byte	80                      @ DW_AT_decl_line
+	.long	7410                    @ DW_AT_type
+	.byte	46                      @ Abbrev [46] 0x1e5b:0xe DW_TAG_formal_parameter
+	.byte	2                       @ DW_AT_location
+	.byte	125
+	.byte	0
+	.long	.Linfo_string342        @ DW_AT_name
+	.byte	38                      @ DW_AT_decl_file
+	.byte	80                      @ DW_AT_decl_line
 	.long	1803                    @ DW_AT_type
 	.byte	0                       @ End Of Children Mark
-	.byte	44                      @ Abbrev [44] 0x1e78:0x26 DW_TAG_subprogram
+	.byte	44                      @ Abbrev [44] 0x1e6a:0x26 DW_TAG_subprogram
 	.long	.Lfunc_begin3           @ DW_AT_low_pc
 	.long	.Lfunc_end3-.Lfunc_begin3 @ DW_AT_high_pc
 	.byte	1                       @ DW_AT_frame_base
 	.byte	87
-	.long	7825                    @ DW_AT_object_pointer
+	.long	7811                    @ DW_AT_object_pointer
 	.byte	36                      @ DW_AT_decl_file
-	.byte	21                      @ DW_AT_decl_line
+	.byte	24                      @ DW_AT_decl_line
 	.long	.Linfo_string339        @ DW_AT_linkage_name
 	.long	7395                    @ DW_AT_specification
-	.byte	45                      @ Abbrev [45] 0x1e91:0xc DW_TAG_formal_parameter
+	.byte	45                      @ Abbrev [45] 0x1e83:0xc DW_TAG_formal_parameter
 	.byte	2                       @ DW_AT_location
 	.byte	125
 	.byte	0
 	.long	.Linfo_string340        @ DW_AT_name
-	.long	7882                    @ DW_AT_type
+	.long	7824                    @ DW_AT_type
                                         @ DW_AT_artificial
 	.byte	0                       @ End Of Children Mark
-	.byte	50                      @ Abbrev [50] 0x1e9e:0x2c DW_TAG_subprogram
-	.long	.Lfunc_begin4           @ DW_AT_low_pc
-	.long	.Lfunc_end4-.Lfunc_begin4 @ DW_AT_high_pc
-	.byte	1                       @ DW_AT_frame_base
-	.byte	87
-	.long	7624                    @ DW_AT_specification
-	.byte	46                      @ Abbrev [46] 0x1ead:0xe DW_TAG_formal_parameter
-	.byte	2                       @ DW_AT_location
-	.byte	125
-	.byte	4
-	.long	.Linfo_string341        @ DW_AT_name
-	.byte	38                      @ DW_AT_decl_file
-	.byte	111                     @ DW_AT_decl_line
-	.long	7410                    @ DW_AT_type
-	.byte	48                      @ Abbrev [48] 0x1ebb:0xe DW_TAG_variable
-	.byte	2                       @ DW_AT_location
-	.byte	125
-	.byte	0
-	.long	.Linfo_string348        @ DW_AT_name
-	.byte	38                      @ DW_AT_decl_file
-	.byte	112                     @ DW_AT_decl_line
-	.long	1803                    @ DW_AT_type
-	.byte	0                       @ End Of Children Mark
-	.byte	15                      @ Abbrev [15] 0x1eca:0x5 DW_TAG_pointer_type
+	.byte	15                      @ Abbrev [15] 0x1e90:0x5 DW_TAG_pointer_type
 	.long	7310                    @ DW_AT_type
+	.byte	15                      @ Abbrev [15] 0x1e95:0x5 DW_TAG_pointer_type
+	.long	3623                    @ DW_AT_type
 	.byte	0                       @ End Of Children Mark
 .Ldebug_info_end0:
 	.section	.debug_ranges,"",%progbits
@@ -6183,8 +6133,6 @@ _ZN10H264Parser6Read24EPh:
 	.long	.Lfunc_end2
 	.long	.Lfunc_begin3
 	.long	.Lfunc_end3
-	.long	.Lfunc_begin4
-	.long	.Lfunc_end4
 	.long	0
 	.long	0
 	.section	.debug_macinfo,"",%progbits

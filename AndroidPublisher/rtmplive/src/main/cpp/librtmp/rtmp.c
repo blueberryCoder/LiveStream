@@ -4754,7 +4754,7 @@ RTMP_Write(RTMP *r, const char *buf, int size) {
 
             if (buf[0] == 'F' && buf[1] == 'L' && buf[2] == 'V') {
                 buf += 13;
-                s2 -= 13;
+                s2 -= 13; //header size is 9 , first previous is 4
             }
 
             // 读取FlvTag

@@ -16,7 +16,11 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
+        </activity>
 
+        <activity
+            android:name=".AvcActivity"
+            android:exported="true">
         </activity>
 
         <activity

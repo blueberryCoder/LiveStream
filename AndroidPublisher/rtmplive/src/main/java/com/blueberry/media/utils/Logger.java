@@ -12,6 +12,9 @@ public class Logger {
         return TAG + tag;
     }
 
+    public static void v(String tag, String message) {
+        Log.v(appendTag(tag), message);
+    }
     public static void d(String tag, String message) {
         Log.d(appendTag(tag), message);
     }

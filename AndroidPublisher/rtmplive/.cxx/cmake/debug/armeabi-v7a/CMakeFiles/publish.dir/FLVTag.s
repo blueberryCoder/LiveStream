@@ -3286,7 +3286,7 @@ _ZTV7IBuffer:
 	.long	.Linfo_string165        @ DW_AT_name
 	.byte	4                       @ DW_AT_byte_size
 	.byte	21                      @ DW_AT_decl_file
-	.byte	28                      @ DW_AT_decl_line
+	.byte	10                      @ DW_AT_decl_line
 	.byte	42                      @ Abbrev [42] 0xcf5:0x7 DW_TAG_inheritance
 	.long	3150                    @ DW_AT_type
 	.byte	0                       @ DW_AT_data_member_location

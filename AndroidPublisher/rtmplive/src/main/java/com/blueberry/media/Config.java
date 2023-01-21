@@ -46,6 +46,12 @@ public class Config {
     public boolean enableDumpAudio;
     public String dumpAudioPath;
 
+    public boolean enableDumpFlv;
+    public String dumpFlvPath;
+
+    public boolean enableDumpVideoRaw;
+    public String dumpVideoRawPath;
+
     private Config(int fps,
                    int minWidth,
                    int maxWidth,
@@ -57,8 +63,11 @@ public class Config {
                    boolean enableDumpVideo,
                    String dumpVideoPath,
                    boolean enableDumpAudio,
-                   String dumpAudioPath
-
+                   String dumpAudioPath,
+                   boolean enableDumpFlv,
+                   String dumpFlvPath,
+                   boolean enableDumpVideoRaw,
+                   String dumpVideoRaw
 
     ) {
         this.timeOut = timeOut;
@@ -73,6 +82,10 @@ public class Config {
         this.dumpVideoPath = dumpVideoPath;
         this.enableDumpAudio = enableDumpAudio;
         this.dumpAudioPath = dumpAudioPath;
+        this.enableDumpFlv = enableDumpFlv;
+        this.dumpFlvPath = dumpFlvPath;
+        this.enableDumpVideoRaw = enableDumpVideoRaw;
+        this.dumpVideoRawPath = dumpVideoRaw;
     }
 
     public static class Builder {
@@ -85,6 +98,11 @@ public class Config {
         private String dumpVideoPath;
         private boolean enableDumpAudio;
         private String dumpAudioPath;
+        private boolean enableDumpFlv;
+        private String dumpFlvPath;
+
+        private boolean enableDumpVideoRaw;
+        private String dumpVideoRawPath;
 
         private int audioFormat = AudioFormat.ENCODING_PCM_16BIT;
         private int audioChannel = AudioFormat.CHANNEL_CONFIGURATION_STEREO;
@@ -194,15 +212,39 @@ public class Config {
             return this;
         }
 
+        public Builder setDumpFlvPath(String dumpFlvPath) {
+            this.dumpFlvPath = dumpFlvPath;
+            return this;
+        }
+
+        public Builder setEnableDumpFlv(boolean enableDumpFlv) {
+            this.enableDumpFlv = enableDumpFlv;
+            return this;
+        }
+
+        public Builder setEnableDumpVideoRaw(boolean enableDumpVideoRaw) {
+            this.enableDumpVideoRaw = enableDumpVideoRaw;
+            return this;
+        }
+
+        public Builder setDumpVideoRawPath(String dumpVideoRawPath) {
+            this.dumpVideoRawPath = dumpVideoRawPath;
+            return this;
+        }
+
         /**
          * 建造Config
          *
          * @return {@link Config}
          */
         public Config build() {
-            return new Config(fps, minWidth, maxWidth, timeOut,
-                    url, audioFormat, audioChannel, bitrate, enableDumpVideo, dumpVideoPath,
-                    enableDumpAudio, dumpAudioPath
+            return new Config(fps,
+                    minWidth, maxWidth, timeOut,
+                    url, audioFormat, audioChannel,
+                    bitrate, enableDumpVideo, dumpVideoPath,
+                    enableDumpAudio, dumpAudioPath,
+                    enableDumpFlv, dumpFlvPath,
+                    enableDumpVideoRaw, dumpVideoRawPath
             );
         }
     }

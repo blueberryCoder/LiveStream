@@ -27,13 +27,17 @@
 
 RtmpClient::RtmpClient(std::string url, int timeOut,
                        bool enable_dump_video, std::string dump_video_path,
-                       bool enable_dump_audio, std::string dump_audio_path)
+                       bool enable_dump_audio, std::string dump_audio_path,
+                       bool enable_dump_flv, std::string dump_flv_path
+)
         : url_(std::move(url)),
           time_out_(timeOut),
           enable_dump_video_(enable_dump_video),
           dump_video_path_(std::move(dump_video_path)),
           enable_dump_audio_(enable_dump_audio),
-          dump_audio_path_(std::move(dump_audio_path)) {
+          dump_audio_path_(std::move(dump_audio_path)),
+          enable_dump_flv_(enable_dump_flv),
+          dump_flv_path_(std::move(dump_flv_path)) {
 
     if (enable_dump_video_) {
         dump_video_stream_.open(dump_video_path_.c_str());
@@ -41,12 +45,27 @@ RtmpClient::RtmpClient(std::string url, int timeOut,
     if (enable_dump_audio_) {
         dump_audio_stream_.open(dump_audio_path_.c_str());
     }
+    if (enable_dump_flv_) {
+        dump_flv_stream_.open(dump_flv_path_.c_str(), ios::binary);
+    }
 
-    LOGD("RTMP Client Construct(url=%s,time_out=%d,enable_dump_video=%d,dump_video_path=%s)",
+    flv_header_[0] = 'F';
+    flv_header_[1] = 'L';
+    flv_header_[2] = 'V';
+    flv_header_[3] = 0x1;
+    flv_header_[4] = 0x5; // audio + video
+    flv_header_[5] = 0;
+    flv_header_[6] = 0;
+    flv_header_[7] = 0;
+    flv_header_[8] = 9; // Offset
+
+    LOGD("RTMP Client Construct(url=%s,time_out=%d,enable_dump_video=%d,dump_video_path=%s,enable_dump_flv=%d,dump_flv_path=%s)",
          url_.c_str(),
          time_out_,
          enable_dump_video_,
-         dump_video_path_.c_str()
+         dump_video_path_.c_str(),
+         enable_dump_flv_,
+         dump_flv_path_.c_str()
     )
 }
 
@@ -85,6 +104,12 @@ int RtmpClient::SendDataFrame(
         double audioSampleSize,
         bool stereo
 ) {
+    // write flv header
+    if (enable_dump_flv_) {
+        dump_flv_stream_.write(reinterpret_cast<const char *>(flv_header_), 9);
+        const char buffer[4] = {0, 0, 0, 0};
+        dump_flv_stream_.write(buffer, 4);
+    }
     videoDataRate /= 1000;
     audioDataRate /= 1000;
     OnMetaData metaData(0,
@@ -96,7 +121,7 @@ int RtmpClient::SendDataFrame(
                         audioDataRate,
                         audioSampleRate,
                         audioSampleSize,
-                        AudioCodecId::AAC,
+                        AudioData::AAC,
                         0,
                         stereo);
     FLVTag flv_tag(FLVTag::SCRIPT_DATA, metaData.Size(), 0, &metaData);
@@ -105,16 +130,21 @@ int RtmpClient::SendDataFrame(
 
 
 int RtmpClient::SendAVCData(BYTE *data, int len, long timestamp) {
+//    LOGI("AVC DATA:len=%d,data=%s", len, HexUtil::Bytes2Hex(data, len).c_str())
+    if (enable_dump_video_) {
+        dump_video_stream_.write(reinterpret_cast<const char *>(data), len);
+    }
     auto start_code_size = H264Parser::FindStartCode(data, len);
     if (start_code_size > 0) {
         // remove start code
         data += start_code_size;
         len -= start_code_size;
-        H264Parser::RemoveEmulationPreventionCode(data, len);
+        len = H264Parser::RemoveEmulationPreventionCode(data, len);
     }
     auto nal_header = data[0];
     switch (nal_header & 0x1F) {
         case H264Parser::H264_NAL_SPS: {
+            LOGI("NAL SPS: %s", HexUtil::Bytes2Hex(data, len).c_str())
             this->SendNALSPS(data, len, timestamp);
             return 0;
         }
@@ -123,7 +153,7 @@ int RtmpClient::SendAVCData(BYTE *data, int len, long timestamp) {
             break;
         }
         case H264Parser::H264_NAL_IDR_SLICE: {
-            LOGI("VIDEO IDR SLICE (IIIIIIII)")
+            LOGI("VIDEO IDR SLICE ")
             break;
         }
         case H264Parser::H264_NAL_SLICE: {
@@ -157,17 +187,20 @@ int RtmpClient::SendNALSPS(uint8_t *data, int length, long timestamp) {
 }
 
 int RtmpClient::SendAACData(BYTE *data, int len, long timestamp) {
+    if (enable_dump_audio_) {
+        dump_audio_stream_.write(reinterpret_cast<const char *>(data), len);
+    }
     if (len == 2) {
         LOGI("AAConfig: %s", HexUtil::Bytes2Hex(data, len).c_str())
         return SendAACSpecific(data, len, timestamp);
     } else {
         auto aac_frame = AACAudioData::AACAudioFrameData((char *) data, len);
         AACAudioData aacAudioData(AACPacketType::AAC_RAW, &aac_frame);
-        AudioData audioData(SoundFormat::AAC,
-                            3, // AAC
-                            1, // 16bit
-                            1, // stereo
-                            &aacAudioData
+        AudioData audioData(AudioData::SoundFormat::AAC,
+        3, // AAC
+                1, // 16bit
+                1, // stereo
+                &aacAudioData
         );
         FLVTag flvTag(FLVTag::AUDIO, audioData.Size(), timestamp, &audioData);
         return SendFlvTag(flvTag);
@@ -177,20 +210,29 @@ int RtmpClient::SendAACData(BYTE *data, int len, long timestamp) {
 int RtmpClient::SendAACSpecific(uint8_t *data, int len, long timestamp) {
     auto specific_config = AACAudioData::AACAudioSpecificConfig((char *) data, len);
     AACAudioData aacAudioData(AACPacketType::AAC_SEQ, &specific_config);
-    AudioData audioData(SoundFormat::AAC,
-                        3, // AAC
-                        1, // 16bit
-                        1, // stereo
-                        &aacAudioData
+    AudioData audioData(AudioData::SoundFormat::AAC,
+    3, // AAC
+            1, // 16bit
+            1, // stereo
+            &aacAudioData
     ); // 0XAF;
     FLVTag flvTag(FLVTag::AUDIO, audioData.Size(), timestamp, &audioData);
     return SendFlvTag(flvTag);
 }
 
 int RtmpClient::SendFlvTag(FLVTag flag_tag) {
-    auto buffer = new char[flag_tag.Size() + 4]; // previous tag size
+    int tag_size = flag_tag.Size();
+    auto buffer = new char[tag_size + 4]; // tag size
     flag_tag.WriteTo(buffer);
-    int ret = RTMP_Write(this->rtmp_, buffer, flag_tag.Size());
+    buffer[tag_size] = tag_size >> 24;
+    buffer[tag_size + 1] = tag_size >> 16;
+    buffer[tag_size + 2] = tag_size >> 8;
+    buffer[tag_size + 3] = tag_size;
+    int ret = RTMP_Write(this->rtmp_, buffer, flag_tag.Size() + 4);
+
+    if (enable_dump_flv_) {
+        dump_flv_stream_.write(buffer, tag_size + 4);
+    }
     delete[] buffer;
     return ret;
 }
@@ -199,6 +241,13 @@ int RtmpClient::Stop() {
     if (enable_dump_video_) {
         dump_video_stream_.close();
     }
+    if (enable_dump_flv_) {
+        dump_flv_stream_.close();
+    }
+    if (enable_dump_audio_) {
+        dump_audio_stream_.close();
+    }
+
     RTMP_Close(rtmp_);
     RTMP_Free(rtmp_);
     return 0;
