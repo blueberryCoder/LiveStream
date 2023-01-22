@@ -84,8 +84,6 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
 
     private void start() {
         mMediaPublisher.initAudioGatherer();
-        mMediaPublisher.initEncoders();
-
         if (mProgressDialog != null) {
             mProgressDialog.dismiss();
         }
@@ -101,8 +99,8 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
                     mProgressDialog.dismiss();
                 });
 
-
                 mMediaPublisher.startGather();
+                mMediaPublisher.initEncoders();
                 mMediaPublisher.startEncoder();
             }
 

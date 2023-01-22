@@ -26,3 +26,6 @@
 495	1456	1674271134	CMakeFiles/publish.dir/publish_jni.cpp.o	d75979b7529f2a8
 419	1553	1674271134	CMakeFiles/publish.dir/RtmpClient.cpp.o	dc86bd5b2889932b
 1554	1733	1674271135	/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/build/intermediates/cmake/debug/obj/armeabi-v7a/libpublish.so	c9486916064c2f88
+8	736	1674359453	CMakeFiles/publish.dir/VideoData.cpp.o	c7bb3fb70c4c9134
+7	1689	1674359454	CMakeFiles/publish.dir/RtmpClient.cpp.o	dc86bd5b2889932b
+1689	2079	1674359454	/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/build/intermediates/cmake/debug/obj/armeabi-v7a/libpublish.so	c9486916064c2f88

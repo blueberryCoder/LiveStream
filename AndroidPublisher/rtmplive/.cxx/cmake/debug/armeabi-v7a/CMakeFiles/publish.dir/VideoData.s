@@ -902,13 +902,13 @@ _ZTV7IBuffer:
 	.long	.Linfo_string13         @ DW_AT_name
 	.long	70                      @ DW_AT_type
 	.byte	3                       @ DW_AT_decl_file
-	.byte	40                      @ DW_AT_decl_line
+	.byte	45                      @ DW_AT_decl_line
 	.byte	4                       @ DW_AT_data_member_location
 	.byte	5                       @ Abbrev [5] 0x46:0xb DW_TAG_typedef
 	.long	81                      @ DW_AT_type
 	.long	.Linfo_string20         @ DW_AT_name
 	.byte	3                       @ DW_AT_decl_file
-	.byte	21                      @ DW_AT_decl_line
+	.byte	26                      @ DW_AT_decl_line
 	.byte	6                       @ Abbrev [6] 0x51:0x27 DW_TAG_enumeration_type
 	.long	500                     @ DW_AT_type
 	.byte	4                       @ DW_AT_byte_size
@@ -934,18 +934,18 @@ _ZTV7IBuffer:
 	.long	.Linfo_string21         @ DW_AT_name
 	.long	132                     @ DW_AT_type
 	.byte	3                       @ DW_AT_decl_file
-	.byte	41                      @ DW_AT_decl_line
+	.byte	46                      @ DW_AT_decl_line
 	.byte	8                       @ DW_AT_data_member_location
 	.byte	5                       @ Abbrev [5] 0x84:0xb DW_TAG_typedef
 	.long	143                     @ DW_AT_type
 	.long	.Linfo_string29         @ DW_AT_name
 	.byte	3                       @ DW_AT_decl_file
-	.byte	31                      @ DW_AT_decl_line
+	.byte	36                      @ DW_AT_decl_line
 	.byte	6                       @ Abbrev [6] 0x8f:0x33 DW_TAG_enumeration_type
 	.long	500                     @ DW_AT_type
 	.byte	4                       @ DW_AT_byte_size
 	.byte	3                       @ DW_AT_decl_file
-	.byte	23                      @ DW_AT_decl_line
+	.byte	28                      @ DW_AT_decl_line
 	.byte	7                       @ Abbrev [7] 0x97:0x6 DW_TAG_enumerator
 	.long	.Linfo_string22         @ DW_AT_name
 	.byte	1                       @ DW_AT_const_value
@@ -972,12 +972,12 @@ _ZTV7IBuffer:
 	.long	.Linfo_string30         @ DW_AT_name
 	.long	507                     @ DW_AT_type
 	.byte	3                       @ DW_AT_decl_file
-	.byte	42                      @ DW_AT_decl_line
+	.byte	47                      @ DW_AT_decl_line
 	.byte	12                      @ DW_AT_data_member_location
 	.byte	8                       @ Abbrev [8] 0xce:0x1d DW_TAG_subprogram
 	.long	.Linfo_string32         @ DW_AT_name
 	.byte	3                       @ DW_AT_decl_file
-	.byte	33                      @ DW_AT_decl_line
+	.byte	38                      @ DW_AT_decl_line
                                         @ DW_AT_declaration
                                         @ DW_AT_external
 	.byte	1                       @ DW_AT_accessibility
@@ -995,7 +995,7 @@ _ZTV7IBuffer:
 	.byte	11                      @ Abbrev [11] 0xeb:0x16 DW_TAG_subprogram
 	.long	.Linfo_string33         @ DW_AT_name
 	.byte	3                       @ DW_AT_decl_file
-	.byte	34                      @ DW_AT_decl_line
+	.byte	39                      @ DW_AT_decl_line
 	.byte	1                       @ DW_AT_virtuality
 	.byte	2                       @ DW_AT_vtable_elem_location
 	.byte	16
@@ -1013,7 +1013,7 @@ _ZTV7IBuffer:
 	.long	.Linfo_string34         @ DW_AT_linkage_name
 	.long	.Linfo_string7          @ DW_AT_name
 	.byte	3                       @ DW_AT_decl_file
-	.byte	36                      @ DW_AT_decl_line
+	.byte	41                      @ DW_AT_decl_line
 	.long	483                     @ DW_AT_type
 	.byte	1                       @ DW_AT_virtuality
 	.byte	2                       @ DW_AT_vtable_elem_location
@@ -1034,7 +1034,7 @@ _ZTV7IBuffer:
 	.long	.Linfo_string35         @ DW_AT_linkage_name
 	.long	.Linfo_string10         @ DW_AT_name
 	.byte	3                       @ DW_AT_decl_file
-	.byte	37                      @ DW_AT_decl_line
+	.byte	42                      @ DW_AT_decl_line
 	.long	476                     @ DW_AT_type
 	.byte	1                       @ DW_AT_virtuality
 	.byte	2                       @ DW_AT_vtable_elem_location

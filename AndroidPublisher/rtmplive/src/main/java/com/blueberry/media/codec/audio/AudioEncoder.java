@@ -9,7 +9,6 @@ import android.media.MediaFormat;
 import com.blueberry.media.AudioPacketParams;
 import com.blueberry.media.codec.CodecReceivedResult;
 import com.blueberry.media.codec.CodecSendResult;
-import com.blueberry.media.utils.HexUtils;
 import com.blueberry.media.utils.Logger;
 import com.blueberry.media.utils.TimeUtils;
 
@@ -36,9 +35,14 @@ public class AudioEncoder {
         return new AudioEncoder();
     }
 
-    public int initAudioEncoder(int sampleRate, int channelCount, boolean stereo, int bitrate) throws IOException {
+    public int initAudioEncoder(int sampleRate, int channelCount, boolean stereo, int bitrate)  {
         Logger.d(TAG, "sampleRate=" + sampleRate + ",channelCount=" + channelCount + ",stereo=" + stereo + ",bitrate=" + bitrate);
-        encoder = MediaCodec.createEncoderByType(MediaFormat.MIMETYPE_AUDIO_AAC);
+        try {
+            encoder = MediaCodec.createEncoderByType(MediaFormat.MIMETYPE_AUDIO_AAC);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return -1;
+        }
         MediaFormat format = MediaFormat.createAudioFormat(MediaFormat.MIMETYPE_AUDIO_AAC,
                 sampleRate,
                 channelCount);
@@ -46,7 +50,7 @@ public class AudioEncoder {
         format.setInteger(KEY_MAX_INPUT_SIZE, 0);
         format.setInteger(KEY_BIT_RATE, bitrate);
         encoder.configure(format, null, null, MediaCodec.CONFIGURE_FLAG_ENCODE);
-        audioPacketParams = new AudioPacketParams(bitrate,sampleRate,sampleRate,stereo);
+        audioPacketParams = new AudioPacketParams(bitrate, sampleRate, sampleRate, stereo);
         return 0;
     }
 

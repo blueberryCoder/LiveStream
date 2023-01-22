@@ -13,10 +13,15 @@ class VideoData : public IFLVTagData {
 
 public:
     typedef enum {
+       // For AVC, a seekable frame
        KEY_FRAME = 1 ,
+       // For AVC, a non seekable frame
        INTER_FRAME = 2,
+       // H.263 only
        DISPOSABLE_FRAME = 3,
+       // reserved for server use only
        RESERVED = 4,
+       // commnad frame
        VIDEO_INFO_ = 5
     } FrameType;
 

@@ -7,10 +7,10 @@ import java.util.concurrent.LinkedBlockingDeque;
  */
 public class MediaQueueManager {
 
-    private LinkedBlockingDeque<VideoPacket> videoPacketQueue = new LinkedBlockingDeque<>();
-    private LinkedBlockingDeque<AudioPacket> audioPacketQueue = new LinkedBlockingDeque<>();
+    private final LinkedBlockingDeque<VideoPacket> videoPacketQueue = new LinkedBlockingDeque<>();
+    private final LinkedBlockingDeque<AudioPacket> audioPacketQueue = new LinkedBlockingDeque<>();
     // only one
-    private LinkedBlockingDeque<MetaData> metaDataQueue= new LinkedBlockingDeque<>();
+    private final LinkedBlockingDeque<MetaData> metaDataQueue= new LinkedBlockingDeque<>();
 
     private MediaQueueManager() {}
 

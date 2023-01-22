@@ -49,8 +49,6 @@ public class VideoEncoder {
      */
     public int initVideoEncoder(int width, int height, int fps, int bitrate) {
         Logger.d(TAG, "init video encoder: width=" + width + ",height=" + height + ",fps=" + fps);
-//        MediaCodecInfo mediaCodecInfo = getMediaCodecInfoByType(MediaFormat.MIMETYPE_VIDEO_AVC);
-//        Logger.v(TAG, "supported format:" + getColorFormat(mediaCodecInfo));
         try {
             encoder = MediaCodec.createEncoderByType(MediaFormat.MIMETYPE_VIDEO_AVC);
         } catch (IOException e) {
@@ -69,7 +67,7 @@ public class VideoEncoder {
         format.setInteger(KEY_I_FRAME_INTERVAL, 10);
         encoder.configure(format, null, null, CONFIGURE_FLAG_ENCODE);
 
-        videoPacketParams = new VideoPacketParams(width,height,fps,bitrate);
+        videoPacketParams = new VideoPacketParams(width, height, fps, bitrate);
         return 0;
     }
 

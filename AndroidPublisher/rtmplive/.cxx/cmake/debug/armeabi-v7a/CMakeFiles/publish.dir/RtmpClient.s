@@ -37503,13 +37503,13 @@ _ZTVNSt6__ndk19basic_iosIcNS_11char_traitsIcEEEE:
 	.long	.Linfo_string713        @ DW_AT_name
 	.long	24244                   @ DW_AT_type
 	.byte	19                      @ DW_AT_decl_file
-	.byte	40                      @ DW_AT_decl_line
+	.byte	45                      @ DW_AT_decl_line
 	.byte	4                       @ DW_AT_data_member_location
 	.byte	10                      @ Abbrev [10] 0x5eb4:0xb DW_TAG_typedef
 	.long	24255                   @ DW_AT_type
 	.long	.Linfo_string719        @ DW_AT_name
 	.byte	19                      @ DW_AT_decl_file
-	.byte	21                      @ DW_AT_decl_line
+	.byte	26                      @ DW_AT_decl_line
 	.byte	2                       @ Abbrev [2] 0x5ebf:0x27 DW_TAG_enumeration_type
 	.long	162                     @ DW_AT_type
 	.byte	4                       @ DW_AT_byte_size
@@ -37535,18 +37535,18 @@ _ZTVNSt6__ndk19basic_iosIcNS_11char_traitsIcEEEE:
 	.long	.Linfo_string720        @ DW_AT_name
 	.long	24306                   @ DW_AT_type
 	.byte	19                      @ DW_AT_decl_file
-	.byte	41                      @ DW_AT_decl_line
+	.byte	46                      @ DW_AT_decl_line
 	.byte	8                       @ DW_AT_data_member_location
 	.byte	10                      @ Abbrev [10] 0x5ef2:0xb DW_TAG_typedef
 	.long	24317                   @ DW_AT_type
 	.long	.Linfo_string728        @ DW_AT_name
 	.byte	19                      @ DW_AT_decl_file
-	.byte	31                      @ DW_AT_decl_line
+	.byte	36                      @ DW_AT_decl_line
 	.byte	2                       @ Abbrev [2] 0x5efd:0x33 DW_TAG_enumeration_type
 	.long	162                     @ DW_AT_type
 	.byte	4                       @ DW_AT_byte_size
 	.byte	19                      @ DW_AT_decl_file
-	.byte	23                      @ DW_AT_decl_line
+	.byte	28                      @ DW_AT_decl_line
 	.byte	3                       @ Abbrev [3] 0x5f05:0x6 DW_TAG_enumerator
 	.long	.Linfo_string721        @ DW_AT_name
 	.byte	1                       @ DW_AT_const_value
@@ -37573,12 +37573,12 @@ _ZTVNSt6__ndk19basic_iosIcNS_11char_traitsIcEEEE:
 	.long	.Linfo_string729        @ DW_AT_name
 	.long	24629                   @ DW_AT_type
 	.byte	19                      @ DW_AT_decl_file
-	.byte	42                      @ DW_AT_decl_line
+	.byte	47                      @ DW_AT_decl_line
 	.byte	12                      @ DW_AT_data_member_location
 	.byte	30                      @ Abbrev [30] 0x5f3c:0x1d DW_TAG_subprogram
 	.long	.Linfo_string731        @ DW_AT_name
 	.byte	19                      @ DW_AT_decl_file
-	.byte	33                      @ DW_AT_decl_line
+	.byte	38                      @ DW_AT_decl_line
                                         @ DW_AT_declaration
                                         @ DW_AT_external
 	.byte	1                       @ DW_AT_accessibility
@@ -37596,7 +37596,7 @@ _ZTVNSt6__ndk19basic_iosIcNS_11char_traitsIcEEEE:
 	.byte	36                      @ Abbrev [36] 0x5f59:0x16 DW_TAG_subprogram
 	.long	.Linfo_string732        @ DW_AT_name
 	.byte	19                      @ DW_AT_decl_file
-	.byte	34                      @ DW_AT_decl_line
+	.byte	39                      @ DW_AT_decl_line
 	.byte	1                       @ DW_AT_virtuality
 	.byte	2                       @ DW_AT_vtable_elem_location
 	.byte	16
@@ -37614,7 +37614,7 @@ _ZTVNSt6__ndk19basic_iosIcNS_11char_traitsIcEEEE:
 	.long	.Linfo_string733        @ DW_AT_linkage_name
 	.long	.Linfo_string708        @ DW_AT_name
 	.byte	19                      @ DW_AT_decl_file
-	.byte	36                      @ DW_AT_decl_line
+	.byte	41                      @ DW_AT_decl_line
 	.long	23568                   @ DW_AT_type
 	.byte	1                       @ DW_AT_virtuality
 	.byte	2                       @ DW_AT_vtable_elem_location
@@ -37635,7 +37635,7 @@ _ZTVNSt6__ndk19basic_iosIcNS_11char_traitsIcEEEE:
 	.long	.Linfo_string734        @ DW_AT_linkage_name
 	.long	.Linfo_string710        @ DW_AT_name
 	.byte	19                      @ DW_AT_decl_file
-	.byte	37                      @ DW_AT_decl_line
+	.byte	42                      @ DW_AT_decl_line
 	.long	23375                   @ DW_AT_type
 	.byte	1                       @ DW_AT_virtuality
 	.byte	2                       @ DW_AT_vtable_elem_location

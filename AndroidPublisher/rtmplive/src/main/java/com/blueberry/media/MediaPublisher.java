@@ -3,10 +3,7 @@ package com.blueberry.media;
 import android.app.Activity;
 import android.view.SurfaceHolder;
 
-import com.blueberry.media.codec.CodecReceivedResult;
 import com.blueberry.media.codec.CodecSendResult;
-import com.blueberry.media.codec.audio.AudioEncoder;
-import com.blueberry.media.codec.video.VideoEncoder;
 import com.blueberry.media.rtmp.RtmpCallback;
 import com.blueberry.media.rtmp.RtmpError;
 import com.blueberry.media.rtmp.RtmpErrorConst;
@@ -21,27 +18,25 @@ import java.io.IOException;
 /**
  * Created by blueberry on 3/7/2017.
  */
-public class MediaPublisher {
+public class MediaPublisher implements IMetaDataSender {
     private static final String TAG = "MediaPublisher";
 
     private Config mConfig;
 
     private Thread publishThread;
-    private Thread videoEncoderThread;
-    private Thread audioEncoderThread;
 
     private VideoGatherer mVideoGatherer;
     private AudioGatherer mAudioGatherer;
 
-    private AudioEncoder mAudioEncoder;
-    private VideoEncoder mVideoEncoder ;
+
+    private AudioCodecWorker mAudioCodecWorker;
+    private VideoCodecWorker mVideoCodecWorker;
 
     private RtmpPublisher mRtmpPublisher;
 
     private boolean isPublishing;
     private boolean loop;
-    private boolean videoEncoderLoop;
-    private boolean audioEncoderLoop;
+
     private boolean isSendMetaData = false;
 
     private final MediaQueueManager mediaQueueManager = MediaQueueManager.newInstance();
@@ -70,57 +65,9 @@ public class MediaPublisher {
         mVideoGatherer = VideoGatherer.newInstance(mConfig);
         mAudioGatherer = AudioGatherer.newInstance(mConfig);
 
-        mAudioEncoder =  AudioEncoder.newInstance();
-        mVideoEncoder =  VideoEncoder.newInstance();
         mRtmpPublisher = RtmpPublisher.newInstance();
         setListener();
 
-        videoEncoderThread = new Thread("video-encoder") {
-            @Override
-            public void run() {
-                while(videoEncoderLoop && !Thread.interrupted()){
-                    CodecReceivedResult codecReceivedResult = mVideoEncoder.receiveData();
-                    CodecReceivedResult.Type type = codecReceivedResult.getType();
-                    byte[] buffer = codecReceivedResult.getBuffer();
-                    if (buffer!=null) {
-                        VideoPacket packet = new VideoPacket();
-                        packet.setData(buffer);
-                        packet.setTimestamp(avSync.getRelativeTimestamp());
-                        try {
-                            tryToSendMetaData();
-                            mediaQueueManager.enqueueVideoPacket(packet);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-
-            }
-        };
-
-        audioEncoderThread = new Thread("audio-encoder") {
-            @Override
-            public void run() {
-                while(audioEncoderLoop && !Thread.interrupted()){
-                    CodecReceivedResult codecReceivedResult = mAudioEncoder.receiveData();
-
-                    CodecReceivedResult.Type type = codecReceivedResult.getType();
-                    byte[] buffer = codecReceivedResult.getBuffer();
-                    if (buffer!=null) {
-                        AudioPacket packet = new AudioPacket();
-                        packet.setData(buffer);
-                        packet.setTimestamp(avSync.getRelativeTimestamp());
-                        try {
-                            tryToSendMetaData();
-                            mediaQueueManager.enqueueAudioPacket(packet);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-
-            }
-        };
 
         publishThread = new Thread("publish-thread") {
             @Override
@@ -192,22 +139,19 @@ public class MediaPublisher {
      */
     public void initEncoders() {
         Logger.i(TAG, "initEncoders");
-        try {
-            AudioGatherParams params = mAudioGatherer.getCurrentParams();
-            int result = mAudioEncoder.initAudioEncoder(params.getSampleRate(), params.getChannelCount(), true, 30_000);
-        } catch (IOException e) {
-            e.printStackTrace();
-            // TODO if audio codec init failed
-            Logger.e(TAG, "init audio encoder failed");
-        }
+        AudioGatherParams currentParams = mAudioGatherer.getCurrentParams();
+        mAudioCodecWorker = AudioCodecWorker.newInstance(avSync, mediaQueueManager,
+                this,
+                currentParams.getSampleRate(),
+                currentParams.getChannelCount(),
+                true,
+                30_000
+        );
 
-        VideoGatherParams params = mVideoGatherer.getCurrentParams();
-        int result = mVideoEncoder.initVideoEncoder(params.getPreviewWidth(), params.getPreviewHeight(), params.getFrameRate(), mConfig.bitrate);
-        if (result != 0) {
-            // error
-            // TODO
-            Logger.e(TAG,"init video encoder error.");
-        }
+        VideoGatherParams videoGatherParams = mVideoGatherer.getCurrentParams();
+        mVideoCodecWorker = VideoCodecWorker.newInstance(avSync, mediaQueueManager, this,
+                videoGatherParams.getPreviewWidth(), videoGatherParams.getPreviewHeight(),
+                videoGatherParams.getFrameRate(), mConfig.bitrate);
     }
 
     /**
@@ -215,14 +159,8 @@ public class MediaPublisher {
      */
     public void startEncoder() {
         Logger.i(TAG, "start encoder");
-
-        mAudioEncoder.start();
-        audioEncoderLoop = true;
-        audioEncoderThread.start();
-
-        mVideoEncoder.start();
-        videoEncoderLoop= true;
-        videoEncoderThread.start();
+        mAudioCodecWorker.start();
+        mVideoCodecWorker.start();
     }
 
     public boolean isPublishing() {
@@ -255,9 +193,9 @@ public class MediaPublisher {
                 callback.onFailed(new RtmpError(ret, "connect failed"));
                 return;
             }
-            isPublishing = true;
             avSync = new AVSync();
             callback.onSuccess();
+            isPublishing = true;
             Logger.d(TAG, "start publish success. ");
         });
     }
@@ -281,11 +219,8 @@ public class MediaPublisher {
      * 停止编码
      */
     public void stopEncoder() {
-        mAudioEncoder.stop();
-        audioEncoderLoop = false;
-
-        mVideoEncoder.stop();
-        videoEncoderLoop = false;
+        mAudioCodecWorker.stopEncode();
+        mVideoCodecWorker.stopEncode();
     }
 
     /**
@@ -300,9 +235,8 @@ public class MediaPublisher {
      */
     public void release() {
         Logger.d(TAG, "release: ");
-
-        mAudioEncoder.release();
-        mVideoEncoder.release();
+        mAudioCodecWorker.release();
+        mVideoCodecWorker.release();
 
         mVideoGatherer.release();
         mAudioGatherer.release();
@@ -322,8 +256,8 @@ public class MediaPublisher {
                         e.printStackTrace();
                     }
                 }
-                CodecSendResult codecSendResult = mVideoEncoder.sendData(data, 0, data.length, false);
-                if(codecSendResult.getType() == CodecSendResult.Type.TRY_AGAIN){
+                CodecSendResult codecSendResult = mVideoCodecWorker.sendData(data, 0, data.length, false);
+                if (codecSendResult.getType() == CodecSendResult.Type.TRY_AGAIN) {
                     // todo more action for send
                     // next
                 }
@@ -332,20 +266,22 @@ public class MediaPublisher {
 
         mAudioGatherer.setCallback(data -> {
             if (isPublishing) {
-                CodecSendResult codecSendResult = mAudioEncoder.sendData(data, 0, data.length, false);
-                if(codecSendResult.getType() == CodecSendResult.Type.TRY_AGAIN){
+                CodecSendResult codecSendResult = mAudioCodecWorker.sendData(data, 0, data.length, false);
+                if (codecSendResult.getType() == CodecSendResult.Type.TRY_AGAIN) {
                     // todo more action for send
                 }
             }
         });
     }
 
-    private void tryToSendMetaData() {
+
+    @Override
+    public void tryToSendMetaData() {
         if (!isSendMetaData) {
             MetaData metaData = new MetaData();
 
-            AudioPacketParams audioPacketParams = mAudioEncoder.getAudioPacketParams();
-            VideoPacketParams videoPacketParams = mVideoEncoder.getVideoPacketParams();
+            AudioPacketParams audioPacketParams = mAudioCodecWorker.getAudioPacketParams();
+            VideoPacketParams videoPacketParams = mVideoCodecWorker.getVideoPacketParams();
 
             metaData.setWidth(videoPacketParams.getWidth());
             metaData.setHeight(videoPacketParams.getHeight());

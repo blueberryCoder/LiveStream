@@ -33,6 +33,7 @@ public class VideoGatherer {
     private Thread workThread;
     private boolean loop;
     private Callback mCallback;
+    private boolean isAutoFocusing = false;
 
     private final VideoGatherParams currentParams = new VideoGatherParams();
 
@@ -101,7 +102,6 @@ public class VideoGatherer {
         mCamera.setPreviewCallbackWithBuffer(getPreviewCallback());
         mCamera.addCallbackBuffer(new byte[calculateFrameSize(ImageFormat.NV21)]);
         mCamera.startPreview();
-
         //开启子线程
         initWorkThread();
         loop = true;
@@ -133,23 +133,39 @@ public class VideoGatherer {
                 }
             }
         };
+    }
 
+    private void autoFocus() {
+        if (isAutoFocusing) {
+            return;
+        }
+
+        String focusMode = mCamera.getParameters().getFocusMode();
+        Logger.d(TAG, "focusMode=" + focusMode);
+        if(!focusMode.equals(FOCUS_MODE_AUTO)) {
+            return ;
+        }
+
+        isAutoFocusing = true;
+        mCamera.autoFocus(new Camera.AutoFocusCallback() {
+            @Override
+            public void onAutoFocus(boolean success, Camera camera) {
+
+            }
+        });
     }
 
     public Camera.PreviewCallback getPreviewCallback() {
-        return new Camera.PreviewCallback() {
-            //            byte[] dstByte = new byte[calculateFrameSize(ImageFormat.NV21)];
-            @Override
-            public void onPreviewFrame(final byte[] data, final Camera camera) {
-                if (data != null) {
-                    try {
-                        mQueue.put(new PixelData(colorFormat, data));
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    camera.addCallbackBuffer(new byte[calculateFrameSize(ImageFormat.NV21)]);
+        return (data, camera) -> {
+            autoFocus();
+            if (data != null) {
+                try {
+                    mQueue.put(new PixelData(colorFormat, data));
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
+            } else {
+                camera.addCallbackBuffer(new byte[calculateFrameSize(ImageFormat.NV21)]);
             }
         };
     }
@@ -169,6 +185,8 @@ public class VideoGatherer {
     private void releaseCamera() {
         if (mCamera != null) {
             mCamera.setPreviewCallbackWithBuffer(null);
+            mCamera.cancelAutoFocus();
+            isAutoFocusing = false;
             mCamera.stopPreview();
             mCamera.release();
             mCamera = null;

@@ -55726,10 +55726,15 @@ class VideoData : public IFLVTagData {
 
 public:
     typedef enum {
+
        KEY_FRAME = 1 ,
+
        INTER_FRAME = 2,
+
        DISPOSABLE_FRAME = 3,
+
        RESERVED = 4,
+
        VIDEO_INFO_ = 5
     } FrameType;
 
