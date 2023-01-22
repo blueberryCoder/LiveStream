@@ -9,6 +9,8 @@ import com.blueberry.media.rtmp.RtmpError;
 import com.blueberry.media.rtmp.RtmpErrorConst;
 import com.blueberry.media.utils.Logger;
 import com.blueberry.media.utils.ThreadUtils;
+import com.blueberry.media.yuv.RotateMode;
+import com.blueberry.media.yuv.Yuv420Util;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -38,6 +40,7 @@ public class MediaPublisher implements IMetaDataSender {
     private boolean loop;
 
     private boolean isSendMetaData = false;
+    private boolean rotate90 = true;
 
     private final MediaQueueManager mediaQueueManager = MediaQueueManager.newInstance();
     private FileOutputStream of;
@@ -149,9 +152,24 @@ public class MediaPublisher implements IMetaDataSender {
         );
 
         VideoGatherParams videoGatherParams = mVideoGatherer.getCurrentParams();
-        mVideoCodecWorker = VideoCodecWorker.newInstance(avSync, mediaQueueManager, this,
-                videoGatherParams.getPreviewWidth(), videoGatherParams.getPreviewHeight(),
-                videoGatherParams.getFrameRate(), mConfig.bitrate);
+
+        int width = videoGatherParams.getPreviewWidth();
+        int height = videoGatherParams.getPreviewHeight();
+
+        if (rotate90) {
+            int tmp = width;
+            width = height;
+            height = tmp;
+        }
+
+        // rotate  90;
+        mVideoCodecWorker = VideoCodecWorker.newInstance(avSync,
+                mediaQueueManager,
+                this,
+                width,
+                height,
+                videoGatherParams.getFrameRate(),
+                mConfig.bitrate);
     }
 
     /**
@@ -247,7 +265,7 @@ public class MediaPublisher implements IMetaDataSender {
     }
 
     private void setListener() {
-        mVideoGatherer.setCallback((data, colorFormat) -> {
+        mVideoGatherer.setCallback((data ) -> {
             if (isPublishing) {
                 if (mConfig.enableDumpVideoRaw) {
                     try {
@@ -256,6 +274,15 @@ public class MediaPublisher implements IMetaDataSender {
                         e.printStackTrace();
                     }
                 }
+
+                if(rotate90) {
+                    byte[] buffer = new byte[data.length];
+                    int width = mVideoGatherer.getCurrentParams().getPreviewWidth();
+                    int height = mVideoGatherer.getCurrentParams().getPreviewHeight();
+                    Yuv420Util.I420Rotate(data, buffer, width, height, RotateMode.DEGREE_90);
+                    data = buffer;
+                }
+
                 CodecSendResult codecSendResult = mVideoCodecWorker.sendData(data, 0, data.length, false);
                 if (codecSendResult.getType() == CodecSendResult.Type.TRY_AGAIN) {
                     // todo more action for send

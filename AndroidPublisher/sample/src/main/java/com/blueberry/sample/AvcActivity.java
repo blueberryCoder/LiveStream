@@ -6,7 +6,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.blueberry.media.Yuv420Util;
+import com.blueberry.media.yuv.Yuv420Util;
 import com.blueberry.media.codec.Segment;
 import com.blueberry.media.codec.CodecReceivedResult;
 import com.blueberry.media.codec.CodecSendResult;

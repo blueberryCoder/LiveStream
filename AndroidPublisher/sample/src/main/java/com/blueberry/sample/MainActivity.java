@@ -22,6 +22,10 @@ import java.io.File;
 
 public class MainActivity extends AppCompatActivity implements SurfaceHolder.Callback2 {
 
+    static {
+        System.loadLibrary("publish");
+    }
+
     private static final String TAG = "MainActivity";
     private static final String URL = "rtmp://192.168.31.111:1935/live/test";
 
@@ -129,8 +133,8 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
     }
 
     private void stop() {
-        if(mProgressDialog != null){
-           mProgressDialog.dismiss();
+        if (mProgressDialog != null) {
+            mProgressDialog.dismiss();
         }
         mProgressDialog = new ProgressDialog(this);
         mProgressDialog.setTitle("Disconnect...");

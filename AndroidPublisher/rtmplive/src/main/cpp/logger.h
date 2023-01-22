@@ -6,7 +6,7 @@
 #define ANDROIDPUBLISHER_LOGGER_H
 
 #include <android/log.h>
-#include "log.h"
+#include "librtmp/log.h"
 #include <stdio.h>
 
 #define TAG "PUBLISH-C"

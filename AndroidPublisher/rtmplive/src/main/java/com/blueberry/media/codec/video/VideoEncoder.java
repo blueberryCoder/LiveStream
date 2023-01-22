@@ -30,9 +30,6 @@ public class VideoEncoder {
     private MediaCodec encoder = null;
     private VideoPacketParams videoPacketParams;
 
-    // https://blog.csdn.net/u010126792/article/details/86580878
-    private byte[] config;
-
     private VideoEncoder() {
     }
 
@@ -62,7 +59,6 @@ public class VideoEncoder {
         );
         format.setInteger(KEY_BIT_RATE, bitrate);
         format.setInteger(KEY_COLOR_FORMAT, MediaCodecInfo.CodecCapabilities.COLOR_FormatYUV420Planar);
-        format.setInteger(MediaFormat.KEY_SLICE_HEIGHT, height);
         format.setInteger(KEY_FRAME_RATE, fps);
         format.setInteger(KEY_I_FRAME_INTERVAL, 10);
         encoder.configure(format, null, null, CONFIGURE_FLAG_ENCODE);
@@ -113,13 +109,10 @@ public class VideoEncoder {
             encoder.releaseOutputBuffer(idx, false);
             if (bufferInfo.flags == MediaCodec.BUFFER_FLAG_CODEC_CONFIG) {
                 // config
-                config = bufferArr;
+                // https://blog.csdn.net/u010126792/article/details/86580878
                 Logger.d(TAG, "received codec config.");
-                return new CodecReceivedResult(CodecReceivedResult.Type.CONFIG, config, false);
+                return new CodecReceivedResult(CodecReceivedResult.Type.CONFIG, bufferArr, false);
             } else if (bufferInfo.flags == MediaCodec.BUFFER_FLAG_SYNC_FRAME) {
-//                byte[] buffer = new byte[bufferInfo.size + config.length];
-//                System.arraycopy(config, 0, buffer, 0, config.length);
-//                System.arraycopy(bufferArr, 0, buffer, config.length, bufferArr.length);
                 Logger.d(TAG, "received codec sync frame");
                 return new CodecReceivedResult(CodecReceivedResult.Type.NALU, bufferArr, isEndStream(bufferInfo));
             } else {

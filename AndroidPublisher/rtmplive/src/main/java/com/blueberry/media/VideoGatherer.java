@@ -1,23 +1,23 @@
 package com.blueberry.media;
 
+import static android.hardware.Camera.Parameters.FOCUS_MODE_AUTO;
+import static android.hardware.Camera.Parameters.PREVIEW_FPS_MAX_INDEX;
+import static android.hardware.Camera.Parameters.PREVIEW_FPS_MIN_INDEX;
+
 import android.app.Activity;
 import android.graphics.ImageFormat;
 import android.hardware.Camera;
-import android.media.MediaCodecInfo;
 import android.util.Log;
 import android.view.Surface;
 import android.view.SurfaceHolder;
+
+import com.blueberry.media.utils.Logger;
+import com.blueberry.media.yuv.Yuv420Util;
 
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.LinkedBlockingQueue;
-
-import static android.hardware.Camera.Parameters.FOCUS_MODE_AUTO;
-import static android.hardware.Camera.Parameters.PREVIEW_FPS_MAX_INDEX;
-import static android.hardware.Camera.Parameters.PREVIEW_FPS_MIN_INDEX;
-
-import com.blueberry.media.utils.Logger;
 
 /**
  * Created by blueberry on 3/6/2017.
@@ -28,12 +28,10 @@ public class VideoGatherer {
     private final Config config;
     private Camera mCamera;
     private Camera.Size previewSize;
-    private int colorFormat;
     private final LinkedBlockingQueue<PixelData> mQueue = new LinkedBlockingQueue<>();
     private Thread workThread;
     private boolean loop;
     private Callback mCallback;
-    private boolean isAutoFocusing = false;
 
     private final VideoGatherParams currentParams = new VideoGatherParams();
 
@@ -54,33 +52,26 @@ public class VideoGatherer {
      * 像素数据
      */
     public static class PixelData {
-        public final int format;
         public final byte[] data;
 
-        public PixelData(int format, byte[] data) {
-            this.format = format;
+        public PixelData(byte[] data) {
             this.data = data;
         }
 
         @Override
         public String toString() {
             return "PixelData{" +
-                    "format=" + format +
                     ", length=" + data.length +
                     '}';
         }
     }
 
     interface Callback {
-        void onReceive(byte[] data, int colorFormat);
+        void onReceive(byte[] data);
     }
 
     public void setCallback(Callback callback) {
         this.mCallback = callback;
-    }
-
-    public void setColorFormat(int colorFormat) {
-        this.colorFormat = colorFormat;
     }
 
     /**
@@ -100,7 +91,7 @@ public class VideoGatherer {
         }
 
         mCamera.setPreviewCallbackWithBuffer(getPreviewCallback());
-        mCamera.addCallbackBuffer(new byte[calculateFrameSize(ImageFormat.NV21)]);
+        mCamera.addCallbackBuffer(new byte[calculateFrameSize()]);
         mCamera.startPreview();
         //开启子线程
         initWorkThread();
@@ -111,7 +102,7 @@ public class VideoGatherer {
     private void initWorkThread() {
         workThread = new Thread() {
             //YUV420
-            final byte[] dstByte = new byte[calculateFrameSize(ImageFormat.NV21)];
+            final byte[] dstByte = new byte[calculateFrameSize()];
 
             @Override
             public void run() {
@@ -123,7 +114,7 @@ public class VideoGatherer {
                         Yuv420Util.Nv21ToI420(pixelData.data, dstByte, previewSize.width, previewSize.height);
                         if (mCallback != null) {
                             // call to media codec
-                            mCallback.onReceive(dstByte, colorFormat);
+                            mCallback.onReceive(dstByte);
                         }
                         addCallbackBuffer(pixelData.data);
                     } catch (InterruptedException e) {
@@ -136,22 +127,13 @@ public class VideoGatherer {
     }
 
     private void autoFocus() {
-        if (isAutoFocusing) {
+        String focusMode = mCamera.getParameters().getFocusMode();
+        Logger.d(TAG, "focusMode=" + focusMode);
+        if (!focusMode.equals(FOCUS_MODE_AUTO)) {
             return;
         }
 
-        String focusMode = mCamera.getParameters().getFocusMode();
-        Logger.d(TAG, "focusMode=" + focusMode);
-        if(!focusMode.equals(FOCUS_MODE_AUTO)) {
-            return ;
-        }
-
-        isAutoFocusing = true;
-        mCamera.autoFocus(new Camera.AutoFocusCallback() {
-            @Override
-            public void onAutoFocus(boolean success, Camera camera) {
-
-            }
+        mCamera.autoFocus((success, camera) -> {
         });
     }
 
@@ -160,12 +142,12 @@ public class VideoGatherer {
             autoFocus();
             if (data != null) {
                 try {
-                    mQueue.put(new PixelData(colorFormat, data));
+                    mQueue.put(new PixelData(data));
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             } else {
-                camera.addCallbackBuffer(new byte[calculateFrameSize(ImageFormat.NV21)]);
+                camera.addCallbackBuffer(new byte[calculateFrameSize()]);
             }
         };
     }
@@ -186,15 +168,14 @@ public class VideoGatherer {
         if (mCamera != null) {
             mCamera.setPreviewCallbackWithBuffer(null);
             mCamera.cancelAutoFocus();
-            isAutoFocusing = false;
             mCamera.stopPreview();
             mCamera.release();
             mCamera = null;
         }
     }
 
-    private int calculateFrameSize(int format) {
-        return previewSize.width * previewSize.height * ImageFormat.getBitsPerPixel(format) / 8;
+    private int calculateFrameSize() {
+        return previewSize.width * previewSize.height * ImageFormat.getBitsPerPixel(ImageFormat.NV21) / 8;
     }
 
 
@@ -251,7 +232,6 @@ public class VideoGatherer {
         int degrees = 0;
         switch (rotation) {
             case Surface.ROTATION_0:
-                degrees = 0;
                 break;
             case Surface.ROTATION_90:
                 degrees = 90;
