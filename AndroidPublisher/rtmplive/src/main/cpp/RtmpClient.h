@@ -29,21 +29,6 @@ extern "C" {
 
 #define BYTE uint8_t
 
-#define RTMP_HEAD_SIZE (sizeof(RTMPPacket)+RTMP_MAX_HEADER_SIZE)
-#define NAL_SLICE  1
-#define NAL_SLICE_DPA  2
-#define NAL_SLICE_DPB  3
-#define NAL_SLICE_DPC  4
-#define NAL_SLICE_IDR  5
-#define NAL_SEI  6
-#define NAL_SPS  7
-#define NAL_PPS  8
-#define NAL_AUD  9
-#define NAL_FILLER  12
-
-#define STREAM_CHANNEL_METADATA  0x03
-#define STREAM_CHANNEL_VIDEO     0x04
-#define STREAM_CHANNEL_AUDIO     0x05
 
 class RtmpClient {
 
@@ -94,9 +79,6 @@ public:
     );
 
 private:
-    // For FLV version 1 previous tag should add 11.
-    static constexpr int SIZE_COMPLEMENT = 11;
-
     int SendNALSPS(uint8_t *data, int length, long timestamp);
 
     int SendAACSpecific(uint8_t *data, int length, long timestamp);

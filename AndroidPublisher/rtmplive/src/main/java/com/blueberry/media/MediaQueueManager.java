@@ -1,11 +1,15 @@
 package com.blueberry.media;
 
+import com.blueberry.media.utils.Logger;
+
 import java.util.concurrent.LinkedBlockingDeque;
 
 /**
  * Created by blueberry on 2023/1/7
  */
 public class MediaQueueManager {
+
+    private static final String TAG = "MediaQueueManager";
 
     private final LinkedBlockingDeque<VideoPacket> videoPacketQueue = new LinkedBlockingDeque<>();
     private final LinkedBlockingDeque<AudioPacket> audioPacketQueue = new LinkedBlockingDeque<>();
@@ -44,16 +48,22 @@ public class MediaQueueManager {
         return audioPacketQueue.take();
     }
 
-
     public VideoPacket pollVideoPacket()  {
-        VideoPacket peek = videoPacketQueue.peek();
-        if (peek != null && peek.getTimestamp() >= currentTimestamp) {
-            videoPacketQueue.poll();
-            currentTimestamp = peek.getTimestamp();
-            return peek;
+        VideoPacket item = videoPacketQueue.poll();
+        // drop frame
+        // TODO: if I frame dropped should skip p frame.
+        long count = 0;
+        while (item != null && item.getTimestamp() < currentTimestamp) {
+            item = videoPacketQueue.poll();
+            count++;
+
+            if (count > 1) {
+                Logger.w(TAG, "drop video frame");
+            }
         }
-        return null;
+        return item;
     }
+
     public AudioPacket pollAudioPacket()  {
         AudioPacket peek = audioPacketQueue.peek();
         if(peek != null && peek.getTimestamp() >= currentTimestamp) {

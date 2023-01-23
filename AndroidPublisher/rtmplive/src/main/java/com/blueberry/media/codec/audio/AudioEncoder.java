@@ -95,26 +95,18 @@ public class AudioEncoder {
             outputBuffer.get(bufferArr, bufferInfo.offset, bufferInfo.size);
             encoder.releaseOutputBuffer(idx, false);
             if (bufferInfo.flags == MediaCodec.BUFFER_FLAG_CODEC_CONFIG) {
-                Logger.d(TAG, "received codec config.");
+                Logger.v(TAG, "received codec config.");
                 return new CodecReceivedResult(CodecReceivedResult.Type.CONFIG, bufferArr, false);
             } else if (bufferInfo.flags == MediaCodec.BUFFER_FLAG_SYNC_FRAME) {
-                Logger.d(TAG, "received codec sync frame");
+                Logger.v(TAG, "received codec sync frame");
                 return new CodecReceivedResult(CodecReceivedResult.Type.AAC, bufferArr, isEndStream(bufferInfo));
             } else {
-                Logger.d(TAG, "received codec other frame");
+                Logger.v(TAG, "received codec other frame");
                 return new CodecReceivedResult(CodecReceivedResult.Type.AAC, bufferArr, isEndStream(bufferInfo));
             }
         } else if (idx == MediaCodec.INFO_OUTPUT_FORMAT_CHANGED) {
             MediaFormat outputFormat = encoder.getOutputFormat();
             Logger.d(TAG, "format changed, output format=" + outputFormat);
-//            ByteBuffer csd0 = outputFormat.getByteBuffer("csd-0");
-//            ByteBuffer csd1 = outputFormat.getByteBuffer("csd-1");
-//            byte[] spsArr = csd0.array();
-//            byte[] ppsArr = csd1.array();
-//            // sps=00000001 67640016ACB405A1ED00DA1426A0
-//            // pps=00000001 68EE06F2C0
-//            Logger.i(TAG, "sps=" + HexUtils.bytes2String(spsArr));
-//            Logger.i(TAG, "pps=" + HexUtils.bytes2String(ppsArr));
             return new CodecReceivedResult(CodecReceivedResult.Type.CONFIG, null, false);
         } else if (idx == MediaCodec.INFO_OUTPUT_BUFFERS_CHANGED) {
             Logger.i(TAG, "output buffers changed.");

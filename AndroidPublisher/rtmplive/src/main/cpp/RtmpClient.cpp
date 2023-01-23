@@ -180,8 +180,8 @@ int RtmpClient::SendNALSPS(uint8_t *data, int length, long timestamp) {
     H264Params params(data, length);
     AVCDecoderConfiguration avc_decoder_configuration(params);
     AVCVideoPacket avc_packet(AVCVideoPacket::AVC_SEQ, timestamp, &avc_decoder_configuration);
-    VideoData video_data(VideoData::FrameType::INTER_FRAME, VideoData::VideoCodecId::AVC_, &
-    avc_packet);
+    VideoData video_data(VideoData::FrameType::KEY_FRAME, VideoData::VideoCodecId::AVC_,
+    &avc_packet);
     FLVTag flv_tag(FLVTag::VIDEO, video_data.Size(), timestamp, &video_data);
     return SendFlvTag(flv_tag);
 }

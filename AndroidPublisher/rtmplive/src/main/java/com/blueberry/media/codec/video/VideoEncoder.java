@@ -26,7 +26,6 @@ import java.nio.ByteBuffer;
 public class VideoEncoder {
     private static final String TAG = "VideoEncoder";
     private static final int TIME_OUT = 100;
-
     private MediaCodec encoder = null;
     private VideoPacketParams videoPacketParams;
 
@@ -110,13 +109,13 @@ public class VideoEncoder {
             if (bufferInfo.flags == MediaCodec.BUFFER_FLAG_CODEC_CONFIG) {
                 // config
                 // https://blog.csdn.net/u010126792/article/details/86580878
-                Logger.d(TAG, "received codec config.");
+                Logger.v(TAG, "received codec config.");
                 return new CodecReceivedResult(CodecReceivedResult.Type.CONFIG, bufferArr, false);
             } else if (bufferInfo.flags == MediaCodec.BUFFER_FLAG_SYNC_FRAME) {
-                Logger.d(TAG, "received codec sync frame");
+                Logger.v(TAG, "received codec sync frame");
                 return new CodecReceivedResult(CodecReceivedResult.Type.NALU, bufferArr, isEndStream(bufferInfo));
             } else {
-                Logger.d(TAG, "received codec other frame");
+                Logger.v(TAG, "received codec other frame");
                 return new CodecReceivedResult(CodecReceivedResult.Type.NALU, bufferArr, isEndStream(bufferInfo));
             }
         } else if (idx == MediaCodec.INFO_OUTPUT_FORMAT_CHANGED) {
@@ -127,13 +126,13 @@ public class VideoEncoder {
             byte[] ppsArr = csd1.array();
             // sps=00000001 67640016ACB405A1ED00DA1426A0
             // pps=00000001 68EE06F2C0
-            Logger.i(TAG, "sps=" + HexUtils.bytes2String(spsArr));
-            Logger.i(TAG, "pps=" + HexUtils.bytes2String(ppsArr));
+            Logger.v(TAG, "sps=" + HexUtils.bytes2String(spsArr));
+            Logger.v(TAG, "pps=" + HexUtils.bytes2String(ppsArr));
             return new CodecReceivedResult(CodecReceivedResult.Type.CONFIG, null, false);
         } else if (idx == MediaCodec.INFO_OUTPUT_BUFFERS_CHANGED) {
-            Logger.i(TAG, "output buffers changed.");
+            Logger.v(TAG, "output buffers changed.");
         } else if (idx == MediaCodec.INFO_TRY_AGAIN_LATER) {
-            Logger.v(TAG, "output try again.");
+//            Logger.v(TAG, "output try again.");
             return new CodecReceivedResult(CodecReceivedResult.Type.TRY_AGAIN, null, false);
         }
         return new CodecReceivedResult(CodecReceivedResult.Type.NONE, null, false);
