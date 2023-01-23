@@ -1,10 +1,12 @@
 package com.blueberry.media;
 
+
 /**
  * Created by blueberry on 1/16/2017.
  */
 
 public class RtmpPublisher {
+    private static final String TAG = "RtmpPublisher";
 
     private long cPtr;
 
@@ -28,10 +30,12 @@ public class RtmpPublisher {
     }
 
     public int sendVideoData(byte[] data, int len, long timestamp) {
+//        Logger.d(TAG, "sendVideoData: timestamp=" + timestamp);
         return PublishJni.sendVideoData(cPtr, data, len, timestamp);
     }
 
     public int sendAacData(byte[] data, int len, long timestamp) {
+//        Logger.d(TAG, "sendAacData: timestamp=" + timestamp);
         return PublishJni.sendAacData(cPtr, data, len, timestamp);
     }
 

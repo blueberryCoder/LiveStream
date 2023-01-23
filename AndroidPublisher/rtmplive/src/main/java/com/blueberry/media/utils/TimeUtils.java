@@ -6,7 +6,8 @@ package com.blueberry.media.utils;
  * @author blueberrymyg@gmail.com
  */
 public class TimeUtils {
-    public static long currentUs() {
-        return System.currentTimeMillis() * 1000;
+
+    synchronized public static long currentUs() {
+        return System.nanoTime() / 1000;
     }
 }

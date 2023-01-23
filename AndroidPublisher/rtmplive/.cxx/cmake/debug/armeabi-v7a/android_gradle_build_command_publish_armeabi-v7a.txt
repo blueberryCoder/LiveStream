@@ -1,0 +1,7 @@
+Executable : /Users/bytedance/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja
+arguments : 
+-C
+/Users/bytedance/code/my/LiveStream/AndroidPublisher/rtmplive/.cxx/cmake/debug/armeabi-v7a
+publish
+jvmArgs : 
+

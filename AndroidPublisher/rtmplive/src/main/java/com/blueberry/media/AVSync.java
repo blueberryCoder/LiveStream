@@ -6,11 +6,11 @@ package com.blueberry.media;
 public class AVSync {
     private long metaDataTimestamp = 0;
 
-    public void logSetDataFrame() {
+    synchronized public void logSetDataFrame() {
         metaDataTimestamp = System.currentTimeMillis();
     }
 
-    public long getRelativeTimestamp() {
+    synchronized public long getRelativeTimestamp() {
         return System.currentTimeMillis() - metaDataTimestamp;
     }
 }

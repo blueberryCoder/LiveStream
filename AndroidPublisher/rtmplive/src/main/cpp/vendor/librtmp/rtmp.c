@@ -3716,6 +3716,8 @@ RTMP_SendPacket(RTMP *r, RTMPPacket *packet, int queue) {
         header -= 4;
         hSize += 4;
         RTMP_Log(RTMP_LOGWARNING, "Larger timestamp than 24-bit: 0x%x", t);
+        RTMP_Log(RTMP_LOGWARNING, "Larger timestamp than packetTimeStamp=%d,last=%d",
+                 packet->m_nTimeStamp, last);
     }
 
     hptr = header;

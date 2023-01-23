@@ -18,6 +18,9 @@
 #define LOGI(fmt, ...) \
         __android_log_print(ANDROID_LOG_INFO, TAG,fmt, ##__VA_ARGS__);
 
+#define LOGW(fmt, ...) \
+        __android_log_print(ANDROID_LOG_WARN, TAG,fmt, ##__VA_ARGS__);
+
 #define LOGE(fmt, ...) \
         __android_log_print(ANDROID_LOG_ERROR, TAG,fmt, ##__VA_ARGS__);
 
@@ -27,7 +30,16 @@ static void rtmp_log_imp(int level, const char *format, va_list vl) {
     if (RTMP_debuglevel < RTMP_LOGALL && strstr(str, "no-name") != NULL)
         return;
 
-    LOGI("RTMP-LOG: %s", str);
+    if (level <= RTMP_LOGERROR) {
+        LOGE("RTMP-LOG: %s", str)
+    } else if (level <= RTMP_LOGWARNING) {
+        LOGW("RTMP-LOG: %s", str);
+    } else if (level <= RTMP_LOGINFO) {
+        LOGI("RTMP-LOG: %s", str);
+    } else {
+        LOGD("RTMP-LOG: %s", str);
+    }
+
 }
 
 #endif //ANDROIDPUBLISHER_LOGGER_H

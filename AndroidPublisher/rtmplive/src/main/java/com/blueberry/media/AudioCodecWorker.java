@@ -58,11 +58,12 @@ public class AudioCodecWorker extends Thread {
             CodecReceivedResult.Type type = codecReceivedResult.getType();
             byte[] buffer = codecReceivedResult.getBuffer();
             if (buffer != null) {
+                iMetaDataSender.tryToSendMetaData();
+
                 AudioPacket packet = new AudioPacket();
                 packet.setData(buffer);
                 packet.setTimestamp(avSync.getRelativeTimestamp());
                 try {
-                    iMetaDataSender.tryToSendMetaData();
                     mediaQueueManager.enqueueAudioPacket(packet);
                 } catch (InterruptedException e) {
                     e.printStackTrace();

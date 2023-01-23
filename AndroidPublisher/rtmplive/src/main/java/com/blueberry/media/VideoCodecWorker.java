@@ -57,11 +57,11 @@ public class VideoCodecWorker extends Thread {
             CodecReceivedResult.Type type = codecReceivedResult.getType();
             byte[] buffer = codecReceivedResult.getBuffer();
             if (buffer != null) {
+                iMetaDataSender.tryToSendMetaData();
                 VideoPacket packet = new VideoPacket();
                 packet.setData(buffer);
                 packet.setTimestamp(avSync.getRelativeTimestamp());
                 try {
-                    iMetaDataSender.tryToSendMetaData();
                     mediaQueueManager.enqueueVideoPacket(packet);
                 } catch (InterruptedException e) {
                     e.printStackTrace();

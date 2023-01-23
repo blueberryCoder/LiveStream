@@ -14,6 +14,8 @@ public class MediaQueueManager {
 
     private MediaQueueManager() {}
 
+    private long currentTimestamp = 0;
+
     public static MediaQueueManager newInstance() {
         return new MediaQueueManager();
     }
@@ -42,10 +44,23 @@ public class MediaQueueManager {
         return audioPacketQueue.take();
     }
 
+
     public VideoPacket pollVideoPacket()  {
-        return videoPacketQueue.poll();
+        VideoPacket peek = videoPacketQueue.peek();
+        if (peek != null && peek.getTimestamp() >= currentTimestamp) {
+            videoPacketQueue.poll();
+            currentTimestamp = peek.getTimestamp();
+            return peek;
+        }
+        return null;
     }
     public AudioPacket pollAudioPacket()  {
-        return audioPacketQueue.poll();
+        AudioPacket peek = audioPacketQueue.peek();
+        if(peek != null && peek.getTimestamp() >= currentTimestamp) {
+            audioPacketQueue.poll();
+            currentTimestamp = peek.getTimestamp();
+            return peek;
+        }
+        return null;
     }
 }

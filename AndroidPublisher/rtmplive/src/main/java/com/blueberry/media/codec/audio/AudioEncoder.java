@@ -50,7 +50,7 @@ public class AudioEncoder {
         format.setInteger(KEY_MAX_INPUT_SIZE, 0);
         format.setInteger(KEY_BIT_RATE, bitrate);
         encoder.configure(format, null, null, MediaCodec.CONFIGURE_FLAG_ENCODE);
-        audioPacketParams = new AudioPacketParams(bitrate, sampleRate, sampleRate, stereo);
+        audioPacketParams = new AudioPacketParams(bitrate, 16, sampleRate, stereo);
         return 0;
     }
 
