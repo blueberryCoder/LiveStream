@@ -3759,8 +3759,8 @@ RTMP_SendPacket(RTMP *r, RTMPPacket *packet, int queue) {
     buffer = packet->m_body;
     nChunkSize = r->m_outChunkSize;
 
-    RTMP_Log(RTMP_LOGDEBUG2, "%s: fd=%d, size=%d", __FUNCTION__, r->m_sb.sb_socket,
-             nSize);
+    RTMP_Log(RTMP_LOGDEBUG2, "%s: fd=%d, size=%d, chunkSize=%d", __FUNCTION__, r->m_sb.sb_socket,
+             nSize, nChunkSize);
     /* send all chunks in one HTTP request */
     if (r->Link.protocol & RTMP_FEATURE_HTTP) {
         int chunks = (nSize + nChunkSize - 1) / nChunkSize;
@@ -3804,7 +3804,7 @@ RTMP_SendPacket(RTMP *r, RTMPPacket *packet, int queue) {
                 hSize += 4;
             }
             *header = (0xc0 | c);
-            if (cSize) {
+            if (cSize) {  // Chunk Basic Header
                 int tmp = packet->m_nChannel - 64;
                 header[1] = tmp & 0xff;
                 if (cSize == 2)
@@ -3815,7 +3815,7 @@ RTMP_SendPacket(RTMP *r, RTMPPacket *packet, int queue) {
                 AMF_EncodeInt32(extendedTimestamp, extendedTimestamp + 4, t);
             }
         }
-    }
+    } // 循环结束
     if (tbuf) {
         int wrote = WriteN(r, tbuf, toff - tbuf);
         free(tbuf);

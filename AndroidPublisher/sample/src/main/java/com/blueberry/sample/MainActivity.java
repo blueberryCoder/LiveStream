@@ -23,12 +23,12 @@ import java.io.File;
 public class MainActivity extends AppCompatActivity implements SurfaceHolder.Callback2 {
 
     static {
-        // https://cloud.tencent.com/developer/article/1633285?areaSource=104001.23&traceId=IsTwA5qvxakT8o-yP4nWh
         System.loadLibrary("publish");
     }
 
     private static final String TAG = "MainActivity";
-    private static final String URL = "rtmp://192.168.31.111:1935/live/test";
+//    private static final String URL = "rtmp://192.168.31.111:1935/live/test";
+    private static final String URL = "rtmp://192.168.31.194:1935/live/test";
 
     private Button btnToggle;
     private EditText etUrl;

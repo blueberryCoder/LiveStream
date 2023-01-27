@@ -1,17 +1,7 @@
 //
 // Created by Administrator on 1/16/2017.
 //
-// http://rtmpdump.mplayerhq.hu/
 // ffprobe -v trace -show_frames file.h264
-//https://developer.ridgerun.com/wiki/index.php/H264_Analysis_Tools
-// https://www.jianshu.com/p/5702783153df
-// https://stackoverflow.com/questions/52285075/flv-video-packets-sent-over-rtmp-streamed-with-ffmpeg-vs-obs
-// https://blog.csdn.net/wujian946110509/article/details/103672274
-// https://blog.csdn.net/qq_29350001/article/details/78226286
-// https://ossrs.io/lts/en-us/assets/files/ISO_IEC_14496-15-AVC-format-2012-345a5b466cc73e978fd9dd0840361e8b.pdf
-// https://rtmp.veriskope.com/pdf/video_file_format_spec_v10.pdf
-// https://blog.csdn.net/cabbage2008/article/details/50500021
-// https://rtmp.veriskope.com/pdf/amf0-file-format-specification.pdf
 #include "RtmpClient.h"
 #include "H264Parser.h"
 #include "HexUtil.h"
@@ -153,11 +143,11 @@ int RtmpClient::SendAVCData(BYTE *data, int len, long timestamp) {
             break;
         }
         case H264Parser::H264_NAL_IDR_SLICE: {
-            LOGI("VIDEO IDR SLICE ")
+            LOGW("VIDEO IDR SLICE ")
             break;
         }
         case H264Parser::H264_NAL_SLICE: {
-            LOGI("VIDEO H264_NAL_SLICE")
+            LOGW("VIDEO H264_NAL_SLICE")
         }
     }
 
